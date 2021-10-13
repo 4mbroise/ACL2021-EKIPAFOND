@@ -1,7 +1,15 @@
 # ACL
- Projet S1 M2 ACL
- 
- AYATA Enes
- FAUGIER Elliot
- GE Yuxuan
- BADAWY Adham
+## Projet S1 M1 ACL
+
+- AYATA Enes
+- BADAWY Adham
+- FAUGIER Elliot
+- GE Yuxuan
+
+
+
+## Technos
+
+- Build: Gradle
+- Langage : Java
+- Game Engine : libGDX
