@@ -17,6 +17,9 @@
 - To import in Eclipse: File -> Import -> Gradle -> Existing Gradle Project
 - To import to Intellij IDEA: File -> Open -> build.gradle
 
+## Gradle
+- How to run : Gradle run
+
 ## Tâches
 - ?
 - ?
