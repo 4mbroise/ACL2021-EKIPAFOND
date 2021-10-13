@@ -10,7 +10,7 @@
 - To import to NetBeans: File -> Open Project...
 
 - Build: Gradle
-- Langage : Java
+- Langage : Java 8
 - Game Engine : libGDX
 
 ## IDE Tips
