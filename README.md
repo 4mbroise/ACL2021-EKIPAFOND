@@ -1,5 +1,4 @@
 # ACL
-
 ## Projet S1 M1 ACL
 
 - AYATA Enes
@@ -8,6 +7,7 @@
 - GE Yuxuan
 
 ## Technos
+- To import to NetBeans: File -> Open Project...
 
 - Build: Gradle
 - Langage : Java
@@ -16,4 +16,8 @@
 ## IDE Tips
 - To import in Eclipse: File -> Import -> Gradle -> Existing Gradle Project
 - To import to Intellij IDEA: File -> Open -> build.gradle
-- To import to NetBeans: File -> Open Project...
+
+## Tâches
+- ?
+- ?
+- ?
