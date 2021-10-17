@@ -58,6 +58,8 @@ project(":core") {
 
 
     dependencies {
+        compile "com.badlogicgames.gdx:gdx-ai:1.8.1"
+        compile "com.badlogicgames.ashley:ashley:1.7.3"
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
