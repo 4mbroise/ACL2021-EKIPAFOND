@@ -22,4 +22,5 @@ Required Java version: **Java 8**!
 - To import to NetBeans: File -> Open Project...
 
 ## Gradle
-- How to run : Gradle run
+- How to build : gradle build
+- How to run : gradle run
