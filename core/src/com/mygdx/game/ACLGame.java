@@ -1,31 +1,27 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.screens.GameScreen;
 
-public class ACLGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
-	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
-	}
+public class ACLGame extends Game {
 
-	@Override
-	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
-	
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
-	}
+    public SpriteBatch batcher;
+
+    @Override
+    public void create() {
+        batcher = new SpriteBatch();
+        setScreen(new GameScreen(this));
+    }
+
+    @Override
+    public void render() {
+        GL20 gl = Gdx.gl;
+        gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+        gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        super.render();
+    }
 }

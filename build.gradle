@@ -56,8 +56,8 @@ project(":desktop") {
 project(":core") {
     apply plugin: "java-library"
 
-
     dependencies {
+        testCompile "junit:junit:+"
         compile "com.badlogicgames.gdx:gdx-ai:1.8.1"
         compile "com.badlogicgames.ashley:ashley:1.7.3"
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
