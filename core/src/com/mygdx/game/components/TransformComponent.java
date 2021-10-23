@@ -10,11 +10,11 @@ public class TransformComponent implements Component {
         this.position = position;
     }
 
-    Vector3 getPosition(){
+    public Vector3 getPosition(){
         return new Vector3(position);
     }
 
-    void applyPositionTranslation(Vector3 newPosition, float scalar){
+    public void applyPositionTranslation(Vector3 newPosition, float scalar){
         this.position.mulAdd(newPosition, scalar);
     }
 
