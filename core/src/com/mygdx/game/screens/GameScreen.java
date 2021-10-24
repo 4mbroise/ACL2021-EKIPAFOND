@@ -13,6 +13,7 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+
         super.render(delta);
     }
 
