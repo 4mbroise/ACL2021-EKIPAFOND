@@ -46,7 +46,7 @@ public class RegleScreen extends ScreenAdapter {
 
     public void create(){
         //background
-        backGroundTexture=new Texture(Gdx.files.internal("menu/fajrbackground.png"));
+        backGroundTexture=new Texture(Gdx.files.internal("menu/noonbackground.png"));
         backGroud=new Image(backGroundTexture);
         backGroud.setPosition(0,0);
         backGroud.setOrigin(0,0);
@@ -64,7 +64,7 @@ public class RegleScreen extends ScreenAdapter {
         returnStyle.up=new TextureRegionDrawable(new TextureRegion(returnUpTexture));
         returnStyle.down=new TextureRegionDrawable(new TextureRegion(returnDownTexture));
         returnButton=new Button(returnStyle);
-        returnButton.setPosition(400-returnUpTexture.getWidth()/2,0);
+        returnButton.setPosition(400-returnUpTexture.getWidth()/2,50);
         returnButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
