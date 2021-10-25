@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.screens.GameScreen;
-import com.mygdx.game.screens.GameTestScreen;
+
 
 public class ACLGame extends Game {
 
