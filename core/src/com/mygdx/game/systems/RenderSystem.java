@@ -29,8 +29,6 @@ public class RenderSystem extends SortedIteratingSystem {
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
 
-        System.out.println("rendering");
-
         TextureComponent txComp = txm.get(entity);
         TransformComponent trComp = trm.get(entity);
 
