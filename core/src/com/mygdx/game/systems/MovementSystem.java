@@ -26,6 +26,8 @@ public class MovementSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
+
+
         MovementComponent   mvComp      = mm.get(entity);
         TransformComponent  trComp      = tm.get(entity);
         DirectionComponent  dirComp     = dm.get(entity);
