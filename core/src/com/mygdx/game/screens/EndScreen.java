@@ -56,10 +56,7 @@ public class EndScreen extends ScreenAdapter {
         backGroud.setOrigin(0,0);
         backGroud.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         //font
-        titleFont=new Font(50, Color.RED);
-        title= titleFont.getFont();
-        contentFont=new Font(20, Color.BLACK);
-        content=contentFont.getFont();
+        title=assets.getManager().get("fonts/Retro_Gaming.ttf");
         //button
         homeUpTexture=assets.getManager().get("UI/homeUp.png");
         homeDownTexture=assets.getManager().get("UI/homeDown.png");
@@ -90,8 +87,7 @@ public class EndScreen extends ScreenAdapter {
         batch.begin();
         stage.act();
         stage.draw();
-        title=assets.getManager().get("fonts/Retro_Gaming.ttf");
-        title.draw(batch, "Game Over",250,400);
+        title.draw(batch, "Game Over",220,400);
         batch.end();
     }
 

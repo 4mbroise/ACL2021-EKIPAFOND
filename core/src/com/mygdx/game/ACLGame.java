@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.screens.GameScreen;
+import com.mygdx.game.screens.MenuScreen;
 
 
 public class ACLGame extends Game {
@@ -20,10 +21,11 @@ public class ACLGame extends Game {
     public void create() {
         this.assets = new Assets();
         batcher = new SpriteBatch();
-        setScreen(new GameScreen(this, assets));
         camera = new OrthographicCamera(800, 480);
         batcher.setProjectionMatrix(camera.combined);
         assets.getManager().finishLoading();
+        setScreen(new MenuScreen(this));
+
     }
 
     @Override

@@ -61,7 +61,7 @@ public class MenuScreen extends ScreenAdapter{
 
     public void create(){
         //background
-        backGroundTexture=assets.getManager().get("UI/fajrbackground.png");
+        backGroundTexture=assets.getManager().get("UI/sunsetbackground.png");
         backGroud=new Image(backGroundTexture);
         backGroud.setPosition(0,0);
         backGroud.setOrigin(0,0);
@@ -79,13 +79,12 @@ public class MenuScreen extends ScreenAdapter{
         startStyle.up=new TextureRegionDrawable(new TextureRegion(startUpTexture));
         startStyle.down=new TextureRegionDrawable(new TextureRegion(startDownTexture));
         startButton=new Button(startStyle);
-
         startButton.setPosition(Gdx.graphics.getWidth()/2-startUpTexture.getWidth()/2,200);
         startButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new GameScreen(game,assets));
+                game.setScreen(new GameScreen(game));
             }
         });
         //regle button
@@ -101,11 +100,9 @@ public class MenuScreen extends ScreenAdapter{
                 game.setScreen(new RegleScreen(game));
             }
         });
-
         //font
         title=assets.getManager().get("fonts/Retro_Gaming.ttf");
-
-
+        //add actors
         group.addActor(backGroud);
         group.addActor(startButton);
         group.addActor(regleButton);
@@ -121,7 +118,7 @@ public class MenuScreen extends ScreenAdapter{
         batch.begin();
         stage.act();
         stage.draw();
-        title.draw(batch, "Pacman",300,400);
+        title.draw(batch, "Pacman",260,400);
         batch.end();
 
     }

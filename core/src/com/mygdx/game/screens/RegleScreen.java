@@ -89,8 +89,8 @@ public class RegleScreen extends ScreenAdapter {
         batch.begin();
         stage.act();
         stage.draw();
-        title.draw(batch, "Regle",300,400);
-        content.draw(batch, "It's game pacman",0,300);
+        title.draw(batch, "Regle",260,400);
+        content.draw(batch, "It's a game pacman",0,300);
         batch.end();
     }
 

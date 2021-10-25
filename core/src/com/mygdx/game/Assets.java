@@ -26,7 +26,7 @@ public class Assets {
         assetManager.load("UI/regleUp.png",Texture.class);
         assetManager.load("UI/regleDown.png",Texture.class);
         //backGround
-        assetManager.load("UI/fajrbackground.png",Texture.class);
+        assetManager.load("UI/sunsetbackground.png",Texture.class);
         assetManager.load("UI/noonbackground.png",Texture.class);
         assetManager.load("UI/nightbackgroundwithmoon.png",Texture.class);
         //fonts
@@ -41,7 +41,6 @@ public class Assets {
 
         //load
         System.out.println(assetManager.getProgress());
-        assetManager.finishLoading();
 
     }
 
