@@ -22,6 +22,7 @@ public class ACLGameListener extends InputAdapter {
     public boolean keyDown(int keycode) {
         switch (keycode){
             case Input.Keys.Z:
+            case Input.Keys.W:
                 engine.getSystem(HeroSystem.class).setHeroDirection(DirectionComponent.UP);
                 return true;
             case Input.Keys.S:
@@ -31,6 +32,7 @@ public class ACLGameListener extends InputAdapter {
                 engine.getSystem(HeroSystem.class).setHeroDirection(DirectionComponent.RIGHT);
                 return true;
             case Input.Keys.Q:
+            case Input.Keys.A:
                 engine.getSystem(HeroSystem.class).setHeroDirection(DirectionComponent.LEFT);
                 return true;
         }
