@@ -15,8 +15,8 @@ public class BodyComponent implements Component {
         return body;
     }
 
-    public void setPosition(Vector2 newPosition){
-        this.body.setTransform(newPosition, 0);
+    public void setLinearVelocity(Vector2 newLinearVelocity){
+        this.body.setLinearVelocity(newLinearVelocity);
     }
 
 }

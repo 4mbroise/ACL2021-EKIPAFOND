@@ -58,7 +58,7 @@ public class MovementSystemTest {
             //random float between 1/50 and 1/75 (framerate)
             deltaTime = 1/50 + r.nextFloat() * (1/75 - 1/50);
             engine.update(deltaTime);
-
+            System.out.println(transformComponent.getPosition().x);
             assertEquals(0, transformComponent.getPosition().x, 0);
             assertEquals(y+(movementComponent.getVelocity()*deltaTime), transformComponent.getPosition().y, 0);
 
