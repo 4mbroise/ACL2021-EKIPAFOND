@@ -1,10 +1,11 @@
 package com.mygdx.game.components;
 
+import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.physics.box2d.Body;
 
-public class Box2dComponent {
+public class Box2dComponent implements Component {
 
-    private Body body;
+    public final Body body;
     public Box2dComponent(Body body) {
         this.body = body;
     }
