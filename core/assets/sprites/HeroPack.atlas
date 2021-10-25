@@ -1,0 +1,1742 @@
+
+texture.png
+size: 540,211
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Character with sword and shield/attack/attack down1.png
+  rotate: false
+  xy: 0,0
+  size: 23,21
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack down2.png
+  rotate: false
+  xy: 23,0
+  size: 23,21
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack left1.png
+  rotate: false
+  xy: 46,0
+  size: 23,21
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack right1.png
+  rotate: false
+  xy: 69,0
+  size: 23,21
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack up1.png
+  rotate: false
+  xy: 92,0
+  size: 23,21
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack up2.png
+  rotate: false
+  xy: 115,0
+  size: 23,21
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack down3.png
+  rotate: false
+  xy: 138,0
+  size: 21,19
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack down4.png
+  rotate: false
+  xy: 159,0
+  size: 21,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim down3.png
+  rotate: false
+  xy: 180,0
+  size: 20,20
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack up3.png
+  rotate: false
+  xy: 159,14
+  size: 20,19
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim down3.png
+  rotate: false
+  xy: 138,20
+  size: 20,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack up4.png
+  rotate: false
+  xy: 0,21
+  size: 20,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack left2.png
+  rotate: false
+  xy: 20,21
+  size: 19,22
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack right2.png
+  rotate: false
+  xy: 0,36
+  size: 19,22
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim down3.png
+  rotate: false
+  xy: 39,21
+  size: 19,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll left4.png
+  rotate: false
+  xy: 58,21
+  size: 19,13
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll right4.png
+  rotate: false
+  xy: 77,21
+  size: 19,13
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot left1.png
+  rotate: false
+  xy: 96,21
+  size: 15,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot right1.png
+  rotate: false
+  xy: 111,21
+  size: 15,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim down4.png
+  rotate: false
+  xy: 126,21
+  size: 12,22
+  orig: 64,64
+  offset: 0,0
+  index: -1
+death animation/death3.png
+  rotate: false
+  xy: 58,34
+  size: 15,10
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack left3.png
+  rotate: false
+  xy: 39,37
+  size: 14,21
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack right3.png
+  rotate: false
+  xy: 19,43
+  size: 14,21
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim up2.png
+  rotate: false
+  xy: 0,58
+  size: 14,19
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim down2.png
+  rotate: false
+  xy: 73,34
+  size: 14,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack up3.png
+  rotate: false
+  xy: 87,34
+  size: 9,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim up3.png
+  rotate: false
+  xy: 53,44
+  size: 14,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack left4.png
+  rotate: false
+  xy: 53,62
+  size: 14,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/attack/attack right4.png
+  rotate: false
+  xy: 33,58
+  size: 14,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack left3.png
+  rotate: false
+  xy: 14,64
+  size: 14,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack right3.png
+  rotate: false
+  xy: 0,77
+  size: 14,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim down2.png
+  rotate: false
+  xy: 28,75
+  size: 13,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll right3.png
+  rotate: false
+  xy: 41,75
+  size: 12,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll left3.png
+  rotate: false
+  xy: 41,93
+  size: 12,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim up4.png
+  rotate: false
+  xy: 41,110
+  size: 12,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim up2.png
+  rotate: false
+  xy: 14,79
+  size: 13,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim up3.png
+  rotate: false
+  xy: 0,92
+  size: 13,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim down2.png
+  rotate: false
+  xy: 27,91
+  size: 12,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack left2.png
+  rotate: false
+  xy: 27,107
+  size: 12,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack right2.png
+  rotate: false
+  xy: 13,93
+  size: 12,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim up2.png
+  rotate: false
+  xy: 0,106
+  size: 12,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim up3.png
+  rotate: false
+  xy: 12,107
+  size: 12,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll left3.png
+  rotate: false
+  xy: 0,120
+  size: 12,10
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll right3.png
+  rotate: false
+  xy: 12,121
+  size: 12,10
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll left3.png
+  rotate: false
+  xy: 0,130
+  size: 12,10
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll right3.png
+  rotate: false
+  xy: 24,121
+  size: 12,10
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim left1.png
+  rotate: false
+  xy: 96,36
+  size: 11,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim right1.png
+  rotate: false
+  xy: 107,36
+  size: 11,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack down3.png
+  rotate: false
+  xy: 118,36
+  size: 8,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/block/block up.png
+  rotate: false
+  xy: 67,52
+  size: 11,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle down1.png
+  rotate: false
+  xy: 78,52
+  size: 11,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle down4.png
+  rotate: false
+  xy: 200,0
+  size: 11,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle up1.png
+  rotate: false
+  xy: 211,0
+  size: 11,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle up4.png
+  rotate: false
+  xy: 222,0
+  size: 11,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk down2.png
+  rotate: false
+  xy: 233,0
+  size: 11,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle down2.png
+  rotate: false
+  xy: 244,0
+  size: 11,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle down3.png
+  rotate: false
+  xy: 255,0
+  size: 11,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle up2.png
+  rotate: false
+  xy: 266,0
+  size: 11,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle up3.png
+  rotate: false
+  xy: 277,0
+  size: 11,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack up2.png
+  rotate: false
+  xy: 288,0
+  size: 11,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot left3.png
+  rotate: false
+  xy: 299,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot right3.png
+  rotate: false
+  xy: 310,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot up1.png
+  rotate: false
+  xy: 321,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot up3.png
+  rotate: false
+  xy: 332,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot up4.png
+  rotate: false
+  xy: 343,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle up3.png
+  rotate: false
+  xy: 354,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk left1.png
+  rotate: false
+  xy: 365,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk right1.png
+  rotate: false
+  xy: 376,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk up1.png
+  rotate: false
+  xy: 387,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk up3.png
+  rotate: false
+  xy: 398,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll up4.png
+  rotate: false
+  xy: 409,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot up2.png
+  rotate: false
+  xy: 420,0
+  size: 11,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle left1.png
+  rotate: false
+  xy: 431,0
+  size: 11,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle right1.png
+  rotate: false
+  xy: 442,0
+  size: 11,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle up1.png
+  rotate: false
+  xy: 453,0
+  size: 11,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle up2.png
+  rotate: false
+  xy: 464,0
+  size: 11,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim up4.png
+  rotate: false
+  xy: 475,0
+  size: 11,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk left2.png
+  rotate: false
+  xy: 486,0
+  size: 11,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk right2.png
+  rotate: false
+  xy: 497,0
+  size: 11,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk up2.png
+  rotate: false
+  xy: 508,0
+  size: 11,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll up4.png
+  rotate: false
+  xy: 519,0
+  size: 11,11
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll left1.png
+  rotate: false
+  xy: 530,0
+  size: 10,21
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll right1.png
+  rotate: false
+  xy: 519,11
+  size: 10,21
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll down2.png
+  rotate: false
+  xy: 420,14
+  size: 10,19
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim up1.png
+  rotate: false
+  xy: 430,14
+  size: 10,19
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll left2.png
+  rotate: false
+  xy: 440,14
+  size: 10,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll right2.png
+  rotate: false
+  xy: 450,14
+  size: 10,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim down1.png
+  rotate: false
+  xy: 460,14
+  size: 10,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim left2.png
+  rotate: false
+  xy: 470,14
+  size: 10,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim left3.png
+  rotate: false
+  xy: 480,14
+  size: 10,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim left4.png
+  rotate: false
+  xy: 490,14
+  size: 10,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim right2.png
+  rotate: false
+  xy: 500,14
+  size: 10,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot down1.png
+  rotate: false
+  xy: 510,14
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll down2.png
+  rotate: false
+  xy: 510,31
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim right3.png
+  rotate: false
+  xy: 440,32
+  size: 10,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/swim/swim right4.png
+  rotate: false
+  xy: 450,32
+  size: 10,18
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/block/block down.png
+  rotate: false
+  xy: 460,32
+  size: 10,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/block/block left.png
+  rotate: false
+  xy: 470,32
+  size: 10,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/block/block right.png
+  rotate: false
+  xy: 480,32
+  size: 10,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll down4.png
+  rotate: false
+  xy: 490,32
+  size: 10,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk down1.png
+  rotate: false
+  xy: 500,32
+  size: 10,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk down3.png
+  rotate: false
+  xy: 299,15
+  size: 10,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk left1.png
+  rotate: false
+  xy: 244,16
+  size: 10,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk right1.png
+  rotate: false
+  xy: 200,17
+  size: 10,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk up1.png
+  rotate: false
+  xy: 179,20
+  size: 10,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk up2.png
+  rotate: false
+  xy: 189,20
+  size: 10,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk up3.png
+  rotate: false
+  xy: 158,33
+  size: 10,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim down4.png
+  rotate: false
+  xy: 168,33
+  size: 10,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll down1.png
+  rotate: false
+  xy: 138,36
+  size: 10,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim down4.png
+  rotate: false
+  xy: 148,36
+  size: 10,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack down1.png
+  rotate: false
+  xy: 126,43
+  size: 10,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll up1.png
+  rotate: false
+  xy: 118,53
+  size: 8,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack down2.png
+  rotate: false
+  xy: 89,54
+  size: 10,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot left2.png
+  rotate: false
+  xy: 99,54
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll left1.png
+  rotate: false
+  xy: 109,54
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot right2.png
+  rotate: false
+  xy: 99,68
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim left1.png
+  rotate: false
+  xy: 67,71
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim left2.png
+  rotate: false
+  xy: 53,79
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim left3.png
+  rotate: false
+  xy: 77,69
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim left4.png
+  rotate: false
+  xy: 87,69
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim right1.png
+  rotate: false
+  xy: 210,17
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim right2.png
+  rotate: false
+  xy: 220,17
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim right3.png
+  rotate: false
+  xy: 230,17
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim right4.png
+  rotate: false
+  xy: 210,31
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll up2.png
+  rotate: false
+  xy: 199,34
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim left1.png
+  rotate: false
+  xy: 199,48
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim left2.png
+  rotate: false
+  xy: 178,37
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim left3.png
+  rotate: false
+  xy: 168,49
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim left4.png
+  rotate: false
+  xy: 158,50
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim right1.png
+  rotate: false
+  xy: 188,37
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim right2.png
+  rotate: false
+  xy: 178,51
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim right3.png
+  rotate: false
+  xy: 168,63
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim right4.png
+  rotate: false
+  xy: 188,51
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim up4.png
+  rotate: false
+  xy: 136,52
+  size: 10,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll left4.png
+  rotate: false
+  xy: 126,64
+  size: 10,13
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack down4.png
+  rotate: false
+  xy: 118,69
+  size: 8,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll right1.png
+  rotate: false
+  xy: 109,77
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll right4.png
+  rotate: false
+  xy: 97,82
+  size: 10,13
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll down3.png
+  rotate: false
+  xy: 146,52
+  size: 10,13
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll up3.png
+  rotate: false
+  xy: 156,64
+  size: 10,11
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll up4.png
+  rotate: false
+  xy: 146,65
+  size: 10,7
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle left1.png
+  rotate: false
+  xy: 136,66
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle left4.png
+  rotate: false
+  xy: 126,77
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack up4.png
+  rotate: false
+  xy: 118,85
+  size: 8,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle right1.png
+  rotate: false
+  xy: 107,94
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle right4.png
+  rotate: false
+  xy: 145,72
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk left2.png
+  rotate: false
+  xy: 135,83
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk left3.png
+  rotate: false
+  xy: 126,94
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk right3.png
+  rotate: false
+  xy: 116,101
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll left1.png
+  rotate: false
+  xy: 116,118
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll right1.png
+  rotate: false
+  xy: 116,135
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot down3.png
+  rotate: false
+  xy: 116,152
+  size: 9,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle down4.png
+  rotate: false
+  xy: 154,75
+  size: 9,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll down1.png
+  rotate: false
+  xy: 144,89
+  size: 9,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim down1.png
+  rotate: false
+  xy: 135,100
+  size: 9,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk down1.png
+  rotate: false
+  xy: 125,111
+  size: 9,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk down3.png
+  rotate: false
+  xy: 125,127
+  size: 9,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle left2.png
+  rotate: false
+  xy: 77,83
+  size: 9,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle left3.png
+  rotate: false
+  xy: 86,83
+  size: 9,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle right2.png
+  rotate: false
+  xy: 95,95
+  size: 9,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/idle/idle right3.png
+  rotate: false
+  xy: 95,111
+  size: 9,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/roll/roll up1.png
+  rotate: false
+  xy: 104,111
+  size: 9,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot down2.png
+  rotate: false
+  xy: 104,127
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle down1.png
+  rotate: false
+  xy: 63,85
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk down2.png
+  rotate: false
+  xy: 53,93
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack left1.png
+  rotate: false
+  xy: 62,100
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack left4.png
+  rotate: false
+  xy: 53,108
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack right1.png
+  rotate: false
+  xy: 72,99
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack right4.png
+  rotate: false
+  xy: 81,99
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle left3.png
+  rotate: false
+  xy: 81,114
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle left4.png
+  rotate: false
+  xy: 71,114
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle right3.png
+  rotate: false
+  xy: 62,115
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle right4.png
+  rotate: false
+  xy: 53,123
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk left1.png
+  rotate: false
+  xy: 90,127
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk left3.png
+  rotate: false
+  xy: 90,142
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk right1.png
+  rotate: false
+  xy: 99,142
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll down1.png
+  rotate: false
+  xy: 108,142
+  size: 8,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk right3.png
+  rotate: false
+  xy: 99,158
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll down2.png
+  rotate: false
+  xy: 108,158
+  size: 8,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll up1.png
+  rotate: false
+  xy: 108,174
+  size: 8,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll left2.png
+  rotate: false
+  xy: 36,127
+  size: 9,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim down1.png
+  rotate: false
+  xy: 45,127
+  size: 8,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll right2.png
+  rotate: false
+  xy: 71,129
+  size: 9,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle left1.png
+  rotate: false
+  xy: 62,130
+  size: 9,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle left2.png
+  rotate: false
+  xy: 53,138
+  size: 9,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle right1.png
+  rotate: false
+  xy: 62,144
+  size: 9,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle right2.png
+  rotate: false
+  xy: 62,158
+  size: 9,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll left2.png
+  rotate: false
+  xy: 80,129
+  size: 9,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll right2.png
+  rotate: false
+  xy: 80,143
+  size: 9,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk left2.png
+  rotate: false
+  xy: 71,143
+  size: 9,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk right2.png
+  rotate: false
+  xy: 12,131
+  size: 9,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll left4.png
+  rotate: false
+  xy: 0,143
+  size: 9,13
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll right4.png
+  rotate: false
+  xy: 21,131
+  size: 9,13
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll up3.png
+  rotate: false
+  xy: 30,141
+  size: 9,11
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll down4.png
+  rotate: false
+  xy: 21,144
+  size: 9,10
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/attack/attack up1.png
+  rotate: false
+  xy: 9,145
+  size: 8,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle down3.png
+  rotate: false
+  xy: 0,156
+  size: 8,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle down4.png
+  rotate: false
+  xy: 39,143
+  size: 8,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle up3.png
+  rotate: false
+  xy: 30,152
+  size: 8,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle up4.png
+  rotate: false
+  xy: 17,154
+  size: 8,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk down1.png
+  rotate: false
+  xy: 8,160
+  size: 8,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk down3.png
+  rotate: false
+  xy: 0,171
+  size: 8,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk up1.png
+  rotate: false
+  xy: 47,152
+  size: 8,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk up3.png
+  rotate: false
+  xy: 38,158
+  size: 8,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+death animation/death1.png
+  rotate: false
+  xy: 25,167
+  size: 8,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+death animation/death2.png
+  rotate: false
+  xy: 16,169
+  size: 8,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/swim/swim up1.png
+  rotate: false
+  xy: 8,175
+  size: 8,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle down1.png
+  rotate: false
+  xy: 0,186
+  size: 8,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle down2.png
+  rotate: false
+  xy: 46,167
+  size: 8,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle up1.png
+  rotate: false
+  xy: 54,167
+  size: 8,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/idle/idle up2.png
+  rotate: false
+  xy: 54,181
+  size: 8,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk down2.png
+  rotate: false
+  xy: 33,173
+  size: 8,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk up2.png
+  rotate: false
+  xy: 24,182
+  size: 8,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll up2.png
+  rotate: false
+  xy: 16,184
+  size: 8,13
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll up2.png
+  rotate: false
+  xy: 8,189
+  size: 8,13
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/roll/roll down3.png
+  rotate: false
+  xy: 0,200
+  size: 8,11
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll down3.png
+  rotate: false
+  xy: 41,181
+  size: 8,11
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll up3.png
+  rotate: false
+  xy: 32,187
+  size: 8,11
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/roll/roll down4.png
+  rotate: false
+  xy: 24,196
+  size: 8,10
+  orig: 64,64
+  offset: 0,0
+  index: -1
+death animation/death4.png
+  rotate: false
+  xy: 16,197
+  size: 8,9
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle down2.png
+  rotate: false
+  xy: 104,127
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot down4.png
+  rotate: false
+  xy: 116,152
+  size: 9,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle down3.png
+  rotate: false
+  xy: 116,152
+  size: 9,16
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot left4.png
+  rotate: false
+  xy: 299,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle left3.png
+  rotate: false
+  xy: 299,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle left4.png
+  rotate: false
+  xy: 299,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/attack/shoot right4.png
+  rotate: false
+  xy: 310,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle right3.png
+  rotate: false
+  xy: 310,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle right4.png
+  rotate: false
+  xy: 310,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle up4.png
+  rotate: false
+  xy: 343,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle left2.png
+  rotate: false
+  xy: 431,0
+  size: 11,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/idle/idle right2.png
+  rotate: false
+  xy: 442,0
+  size: 11,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/swim/swim up1.png
+  rotate: false
+  xy: 8,175
+  size: 8,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk down4.png
+  rotate: false
+  xy: 53,93
+  size: 9,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk left3.png
+  rotate: false
+  xy: 365,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk left4.png
+  rotate: false
+  xy: 486,0
+  size: 11,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk right3.png
+  rotate: false
+  xy: 376,0
+  size: 11,15
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk right4.png
+  rotate: false
+  xy: 497,0
+  size: 11,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with pistol/walk/walk up4.png
+  rotate: false
+  xy: 508,0
+  size: 11,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk right2.png
+  rotate: false
+  xy: 107,94
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk right4.png
+  rotate: false
+  xy: 107,94
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk down4.png
+  rotate: false
+  xy: 233,0
+  size: 11,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk left4.png
+  rotate: false
+  xy: 135,83
+  size: 9,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character with sword and shield/walk/walk up4.png
+  rotate: false
+  xy: 189,20
+  size: 10,17
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk down4.png
+  rotate: false
+  xy: 33,173
+  size: 8,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk left4.png
+  rotate: false
+  xy: 71,143
+  size: 9,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk right4.png
+  rotate: false
+  xy: 12,131
+  size: 9,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
+Character without weapon/walk/walk up4.png
+  rotate: false
+  xy: 24,182
+  size: 8,14
+  orig: 64,64
+  offset: 0,0
+  index: -1
