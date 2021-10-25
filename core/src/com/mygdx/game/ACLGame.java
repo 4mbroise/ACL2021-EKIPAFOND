@@ -43,4 +43,12 @@ public class ACLGame extends Game {
     public Assets getAssets() {
         return this.assets;
     }
+
+    @Override
+    public void dispose() {
+        if(assets!=null){
+            assets.getManager().dispose();
+        }
+    }
 }
+
