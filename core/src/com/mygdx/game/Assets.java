@@ -11,6 +11,7 @@ public class Assets {
 
     public Assets() {
         assetManager.load("sprites/cherry.png", Texture.class);
+        assetManager.load("sprites/damage_up.png", Texture.class);
     }
 
     public AssetManager getManager() {
