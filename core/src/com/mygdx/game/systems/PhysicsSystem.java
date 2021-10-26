@@ -66,11 +66,13 @@ public class PhysicsSystem extends IteratingSystem {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        this.physicsWorld.step(deltaTime, 8, 3);
+        //this.physicsWorld.step(deltaTime, 8, 3);
     }
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
+        this.physicsWorld.step(deltaTime, 8, 3);
+
         TransformComponent  tComp = tm.get(entity);
         BodyComponent       bComp = bm.get(entity);
 
