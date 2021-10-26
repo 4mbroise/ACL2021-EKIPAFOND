@@ -1,6 +1,7 @@
 package com.mygdx.game.systems;
 
 import com.badlogic.ashley.core.ComponentMapper;
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
@@ -27,35 +28,33 @@ public class PhysicsSystem extends IteratingSystem {
         this.shapePrototype =  new PolygonShape();
     }
 
-    public Body addDynamicBody(float abscissa , float ordinate, float width, float heigth ){
-        BodyDefPrototype.type = BodyDef.BodyType.DynamicBody;
+    private Body addBoxBody(float abscissa , float ordinate, float width, float heigth){
         BodyDefPrototype.position.set(abscissa, ordinate);
-        Body body = this.physicsWorld.createBody(BodyDefPrototype);
         shapePrototype.setAsBox(width, heigth);
         fixturePrototype.shape = shapePrototype;
+        return this.physicsWorld.createBody(BodyDefPrototype);
+    }
+
+    public Body addDynamicBody(float abscissa , float ordinate, float width, float heigth ){
+        BodyDefPrototype.type = BodyDef.BodyType.DynamicBody;
         fixturePrototype.isSensor = false;
+        Body body = addBoxBody(abscissa , ordinate, width, heigth);
         body.createFixture(fixturePrototype);
         return body;
     }
 
     public Body addStaticBody(float abscissa , float ordinate, float width, float heigth ){
         BodyDefPrototype.type = BodyDef.BodyType.StaticBody;
-        BodyDefPrototype.position.set(abscissa, ordinate);
-        Body body = this.physicsWorld.createBody(BodyDefPrototype);
-        shapePrototype.setAsBox(width, heigth);
-        fixturePrototype.shape = shapePrototype;
         fixturePrototype.isSensor = false;
+        Body body = addBoxBody(abscissa , ordinate, width, heigth);
         body.createFixture(fixturePrototype);
         return body;
     }
 
     public Body addSensorBody(float abscissa , float ordinate, float width, float heigth){
         BodyDefPrototype.type = BodyDef.BodyType.StaticBody;
-        BodyDefPrototype.position.set(abscissa, ordinate);
-        Body body = this.physicsWorld.createBody(BodyDefPrototype);
-        shapePrototype.setAsBox(width, heigth);
-        fixturePrototype.shape = shapePrototype;
         fixturePrototype.isSensor = true;
+        Body body = addBoxBody(abscissa , ordinate, width, heigth);
         body.createFixture(fixturePrototype);
         return body;
     }
@@ -78,5 +77,11 @@ public class PhysicsSystem extends IteratingSystem {
         tComp.setAbscissa(bComp.getBody().getPosition().x);
         tComp.setOrdinate(bComp.getBody().getPosition().y);
 
+    }
+
+    @Override
+    public void removedFromEngine(Engine engine) {
+        super.removedFromEngine(engine);
+        shapePrototype.dispose();
     }
 }
