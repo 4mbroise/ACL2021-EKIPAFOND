@@ -28,6 +28,7 @@ public class GameTestScreen extends GameScreen {
 
         createHero();
         createObstacle();
+        collisionStaticDynamic2();
     }
 
     private void createHero(){
@@ -41,8 +42,7 @@ public class GameTestScreen extends GameScreen {
 
 
         //Add Position
-        TransformComponent transformComponent = new TransformComponent(new Vector3(10,10,10));
-        hero.add(transformComponent);
+        TransformComponent transformComponent = new TransformComponent(new Vector3(10,20,10));
 
         //Add Position
         DirectionComponent directionComponent = new DirectionComponent();
@@ -65,13 +65,61 @@ public class GameTestScreen extends GameScreen {
 
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
 
-        Body body = physicsSystem.addDynamicBody(8, -32, 32, 16);
+        Body body = physicsSystem.addDynamicBody(0, 40, 10, 10);
+        body.setLinearVelocity(new Vector2(0,-10));
 
         hero.add(new BodyComponent(body));
 
 
 
         this.engine.addEntity(hero);
+    }
+
+    public void collisionStaticDynamic2() {
+
+        PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+
+
+
+        /**
+         * Create Static Body
+         * Width=40, Heigth=20
+         * Coord : (0;0)
+         */
+        Entity staticEntity = new Entity();
+        Body body1 = physicsSystem.addStaticBody(0,0,100,5);
+        TransformComponent transformComponent = new TransformComponent(new Vector3(0,0,0));
+        BodyComponent bodyComponent = new BodyComponent(body1);
+        staticEntity.add(transformComponent);
+        staticEntity.add(bodyComponent);
+
+        /**
+         * Create Dynamic
+         * Width=10, Heigth=10
+         * Coord : (0;40)
+         */
+
+        Entity dynamicEntity = new Entity();
+        Body dynamicBody = physicsSystem.addDynamicBody(0,100,5,5);
+        transformComponent = new TransformComponent(new Vector3(0,20,0));
+        bodyComponent = new BodyComponent(dynamicBody);
+        dynamicEntity.add(transformComponent);
+        dynamicEntity.add(bodyComponent);
+
+        engine.addEntity(staticEntity);
+        engine.addEntity(dynamicEntity);
+
+
+
+        /**
+         * we apply set linear velocity down to the dynamic body located above the static body
+         * the dynamic body should not overlap the static body
+         * 1 contact should be counter
+         *
+         */
+
+        dynamicEntity.getComponent(BodyComponent.class).setLinearVelocity(new Vector2(0,-10));
+
     }
 
     private void createObstacle(){
@@ -93,7 +141,7 @@ public class GameTestScreen extends GameScreen {
 
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
 
-        Body body = physicsSystem.addStaticBody(8, -32, 32, 16);
+        Body body = physicsSystem.addStaticBody(0, 0, 40, 20);
 
         hero.add(new BodyComponent(body));
 
