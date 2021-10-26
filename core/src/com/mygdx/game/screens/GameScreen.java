@@ -23,7 +23,7 @@ public class GameScreen extends ScreenAdapter {
     public void render(float delta) {
         super.render(delta);
         this.engine.update(delta);
-        game.setScreen(new EndScreen(game));
+        //game.setScreen(new GameAITestScreen(game, game.getAssets()));
     }
 
     @Override

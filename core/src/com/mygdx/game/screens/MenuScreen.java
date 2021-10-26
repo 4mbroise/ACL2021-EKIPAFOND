@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
+import com.mygdx.game.tools.Font;
 
 public class MenuScreen extends ScreenAdapter{
     //main game
@@ -83,7 +84,7 @@ public class MenuScreen extends ScreenAdapter{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new GameScreen(game, game.getAssets()));
+                game.setScreen(new GameScreen(game));
             }
         });
         //regle button
