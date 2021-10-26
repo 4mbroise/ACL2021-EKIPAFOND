@@ -15,6 +15,7 @@ import com.mygdx.game.SteeringPresets;
 import com.mygdx.game.components.*;
 import com.mygdx.game.listeners.ACLGameListener;
 import com.mygdx.game.systems.*;
+import com.mygdx.game.systems.physics.PhysicsSystem;
 
 public class GameAITestScreen extends GameScreen{
     public ACLGame game;
@@ -74,7 +75,7 @@ public class GameAITestScreen extends GameScreen{
         body.setLinearVelocity(new Vector2(0,0));
 
         //Add Body
-        hero.add(new BodyComponent(body));
+        hero.add(new SteeringComponent(body));
 
         //Add Steering
         SteeringComponent steeringComponent = new SteeringComponent(body);

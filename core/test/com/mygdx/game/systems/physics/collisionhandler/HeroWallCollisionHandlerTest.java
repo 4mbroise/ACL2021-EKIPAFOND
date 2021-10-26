@@ -55,7 +55,7 @@ public class HeroWallCollisionHandlerTest {
         dynamicBody.setUserData(dynamicEntity);
         TransformComponent dynamicEntityPosition = new TransformComponent(new Vector3(0,0,0));
         dynamicEntity.add(dynamicEntityPosition);
-        dynamicEntity.add(new BodyComponent(dynamicBody));
+        dynamicEntity.add(new SteeringComponent(dynamicBody));
         dynamicEntity.add(new CollisionComponent());
         dynamicEntity.add(new HeroComponent());
         dynamicEntity.add(new TypeComponent(TypeComponent.TYPE_HERO));
@@ -72,7 +72,7 @@ public class HeroWallCollisionHandlerTest {
         staticBody.setUserData(staticEntity);
         TransformComponent staticEntityPosition = new TransformComponent(new Vector3(0,0,0));
         staticEntity.add(staticEntityPosition);
-        staticEntity.add(new BodyComponent(staticBody));
+        staticEntity.add(new SteeringComponent(staticBody));
         staticEntity.add(new CollisionComponent());
         staticEntity.add(new TypeComponent(TypeComponent.TYPE_WALL));
 
@@ -97,8 +97,8 @@ public class HeroWallCollisionHandlerTest {
          */
 
         assertEquals(HeroComponent.STATE_STATIC, dynamicEntity.getComponent(HeroComponent.class).getState());
-        assertEquals( 0, dynamicEntity.getComponent(BodyComponent.class).getBody().getLinearVelocity().x,0);
-        assertEquals( 0, dynamicEntity.getComponent(BodyComponent.class).getBody().getLinearVelocity().y,0);
+        assertEquals( 0, dynamicEntity.getComponent(SteeringComponent.class).getBody().getLinearVelocity().x,0);
+        assertEquals( 0, dynamicEntity.getComponent(SteeringComponent.class).getBody().getLinearVelocity().y,0);
 
     }
 }

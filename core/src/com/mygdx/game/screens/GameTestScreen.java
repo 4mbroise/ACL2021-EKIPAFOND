@@ -77,7 +77,7 @@ public class GameTestScreen extends GameScreen {
         body.setLinearVelocity(new Vector2(0,-10));
         body.setUserData(hero);
 
-        hero.add(new BodyComponent(body));
+        hero.add(new SteeringComponent(body));
         hero.add(new TypeComponent(TypeComponent.TYPE_HERO));
         hero.add(new CollisionComponent());
 
@@ -101,11 +101,11 @@ public class GameTestScreen extends GameScreen {
         Body body1 = physicsSystem.addStaticBody(0,0,100,5);
         body1.setUserData(staticEntity);
         TransformComponent transformComponent = new TransformComponent(new Vector3(0,0,0));
-        BodyComponent bodyComponent = new BodyComponent(body1);
+        SteeringComponent steeringComponent = new SteeringComponent(body1);
         staticEntity.add(transformComponent);
         staticEntity.add(new TypeComponent(TypeComponent.TYPE_WALL));
         staticEntity.add(new CollisionComponent());
-        staticEntity.add(bodyComponent);
+        staticEntity.add(steeringComponent);
 
     }
 
@@ -134,7 +134,7 @@ public class GameTestScreen extends GameScreen {
         hero.add(new TypeComponent(TypeComponent.TYPE_WALL));
 
 
-        hero.add(new BodyComponent(body));
+        hero.add(new SteeringComponent(body));
 
 
 

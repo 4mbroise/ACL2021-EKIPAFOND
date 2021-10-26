@@ -49,7 +49,7 @@ public class CollisionsListenerTest {
         dynamicBody.setUserData(dynamicEntity);
         TransformComponent dynamicEntityPosition = new TransformComponent(new Vector3(0,0,0));
         dynamicEntity.add(dynamicEntityPosition);
-        dynamicEntity.add(new BodyComponent(dynamicBody));
+        dynamicEntity.add(new SteeringComponent(dynamicBody));
         dynamicEntity.add(new CollisionComponent());
 
         /**
@@ -63,7 +63,7 @@ public class CollisionsListenerTest {
         staticBody.setUserData(staticEntity);
         TransformComponent staticEntityPosition = new TransformComponent(new Vector3(0,0,0));
         staticEntity.add(staticEntityPosition);
-        staticEntity.add(new BodyComponent(staticBody));
+        staticEntity.add(new SteeringComponent(staticBody));
         staticEntity.add(new CollisionComponent());
 
         /**
@@ -109,7 +109,7 @@ public class CollisionsListenerTest {
         dynamicBody.setUserData(dynamicEntity);
         TransformComponent dynamicEntityPosition = new TransformComponent(new Vector3(0,0,0));
         dynamicEntity.add(dynamicEntityPosition);
-        dynamicEntity.add(new BodyComponent(dynamicBody));
+        dynamicEntity.add(new SteeringComponent(dynamicBody));
         dynamicEntity.add(new CollisionComponent());
 
         /**
@@ -123,7 +123,7 @@ public class CollisionsListenerTest {
         staticBody.setUserData(staticEntity);
         TransformComponent staticEntityPosition = new TransformComponent(new Vector3(0,0,0));
         staticEntity.add(staticEntityPosition);
-        staticEntity.add(new BodyComponent(staticBody));
+        staticEntity.add(new SteeringComponent(staticBody));
         staticEntity.add(new CollisionComponent());
 
         /**

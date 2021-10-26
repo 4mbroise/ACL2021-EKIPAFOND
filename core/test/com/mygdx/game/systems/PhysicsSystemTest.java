@@ -6,8 +6,8 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
-import com.mygdx.game.components.BodyComponent;
 import com.mygdx.game.components.CollisionComponent;
+import com.mygdx.game.components.SteeringComponent;
 import com.mygdx.game.components.TransformComponent;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 import org.junit.Before;
@@ -46,7 +46,7 @@ public class PhysicsSystemTest {
         dynamicBody.setUserData(dynamicEntity);
         TransformComponent dynamicEntityPosition = new TransformComponent(new Vector3(0,0,0));
         dynamicEntity.add(dynamicEntityPosition);
-        dynamicEntity.add(new BodyComponent(dynamicBody));
+        dynamicEntity.add(new SteeringComponent(dynamicBody));
         dynamicEntity.add(new CollisionComponent());
 
         /**
@@ -60,7 +60,7 @@ public class PhysicsSystemTest {
         staticBody.setUserData(staticEntity);
         TransformComponent staticEntityPosition = new TransformComponent(new Vector3(0,0,0));
         staticEntity.add(staticEntityPosition);
-        staticEntity.add(new BodyComponent(staticBody));
+        staticEntity.add(new SteeringComponent(staticBody));
         staticEntity.add(new CollisionComponent());
 
         /**
@@ -113,7 +113,7 @@ public class PhysicsSystemTest {
         dynamicBody.setUserData(dynamicEntity);
         TransformComponent dynamicEntityPosition = new TransformComponent(new Vector3(0,0,0));
         dynamicEntity.add(dynamicEntityPosition);
-        dynamicEntity.add(new BodyComponent(dynamicBody));
+        dynamicEntity.add(new SteeringComponent(dynamicBody));
         dynamicEntity.add(new CollisionComponent());
 
         /**
@@ -127,7 +127,7 @@ public class PhysicsSystemTest {
         staticBody.setUserData(staticEntity);
         TransformComponent staticEntityPosition = new TransformComponent(new Vector3(0,0,0));
         staticEntity.add(staticEntityPosition);
-        staticEntity.add(new BodyComponent(staticBody));
+        staticEntity.add(new SteeringComponent(staticBody));
         staticEntity.add(new CollisionComponent());
 
         /**
@@ -178,7 +178,7 @@ public class PhysicsSystemTest {
         dynamicBody.setUserData(dynamicEntity);
         TransformComponent dynamicEntityPosition = new TransformComponent(new Vector3(0,0,0));
         dynamicEntity.add(dynamicEntityPosition);
-        dynamicEntity.add(new BodyComponent(dynamicBody));
+        dynamicEntity.add(new SteeringComponent(dynamicBody));
         dynamicEntity.add(new CollisionComponent());
 
 
@@ -193,7 +193,7 @@ public class PhysicsSystemTest {
         staticBody.setUserData(staticEntity);
         TransformComponent staticEntityPosition = new TransformComponent(new Vector3(0,0,0));
         staticEntity.add(staticEntityPosition);
-        staticEntity.add(new BodyComponent(staticBody));
+        staticEntity.add(new SteeringComponent(staticBody));
         staticEntity.add(new CollisionComponent());
 
         /**
@@ -244,7 +244,7 @@ public class PhysicsSystemTest {
         dynamicBody.setUserData(dynamicEntity);
         TransformComponent dynamicEntityPosition = new TransformComponent(new Vector3(0,0,0));
         dynamicEntity.add(dynamicEntityPosition);
-        dynamicEntity.add(new BodyComponent(dynamicBody));
+        dynamicEntity.add(new SteeringComponent(dynamicBody));
         dynamicEntity.add(new CollisionComponent());
 
         /**
@@ -258,7 +258,7 @@ public class PhysicsSystemTest {
         staticBody.setUserData(staticEntity);
         TransformComponent staticEntityPosition = new TransformComponent(new Vector3(0,0,0));
         staticEntity.add(staticEntityPosition);
-        staticEntity.add(new BodyComponent(staticBody));
+        staticEntity.add(new SteeringComponent(staticBody));
         staticEntity.add(new CollisionComponent());
 
         /**
