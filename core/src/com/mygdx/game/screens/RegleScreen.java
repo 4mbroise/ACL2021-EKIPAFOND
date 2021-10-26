@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.ACLGame;
-import com.mygdx.game.tools.Font;
+import com.mygdx.game.Assets;
 
 public class RegleScreen extends ScreenAdapter {
     //main game
@@ -33,39 +33,42 @@ public class RegleScreen extends ScreenAdapter {
     private Image backGroud;
     //texture
     private Texture backGroundTexture;
-    private Texture returnUpTexture;
-    private Texture returnDownTexture;
-    //
-    private Button returnButton;
+    private Texture homeUpTexture;
+    private Texture homeDownTexture;
+    //button
+    private Button homeButton;
+    //assets
+    private Assets assets;
+
     public RegleScreen (ACLGame game){
         this.game=game;
         this.batch=game.batcher;
         stage=new Stage();
+        assets=game.getAssets();
         create();
     }
 
     public void create(){
         //background
-        backGroundTexture=new Texture(Gdx.files.internal("menu/fajrbackground.png"));
+        backGroundTexture=assets.getManager().get("UI/noonbackground.png");
         backGroud=new Image(backGroundTexture);
         backGroud.setPosition(0,0);
         backGroud.setOrigin(0,0);
+        backGroud.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         //font
-        titleFont=new Font(50, Color.RED);
-        title= titleFont.getFont();
-        contentFont=new Font(20, Color.BLACK);
-        content=contentFont.getFont();
+        title= assets.getManager().get("fonts/Retro_Gaming.ttf");
+        content=assets.getManager().get("fonts/Retro_Gaming.ttf");
         //button
-        returnUpTexture=new Texture(Gdx.files.internal("menu/buttons_3x_22.png"));
-        returnDownTexture=new Texture(Gdx.files.internal("menu/buttons_3x_23.png"));
+        homeUpTexture=assets.getManager().get("UI/homeUp.png");
+        homeDownTexture=assets.getManager().get("UI/homeUp.png");
         //button style
-        Button.ButtonStyle returnStyle=new Button.ButtonStyle();
+        Button.ButtonStyle homeStyle=new Button.ButtonStyle();
         //start button
-        returnStyle.up=new TextureRegionDrawable(new TextureRegion(returnUpTexture));
-        returnStyle.down=new TextureRegionDrawable(new TextureRegion(returnDownTexture));
-        returnButton=new Button(returnStyle);
-        returnButton.setPosition(400-returnUpTexture.getWidth()/2,0);
-        returnButton.addListener(new ClickListener(){
+        homeStyle.up=new TextureRegionDrawable(new TextureRegion(homeUpTexture));
+        homeStyle.down=new TextureRegionDrawable(new TextureRegion(homeDownTexture));
+        homeButton=new Button(homeStyle);
+        homeButton.setPosition(Gdx.graphics.getWidth()/2-homeUpTexture.getWidth()/2,50);
+        homeButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
@@ -73,7 +76,7 @@ public class RegleScreen extends ScreenAdapter {
             }
         });
         stage.addActor(backGroud);
-        stage.addActor(returnButton);
+        stage.addActor(homeButton);
         Gdx.input.setInputProcessor(stage);
     }
 
@@ -85,8 +88,8 @@ public class RegleScreen extends ScreenAdapter {
         batch.begin();
         stage.act();
         stage.draw();
-        title.draw(batch, "Regle",300,400);
-        content.draw(batch, "It's game pacman",0,300);
+        title.draw(batch, "Regle",260,400);
+        content.draw(batch, "It's a game pacman",0,300);
         batch.end();
     }
 
