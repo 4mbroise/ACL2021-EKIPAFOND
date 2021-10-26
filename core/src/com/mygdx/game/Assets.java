@@ -37,6 +37,7 @@ public class Assets {
         assetManager.load( "fonts/Retro_Gaming.ttf", BitmapFont.class, parms);
         //sprites
         assetManager.load("sprites/cherry.png", Texture.class);
+        assetManager.load("sprites/damage_up.png", Texture.class);
         assetManager.load("sprites/spr_orange.png", Texture.class);
         //load
         System.out.println(assetManager.getProgress());
