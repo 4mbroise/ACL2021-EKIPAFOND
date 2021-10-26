@@ -92,7 +92,8 @@ public class World {
                             TextureComponent textureComponent = new TextureComponent();
                             textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/damage_up.png", Texture.class)));
                             wall.add(textureComponent);
-                            TransformComponent transformComponent = new TransformComponent(new Vector3((float)(j+ 0.5) * 16 * 2 , (float)(ctr+0.5) * 16 * 2,0));
+                            System.out.print(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,0));
+                            TransformComponent transformComponent = new TransformComponent(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,0));
                             wall.add(transformComponent);
                             PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
                             Body body = physicsSystem.addStaticBody((float)(j+ 0.5) * 16 * 2 , (float)(ctr+0.5) * 16 * 2,10,10);
@@ -105,7 +106,7 @@ public class World {
                             System.out.print(" Ground ");
                             break;
                         case '1':
-                            createHero((float)(ctr+0.5) * 16 * 2, (float)(j+0.5) * 16 * 2);
+                            createHero((float)(ctr+0.5) * 16 * 2, 480-(float)(j+0.5) * 16 * 2);
                             System.out.print("  Hero  ");
                             break;
                         default :
@@ -129,7 +130,7 @@ public class World {
 
 
         //Add Position
-        TransformComponent transformComponent = new TransformComponent(new Vector3(32,32,0));
+        TransformComponent transformComponent = new TransformComponent(new Vector3(posx,posy,0));
         hero.add(transformComponent);
 
         //Add Position
