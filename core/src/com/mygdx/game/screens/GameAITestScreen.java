@@ -21,7 +21,7 @@ public class GameAITestScreen extends GameScreen{
     public static Entity hero;
     private Entity monster;
     public GameAITestScreen(ACLGame game, Assets assets) {
-        super(game, assets);
+        super(game);
         this.game = game;
         this.engine.addSystem(new RenderSystem(this.game.batcher));
         this.engine.addSystem(new MovementSystem());

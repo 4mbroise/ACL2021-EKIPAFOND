@@ -16,16 +16,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
-import com.mygdx.game.outils.Font;
 
 public class EndScreen extends ScreenAdapter {
     //main game
     private ACLGame game;
     //stage
     private Stage stage;
-    //font
-    private Font titleFont;
-    private Font contentFont;
+    //fony
     private BitmapFont title;
     private BitmapFont content;
     //batch

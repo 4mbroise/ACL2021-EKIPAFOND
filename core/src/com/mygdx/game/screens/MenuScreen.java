@@ -40,7 +40,6 @@ public class MenuScreen extends ScreenAdapter{
     private Button startButton;
     private Button regleButton;
     //font
-    private Font font;
     private BitmapFont title;
     //batch
     private Batch batch;
@@ -83,7 +82,7 @@ public class MenuScreen extends ScreenAdapter{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new GameScreen(game, game.getAssets()));
+                game.setScreen(new GameScreen(game));
             }
         });
         //regle button
