@@ -18,7 +18,7 @@ import com.mygdx.game.systems.*;
 
 public class GameAITestScreen extends GameScreen{
     public ACLGame game;
-    public static Entity hero;
+    private Entity hero;
     private Entity monster;
     public GameAITestScreen(ACLGame game, Assets assets) {
         super(game, assets);
@@ -27,11 +27,13 @@ public class GameAITestScreen extends GameScreen{
         this.engine.addSystem(new MovementSystem());
         this.engine.addSystem(new HeroSystem());
         this.engine.addSystem(new PhysicsSystem());
-        this.engine.addSystem(new MonsterSystem());
-        this.engine.addSystem(new AISystem());
-        this.engine.addSystem(new DebugRenderSystem(this.game.batcher, this.game.camera));
+
         this.assets.getManager().finishLoading();
         createHero();
+
+        this.engine.addSystem(new MonsterSystem(hero));
+        this.engine.addSystem(new AISystem());
+        this.engine.addSystem(new DebugRenderSystem(this.game.batcher, this.game.camera));
         createMonster();
     }
 
@@ -43,9 +45,6 @@ public class GameAITestScreen extends GameScreen{
         TextureComponent textureComponent = new TextureComponent();
         textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/cherry.png", Texture.class)));
         hero.add(textureComponent);
-
-
-
 
         //Add Position
         DirectionComponent directionComponent = new DirectionComponent();
@@ -63,7 +62,7 @@ public class GameAITestScreen extends GameScreen{
         TransformComponent transformComponent = new TransformComponent(new Vector3(10,20,10));
         hero.add(transformComponent);
 
-
+        // Body creation
         BodyDef bd = new BodyDef();
         bd.type = BodyDef.BodyType.DynamicBody;
         bd.position.set(8, 8);
@@ -89,21 +88,18 @@ public class GameAITestScreen extends GameScreen{
 
         monster = new Entity();
 
-        //Add Texture
-        TextureComponent textureComponent = new TextureComponent();
-        textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/spr_orange.png", Texture.class)));
-        monster.add(textureComponent);
-
-
-        //Add Transform
-
-
         //Add Position
         DirectionComponent directionComponent = new DirectionComponent();
         monster.add(directionComponent);
 
+        //Add Movement
         MovementComponent movementComponent = new MovementComponent(HeroComponent.HERO_VELOCITY);
         monster.add(movementComponent);
+
+        // Add Monster component
+        MonsterComponent monsterComponent = new MonsterComponent();
+        monster.add(monsterComponent);
+
 
         BodyDef bd = new BodyDef();
         bd.type = BodyDef.BodyType.DynamicBody;
@@ -116,17 +112,22 @@ public class GameAITestScreen extends GameScreen{
         Body body = physicsSystem.addDynamicBody(0, 40, 10, 10);
         body.setLinearVelocity(new Vector2(10,10));
 
-        //monster.add(new BodyComponent(body));
-
-        MonsterComponent monsterComponent = new MonsterComponent();
-        monster.add(monsterComponent);
 
 
+        // Add steering
         SteeringComponent steeringComponent = new SteeringComponent(body);
         monster.add(steeringComponent);
         monster.getComponent(SteeringComponent.class).steeringBehavior  = SteeringPresets.getArrive(monster.getComponent(SteeringComponent.class),hero.getComponent(SteeringComponent.class));
         monster.getComponent(SteeringComponent.class).currentMode = SteeringComponent.SteeringState.ARRIVE;
 
+
+        //Add Texture
+        TextureComponent textureComponent = new TextureComponent();
+        textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/spr_orange.png", Texture.class)));
+        monster.add(textureComponent);
+
+
+        // Add transform
         TransformComponent transformComponent = new TransformComponent(new Vector3(10,20,10));
         monster.add(transformComponent);
         this.engine.addEntity(monster);
