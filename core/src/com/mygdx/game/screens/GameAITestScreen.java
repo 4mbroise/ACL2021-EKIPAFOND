@@ -62,6 +62,9 @@ public class GameAITestScreen extends GameScreen{
         TransformComponent transformComponent = new TransformComponent(new Vector3(10,20,10));
         hero.add(transformComponent);
 
+        //Add Collisions
+        hero.add(new CollisionComponent());
+
         // Body creation
         BodyDef bd = new BodyDef();
         bd.type = BodyDef.BodyType.DynamicBody;
@@ -72,6 +75,7 @@ public class GameAITestScreen extends GameScreen{
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
 
         Body body = physicsSystem.addDynamicBody(0, 40, 10, 10);
+        body.setUserData(hero);
         body.setLinearVelocity(new Vector2(0,0));
 
         //Add Body
@@ -94,10 +98,6 @@ public class GameAITestScreen extends GameScreen{
         textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/spr_orange.png", Texture.class)));
         monster.add(textureComponent);
 
-        //Add Position
-        DirectionComponent directionComponent = new DirectionComponent();
-        monster.add(directionComponent);
-
         //Add Movement
         MovementComponent movementComponent = new MovementComponent(HeroComponent.HERO_VELOCITY);
         monster.add(movementComponent);
@@ -111,6 +111,9 @@ public class GameAITestScreen extends GameScreen{
         TransformComponent transformComponent = new TransformComponent(new Vector3(50,40,10));
         monster.add(transformComponent);
 
+        // Add Collision
+        monster.add(new CollisionComponent());
+
 
         BodyDef bd = new BodyDef();
         bd.type = BodyDef.BodyType.DynamicBody;
@@ -121,6 +124,7 @@ public class GameAITestScreen extends GameScreen{
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
 
         Body body = physicsSystem.addDynamicBody(50, 40, 10, 10);
+        body.setUserData(monster);
         body.setLinearVelocity(new Vector2(10,10));
 
 
