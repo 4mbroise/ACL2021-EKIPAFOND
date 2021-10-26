@@ -9,16 +9,18 @@ import com.badlogic.gdx.ai.utils.Location;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Pool.Poolable;
+import com.mygdx.game.tools.Box2dLocation;
+import com.mygdx.game.tools.Utility;
 
 public class SteeringComponent implements Steerable<Vector2>, Component, Poolable{
 
     public static enum SteeringState {WANDER,SEEK,FLEE,ARRIVE,NONE}
-    public SteeringState currentMode = SteeringState.WANDER;
+    public SteeringState currentMode = SteeringState.ARRIVE;
     private Body body;
 
     // Steering data
-    private float maxLinearSpeed = 2f;
-    private float maxLinearAcceleration = 5f;
+    private float maxLinearSpeed = 25f;
+    private float maxLinearAcceleration = 50f;
     private float maxAngularSpeed =50f;
     private float maxAngularAcceleration = 5f;
     private float zeroThreshold = 0.1f;
@@ -29,8 +31,8 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Poolabl
     private boolean independentFacing = false;
 
 
-    public SteeringComponent() {
-
+    public SteeringComponent(Body body) {
+        this.body=body;
     }
 
     public SteeringState getCurrentMode() {
@@ -51,9 +53,7 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Poolabl
 
     @Override
     public void reset() {
-        currentMode = SteeringState.NONE;
-        body = null;
-        steeringBehavior = null;
+
 
     }
 
@@ -83,17 +83,17 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Poolabl
         boolean anyAccelerations = false;
 
         // Update position and linear velocity.
-        if (!steeringOutput.linear.isZero()) {
+        if (!steering.linear.isZero()) {
             // this method internally scales the force by deltaTime
-            body.applyForceToCenter(steeringOutput.linear, true);
+            body.applyForceToCenter(steering.linear, true);
             anyAccelerations = true;
         }
 
         // Update orientation and angular velocity
         if (isIndependentFacing()) {
-            if (steeringOutput.angular != 0) {
+            if (steering.angular != 0) {
                 // this method internally scales the torque by deltaTime
-                body.applyTorque(steeringOutput.angular, true);
+                body.applyTorque(steering.angular, true);
                 anyAccelerations = true;
             }
         } else {
@@ -139,15 +139,15 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Poolabl
     }
     @Override
     public float vectorToAngle(Vector2 vector) {
-        return (float)0.0;
+        return Utility.vectorToAngle(vector);
     }
     @Override
     public Vector2 angleToVector(Vector2 outVector, float angle) {
-        return null;
+        return Utility.angleToVector(outVector, angle);
     }
     @Override
     public Location<Vector2> newLocation() {
-        return null;
+        return new Box2dLocation();
     }
     @Override
     public float getZeroLinearSpeedThreshold() {
@@ -209,4 +209,7 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Poolabl
     public void setTagged(boolean tagged) {
         this.tagged = tagged;
     }
+
+
+
 }

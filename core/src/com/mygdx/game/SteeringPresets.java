@@ -33,22 +33,21 @@ public class SteeringPresets {
         return wander;
     }
 
-    public static Seek<Vector2> getSeek(SteeringComponent seeker, HeroComponent target){
+    public static Seek<Vector2> getSeek(SteeringComponent seeker, SteeringComponent target){
         Seek<Vector2> seek = new Seek<Vector2>(seeker,target);
         return seek;
     }
 
-    public static Flee<Vector2> getFlee(SteeringComponent runner, HeroComponent fleeingFrom){
+    public static Flee<Vector2> getFlee(SteeringComponent runner, SteeringComponent fleeingFrom){
         Flee<Vector2> seek = new Flee<Vector2>(runner,fleeingFrom);
         return seek;
     }
 
-    public static Arrive<Vector2> getArrive(SteeringComponent runner, HeroComponent target){
+    public static Arrive<Vector2> getArrive(SteeringComponent runner, SteeringComponent target){
         Arrive<Vector2> arrive = new Arrive<Vector2>(runner, target)
                 .setTimeToTarget(timeToTarget) // default 0.1f
                 .setArrivalTolerance(arrivalTolerance) //
                 .setDecelerationRadius(decelerationRadius);
-
         return arrive;
     }
 }
