@@ -20,7 +20,7 @@ import com.mygdx.game.systems.physics.collisionhandler.HeroWallCollisionHandler;
 public class GameTestScreen extends GameScreen {
 
     public GameTestScreen(ACLGame game) {
-        super(game, game.getAssets());
+        super(game);
         this.engine.addSystem(new RenderSystem(this.game.batcher));
         this.engine.addSystem(new MovementSystem());
         this.engine.addSystem(new HeroSystem());

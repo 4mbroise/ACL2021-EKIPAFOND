@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.ACLGame;
+import com.mygdx.game.Assets;
 import com.mygdx.game.tools.Font;
 
 public class MenuScreen extends ScreenAdapter{
@@ -30,20 +31,22 @@ public class MenuScreen extends ScreenAdapter{
     private Texture backGroundTexture;
     private Texture startUpTexture;
     private Texture startDownTexture;
-    private Texture setUpTexture;
-    private Texture setDownTexture;
+    private Texture regleUpTexture;
+    private Texture regleDownTexture;
 
     //background
     private Image backGroud;
 
     //buttons
     private Button startButton;
-    private Button setButton;
+    private Button regleButton;
     //font
     private Font font;
     private BitmapFont title;
     //batch
     private Batch batch;
+    //assets
+    private Assets assets;
 
     public MenuScreen(final ACLGame game) {
         this.game = game;
@@ -52,70 +55,70 @@ public class MenuScreen extends ScreenAdapter{
         batch=game.batcher;
         stage=new Stage();
         group=new Group();
+        assets=game.getAssets();
         create();
     }
 
     public void create(){
         //background
-        backGroundTexture=new Texture(Gdx.files.internal("menu/fajrbackground.png"));
+        backGroundTexture=assets.getManager().get("UI/sunsetbackground.png");
         backGroud=new Image(backGroundTexture);
         backGroud.setPosition(0,0);
         backGroud.setOrigin(0,0);
+        backGroud.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         //listener
         Gdx.input.setInputProcessor(stage);
         //buttons
-        startUpTexture=new Texture(Gdx.files.internal("menu/buttons_3x_2.png"));
-        startDownTexture=new Texture(Gdx.files.internal("menu/buttons_3x_3.png"));
-        setUpTexture=new Texture(Gdx.files.internal("menu/buttons_3x_8.png"));
-        setDownTexture=new Texture(Gdx.files.internal("menu/buttons_3x_9.png"));
+        startUpTexture=assets.getManager().get("UI/startUp.png");
+        startDownTexture=assets.getManager().get("UI/startDown.png");
+        regleUpTexture=assets.getManager().get("UI/regleUp.png");
+        regleDownTexture=assets.getManager().get("UI/regleUp.png");
         //button style
         Button.ButtonStyle startStyle=new Button.ButtonStyle();
         //start button
         startStyle.up=new TextureRegionDrawable(new TextureRegion(startUpTexture));
         startStyle.down=new TextureRegionDrawable(new TextureRegion(startDownTexture));
         startButton=new Button(startStyle);
-
-        startButton.setPosition(400-startUpTexture.getWidth()/2,200);
+        startButton.setPosition(Gdx.graphics.getWidth()/2-startUpTexture.getWidth()/2,200);
         startButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new GameScreen(game, game.getAssets()));
+                game.setScreen(new GameScreen(game));
             }
         });
-        //set button
-        Button.ButtonStyle setStyle=new Button.ButtonStyle();
-        setStyle.up=new TextureRegionDrawable(new TextureRegion(setUpTexture));
-        setStyle.down=new TextureRegionDrawable(new TextureRegion(setDownTexture));
-        setButton=new Button(setStyle);
-        setButton.setPosition(400-setUpTexture.getWidth()/2,100);
-        setButton.addListener(new ClickListener(){
+        //regle button
+        Button.ButtonStyle regleStyle=new Button.ButtonStyle();
+        regleStyle.up=new TextureRegionDrawable(new TextureRegion(regleUpTexture));
+        regleStyle.down=new TextureRegionDrawable(new TextureRegion(regleDownTexture));
+        regleButton=new Button(regleStyle);
+        regleButton.setPosition(Gdx.graphics.getWidth()/2-regleUpTexture.getWidth()/2,100);
+        regleButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.setScreen(new RegleScreen(game));
             }
         });
-
         //font
-        font=new Font(50,Color.RED);
-        title=font.getFont();
-
+        title=assets.getManager().get("fonts/Retro_Gaming.ttf");
+        //add actors
         group.addActor(backGroud);
         group.addActor(startButton);
-        group.addActor(setButton);
+        group.addActor(regleButton);
         stage.addActor(group);
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
+        assets.getManager().update();
         Gdx.gl.glClearColor( 0, 0, 0, 1 );
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
         batch.begin();
         stage.act();
         stage.draw();
-        title.draw(batch, "Pacman",300,400);
+        title.draw(batch, "Pacman",260,400);
         batch.end();
 
     }
@@ -123,21 +126,7 @@ public class MenuScreen extends ScreenAdapter{
 
     @Override
     public void dispose() {
-        if (startUpTexture!=null){
-            startUpTexture.dispose();
-        }
-        if (startDownTexture!=null){
-            startDownTexture.dispose();
-        }
-        if (setUpTexture!=null){
-            setUpTexture.dispose();
-        }
-        if (setDownTexture!=null){
-            setDownTexture.dispose();
-        }
-        if(stage!=null){
-            stage.dispose();
-        }
+
     }
 
     @Override
