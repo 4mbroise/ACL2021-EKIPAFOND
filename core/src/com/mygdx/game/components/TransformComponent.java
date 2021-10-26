@@ -14,6 +14,14 @@ public class TransformComponent implements Component {
         return new Vector3(position);
     }
 
+    public void setAbscissa(float x) {
+        this.position.x = x;
+    }
+
+    public void setOrdinate(float y) {
+        this.position.y = y;
+    }
+
     public void applyPositionTranslation(Vector3 newPosition, float scalar){
         this.position.mulAdd(newPosition, scalar);
     }

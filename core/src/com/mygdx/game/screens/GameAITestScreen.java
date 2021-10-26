@@ -10,30 +10,34 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.mygdx.game.ACLGame;
+import com.mygdx.game.Assets;
+import com.mygdx.game.SteeringPresets;
 import com.mygdx.game.components.*;
 import com.mygdx.game.listeners.ACLGameListener;
 import com.mygdx.game.systems.*;
 
-public class GameTestScreen extends GameScreen {
-
-    public GameTestScreen(ACLGame game) {
-        super(game);
+public class GameAITestScreen extends GameScreen{
+    public ACLGame game;
+    public static Entity hero;
+    private Entity monster;
+    public GameAITestScreen(ACLGame game, Assets assets) {
+        super(game, assets);
+        this.game = game;
         this.engine.addSystem(new RenderSystem(this.game.batcher));
         this.engine.addSystem(new MovementSystem());
         this.engine.addSystem(new HeroSystem());
         this.engine.addSystem(new PhysicsSystem());
+        this.engine.addSystem(new MonsterSystem());
+        this.engine.addSystem(new AISystem());
         this.engine.addSystem(new DebugRenderSystem(this.game.batcher, this.game.camera));
-
         this.assets.getManager().finishLoading();
-
         createHero();
-        createObstacle();
-        collisionStaticDynamic2();
+        createMonster();
     }
 
     private void createHero(){
 
-        Entity hero = new Entity();
+        hero = new Entity();
 
         //Add Texture
         TextureComponent textureComponent = new TextureComponent();
@@ -41,19 +45,22 @@ public class GameTestScreen extends GameScreen {
         hero.add(textureComponent);
 
 
-        //Add Position
-        TransformComponent transformComponent = new TransformComponent(new Vector3(10,20,10));
+
 
         //Add Position
         DirectionComponent directionComponent = new DirectionComponent();
         hero.add(directionComponent);
 
+        //add Movement
         MovementComponent movementComponent = new MovementComponent(HeroComponent.HERO_VELOCITY);
         hero.add(movementComponent);
 
+        //add Hero
         HeroComponent heroComponent = new HeroComponent();
         hero.add(heroComponent);
 
+        //Add Transform
+        TransformComponent transformComponent = new TransformComponent(new Vector3(10,20,10));
         hero.add(transformComponent);
 
 
@@ -66,96 +73,68 @@ public class GameTestScreen extends GameScreen {
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
 
         Body body = physicsSystem.addDynamicBody(0, 40, 10, 10);
-        body.setLinearVelocity(new Vector2(0,-10));
+        body.setLinearVelocity(new Vector2(0,0));
 
+        //Add Body
         hero.add(new BodyComponent(body));
 
-
+        //Add Steering
+        SteeringComponent steeringComponent = new SteeringComponent(body);
+        hero.add(steeringComponent);
 
         this.engine.addEntity(hero);
     }
 
-    public void collisionStaticDynamic2() {
+    private void createMonster(){
 
-        PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+        monster = new Entity();
 
-
-
-        /**
-         * Create Static Body
-         * Width=40, Heigth=20
-         * Coord : (0;0)
-         */
-        Entity staticEntity = new Entity();
-        Body body1 = physicsSystem.addStaticBody(0,0,100,5);
-        TransformComponent transformComponent = new TransformComponent(new Vector3(0,0,0));
-        BodyComponent bodyComponent = new BodyComponent(body1);
-        staticEntity.add(transformComponent);
-        staticEntity.add(bodyComponent);
-
-        /**
-         * Create Dynamic
-         * Width=10, Heigth=10
-         * Coord : (0;40)
-         */
-
-        Entity dynamicEntity = new Entity();
-        Body dynamicBody = physicsSystem.addDynamicBody(0,100,5,5);
-        transformComponent = new TransformComponent(new Vector3(0,20,0));
-        bodyComponent = new BodyComponent(dynamicBody);
-        dynamicEntity.add(transformComponent);
-        dynamicEntity.add(bodyComponent);
-
-        engine.addEntity(staticEntity);
-        engine.addEntity(dynamicEntity);
+        //Add Texture
+        TextureComponent textureComponent = new TextureComponent();
+        textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/spr_orange.png", Texture.class)));
+        monster.add(textureComponent);
 
 
+        //Add Transform
 
-        /**
-         * we apply set linear velocity down to the dynamic body located above the static body
-         * the dynamic body should not overlap the static body
-         * 1 contact should be counter
-         *
-         */
-
-        dynamicEntity.getComponent(BodyComponent.class).setLinearVelocity(new Vector2(0,-10));
-
-    }
-
-    private void createObstacle(){
-
-        Entity hero = new Entity();
 
         //Add Position
-        TransformComponent transformComponent = new TransformComponent(new Vector3(10,10,10));
-        hero.add(transformComponent);
+        DirectionComponent directionComponent = new DirectionComponent();
+        monster.add(directionComponent);
 
-        hero.add(transformComponent);
-
+        MovementComponent movementComponent = new MovementComponent(HeroComponent.HERO_VELOCITY);
+        monster.add(movementComponent);
 
         BodyDef bd = new BodyDef();
-        bd.type = BodyDef.BodyType.StaticBody;
-        bd.position.set(8, -32);
+        bd.type = BodyDef.BodyType.DynamicBody;
+        bd.position.set(8, 8);
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(32, 16);
+        shape.setAsBox(16, 16);
 
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
 
-        Body body = physicsSystem.addStaticBody(0, 0, 40, 20);
+        Body body = physicsSystem.addDynamicBody(0, 40, 10, 10);
+        body.setLinearVelocity(new Vector2(10,10));
 
-        hero.add(new BodyComponent(body));
+        //monster.add(new BodyComponent(body));
+
+        MonsterComponent monsterComponent = new MonsterComponent();
+        monster.add(monsterComponent);
 
 
+        SteeringComponent steeringComponent = new SteeringComponent(body);
+        monster.add(steeringComponent);
+        monster.getComponent(SteeringComponent.class).steeringBehavior  = SteeringPresets.getArrive(monster.getComponent(SteeringComponent.class),hero.getComponent(SteeringComponent.class));
+        monster.getComponent(SteeringComponent.class).currentMode = SteeringComponent.SteeringState.ARRIVE;
 
-        this.engine.addEntity(hero);
+        TransformComponent transformComponent = new TransformComponent(new Vector3(10,20,10));
+        monster.add(transformComponent);
+        this.engine.addEntity(monster);
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
-
         Gdx.input.setInputProcessor(new ACLGameListener(this));
-
     }
 }
-
