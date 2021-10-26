@@ -13,9 +13,6 @@ public class HeroWallCollisionHandler implements CollisionHandler{
 
     @Override
     public void handle(Entity colliedA, Entity colliedB) {
-
-        System.out.println("Handled");
-
         HeroComponent heroComponent = hm.get(colliedA);
         heroComponent.setState(HeroComponent.STATE_STATIC);
         BodyComponent bodyComponent = bm.get(colliedA);

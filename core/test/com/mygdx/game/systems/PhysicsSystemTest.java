@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.components.BodyComponent;
+import com.mygdx.game.components.CollisionComponent;
 import com.mygdx.game.components.TransformComponent;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 import org.junit.Before;
@@ -29,7 +30,6 @@ public class PhysicsSystemTest {
         engine = new PooledEngine();
         engine.addSystem(physicsSystem);
         physicsWorld = engine.getSystem(PhysicsSystem.class).getPhysicsWorld();
-
     }
 
     @Test
@@ -43,9 +43,11 @@ public class PhysicsSystemTest {
 
         Entity dynamicEntity = new Entity();
         Body dynamicBody = physicsSystem.addDynamicBody(50,20,10,10);
+        dynamicBody.setUserData(dynamicEntity);
         TransformComponent dynamicEntityPosition = new TransformComponent(new Vector3(0,0,0));
         dynamicEntity.add(dynamicEntityPosition);
         dynamicEntity.add(new BodyComponent(dynamicBody));
+        dynamicEntity.add(new CollisionComponent());
 
         /**
          * Static Body
@@ -55,9 +57,11 @@ public class PhysicsSystemTest {
 
         Entity staticEntity = new Entity();
         Body staticBody = physicsSystem.addStaticBody(0,0,100,2);
+        staticBody.setUserData(staticEntity);
         TransformComponent staticEntityPosition = new TransformComponent(new Vector3(0,0,0));
         staticEntity.add(staticEntityPosition);
         staticEntity.add(new BodyComponent(staticBody));
+        staticEntity.add(new CollisionComponent());
 
         /**
          * We want the dynamic Body Moving Down
@@ -106,9 +110,11 @@ public class PhysicsSystemTest {
 
         Entity dynamicEntity = new Entity();
         Body dynamicBody = physicsSystem.addDynamicBody(20,0,10,10);
+        dynamicBody.setUserData(dynamicEntity);
         TransformComponent dynamicEntityPosition = new TransformComponent(new Vector3(0,0,0));
         dynamicEntity.add(dynamicEntityPosition);
         dynamicEntity.add(new BodyComponent(dynamicBody));
+        dynamicEntity.add(new CollisionComponent());
 
         /**
          * Static Body
@@ -118,9 +124,11 @@ public class PhysicsSystemTest {
 
         Entity staticEntity = new Entity();
         Body staticBody = physicsSystem.addStaticBody(0,15,100,2);
+        staticBody.setUserData(staticEntity);
         TransformComponent staticEntityPosition = new TransformComponent(new Vector3(0,0,0));
         staticEntity.add(staticEntityPosition);
         staticEntity.add(new BodyComponent(staticBody));
+        staticEntity.add(new CollisionComponent());
 
         /**
          * We want the dynamic Body Moving Down
@@ -167,9 +175,12 @@ public class PhysicsSystemTest {
          */
         Entity dynamicEntity = new Entity();
         Body dynamicBody = physicsSystem.addDynamicBody(20,20,10,10);
+        dynamicBody.setUserData(dynamicEntity);
         TransformComponent dynamicEntityPosition = new TransformComponent(new Vector3(0,0,0));
         dynamicEntity.add(dynamicEntityPosition);
         dynamicEntity.add(new BodyComponent(dynamicBody));
+        dynamicEntity.add(new CollisionComponent());
+
 
         /**
          * Static Body
@@ -179,9 +190,11 @@ public class PhysicsSystemTest {
 
         Entity staticEntity = new Entity();
         Body staticBody = physicsSystem.addStaticBody(0,0,2,100);
+        staticBody.setUserData(staticEntity);
         TransformComponent staticEntityPosition = new TransformComponent(new Vector3(0,0,0));
         staticEntity.add(staticEntityPosition);
         staticEntity.add(new BodyComponent(staticBody));
+        staticEntity.add(new CollisionComponent());
 
         /**
          * We want the dynamic Body Moving Down
@@ -228,9 +241,11 @@ public class PhysicsSystemTest {
 
         Entity dynamicEntity = new Entity();
         Body dynamicBody = physicsSystem.addDynamicBody(0,0,10,10);
+        dynamicBody.setUserData(dynamicEntity);
         TransformComponent dynamicEntityPosition = new TransformComponent(new Vector3(0,0,0));
         dynamicEntity.add(dynamicEntityPosition);
         dynamicEntity.add(new BodyComponent(dynamicBody));
+        dynamicEntity.add(new CollisionComponent());
 
         /**
          * Static Body
@@ -240,9 +255,11 @@ public class PhysicsSystemTest {
 
         Entity staticEntity = new Entity();
         Body staticBody = physicsSystem.addStaticBody(20,0,2,100);
+        staticBody.setUserData(staticEntity);
         TransformComponent staticEntityPosition = new TransformComponent(new Vector3(0,0,0));
         staticEntity.add(staticEntityPosition);
         staticEntity.add(new BodyComponent(staticBody));
+        staticEntity.add(new CollisionComponent());
 
         /**
          * We want the dynamic Body Moving Down
