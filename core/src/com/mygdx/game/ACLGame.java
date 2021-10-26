@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.screens.GameScreen;
-import com.mygdx.game.screens.GameTestScreen;
 
 public class ACLGame extends Game {
 
@@ -23,8 +22,6 @@ public class ACLGame extends Game {
         setScreen(new GameScreen(this, assets));
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        /*camera.translate(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
-        camera.update();*/
         batcher.setProjectionMatrix(camera.combined);
         assets.getManager().finishLoading();
     }

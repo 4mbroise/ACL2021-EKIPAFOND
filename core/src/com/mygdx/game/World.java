@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g3d.particles.influencers.DynamicsModifier;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.components.*;
 
@@ -81,8 +82,7 @@ public class World {
                             TextureComponent textureComponent = new TextureComponent();
                             textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/damage_up.png", Texture.class)));
                             wall.add(textureComponent);
-
-                            TransformComponent transformComponent = new TransformComponent(new Vector3((float)(j+ 0.5) * 16 * 2 , (float)(ctr+0.5) * 16 * 2,10));
+                            TransformComponent transformComponent = new TransformComponent(new Vector3((float)(j+ 0.5) * 16 * 2 , (float)(ctr+0.5) * 16 * 2,0));
                             wall.add(transformComponent);
 
                             System.out.print("  Wall  ");
@@ -118,7 +118,7 @@ public class World {
 
 
         //Add Position
-        TransformComponent transformComponent = new TransformComponent(new Vector3(posx,posy,-1));
+        TransformComponent transformComponent = new TransformComponent(new Vector3(32,32,0));
         hero.add(transformComponent);
 
         //Add Position
@@ -131,7 +131,7 @@ public class World {
         HeroComponent heroComponent = new HeroComponent();
         hero.add(heroComponent);
 
-        hero.add(transformComponent);
+        //hero.add(transformComponent);
 
         this.engine.addEntity(hero);
     }
