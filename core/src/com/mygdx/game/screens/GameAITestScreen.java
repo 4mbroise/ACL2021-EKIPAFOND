@@ -35,6 +35,40 @@ public class GameAITestScreen extends GameScreen{
         this.engine.addSystem(new DebugRenderSystem(this.game.batcher, this.game.camera));
 
         createMonster();
+
+        createObstacle();
+    }
+
+    private void createObstacle(){
+
+        Entity hero = new Entity();
+
+        //Add Position
+        TransformComponent transformComponent = new TransformComponent(new Vector3(10,10,10));
+        hero.add(transformComponent);
+
+        hero.add(transformComponent);
+
+
+        BodyDef bd = new BodyDef();
+        bd.type = BodyDef.BodyType.StaticBody;
+        bd.position.set(8, -32);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(32, 16);
+
+        PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+
+        Body body = physicsSystem.addStaticBody(0, 0, 5, 100);
+        body.setUserData(hero);
+        hero.add(new CollisionComponent());
+        hero.add(new TypeComponent(TypeComponent.TYPE_WALL));
+
+
+        hero.add(new SteeringComponent(body));
+
+
+
+        this.engine.addEntity(hero);
     }
 
     private void createHero(){
