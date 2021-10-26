@@ -7,16 +7,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.components.BodyComponent;
-import com.mygdx.game.components.DirectionComponent;
-import com.mygdx.game.components.MovementComponent;
 import com.mygdx.game.components.TransformComponent;
-import org.junit.Assert;
+import com.mygdx.game.systems.physics.PhysicsSystem;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Random;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 public class PhysicsSystemTest {

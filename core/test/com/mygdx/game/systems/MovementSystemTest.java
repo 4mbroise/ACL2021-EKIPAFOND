@@ -1,17 +1,14 @@
 package com.mygdx.game.systems;
 
-import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.components.BodyComponent;
 import com.mygdx.game.components.DirectionComponent;
 import com.mygdx.game.components.MovementComponent;
 import com.mygdx.game.components.TransformComponent;
-import org.junit.Assert;
+import com.mygdx.game.systems.physics.PhysicsSystem;
 import org.junit.Before;
 import org.junit.Test;
 

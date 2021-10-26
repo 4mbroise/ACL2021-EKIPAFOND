@@ -1,4 +1,4 @@
-package com.mygdx.game.systems;
+package com.mygdx.game.systems.physics;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Engine;
@@ -23,6 +23,7 @@ public class PhysicsSystem extends IteratingSystem {
     public PhysicsSystem() {
         super(Family.all(TransformComponent.class, BodyComponent.class).get());
         this.physicsWorld = new World(new Vector2(0,0), false);
+        this.physicsWorld.setContactListener(new CollisionsListener());
         bm = ComponentMapper.getFor(BodyComponent.class);
         tm = ComponentMapper.getFor(TransformComponent.class);
         this.shapePrototype =  new PolygonShape();
