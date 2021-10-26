@@ -35,6 +35,8 @@ public class MovementSystem extends IteratingSystem {
 
         float velocity = mvComp.getVelocity();
 
+
+
         switch(dirComp.getDirection()){
             case DirectionComponent.UP:
                 bComp.setLinearVelocity(new Vector2(0, velocity));
