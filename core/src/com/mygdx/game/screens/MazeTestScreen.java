@@ -14,17 +14,17 @@ public class MazeTestScreen extends GameScreen {
         this.engine.addSystem(new HeroSystem());
         this.engine.addSystem(new PhysicsSystem());
         this.engine.addSystem(new DebugRenderSystem(this.game.batcher, this.game.camera));
-
         this.assets.getManager().finishLoading();
         this.world.createMap();
+
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
-
         Gdx.input.setInputProcessor(new ACLGameListener(this));
-
+        this.world.updateMap();
     }
+
 }
 
