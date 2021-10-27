@@ -6,9 +6,13 @@ import com.mygdx.game.screens.GameTestScreen;
 
 public class ACLRenderingGameTest extends ACLGame{
 
+
+    public ACLRenderingGameTest() {
+    }
+
     @Override
     public void create() {
         super.create();
-        setScreen(new GameAITestScreen(this, this.getAssets()));
+        setScreen(new GameAITestScreen(this, getAssets()));
     }
 }

@@ -13,16 +13,17 @@ import com.mygdx.game.screens.GameAITestScreen;
 
 public class MonsterSystem extends IteratingSystem {
 
-
-    public MonsterSystem() {
+    private Entity hero;
+    public MonsterSystem(Entity entity) {
         super(Family.all(MonsterComponent.class).get());
+        this.hero= entity;
     }
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         ComponentMapper<SteeringComponent> steerMap = ComponentMapper.getFor(SteeringComponent.class);
         SteeringComponent steerComp = steerMap.get(entity);
-        steerComp.steeringBehavior = SteeringPresets.getArrive(steerMap.get(entity), GameAITestScreen.hero.getComponent(SteeringComponent.class));
+        steerComp.steeringBehavior = SteeringPresets.getArrive(steerMap.get(entity), hero.getComponent(SteeringComponent.class));
         steerComp.currentMode= SteeringComponent.SteeringState.ARRIVE;
     }
 }

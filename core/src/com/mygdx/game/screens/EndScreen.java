@@ -22,7 +22,7 @@ public class EndScreen extends ScreenAdapter {
     private ACLGame game;
     //stage
     private Stage stage;
-    //fony
+    //font
     private BitmapFont title;
     private BitmapFont content;
     //batch

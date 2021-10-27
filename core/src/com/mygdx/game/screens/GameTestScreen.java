@@ -13,6 +13,9 @@ import com.mygdx.game.ACLGame;
 import com.mygdx.game.components.*;
 import com.mygdx.game.listeners.ACLGameListener;
 import com.mygdx.game.systems.*;
+import com.mygdx.game.systems.physics.CollisionsSystem;
+import com.mygdx.game.systems.physics.PhysicsSystem;
+import com.mygdx.game.systems.physics.collisionhandler.HeroWallCollisionHandler;
 
 public class GameTestScreen extends GameScreen {
 
@@ -24,11 +27,16 @@ public class GameTestScreen extends GameScreen {
         this.engine.addSystem(new PhysicsSystem());
         this.engine.addSystem(new DebugRenderSystem(this.game.batcher, this.game.camera));
 
+        CollisionsSystem  collisionsSystem = new CollisionsSystem();
+        collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
+
+        this.engine.addSystem(collisionsSystem);
+
         this.assets.getManager().finishLoading();
 
         createHero();
         createObstacle();
-        collisionStaticDynamic2();
+        //collisionStaticDynamic2();
     }
 
     private void createHero(){
@@ -67,8 +75,11 @@ public class GameTestScreen extends GameScreen {
 
         Body body = physicsSystem.addDynamicBody(0, 40, 10, 10);
         body.setLinearVelocity(new Vector2(0,-10));
+        body.setUserData(hero);
 
-        hero.add(new BodyComponent(body));
+        hero.add(new SteeringComponent(body));
+        hero.add(new TypeComponent(TypeComponent.TYPE_HERO));
+        hero.add(new CollisionComponent());
 
 
 
@@ -88,37 +99,13 @@ public class GameTestScreen extends GameScreen {
          */
         Entity staticEntity = new Entity();
         Body body1 = physicsSystem.addStaticBody(0,0,100,5);
+        body1.setUserData(staticEntity);
         TransformComponent transformComponent = new TransformComponent(new Vector3(0,0,0));
-        BodyComponent bodyComponent = new BodyComponent(body1);
+        SteeringComponent steeringComponent = new SteeringComponent(body1);
         staticEntity.add(transformComponent);
-        staticEntity.add(bodyComponent);
-
-        /**
-         * Create Dynamic
-         * Width=10, Heigth=10
-         * Coord : (0;40)
-         */
-
-        Entity dynamicEntity = new Entity();
-        Body dynamicBody = physicsSystem.addDynamicBody(0,100,5,5);
-        transformComponent = new TransformComponent(new Vector3(0,20,0));
-        bodyComponent = new BodyComponent(dynamicBody);
-        dynamicEntity.add(transformComponent);
-        dynamicEntity.add(bodyComponent);
-
-        engine.addEntity(staticEntity);
-        engine.addEntity(dynamicEntity);
-
-
-
-        /**
-         * we apply set linear velocity down to the dynamic body located above the static body
-         * the dynamic body should not overlap the static body
-         * 1 contact should be counter
-         *
-         */
-
-        dynamicEntity.getComponent(BodyComponent.class).setLinearVelocity(new Vector2(0,-10));
+        staticEntity.add(new TypeComponent(TypeComponent.TYPE_WALL));
+        staticEntity.add(new CollisionComponent());
+        staticEntity.add(steeringComponent);
 
     }
 
@@ -142,8 +129,12 @@ public class GameTestScreen extends GameScreen {
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
 
         Body body = physicsSystem.addStaticBody(0, 0, 40, 20);
+        body.setUserData(hero);
+        hero.add(new CollisionComponent());
+        hero.add(new TypeComponent(TypeComponent.TYPE_WALL));
 
-        hero.add(new BodyComponent(body));
+
+        hero.add(new SteeringComponent(body));
 
 
 
