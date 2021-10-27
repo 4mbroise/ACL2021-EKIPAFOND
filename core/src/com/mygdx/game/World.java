@@ -2,15 +2,10 @@ package com.mygdx.game;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g3d.particles.influencers.DynamicsModifier;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.mygdx.game.components.*;
 import com.mygdx.game.systems.PhysicsSystem;
 
@@ -31,7 +26,6 @@ public class World {
     private Engine engine;
     private Assets assets;
     PhysicsSystem physicsSystem;
-    Entity staticEntity;
     Entity hero;
 
 
@@ -92,7 +86,6 @@ public class World {
                             TextureComponent textureComponent = new TextureComponent();
                             textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/damage_up.png", Texture.class)));
                             wall.add(textureComponent);
-                            //System.out.print(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,0));
                             TransformComponent transformComponent = new TransformComponent(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,10));
                             wall.add(transformComponent);
                             PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
@@ -107,6 +100,7 @@ public class World {
                             break;
                         case '1':
                             createHero((float)(j + 0.5) * 16 * 2, 480 - (float)(ctr + 0.5) * 16 * 2);
+
                             //System.out.print("  Hero  ");
                             break;
                         case 'k':
@@ -152,18 +146,10 @@ public class World {
         HeroComponent heroComponent = new HeroComponent();
         hero.add(heroComponent);
 
-        BodyDef bd = new BodyDef();
-        bd.type = BodyDef.BodyType.DynamicBody;
-        bd.position.set(8, 8);
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(16, 16);
-
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
-
-        Body body = physicsSystem.addDynamicBody(posx, posy, 10, 10);
-        body.setLinearVelocity(new Vector2(0,5));
-
+        Body body = physicsSystem.addDynamicBody(posx, posy, 14, 14);
         hero.add(new BodyComponent(body));
+
         this.engine.addEntity(hero);
     }
 
