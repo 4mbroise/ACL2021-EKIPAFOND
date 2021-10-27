@@ -6,8 +6,13 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.particles.influencers.DynamicsModifier;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.mygdx.game.components.*;
+import com.mygdx.game.systems.PhysicsSystem;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,6 +30,9 @@ public class World {
     private List<File> Maps;
     private Engine engine;
     private Assets assets;
+    PhysicsSystem physicsSystem;
+    Entity staticEntity;
+    Entity hero;
 
 
     public World(Engine engine, Assets assets) {
@@ -33,6 +41,8 @@ public class World {
         this.ctr = 0;
         this.engine = engine;
         this.assets = assets;
+        this.physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+
     }
 
     public World() {
@@ -85,9 +95,10 @@ public class World {
                             System.out.print(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,0));
                             TransformComponent transformComponent = new TransformComponent(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,0));
                             wall.add(transformComponent);
-
+                            PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+                            Body body = physicsSystem.addStaticBody((float)(j+ 0.5) * 16 * 2 , (float)(ctr+0.5) * 16 * 2,10,10);
                             System.out.print("  Wall  ");
-
+                            wall.add(new BodyComponent(body));
                             break;
                         case '+':
                             Entity ground = new Entity();
@@ -110,7 +121,7 @@ public class World {
 
     public void createHero(float posx, float posy){
 
-        Entity hero = new Entity();
+        this.hero = new Entity();
 
         //Add Texture
         TextureComponent textureComponent = new TextureComponent();
@@ -134,6 +145,18 @@ public class World {
 
         //hero.add(transformComponent);
 
+        BodyDef bd = new BodyDef();
+        bd.type = BodyDef.BodyType.DynamicBody;
+        bd.position.set(8, 8);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(16, 16);
+
+        PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+
+        Body body = physicsSystem.addDynamicBody(posx, posy, 10, 10);
+        body.setLinearVelocity(new Vector2(0,-10));
+
+        hero.add(new BodyComponent(body));
         this.engine.addEntity(hero);
     }
 
