@@ -1,14 +1,14 @@
 package com.mygdx.game.systems;
 
-import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.components.DirectionComponent;
 import com.mygdx.game.components.MovementComponent;
+import com.mygdx.game.components.SteeringComponent;
 import com.mygdx.game.components.TransformComponent;
-import org.junit.Assert;
+import com.mygdx.game.systems.physics.PhysicsSystem;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,11 +23,15 @@ public class MovementSystemTest {
     TransformComponent transformComponent;
     DirectionComponent directionComponent;
     MovementComponent movementComponent;
+    PhysicsSystem physicsSystem = new PhysicsSystem();
     Random r = new Random();
 
     @Before
     public void setUp() throws Exception {
         engine = new PooledEngine();
+        physicsSystem.priority=2;
+        movementSystem.priority=1;
+        engine.addSystem(physicsSystem);
         engine.addSystem(movementSystem);
         transformComponent = new TransformComponent(new Vector3(0,0,0));
     }
@@ -36,13 +40,14 @@ public class MovementSystemTest {
     public void upMovement() {
 
         //random speed between 0 and 10
-        float velocity = r.nextFloat() * 10;
+        float velocity = 10;
 
         directionComponent = new DirectionComponent();
         directionComponent.setDirection(DirectionComponent.UP);
         movementComponent = new MovementComponent(velocity);
 
         Entity e = new Entity();
+        e.add(new SteeringComponent(physicsSystem.addDynamicBody(0,0,10,10)));
         e.add(directionComponent);
         e.add(transformComponent);
         e.add(movementComponent);
@@ -50,19 +55,22 @@ public class MovementSystemTest {
         engine.addEntity(e);
 
         float deltaTime;
+
         float y;
         for(int i = 0; i<30 ; i++){
 
             y = transformComponent.getPosition().y;
 
             //random float between 1/50 and 1/75 (framerate)
-            deltaTime = 1/50 + r.nextFloat() * (1/75 - 1/50);
+            deltaTime = (float) 0.01666666 + r.nextFloat() * ( (float) 0.01333333333 - (float) 0.01666666);
             engine.update(deltaTime);
+
 
             assertEquals(0, transformComponent.getPosition().x, 0);
             assertEquals(y+(movementComponent.getVelocity()*deltaTime), transformComponent.getPosition().y, 0);
 
         }
+
     }
 
     @Test
@@ -76,6 +84,7 @@ public class MovementSystemTest {
         movementComponent = new MovementComponent(velocity);
 
         Entity e = new Entity();
+        e.add(new SteeringComponent(physicsSystem.addDynamicBody(0,0,10,10)));
         e.add(directionComponent);
         e.add(transformComponent);
         e.add(movementComponent);
@@ -89,8 +98,9 @@ public class MovementSystemTest {
             y = transformComponent.getPosition().y;
 
             //random float between 1/50 and 1/75 (framerate)
-            deltaTime = 1/50 + r.nextFloat() * (1/75 - 1/50);
+            deltaTime = (float) 0.01666666 + r.nextFloat() * ( (float) 0.01333333333 - (float) 0.01666666);
             engine.update(deltaTime);
+
 
             assertEquals(0, transformComponent.getPosition().x, 0);
             assertEquals(y-(movementComponent.getVelocity()*deltaTime), transformComponent.getPosition().y, 0);
@@ -105,10 +115,11 @@ public class MovementSystemTest {
         float velocity = r.nextFloat() * 10;
 
         directionComponent = new DirectionComponent();
-        directionComponent.setDirection(DirectionComponent.UP);
+        directionComponent.setDirection(DirectionComponent.LEFT);
         movementComponent = new MovementComponent(velocity);
 
         Entity e = new Entity();
+        e.add(new SteeringComponent(physicsSystem.addDynamicBody(0,0,10,10)));
         e.add(directionComponent);
         e.add(transformComponent);
         e.add(movementComponent);
@@ -122,11 +133,11 @@ public class MovementSystemTest {
             x = transformComponent.getPosition().x;
 
             //random float between 1/50 and 1/75 (framerate)
-            deltaTime = 1/50 + r.nextFloat() * (1/75 - 1/50);
+            deltaTime = (float) 0.01666666 + r.nextFloat() * ( (float) 0.01333333333 - (float) 0.01666666);
             engine.update(deltaTime);
 
             assertEquals(0, transformComponent.getPosition().y, 0);
-            assertEquals(x+(movementComponent.getVelocity()*deltaTime), transformComponent.getPosition().x, 0);
+            assertEquals(x-(movementComponent.getVelocity()*deltaTime), transformComponent.getPosition().x, 0);
 
         }
     }
@@ -138,10 +149,11 @@ public class MovementSystemTest {
         float velocity = r.nextFloat() * 10;
 
         directionComponent = new DirectionComponent();
-        directionComponent.setDirection(DirectionComponent.UP);
+        directionComponent.setDirection(DirectionComponent.RIGHT);
         movementComponent = new MovementComponent(velocity);
 
         Entity e = new Entity();
+        e.add(new SteeringComponent(physicsSystem.addDynamicBody(0,0,10,10)));
         e.add(directionComponent);
         e.add(transformComponent);
         e.add(movementComponent);
@@ -155,7 +167,7 @@ public class MovementSystemTest {
             x = transformComponent.getPosition().x;
 
             //random float between 1/50 and 1/75 (framerate)
-            deltaTime = 1/50 + r.nextFloat() * (1/75 - 1/50);
+            deltaTime = (float) 0.01666666 + r.nextFloat() * ( (float) 0.01333333333 - (float) 0.01666666);
             engine.update(deltaTime);
 
             assertEquals(0, transformComponent.getPosition().y, 0);

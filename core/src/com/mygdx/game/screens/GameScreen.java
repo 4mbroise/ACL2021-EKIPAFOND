@@ -13,16 +13,17 @@ public class GameScreen extends ScreenAdapter {
     public Assets assets;
     public Engine engine;
 
-    public GameScreen(ACLGame game, Assets assets) {
+    public GameScreen(ACLGame game) {
         this.engine = new PooledEngine();
         this.game = game;
-        this.assets = assets;
+        this.assets = game.getAssets();
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
         this.engine.update(delta);
+        //game.setScreen(new GameAITestScreen(game, game.getAssets()));
     }
 
     @Override

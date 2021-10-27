@@ -10,7 +10,7 @@ import com.mygdx.game.components.SteeringComponent;
 public class AISystem extends IteratingSystem {
 
 
-    private static final ComponentMapper<SteeringComponent> sCom = ComponentMapper.getFor(SteeringComponent.class);
+    private static final ComponentMapper<SteeringComponent> sCom =  ComponentMapper.getFor(SteeringComponent.class);
 
     public AISystem() {
         super(Family.all(SteeringComponent.class).get());
@@ -28,5 +28,6 @@ public class AISystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         SteeringComponent steer = sCom.get(entity);
         steer.update(deltaTime);
+
     }
 }

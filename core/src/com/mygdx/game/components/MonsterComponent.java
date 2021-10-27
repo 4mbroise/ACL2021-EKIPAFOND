@@ -16,10 +16,22 @@ public class MonsterComponent implements Component, Pool.Poolable {
         this.monsterType=Type.MONSTER;
     }
 
+    public MonsterComponent(int a){
+        this.isDead=false;
+        this.xPosCenter=-1;
+        this.monsterType=Type.GHOST;
+    }
+
     @Override
     public void reset() {
         this.isDead=false;
         this.xPosCenter=-1;
         this.monsterType=Type.MONSTER;
     }
+
+    public Type getMonsterType() {
+        return monsterType;
+    }
+
+
 }
