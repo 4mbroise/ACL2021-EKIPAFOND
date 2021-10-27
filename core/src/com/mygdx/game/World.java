@@ -92,29 +92,39 @@ public class World {
                             TextureComponent textureComponent = new TextureComponent();
                             textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/damage_up.png", Texture.class)));
                             wall.add(textureComponent);
-                            System.out.print(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,0));
-                            TransformComponent transformComponent = new TransformComponent(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,0));
+                            //System.out.print(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,0));
+                            TransformComponent transformComponent = new TransformComponent(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,10));
                             wall.add(transformComponent);
                             PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
-                            Body body = physicsSystem.addStaticBody((float)(j+ 0.5) * 16 * 2 , (float)(ctr+0.5) * 16 * 2,10,10);
-                            System.out.print("  Wall  ");
+                            Body body = physicsSystem.addStaticBody((float)(j+ 0.5) * 16 * 2 , 480 - (float)(ctr+0.5) * 16 * 2,16,16);
+                            //System.out.print("  Wall  ");
                             wall.add(new BodyComponent(body));
                             break;
                         case '+':
                             Entity ground = new Entity();
                             this.engine.addEntity(ground);
-                            System.out.print(" Ground ");
+                            //System.out.print(" Ground ");
                             break;
                         case '1':
-                            createHero((float)(ctr+0.5) * 16 * 2, 480-(float)(j+0.5) * 16 * 2);
-                            System.out.print("  Hero  ");
+                            createHero((float)(j + 0.5) * 16 * 2, 480 - (float)(ctr + 0.5) * 16 * 2);
+                            //System.out.print("  Hero  ");
                             break;
+                        case 'k':
+                            Entity treasure = new Entity();
+                            this.engine.addEntity(treasure);
+                            TextureComponent textureComponentT = new TextureComponent();
+                            textureComponentT.setRegion(new TextureRegion(this.assets.getManager().get("tiles/treasure32x32.png", Texture.class)));
+                            treasure.add(textureComponentT);
+                            //System.out.print(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,0));
+                            TransformComponent transformComponentT = new TransformComponent(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,10));
+                            treasure.add(transformComponentT);
+
                         default :
-                            System.out.print("Ground-d");
+                            //System.out.print("Ground-d");
                     }
                 }
             ctr++;
-            System.out.println("");
+            //System.out.println("");
         }
         this.TileReader.close();
     }
@@ -127,7 +137,6 @@ public class World {
         TextureComponent textureComponent = new TextureComponent();
         textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/cherry.png", Texture.class)));
         hero.add(textureComponent);
-
 
         //Add Position
         TransformComponent transformComponent = new TransformComponent(new Vector3(posx,posy,0));
@@ -143,8 +152,6 @@ public class World {
         HeroComponent heroComponent = new HeroComponent();
         hero.add(heroComponent);
 
-        //hero.add(transformComponent);
-
         BodyDef bd = new BodyDef();
         bd.type = BodyDef.BodyType.DynamicBody;
         bd.position.set(8, 8);
@@ -154,7 +161,7 @@ public class World {
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
 
         Body body = physicsSystem.addDynamicBody(posx, posy, 10, 10);
-        body.setLinearVelocity(new Vector2(0,-10));
+        body.setLinearVelocity(new Vector2(0,5));
 
         hero.add(new BodyComponent(body));
         this.engine.addEntity(hero);

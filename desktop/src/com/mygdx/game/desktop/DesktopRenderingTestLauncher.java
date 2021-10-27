@@ -15,7 +15,7 @@ public class DesktopRenderingTestLauncher {
     public static void main (String[] arg) {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.title = "ACL GAME 2021 - EKIPAFOND";
-        config.width = 800;
+        config.width = 512;
         config.height = 480;
 
         ACLGame game = new ACLRenderingGameTest();
