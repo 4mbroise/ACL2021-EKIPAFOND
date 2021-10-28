@@ -5,7 +5,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.mygdx.game.components.BodyComponent;
+import com.mygdx.game.components.SteeringComponent;
 import com.mygdx.game.components.DirectionComponent;
 import com.mygdx.game.components.MovementComponent;
 import com.mygdx.game.components.TransformComponent;
@@ -13,14 +13,14 @@ import com.mygdx.game.components.TransformComponent;
 
 public class MovementSystem extends IteratingSystem {
 
-    private ComponentMapper<BodyComponent> bm;
+    private ComponentMapper<SteeringComponent> sm;
     private ComponentMapper<MovementComponent> mm;
     private ComponentMapper<DirectionComponent> dm;
 
     public MovementSystem(){
-        super(Family.all(BodyComponent.class, MovementComponent.class, DirectionComponent.class).get());
+        super(Family.all(SteeringComponent.class, MovementComponent.class, DirectionComponent.class).get());
 
-        bm = ComponentMapper.getFor(BodyComponent.class);
+        sm = ComponentMapper.getFor(SteeringComponent.class);
         mm = ComponentMapper.getFor(MovementComponent.class);
         dm = ComponentMapper.getFor(DirectionComponent.class);
 
@@ -30,7 +30,7 @@ public class MovementSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
 
         MovementComponent   mvComp      = mm.get(entity);
-        BodyComponent       bComp      = bm.get(entity);
+        SteeringComponent   sComp      = sm.get(entity);
         DirectionComponent  dirComp     = dm.get(entity);
 
         float velocity = mvComp.getVelocity();
@@ -39,16 +39,16 @@ public class MovementSystem extends IteratingSystem {
 
         switch(dirComp.getDirection()){
             case DirectionComponent.UP:
-                bComp.setLinearVelocity(new Vector2(0, velocity));
+                sComp.setLinearVelocity(new Vector2(0, velocity));
                 break;
             case DirectionComponent.DOWN:
-                bComp.setLinearVelocity(new Vector2(0, -velocity));
+                sComp.setLinearVelocity(new Vector2(0, -velocity));
                 break;
             case DirectionComponent.RIGHT:
-                bComp.setLinearVelocity(new Vector2(velocity, 0));
+                sComp.setLinearVelocity(new Vector2(velocity, 0));
                 break;
             case DirectionComponent.LEFT:
-                bComp.setLinearVelocity(new Vector2(-velocity, 0));
+                sComp.setLinearVelocity(new Vector2(-velocity, 0));
                 break;
         }
     }

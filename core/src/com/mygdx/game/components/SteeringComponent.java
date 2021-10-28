@@ -193,6 +193,10 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Poolabl
     public Vector2 getLinearVelocity() {
         return body.getLinearVelocity();
     }
+
+    public void setLinearVelocity(Vector2 newLinearVelocity){
+        this.body.setLinearVelocity(newLinearVelocity);
+    }
     @Override
     public float getAngularVelocity() {
         return body.getAngularVelocity();

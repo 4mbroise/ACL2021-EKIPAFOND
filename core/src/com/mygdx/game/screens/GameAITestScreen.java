@@ -15,10 +15,11 @@ import com.mygdx.game.SteeringPresets;
 import com.mygdx.game.components.*;
 import com.mygdx.game.listeners.ACLGameListener;
 import com.mygdx.game.systems.*;
+import com.mygdx.game.systems.physics.PhysicsSystem;
 
 public class GameAITestScreen extends GameScreen{
     public ACLGame game;
-    public static Entity hero;
+    private Entity hero;
     private Entity monster;
     public GameAITestScreen(ACLGame game, Assets assets) {
         super(game);
@@ -26,13 +27,48 @@ public class GameAITestScreen extends GameScreen{
         this.engine.addSystem(new RenderSystem(this.game.batcher));
         this.engine.addSystem(new MovementSystem());
         this.engine.addSystem(new HeroSystem());
-        this.engine.addSystem(new PhysicsSystem());
-        this.engine.addSystem(new MonsterSystem());
         this.engine.addSystem(new AISystem());
-        this.engine.addSystem(new DebugRenderSystem(this.game.batcher, this.game.camera));
-        this.assets.getManager().finishLoading();
+        this.engine.addSystem(new PhysicsSystem());
         createHero();
+        this.engine.addSystem(new MonsterSystem(hero));
+        this.assets.getManager().finishLoading();
+        this.engine.addSystem(new DebugRenderSystem(this.game.batcher, this.game.camera));
+
         createMonster();
+
+        createObstacle();
+    }
+
+    private void createObstacle(){
+
+        Entity hero = new Entity();
+
+        //Add Position
+        TransformComponent transformComponent = new TransformComponent(new Vector3(10,10,10));
+        hero.add(transformComponent);
+
+        hero.add(transformComponent);
+
+
+        BodyDef bd = new BodyDef();
+        bd.type = BodyDef.BodyType.StaticBody;
+        bd.position.set(8, -32);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(32, 16);
+
+        PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+
+        Body body = physicsSystem.addStaticBody(0, 0, 5, 100);
+        body.setUserData(hero);
+        hero.add(new CollisionComponent());
+        hero.add(new TypeComponent(TypeComponent.TYPE_WALL));
+
+
+        hero.add(new SteeringComponent(body));
+
+
+
+        this.engine.addEntity(hero);
     }
 
     private void createHero(){
@@ -43,9 +79,6 @@ public class GameAITestScreen extends GameScreen{
         TextureComponent textureComponent = new TextureComponent();
         textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/cherry.png", Texture.class)));
         hero.add(textureComponent);
-
-
-
 
         //Add Position
         DirectionComponent directionComponent = new DirectionComponent();
@@ -63,7 +96,10 @@ public class GameAITestScreen extends GameScreen{
         TransformComponent transformComponent = new TransformComponent(new Vector3(10,20,10));
         hero.add(transformComponent);
 
+        //Add Collisions
+        hero.add(new CollisionComponent());
 
+        // Body creation
         BodyDef bd = new BodyDef();
         bd.type = BodyDef.BodyType.DynamicBody;
         bd.position.set(8, 8);
@@ -73,10 +109,11 @@ public class GameAITestScreen extends GameScreen{
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
 
         Body body = physicsSystem.addDynamicBody(0, 40, 10, 10);
+        body.setUserData(hero);
         body.setLinearVelocity(new Vector2(0,0));
 
         //Add Body
-        hero.add(new BodyComponent(body));
+        hero.add(new SteeringComponent(body));
 
         //Add Steering
         SteeringComponent steeringComponent = new SteeringComponent(body);
@@ -89,21 +126,28 @@ public class GameAITestScreen extends GameScreen{
 
         monster = new Entity();
 
-        //Add Texture
+
+        // Add texture
         TextureComponent textureComponent = new TextureComponent();
         textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/spr_orange.png", Texture.class)));
         monster.add(textureComponent);
 
-
-        //Add Transform
-
-
-        //Add Position
-        DirectionComponent directionComponent = new DirectionComponent();
-        monster.add(directionComponent);
-
+        //Add Movement
         MovementComponent movementComponent = new MovementComponent(HeroComponent.HERO_VELOCITY);
         monster.add(movementComponent);
+
+        // Add Monster component
+        MonsterComponent monsterComponent = new MonsterComponent();
+        monster.add(monsterComponent);
+
+
+        // Add transform
+        TransformComponent transformComponent = new TransformComponent(new Vector3(50,40,10));
+        monster.add(transformComponent);
+
+        // Add Collision
+        monster.add(new CollisionComponent());
+
 
         BodyDef bd = new BodyDef();
         bd.type = BodyDef.BodyType.DynamicBody;
@@ -113,28 +157,25 @@ public class GameAITestScreen extends GameScreen{
 
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
 
-        Body body = physicsSystem.addDynamicBody(0, 40, 10, 10);
+        Body body = physicsSystem.addDynamicBody(50, 40, 10, 10);
+        body.setUserData(monster);
         body.setLinearVelocity(new Vector2(10,10));
 
-        //monster.add(new BodyComponent(body));
 
-        MonsterComponent monsterComponent = new MonsterComponent();
-        monster.add(monsterComponent);
-
-
+        // Add steering
         SteeringComponent steeringComponent = new SteeringComponent(body);
         monster.add(steeringComponent);
         monster.getComponent(SteeringComponent.class).steeringBehavior  = SteeringPresets.getArrive(monster.getComponent(SteeringComponent.class),hero.getComponent(SteeringComponent.class));
         monster.getComponent(SteeringComponent.class).currentMode = SteeringComponent.SteeringState.ARRIVE;
 
-        TransformComponent transformComponent = new TransformComponent(new Vector3(10,20,10));
-        monster.add(transformComponent);
         this.engine.addEntity(monster);
+
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
         Gdx.input.setInputProcessor(new ACLGameListener(this));
+        engine.update(delta);
     }
 }
