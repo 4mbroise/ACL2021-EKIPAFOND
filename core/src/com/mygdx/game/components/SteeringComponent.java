@@ -15,15 +15,15 @@ import com.mygdx.game.tools.Utility;
 public class SteeringComponent implements Steerable<Vector2>, Component, Poolable{
 
     public static enum SteeringState {WANDER,SEEK,FLEE,ARRIVE,NONE}
-    public SteeringState currentMode = SteeringState.ARRIVE;
+    public SteeringState currentMode = SteeringState.SEEK;
     private Body body;
 
     // Steering data
-    private float maxLinearSpeed = 25f;
-    private float maxLinearAcceleration = 50f;
-    private float maxAngularSpeed =50f;
-    private float maxAngularAcceleration = 5f;
-    private float zeroThreshold = 0.1f;
+    private float maxLinearSpeed = 15f;
+    private float maxLinearAcceleration = 25f;
+    private float maxAngularSpeed =20f;
+    private float maxAngularAcceleration = 10f;
+    private float zeroThreshold = 0.5f;
     public SteeringBehavior<Vector2> steeringBehavior;
     private static final SteeringAcceleration<Vector2> steeringOutput = new SteeringAcceleration<Vector2>(new Vector2());
     private float boundingRadius = 1f;
@@ -53,8 +53,9 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Poolabl
 
     @Override
     public void reset() {
-
-
+        currentMode = SteeringState.NONE;
+        body = null;
+        steeringBehavior = null;
     }
 
     public boolean isIndependentFacing () {

@@ -12,11 +12,11 @@ import com.mygdx.game.components.SteeringComponent;
 public class SteeringPresets {
 
     private static final float wanderOffset = 20f;
-    private static final float wanderOrientation = 0f;
+    private static final float wanderOrientation = 1f;
     private static final float wanderRadius = 10f;
     private static final float timeToTarget = 0.1f;
-    private static final float arrivalTolerance = 7f;
-    private static final float decelerationRadius = 10f;
+    private static final float arrivalTolerance = 10f;
+    private static final float decelerationRadius = 20f;
 
 
 
