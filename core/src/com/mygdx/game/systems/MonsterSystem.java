@@ -31,7 +31,7 @@ public class MonsterSystem extends IteratingSystem {
 
     private Entity hero;
     public MonsterSystem(Entity entity) {
-        super(Family.all(MonsterComponent.class).get());
+        super(Family.all(MonsterComponent.class, SteeringComponent.class).get());
         this.hero=entity;
     }
 
@@ -45,6 +45,7 @@ public class MonsterSystem extends IteratingSystem {
 
     public void seek(SteeringComponent s, SteeringComponent t) {
         World w = this.getEngine().getSystem(PhysicsSystem.class).getPhysicsWorld();
+
         // Set seek
         PrioritySteering<Vector2> prioritySteering = new PrioritySteering(s, 0.0001f);
         Box2dRaycastCollisionDetector m = new Box2dRaycastCollisionDetector(w);
