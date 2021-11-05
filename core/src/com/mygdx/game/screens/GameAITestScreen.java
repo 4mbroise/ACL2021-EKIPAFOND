@@ -27,7 +27,7 @@ public class GameAITestScreen extends GameScreen{
         this.engine.addSystem(new RenderSystem(this.game.batcher));
         this.engine.addSystem(new MovementSystem());
         this.engine.addSystem(new HeroSystem());
-        this.engine.addSystem(new AISystem());
+        //this.engine.addSystem(new AISystem());
         this.engine.addSystem(new PhysicsSystem());
         createHero();
         this.engine.addSystem(new MonsterSystem(hero));

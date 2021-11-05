@@ -10,8 +10,8 @@ import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
 
 /** A raycast collision detector for box2d.
- *
- * @author enes */
+ * This class has been taken from libgdx's github repo (test folder)
+ *  */
 public class Box2dRaycastCollisionDetector implements RaycastCollisionDetector<Vector2> {
 
     World world;
@@ -41,6 +41,10 @@ public class Box2dRaycastCollisionDetector implements RaycastCollisionDetector<V
         return callback.collided;
     }
 
+
+    /**
+     * Static class for Raycast Callback
+     */
     public static class Box2dRaycastCallback implements RayCastCallback {
         public Collision<Vector2> outputCollision;
         public boolean collided;

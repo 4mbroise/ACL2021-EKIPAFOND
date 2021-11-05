@@ -12,11 +12,15 @@ import com.badlogic.gdx.utils.Pool.Poolable;
 import com.mygdx.game.tools.Box2dLocation;
 import com.mygdx.game.tools.Utility;
 
+
+/**
+ * Class for the Steering Component
+ */
 public class SteeringComponent implements Steerable<Vector2>, Component, Poolable{
 
-    public static enum SteeringState {WANDER,SEEK,FLEE,ARRIVE,NONE}
-    public SteeringState currentMode = SteeringState.SEEK;
-    private Body body;
+    public static enum SteeringState {WANDER,SEEK,FLEE,ARRIVE,NONE} //Enum for the behaviors
+    public SteeringState currentMode = SteeringState.SEEK; // current mode (Wander, Seek, Flee, Arrive)
+    private Body body; // Body linked to the component
 
     // Steering data
     private float maxLinearSpeed = 15f;
@@ -24,8 +28,8 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Poolabl
     private float maxAngularSpeed =20f;
     private float maxAngularAcceleration = 10f;
     private float zeroThreshold = 0.5f;
-    public SteeringBehavior<Vector2> steeringBehavior;
-    private static final SteeringAcceleration<Vector2> steeringOutput = new SteeringAcceleration<Vector2>(new Vector2());
+    public SteeringBehavior<Vector2> steeringBehavior; // Behavior applied to our comoonent
+    private static final SteeringAcceleration<Vector2> steeringOutput = new SteeringAcceleration<Vector2>(new Vector2()); // accelaration vector of our component
     private float boundingRadius = 1f;
     private boolean tagged = true;
     private boolean independentFacing = false;
@@ -34,6 +38,15 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Poolabl
     public SteeringComponent(Body body) {
         this.body=body;
     }
+
+
+    @Override
+    public void reset() {
+        currentMode = SteeringState.NONE;
+        body = null;
+        steeringBehavior = null;
+    }
+
 
     public SteeringState getCurrentMode() {
         return currentMode;
@@ -49,13 +62,6 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Poolabl
 
     public SteeringBehavior<Vector2> getSteeringBehavior() {
         return steeringBehavior;
-    }
-
-    @Override
-    public void reset() {
-        currentMode = SteeringState.NONE;
-        body = null;
-        steeringBehavior = null;
     }
 
     public boolean isIndependentFacing () {
@@ -142,10 +148,22 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Poolabl
     public float vectorToAngle(Vector2 vector) {
         return Utility.vectorToAngle(vector);
     }
+
+    /**
+     * Function which converts an angle to a Vector2
+     * @param outVector new Vector2
+     * @param angle angle which xe xant to convert
+     * @return new Vector2 from the input angle
+     */
     @Override
     public Vector2 angleToVector(Vector2 outVector, float angle) {
         return Utility.angleToVector(outVector, angle);
     }
+
+    /**
+     * Function that returns new Box2dLocation
+     * @return Box2dLpcation
+     */
     @Override
     public Location<Vector2> newLocation() {
         return new Box2dLocation();

@@ -27,9 +27,18 @@ import com.mygdx.game.systems.physics.PhysicsSystem;
 import com.mygdx.game.tools.Box2dRaycastCollisionDetector;
 
 
+
+/**
+ * MonsterSystem which implements partially the AI of the monster (other part is implemented by AISYstem)
+ */
 public class MonsterSystem extends IteratingSystem {
 
     private Entity hero;
+
+    /**
+     * Constructor of the MonsterSystem
+     * @param entity we need hero entity to apply Seek Behaviour to the monster
+     */
     public MonsterSystem(Entity entity) {
         super(Family.all(MonsterComponent.class, SteeringComponent.class).get());
         this.hero=entity;
@@ -40,17 +49,26 @@ public class MonsterSystem extends IteratingSystem {
         ComponentMapper<SteeringComponent> steerMap = ComponentMapper.getFor(SteeringComponent.class);
         SteeringComponent bHero = steerMap.get(hero);
         SteeringComponent bMonster = steerMap.get(entity);
-        this.seek(bMonster,bHero);
+        this.applySeek(bMonster,bHero);
+        bMonster.update(deltaTime); //update SteeringComponent
     }
 
-    public void seek(SteeringComponent s, SteeringComponent t) {
+    /**
+     * Function which applies seek behavior to the monster
+     * @param s Monster's SteeringComponent
+     * @param t Hero's SteeringComponent
+     */
+    public void applySeek(SteeringComponent s, SteeringComponent t) {
         World w = this.getEngine().getSystem(PhysicsSystem.class).getPhysicsWorld();
 
-        // Set seek
+        // Set PrioritySteering
         PrioritySteering<Vector2> prioritySteering = new PrioritySteering(s, 0.0001f);
+
+        // Creation of the collision detector
         Box2dRaycastCollisionDetector m = new Box2dRaycastCollisionDetector(w);
         RaycastObstacleAvoidance<Vector2> raycastObstacleAvoidanceSB = new RaycastObstacleAvoidance<>(s,
                 new SingleRayConfiguration<>(s, 1.5f), m, 0.5f);
+
         prioritySteering.add(raycastObstacleAvoidanceSB);
         prioritySteering.add(new Seek<Vector2>(s, t).setEnabled(true));
         s.steeringBehavior=prioritySteering;
