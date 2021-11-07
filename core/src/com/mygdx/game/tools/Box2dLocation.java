@@ -3,11 +3,18 @@ package com.mygdx.game.tools;
 import com.badlogic.gdx.ai.utils.Location;
 import com.badlogic.gdx.math.Vector2;
 
+
+/**
+ * Class Box2dLocation which implements Location
+ */
 public class Box2dLocation implements Location<Vector2> {
 
-    Vector2 position;
-    float orientation;
+    Vector2 position; //position vector
+    float orientation; //orientation angle
 
+    /**
+     * Constructor
+     */
     public Box2dLocation () {
         this.position = new Vector2();
         this.orientation = 0;

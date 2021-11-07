@@ -3,40 +3,34 @@ package com.mygdx.game.tools;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
+
+/**
+ *  Utility class for all minor operations
+ */
 public class Utility {
 
     public Utility() {
     }
 
+    /**
+     * Converts a vector2 to an angle
+     * @param vector Vector2 that we want to convert to an angle
+     * @return angle value (float)
+     */
     public static float vectorToAngle (Vector2 vector) {
         return (float)Math.atan2(-vector.x, vector.y);
     }
 
+    /**
+     * Converts an angle to a vector
+     * @param outVector new Vector2
+     * @param angle angle which we want to transform to a Vector2
+     * @return new Vector2
+     */
     public static Vector2 angleToVector (Vector2 outVector, float angle) {
         outVector.x = -(float)Math.sin(angle);
         outVector.y = (float)Math.cos(angle);
         return outVector;
     }
 
-    public static Vector2 aimTo(Vector2 shooter, Vector2 target){
-        Vector2 aim = new Vector2();
-        float velx = target.x - shooter.x; // get distance from shooter to target on x plain
-        float vely = target.y - shooter.y; // get distance from shooter to target on y plain
-        float length = (float) Math.sqrt(velx * velx + vely * vely); // get distance to target direct
-        if (length != 0) {
-            aim.x = velx / length;  // get required x velocity to aim at target
-            aim.y = vely / length;  // get required y velocity to aim at target
-        }
-        return aim;
-    }
-
-
-    /** Takes Vector 3 as argument here for mouse location(unproject etc)
-     * @param shooter Vector 2 for shooter position
-     * @param target Vector 3 for target location
-     * @return
-     */
-    public static Vector2 aimTo(Vector2 shooter, Vector3 target){
-        return aimTo(shooter, new Vector2(target.x,target.y));
-    }
 }

@@ -11,7 +11,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
-import com.mygdx.game.SteeringPresets;
+import com.mygdx.game.tools.SteeringPresets;
 import com.mygdx.game.components.*;
 import com.mygdx.game.listeners.ACLGameListener;
 import com.mygdx.game.systems.*;
@@ -27,7 +27,7 @@ public class GameAITestScreen extends GameScreen{
         this.engine.addSystem(new RenderSystem(this.game.batcher));
         this.engine.addSystem(new MovementSystem());
         this.engine.addSystem(new HeroSystem());
-        this.engine.addSystem(new AISystem());
+        //this.engine.addSystem(new AISystem());
         this.engine.addSystem(new PhysicsSystem());
         createHero();
         this.engine.addSystem(new MonsterSystem(hero));
@@ -37,6 +37,10 @@ public class GameAITestScreen extends GameScreen{
         createMonster();
 
         createObstacle();
+        createObstacle2();
+        createObstacle3();
+        createObstacle4();
+        createObstacle5();
     }
 
     private void createObstacle(){
@@ -58,7 +62,7 @@ public class GameAITestScreen extends GameScreen{
 
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
 
-        Body body = physicsSystem.addStaticBody(0, 0, 5, 100);
+        Body body = physicsSystem.addStaticBody(0, -220, 400, 5);
         body.setUserData(hero);
         hero.add(new CollisionComponent());
         hero.add(new TypeComponent(TypeComponent.TYPE_WALL));
@@ -67,6 +71,131 @@ public class GameAITestScreen extends GameScreen{
         hero.add(new SteeringComponent(body));
 
 
+
+        this.engine.addEntity(hero);
+    }
+
+    private void createObstacle2(){
+
+        Entity hero = new Entity();
+
+        //Add Position
+        TransformComponent transformComponent = new TransformComponent(new Vector3(10,10,10));
+        hero.add(transformComponent);
+
+        hero.add(transformComponent);
+
+
+        BodyDef bd = new BodyDef();
+        bd.type = BodyDef.BodyType.StaticBody;
+        bd.position.set(8, -32);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(32, 32);
+
+        PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+
+        Body body = physicsSystem.addStaticBody(0, 220, 400, 5);
+        body.setUserData(hero);
+        hero.add(new CollisionComponent());
+        hero.add(new TypeComponent(TypeComponent.TYPE_WALL));
+
+
+        hero.add(new SteeringComponent(body));
+
+
+
+        this.engine.addEntity(hero);
+    }
+
+
+    private void createObstacle3(){
+
+        Entity hero = new Entity();
+
+        //Add Position
+        TransformComponent transformComponent = new TransformComponent(new Vector3(10,10,10));
+        hero.add(transformComponent);
+
+        hero.add(transformComponent);
+
+
+        BodyDef bd = new BodyDef();
+        bd.type = BodyDef.BodyType.StaticBody;
+        bd.position.set(8, -32);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(32, 32);
+
+        PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+
+        Body body = physicsSystem.addStaticBody(40, -25, 7, 120);
+        body.setUserData(hero);
+        hero.add(new CollisionComponent());
+        hero.add(new TypeComponent(TypeComponent.TYPE_WALL));
+
+
+        hero.add(new SteeringComponent(body));
+
+
+
+        this.engine.addEntity(hero);
+    }
+
+    private void createObstacle4(){
+
+        Entity hero = new Entity();
+
+        //Add Position
+        TransformComponent transformComponent = new TransformComponent(new Vector3(10,10,10));
+        hero.add(transformComponent);
+
+        hero.add(transformComponent);
+
+
+        BodyDef bd = new BodyDef();
+        bd.type = BodyDef.BodyType.StaticBody;
+        bd.position.set(8, -32);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(32, 32);
+
+        PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+
+        Body body = physicsSystem.addStaticBody(350, 0, 7, 200);
+        body.setUserData(hero);
+        hero.add(new CollisionComponent());
+        hero.add(new TypeComponent(TypeComponent.TYPE_WALL));
+
+
+        hero.add(new SteeringComponent(body));
+
+
+
+        this.engine.addEntity(hero);
+    }
+
+    private void createObstacle5(){
+
+        Entity hero = new Entity();
+
+        //Add Position
+        TransformComponent transformComponent = new TransformComponent(new Vector3(10,10,10));
+        hero.add(transformComponent);
+
+        hero.add(transformComponent);
+
+
+        BodyDef bd = new BodyDef();
+        bd.type = BodyDef.BodyType.StaticBody;
+        bd.position.set(8, -32);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(32, 32);
+
+        PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+
+        Body body = physicsSystem.addStaticBody(-350, 0, 7, 200);
+        body.setUserData(hero);
+        hero.add(new CollisionComponent());
+        hero.add(new TypeComponent(TypeComponent.TYPE_WALL));
+        hero.add(new SteeringComponent(body));
 
         this.engine.addEntity(hero);
     }
@@ -159,14 +288,14 @@ public class GameAITestScreen extends GameScreen{
 
         Body body = physicsSystem.addDynamicBody(50, 40, 10, 10);
         body.setUserData(monster);
-        body.setLinearVelocity(new Vector2(10,10));
+        body.setLinearVelocity(new Vector2(0,0));
 
 
         // Add steering
         SteeringComponent steeringComponent = new SteeringComponent(body);
         monster.add(steeringComponent);
-        monster.getComponent(SteeringComponent.class).steeringBehavior  = SteeringPresets.getArrive(monster.getComponent(SteeringComponent.class),hero.getComponent(SteeringComponent.class));
-        monster.getComponent(SteeringComponent.class).currentMode = SteeringComponent.SteeringState.ARRIVE;
+        //monster.getComponent(SteeringComponent.class).steeringBehavior  = SteeringPresets.getSeek(monster.getComponent(SteeringComponent.class),hero.getComponent(SteeringComponent.class));
+        //monster.getComponent(SteeringComponent.class).currentMode = SteeringComponent.SteeringState.SEEK;
 
         this.engine.addEntity(monster);
 
