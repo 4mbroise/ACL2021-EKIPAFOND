@@ -47,31 +47,6 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Poolabl
         steeringBehavior = null;
     }
 
-
-    public SteeringState getCurrentMode() {
-        return currentMode;
-    }
-
-    public Body getBody() {
-        return body;
-    }
-
-    public float getZeroThreshold() {
-        return zeroThreshold;
-    }
-
-    public SteeringBehavior<Vector2> getSteeringBehavior() {
-        return steeringBehavior;
-    }
-
-    public boolean isIndependentFacing () {
-        return independentFacing;
-    }
-
-    public void setIndependentFacing (boolean independentFacing) {
-        this.independentFacing = independentFacing;
-    }
-
     /** Call this to update the steering behaviour (per frame)
      * @param delta delta time between frames
      */
@@ -128,6 +103,31 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Poolabl
             }
         }
     }
+
+    public SteeringState getCurrentMode() {
+        return currentMode;
+    }
+
+    public Body getBody() {
+        return body;
+    }
+
+    public float getZeroThreshold() {
+        return zeroThreshold;
+    }
+
+    public SteeringBehavior<Vector2> getSteeringBehavior() {
+        return steeringBehavior;
+    }
+
+    public boolean isIndependentFacing () {
+        return independentFacing;
+    }
+
+    public void setIndependentFacing (boolean independentFacing) {
+        this.independentFacing = independentFacing;
+    }
+
 
 
     @Override

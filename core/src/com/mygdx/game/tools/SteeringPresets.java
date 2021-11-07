@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.tools;
 
 import com.badlogic.gdx.ai.steer.behaviors.Arrive;
 import com.badlogic.gdx.ai.steer.behaviors.Flee;
@@ -64,8 +64,8 @@ public class SteeringPresets {
      * @return Flee behaviour applied to the monster
      */
     public static Flee<Vector2> getFlee(SteeringComponent runner, SteeringComponent fleeingFrom){
-        Flee<Vector2> seek = new Flee<Vector2>(runner,fleeingFrom);
-        return seek;
+        Flee<Vector2> flee = new Flee<Vector2>(runner,fleeingFrom);
+        return flee;
     }
 
     /**

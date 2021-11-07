@@ -11,7 +11,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
-import com.mygdx.game.SteeringPresets;
+import com.mygdx.game.tools.SteeringPresets;
 import com.mygdx.game.components.*;
 import com.mygdx.game.listeners.ACLGameListener;
 import com.mygdx.game.systems.*;
@@ -294,8 +294,8 @@ public class GameAITestScreen extends GameScreen{
         // Add steering
         SteeringComponent steeringComponent = new SteeringComponent(body);
         monster.add(steeringComponent);
-        monster.getComponent(SteeringComponent.class).steeringBehavior  = SteeringPresets.getSeek(monster.getComponent(SteeringComponent.class),hero.getComponent(SteeringComponent.class));
-        monster.getComponent(SteeringComponent.class).currentMode = SteeringComponent.SteeringState.SEEK;
+        //monster.getComponent(SteeringComponent.class).steeringBehavior  = SteeringPresets.getSeek(monster.getComponent(SteeringComponent.class),hero.getComponent(SteeringComponent.class));
+        //monster.getComponent(SteeringComponent.class).currentMode = SteeringComponent.SteeringState.SEEK;
 
         this.engine.addEntity(monster);
 
