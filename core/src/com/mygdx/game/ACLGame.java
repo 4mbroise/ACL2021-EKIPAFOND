@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.screens.GameScreen;
+import com.mygdx.game.screens.GameTestScreen;
 import com.mygdx.game.screens.MenuScreen;
-
 
 public class ACLGame extends Game {
 
@@ -17,17 +17,16 @@ public class ACLGame extends Game {
     private Assets assets;
 
 
-
-
     @Override
     public void create() {
         this.assets = new Assets();
         batcher = new SpriteBatch();
-        camera = new OrthographicCamera(800, 480);
+        setScreen(new MenuScreen(this));
+        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera.translate((float) (Gdx.graphics.getWidth()*0.5), (float) (Gdx.graphics.getHeight()*0.5));
+        camera.update();
         batcher.setProjectionMatrix(camera.combined);
         assets.getManager().finishLoading();
-        setScreen(new MenuScreen(this));
-
     }
 
     @Override
@@ -50,9 +49,8 @@ public class ACLGame extends Game {
 
     @Override
     public void dispose() {
-        if(assets!=null){
+        if (assets != null) {
             assets.getManager().dispose();
         }
     }
 }
-

@@ -20,14 +20,14 @@ import com.mygdx.game.systems.physics.collisionhandler.HeroWallCollisionHandler;
 public class GameTestScreen extends GameScreen {
 
     public GameTestScreen(ACLGame game) {
-        super(game);
+        super(game, game.getAssets());
         this.engine.addSystem(new RenderSystem(this.game.batcher));
         this.engine.addSystem(new MovementSystem());
         this.engine.addSystem(new HeroSystem());
         this.engine.addSystem(new PhysicsSystem());
         this.engine.addSystem(new DebugRenderSystem(this.game.batcher, this.game.camera));
 
-        CollisionsSystem  collisionsSystem = new CollisionsSystem();
+        CollisionsSystem collisionsSystem = new CollisionsSystem();
         collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
 
         this.engine.addSystem(collisionsSystem);
@@ -37,9 +37,10 @@ public class GameTestScreen extends GameScreen {
         createHero();
         createObstacle();
         //collisionStaticDynamic2();
+        this.world.createMap();
     }
 
-    private void createHero(){
+    private void createHero() {
 
         Entity hero = new Entity();
 
@@ -50,7 +51,7 @@ public class GameTestScreen extends GameScreen {
 
 
         //Add Position
-        TransformComponent transformComponent = new TransformComponent(new Vector3(10,20,10));
+        TransformComponent transformComponent = new TransformComponent(new Vector3(10, 20, 10));
 
         //Add Position
         DirectionComponent directionComponent = new DirectionComponent();
@@ -74,13 +75,12 @@ public class GameTestScreen extends GameScreen {
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
 
         Body body = physicsSystem.addDynamicBody(0, 40, 10, 10);
-        body.setLinearVelocity(new Vector2(0,-10));
+        body.setLinearVelocity(new Vector2(0, -10));
         body.setUserData(hero);
 
         hero.add(new SteeringComponent(body));
         hero.add(new TypeComponent(TypeComponent.TYPE_HERO));
         hero.add(new CollisionComponent());
-
 
 
         this.engine.addEntity(hero);
@@ -91,16 +91,15 @@ public class GameTestScreen extends GameScreen {
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
 
 
-
         /**
          * Create Static Body
          * Width=40, Heigth=20
          * Coord : (0;0)
          */
         Entity staticEntity = new Entity();
-        Body body1 = physicsSystem.addStaticBody(0,0,100,5);
+        Body body1 = physicsSystem.addStaticBody(0, 0, 100, 5);
         body1.setUserData(staticEntity);
-        TransformComponent transformComponent = new TransformComponent(new Vector3(0,0,0));
+        TransformComponent transformComponent = new TransformComponent(new Vector3(0, 0, 0));
         SteeringComponent steeringComponent = new SteeringComponent(body1);
         staticEntity.add(transformComponent);
         staticEntity.add(new TypeComponent(TypeComponent.TYPE_WALL));
@@ -109,12 +108,12 @@ public class GameTestScreen extends GameScreen {
 
     }
 
-    private void createObstacle(){
+    private void createObstacle() {
 
         Entity hero = new Entity();
 
         //Add Position
-        TransformComponent transformComponent = new TransformComponent(new Vector3(10,10,10));
+        TransformComponent transformComponent = new TransformComponent(new Vector3(10, 10, 10));
         hero.add(transformComponent);
 
         hero.add(transformComponent);
@@ -137,16 +136,7 @@ public class GameTestScreen extends GameScreen {
         hero.add(new SteeringComponent(body));
 
 
-
         this.engine.addEntity(hero);
-    }
-
-    @Override
-    public void render(float delta) {
-        super.render(delta);
-
-        Gdx.input.setInputProcessor(new ACLGameListener(this));
-
     }
 }
 
