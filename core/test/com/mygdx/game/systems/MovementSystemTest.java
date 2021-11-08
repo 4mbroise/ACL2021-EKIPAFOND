@@ -1,6 +1,5 @@
 package com.mygdx.game.systems;
 
-import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
@@ -10,8 +9,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.components.BodyComponent;
 import com.mygdx.game.components.DirectionComponent;
 import com.mygdx.game.components.MovementComponent;
+import com.mygdx.game.components.SteeringComponent;
 import com.mygdx.game.components.TransformComponent;
-import org.junit.Assert;
+import com.mygdx.game.systems.physics.PhysicsSystem;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,7 +50,7 @@ public class MovementSystemTest {
         movementComponent = new MovementComponent(velocity);
 
         Entity e = new Entity();
-        e.add(new BodyComponent(physicsSystem.addDynamicBody(0,0,10,10)));
+        e.add(new SteeringComponent(physicsSystem.addDynamicBody(0,0,10,10)));
         e.add(directionComponent);
         e.add(transformComponent);
         e.add(movementComponent);
@@ -87,7 +87,7 @@ public class MovementSystemTest {
         movementComponent = new MovementComponent(velocity);
 
         Entity e = new Entity();
-        e.add(new BodyComponent(physicsSystem.addDynamicBody(0,0,10,10)));
+        e.add(new SteeringComponent(physicsSystem.addDynamicBody(0,0,10,10)));
         e.add(directionComponent);
         e.add(transformComponent);
         e.add(movementComponent);
@@ -122,7 +122,7 @@ public class MovementSystemTest {
         movementComponent = new MovementComponent(velocity);
 
         Entity e = new Entity();
-        e.add(new BodyComponent(physicsSystem.addDynamicBody(0,0,10,10)));
+        e.add(new SteeringComponent(physicsSystem.addDynamicBody(0,0,10,10)));
         e.add(directionComponent);
         e.add(transformComponent);
         e.add(movementComponent);
@@ -156,7 +156,7 @@ public class MovementSystemTest {
         movementComponent = new MovementComponent(velocity);
 
         Entity e = new Entity();
-        e.add(new BodyComponent(physicsSystem.addDynamicBody(0,0,10,10)));
+        e.add(new SteeringComponent(physicsSystem.addDynamicBody(0,0,10,10)));
         e.add(directionComponent);
         e.add(transformComponent);
         e.add(movementComponent);
