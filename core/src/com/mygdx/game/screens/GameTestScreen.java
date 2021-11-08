@@ -1,5 +1,6 @@
 package com.mygdx.game.screens;
 
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.mygdx.game.ACLGame;
+import com.mygdx.game.components.*;
 import com.mygdx.game.listeners.ACLGameListener;
 import com.mygdx.game.systems.*;
 import com.mygdx.game.systems.physics.CollisionsSystem;

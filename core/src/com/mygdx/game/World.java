@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.game.components.*;
-import com.mygdx.game.systems.PhysicsSystem;
+import com.mygdx.game.systems.physics.PhysicsSystem;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -99,8 +99,11 @@ public class World {
                             wall.add(transformComponent);
                             PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
                             Body body = physicsSystem.addStaticBody((float)(j+ 0.5) * 16 * 2 , 480 - (float)(ctr+0.5) * 16 * 2,16,16);
+                            body.setUserData(wall);
                             //System.out.print("  Wall  ");
-                            wall.add(new BodyComponent(body));
+                            wall.add(new SteeringComponent(body));
+                            wall.add(new CollisionComponent());
+                            wall.add(new TypeComponent(TypeComponent.TYPE_WALL));
                             break;
                         case '+':
                             Entity ground = new Entity();
@@ -207,7 +210,12 @@ public class World {
 
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
         heroBody = physicsSystem.addDynamicBody(posx, posy, 14, 14);
-        hero.add(new BodyComponent(heroBody));
+        heroBody.setUserData(hero);
+        hero.add(new SteeringComponent(heroBody));
+
+        hero.add(new TypeComponent(TypeComponent.TYPE_HERO));
+
+        hero.add(new CollisionComponent());
 
 
         this.engine.addEntity(hero);

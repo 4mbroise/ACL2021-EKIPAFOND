@@ -19,6 +19,7 @@ public class GameScreen extends ScreenAdapter {
         this.engine = new PooledEngine();
         this.game = game;
         this.assets = game.getAssets();
+        this.world = new World(this.engine, this.assets);
     }
 
     @Override

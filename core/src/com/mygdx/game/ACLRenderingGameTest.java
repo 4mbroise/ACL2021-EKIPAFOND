@@ -16,7 +16,7 @@ public class ACLRenderingGameTest extends ACLGame{
     @Override
     public void create() {
         super.create();
-        setScreen(new GameAITestScreen(this, getAssets()));
+        setScreen(new GameAITestScreen(this));
     }
 }
 
