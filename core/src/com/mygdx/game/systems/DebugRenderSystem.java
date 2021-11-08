@@ -25,7 +25,7 @@ public class DebugRenderSystem extends EntitySystem {
     @Override
     public void addedToEngine(Engine engine) {
         super.addedToEngine(engine);
-        this.world = this.getEngine().getSystem(PhysicsSystem.class).getPhysicsWorld();
+        this.world =this.getEngine().getSystem(PhysicsSystem.class).getPhysicsWorld();
 
     }
 

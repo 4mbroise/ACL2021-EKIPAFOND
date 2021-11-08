@@ -21,8 +21,9 @@ public class GameAITestScreen extends GameScreen{
     public ACLGame game;
     private Entity hero;
     private Entity monster;
+
     public GameAITestScreen(ACLGame game, Assets assets) {
-        super(game);
+        super(game, game.getAssets());
         this.game = game;
         this.engine.addSystem(new RenderSystem(this.game.batcher));
         this.engine.addSystem(new MovementSystem());
@@ -200,7 +201,7 @@ public class GameAITestScreen extends GameScreen{
         this.engine.addEntity(hero);
     }
 
-    private void createHero(){
+    public void createHero(){
 
         hero = new Entity();
 
