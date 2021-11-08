@@ -23,7 +23,10 @@ public class ACLGame extends Game {
     public void create() {
         this.assets = new Assets();
         batcher = new SpriteBatch();
-        camera = new OrthographicCamera(800, 480);
+        //camera = new OrthographicCamera(800, 480);
+        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera.translate((float) (Gdx.graphics.getWidth()*0.5), (float) (Gdx.graphics.getHeight()*0.5));
+        camera.update();
         batcher.setProjectionMatrix(camera.combined);
         assets.getManager().finishLoading();
         setScreen(new MenuScreen(this));

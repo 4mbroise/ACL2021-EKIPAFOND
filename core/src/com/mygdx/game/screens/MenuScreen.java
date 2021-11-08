@@ -126,7 +126,6 @@ public class MenuScreen extends ScreenAdapter{
 
     @Override
     public void dispose() {
-
     }
 
     @Override

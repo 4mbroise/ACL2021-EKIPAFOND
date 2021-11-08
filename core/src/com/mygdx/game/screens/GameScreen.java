@@ -12,11 +12,14 @@ public class GameScreen extends ScreenAdapter {
     public ACLGame game;
     public Assets assets;
     public Engine engine;
+    public World world;
+    public boolean active;
 
     public GameScreen(ACLGame game) {
         this.engine = new PooledEngine();
         this.game = game;
         this.assets = game.getAssets();
+        this.world = new World(this.engine, this.assets);
     }
 
     @Override
