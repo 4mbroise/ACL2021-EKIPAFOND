@@ -8,7 +8,6 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
-
 public class DebugRenderSystem extends EntitySystem {
 
     private Box2DDebugRenderer renderer;
@@ -25,7 +24,7 @@ public class DebugRenderSystem extends EntitySystem {
     @Override
     public void addedToEngine(Engine engine) {
         super.addedToEngine(engine);
-        this.world =this.getEngine().getSystem(PhysicsSystem.class).getPhysicsWorld();
+        this.world = this.getEngine().getSystem(PhysicsSystem.class).getPhysicsWorld();
 
     }
 

@@ -15,19 +15,18 @@ public class GameScreen extends ScreenAdapter {
     public World world;
     public boolean active;
 
-    public GameScreen(ACLGame game, Assets assets) {
+    public GameScreen(ACLGame game) {
         this.engine = new PooledEngine();
         this.game = game;
-        this.assets = assets;
+        this.assets = game.getAssets();
         this.world = new World(this.engine, this.assets);
-        this.active = true;
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
         this.engine.update(delta);
-        this.active = !world.isWon();
+        //game.setScreen(new GameAITestScreen(game, game.getAssets()));
     }
 
     @Override

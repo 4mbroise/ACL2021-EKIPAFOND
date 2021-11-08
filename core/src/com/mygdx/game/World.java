@@ -7,8 +7,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.mygdx.game.components.*;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
@@ -30,7 +28,7 @@ public class World {
     private List<Vector3> portals;
     private Engine engine;
     private Assets assets;
-    private com.mygdx.game.systems.physics.PhysicsSystem physicsSystem;
+    private PhysicsSystem physicsSystem;
     private Entity hero;
     private TransformComponent transformComponent;
     private Body heroBody;
@@ -44,7 +42,7 @@ public class World {
         this.won =  false;
         this.engine = engine;
         this.assets = assets;
-        this.physicsSystem = this.engine.getSystem(com.mygdx.game.systems.physics.PhysicsSystem.class);
+        this.physicsSystem = this.engine.getSystem(PhysicsSystem.class);
         this.portals = new ArrayList<Vector3>();
 
 
@@ -99,10 +97,13 @@ public class World {
                             wall.add(textureComponent);
                             TransformComponent transformComponent = new TransformComponent(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,10));
                             wall.add(transformComponent);
-                           com.mygdx.game.systems.physics.PhysicsSystem physicsSystem = this.engine.getSystem(com.mygdx.game.systems.physics.PhysicsSystem.class);
+                            PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
                             Body body = physicsSystem.addStaticBody((float)(j+ 0.5) * 16 * 2 , 480 - (float)(ctr+0.5) * 16 * 2,16,16);
+                            body.setUserData(wall);
                             //System.out.print("  Wall  ");
-                            wall.add(new BodyComponent(body));
+                            wall.add(new SteeringComponent(body));
+                            wall.add(new CollisionComponent());
+                            wall.add(new TypeComponent(TypeComponent.TYPE_WALL));
                             break;
                         case '+':
                             Entity ground = new Entity();
@@ -186,7 +187,7 @@ public class World {
 
     public void createHero(float posx, float posy){
 
-        hero = new Entity();
+        this.hero = new Entity();
 
         //Add Texture
         TextureComponent textureComponent = new TextureComponent();
@@ -194,39 +195,28 @@ public class World {
         hero.add(textureComponent);
 
         //Add Position
+        transformComponent = new TransformComponent(new Vector3(posx,posy,0));
+        hero.add(transformComponent);
+
+        //Add Position
         DirectionComponent directionComponent = new DirectionComponent();
         hero.add(directionComponent);
 
-        //add Movement
         MovementComponent movementComponent = new MovementComponent(HeroComponent.HERO_VELOCITY);
         hero.add(movementComponent);
 
-        //add Hero
         HeroComponent heroComponent = new HeroComponent();
         hero.add(heroComponent);
 
-        //Add Transform
-        transformComponent = new TransformComponent(new Vector3(10,20,10));
-        hero.add(transformComponent);
+        PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+        heroBody = physicsSystem.addDynamicBody(posx, posy, 14, 14);
+        heroBody.setUserData(hero);
+        hero.add(new SteeringComponent(heroBody));
 
-        //Add Collisions
+        hero.add(new TypeComponent(TypeComponent.TYPE_HERO));
+
         hero.add(new CollisionComponent());
 
-        // Body creation
-        BodyDef bd = new BodyDef();
-        bd.type = BodyDef.BodyType.DynamicBody;
-        bd.position.set(8, 8);
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(16, 16);
-
-        PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
-
-        Body body = physicsSystem.addDynamicBody(posx, posy, 10, 10);
-        body.setUserData(hero);
-        body.setLinearVelocity(new Vector2(0,0));
-
-        //Add steering
-        hero.add(new SteeringComponent(body));
 
         this.engine.addEntity(hero);
     }
