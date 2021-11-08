@@ -6,7 +6,6 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.components.BodyComponent;
 import com.mygdx.game.components.DirectionComponent;
 import com.mygdx.game.components.MovementComponent;
 import com.mygdx.game.components.SteeringComponent;
