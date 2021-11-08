@@ -21,7 +21,7 @@ public class GameAITestScreen extends GameScreen{
     public ACLGame game;
     private Entity hero;
     private Entity monster;
-    public GameAITestScreen(ACLGame game, Assets assets) {
+    public GameAITestScreen(ACLGame game) {
         super(game);
         this.game = game;
         this.engine.addSystem(new RenderSystem(this.game.batcher));
@@ -31,6 +31,8 @@ public class GameAITestScreen extends GameScreen{
         this.engine.addSystem(new PhysicsSystem());
         createHero();
         this.engine.addSystem(new MonsterSystem(hero));
+        this.engine.addSystem(new AttackSystem());
+        this.engine.addSystem(new DeathSystem());
         this.assets.getManager().finishLoading();
         this.engine.addSystem(new DebugRenderSystem(this.game.batcher, this.game.camera));
 
@@ -51,9 +53,6 @@ public class GameAITestScreen extends GameScreen{
         TransformComponent transformComponent = new TransformComponent(new Vector3(10,10,10));
         hero.add(transformComponent);
 
-        hero.add(transformComponent);
-
-
         BodyDef bd = new BodyDef();
         bd.type = BodyDef.BodyType.StaticBody;
         bd.position.set(8, -32);
@@ -66,7 +65,6 @@ public class GameAITestScreen extends GameScreen{
         body.setUserData(hero);
         hero.add(new CollisionComponent());
         hero.add(new TypeComponent(TypeComponent.TYPE_WALL));
-
 
         hero.add(new SteeringComponent(body));
 
@@ -249,6 +247,9 @@ public class GameAITestScreen extends GameScreen{
         hero.add(steeringComponent);
 
         this.engine.addEntity(hero);
+
+        //Add Attack
+        hero.add(new HealthComponent(5));
     }
 
     private void createMonster(){
@@ -269,6 +270,7 @@ public class GameAITestScreen extends GameScreen{
         MonsterComponent monsterComponent = new MonsterComponent();
         monster.add(monsterComponent);
 
+        monster.add(new HealthComponent(3));
 
         // Add transform
         TransformComponent transformComponent = new TransformComponent(new Vector3(50,40,10));

@@ -39,6 +39,7 @@ public class AttackSystem extends IteratingSystem {
         ImmutableArray<Entity> entities = this.getEngine().getEntitiesFor(family);
         Vector3 positionTem=new Vector3();
         if(attack) {
+            System.out.println("attack");
             switch (direction) {
                 case DirectionComponent.UP:
                     positionTem.set(position.x, position.y + 1, position.z);
@@ -46,6 +47,7 @@ public class AttackSystem extends IteratingSystem {
                         TransformComponent monsterPosition = tm.get(e);
                         if (monsterPosition.getPosition() == positionTem) {
                             HealthComponent monsterHealth = heam.get(e);
+
                             monsterHealth.setHealthPoint(monsterHealth.getHealthPoint() - damage);
                         }
                     }
@@ -56,6 +58,7 @@ public class AttackSystem extends IteratingSystem {
                         TransformComponent monsterPosition = tm.get(e);
                         if (monsterPosition.getPosition() == positionTem) {
                             HealthComponent monsterHealth = heam.get(e);
+                            System.out.println(monsterHealth);
                             monsterHealth.setHealthPoint(monsterHealth.getHealthPoint() - damage);
                         }
                     }

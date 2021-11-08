@@ -5,6 +5,9 @@ import com.badlogic.ashley.core.Component;
 public class HealthComponent implements Component {
     public int healthPoint;
 
+    public HealthComponent(int healthPoint){
+        this.healthPoint=healthPoint;
+    }
 
     public void setHealthPoint(int healthPoint ) {
         this.healthPoint = healthPoint;
