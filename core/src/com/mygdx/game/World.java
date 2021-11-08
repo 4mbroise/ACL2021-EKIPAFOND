@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -36,7 +37,7 @@ public class World {
 
     public World(Engine engine, Assets assets) {
         this.Maps = new ArrayList<File>();
-        this.MapDir = "core/assets/maps/map1.txt" ;
+        this.MapDir = "maps/map1.txt" ;
         this.ctr = 0;
         this.nbportal = 0;
         this.won =  false;
@@ -52,7 +53,9 @@ public class World {
     }
 
     public void createMap(){
-        mapFile = new File(this.MapDir);
+        mapFile = Gdx.files.internal(this.MapDir).file();
+        System.out.println(mapFile.exists());
+        //mapFile = new File(this.MapDir);
         try{
             this.SizeReader = new Scanner(mapFile);
             } catch (FileNotFoundException e){
