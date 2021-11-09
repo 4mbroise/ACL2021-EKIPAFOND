@@ -6,7 +6,7 @@ import com.badlogic.gdx.ai.utils.Location;
 import com.badlogic.gdx.math.Vector2;
 
 public class HeroComponent implements Component{
-    public static final float HERO_VELOCITY = 20f;
+    public static final float HERO_VELOCITY = 1;
     public static final int STATE_STATIC = 0;
     public static final int STATE_WALKING = 1;
     public static final int STATE_ATTACKING = 2;

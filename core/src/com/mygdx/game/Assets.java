@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
+import com.mygdx.game.tools.Font;
 
 public class Assets {
     private InternalFileHandleResolver resolver=new  InternalFileHandleResolver();
@@ -37,10 +38,13 @@ public class Assets {
         assetManager.load( "fonts/Retro_Gaming.ttf", BitmapFont.class, parms);
         //sprites
         assetManager.load("sprites/cherry.png", Texture.class);
+        assetManager.load("tiles/treasure32x32.png", Texture.class);
         assetManager.load("sprites/damage_up.png", Texture.class);
+        assetManager.load("tiles/dungeonDecoration_portal.png", Texture.class);
         assetManager.load("sprites/spr_orange.png", Texture.class);
         //load
         System.out.println(assetManager.getProgress());
+
     }
 
     public AssetManager getManager() {

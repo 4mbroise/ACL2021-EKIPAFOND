@@ -13,6 +13,7 @@ public class GameScreen extends ScreenAdapter {
     public Assets assets;
     public Engine engine;
     public World world;
+    public boolean active;
 
     public GameScreen(ACLGame game) {
         this.engine = new PooledEngine();
