@@ -17,6 +17,7 @@ public class MazeTestScreen extends GameScreen {
         this.engine.addSystem(new MovementSystem());
         this.engine.addSystem(new HeroSystem());
         this.engine.addSystem(new PhysicsSystem());
+        this.engine.addSystem(new RandomMovementSystem());
         this.engine.addSystem(new DebugRenderSystem(this.game.batcher, this.game.camera));
         CollisionsSystem collisionsSystem = new CollisionsSystem();
         collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
