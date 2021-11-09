@@ -40,7 +40,6 @@ public class MenuScreen extends ScreenAdapter{
     private Button startButton;
     private Button regleButton;
     //font
-    private Font font;
     private BitmapFont title;
     //batch
     private Batch batch;

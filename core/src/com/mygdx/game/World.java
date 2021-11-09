@@ -54,6 +54,7 @@ public class World {
 
     public void createMap(){
         mapFile = Gdx.files.internal(this.MapDir).file();
+        System.out.println(mapFile.toString());
         System.out.println(mapFile.exists());
         //mapFile = new File(this.MapDir);
         try{
