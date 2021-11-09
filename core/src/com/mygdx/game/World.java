@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.mygdx.game.components.*;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
@@ -30,7 +32,7 @@ public class World {
     private Engine engine;
     private Assets assets;
     private PhysicsSystem physicsSystem;
-    private Entity hero;
+    private Entity hero, monster;
     private TransformComponent transformComponent;
     private Body heroBody;
     private Vector3 treasureVector;
@@ -119,7 +121,7 @@ public class World {
                             //System.out.print("  Hero  ");
                             break;
                         case 'm':
-                            createMonster();
+                            createMonster((float)(j + 0.5) * 16 * 2, 480 - (float)(ctr + 0.5) * 16 * 2);
                             break;
                         case 'p':
                             nbportal++;
@@ -212,7 +214,7 @@ public class World {
         hero.add(heroComponent);
 
         PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
-        heroBody = physicsSystem.addDynamicBody(posx, posy, 14, 14);
+        heroBody = physicsSystem.addDynamicBody(posx, posy, 10, 10);
         heroBody.setUserData(hero);
         hero.add(new SteeringComponent(heroBody));
 
@@ -224,7 +226,53 @@ public class World {
         this.engine.addEntity(hero);
     }
 
-    public void createMonster(){
+    public void createMonster(float posx, float posy){
+        monster = new Entity();
+
+
+        // Add texture
+        TextureComponent textureComponent = new TextureComponent();
+        textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/spr_orange.png", Texture.class)));
+        monster.add(textureComponent);
+
+        //Add Movement
+        RandomMovementComponent movementComponent = new RandomMovementComponent(MonsterComponent.MONSTER_VELOCITY);
+        monster.add(movementComponent);
+
+        // Add Monster component
+        MonsterComponent monsterComponent = new MonsterComponent();
+        monster.add(monsterComponent);
+
+
+        // Add transform
+        TransformComponent transformComponent = new TransformComponent(new Vector3(posx,posy,0));
+        monster.add(transformComponent);
+
+        // Add Collision
+        monster.add(new CollisionComponent());
+
+
+        BodyDef bd = new BodyDef();
+        bd.type = BodyDef.BodyType.DynamicBody;
+        bd.position.set(8, 8);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(16, 16);
+
+        PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+
+        Body body = physicsSystem.addDynamicBody(posx, posy, 10, 10);
+        body.setUserData(monster);
+        body.setLinearVelocity(new Vector2(0,0));
+
+
+        // Add steering
+        SteeringComponent steeringComponent = new SteeringComponent(body);
+        monster.add(steeringComponent);
+        //monster.getComponent(SteeringComponent.class).steeringBehavior  = SteeringPresets.getSeek(monster.getComponent(SteeringComponent.class),hero.getComponent(SteeringComponent.class));
+        //monster.getComponent(SteeringComponent.class).currentMode = SteeringComponent.SteeringState.SEEK;
+
+        monster.add(new TypeComponent(TypeComponent.TYPE_MONSTER));
+        this.engine.addEntity(monster);
 
     }
 

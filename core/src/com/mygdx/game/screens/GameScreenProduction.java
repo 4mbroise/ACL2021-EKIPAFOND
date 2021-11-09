@@ -6,7 +6,7 @@ import com.mygdx.game.Assets;
 public class GameScreenProduction extends GameScreen{
 
     public GameScreenProduction(ACLGame game) {
-        super(game, game.getAssets());
+        super(game);
 
 
 
