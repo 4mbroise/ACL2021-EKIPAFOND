@@ -6,6 +6,11 @@
 - FAUGIER Elliot
 - GE Yuxuan
 
+
+## Diagrams
+All the digrams can be consulted in the Wiki section of this repo.
+
+
 ## Technos
 - To import to NetBeans: File -> Open Project...
 
