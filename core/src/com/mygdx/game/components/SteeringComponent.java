@@ -24,10 +24,10 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Poolabl
 
     // Steering data
     private float maxLinearSpeed = 15f;
-    private float maxLinearAcceleration = 25f;
-    private float maxAngularSpeed =20f;
+    private float maxLinearAcceleration = 30f;
+    private float maxAngularSpeed =30f;
     private float maxAngularAcceleration = 10f;
-    private float zeroThreshold = 0.5f;
+    private float zeroThreshold = 0.1f;
     public SteeringBehavior<Vector2> steeringBehavior; // Behavior applied to our comoonent
     private static final SteeringAcceleration<Vector2> steeringOutput = new SteeringAcceleration<Vector2>(new Vector2()); // accelaration vector of our component
     private float boundingRadius = 1f;

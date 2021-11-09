@@ -9,6 +9,7 @@ public class MonsterComponent implements Component, Pool.Poolable {
     private boolean isDead; // monster's life status
     private float xPosCenter; //position of the monster
     private Type monsterType; // type of the monster
+    public static final float MONSTER_VELOCITY = 1;
 
     /**
      * First constructor which creates a monster with the MONSTER type

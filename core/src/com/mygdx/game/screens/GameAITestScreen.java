@@ -27,10 +27,10 @@ public class GameAITestScreen extends GameScreen{
         this.engine.addSystem(new RenderSystem(this.game.batcher));
         this.engine.addSystem(new MovementSystem());
         this.engine.addSystem(new HeroSystem());
-        //this.engine.addSystem(new AISystem());
         this.engine.addSystem(new PhysicsSystem());
         createHero();
-        this.engine.addSystem(new MonsterSystem(hero));
+        //this.engine.addSystem(new MonsterSystem(hero));
+        this.engine.addSystem(new RandomMovementSystem());
         this.assets.getManager().finishLoading();
         this.engine.addSystem(new DebugRenderSystem(this.game.batcher, this.game.camera));
 
@@ -262,7 +262,7 @@ public class GameAITestScreen extends GameScreen{
         monster.add(textureComponent);
 
         //Add Movement
-        MovementComponent movementComponent = new MovementComponent(HeroComponent.HERO_VELOCITY);
+        RandomMovementComponent movementComponent = new RandomMovementComponent(MonsterComponent.MONSTER_VELOCITY);
         monster.add(movementComponent);
 
         // Add Monster component
