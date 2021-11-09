@@ -1,23 +1,22 @@
 package com.mygdx.game.listeners;
 
 import com.badlogic.ashley.core.Engine;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.*;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.components.AttackerComponent;
 import com.mygdx.game.components.DirectionComponent;
 import com.mygdx.game.screens.GameScreen;
+import com.mygdx.game.screens.MenuScreen;
 import com.mygdx.game.systems.AttackSystem;
 import com.mygdx.game.systems.HeroSystem;
 
-public class ACLGameListener extends InputAdapter {
+public class ACLGameListener extends InputAdapter  {
 
     private Engine engine;
-
+    private ACLGame game;
     public ACLGameListener(GameScreen gameScreen){
         this.engine = gameScreen.engine;
+        this.game=gameScreen.game;
     }
 
     @Override
@@ -42,4 +41,6 @@ public class ACLGameListener extends InputAdapter {
         }
         return false;
     }
+
+
 }

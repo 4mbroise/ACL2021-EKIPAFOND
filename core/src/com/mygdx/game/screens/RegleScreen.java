@@ -55,7 +55,7 @@ public class RegleScreen extends ScreenAdapter {
         backGroud.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         //font
         title= assets.getManager().get("fonts/Retro_Gaming.ttf");
-        content=assets.getManager().get("fonts/Retro_Gaming.ttf");
+        content=assets.getManager().get("fonts/Retro_Gaming2.ttf");
         //button
         homeUpTexture=assets.getManager().get("UI/homeUp.png");
         homeDownTexture=assets.getManager().get("UI/homeUp.png");
@@ -87,7 +87,8 @@ public class RegleScreen extends ScreenAdapter {
         stage.act();
         stage.draw();
         title.draw(batch, "Regle",260,400);
-        content.draw(batch, "It's a game pacman",0,300);
+        content.draw(batch, "'z/w','q/a','s','d' control the hero's walking direction" +
+                "\n 'j' attack ",0,300);
         batch.end();
     }
 

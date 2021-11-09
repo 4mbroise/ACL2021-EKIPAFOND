@@ -35,6 +35,13 @@ public class Assets {
         parms.fontParameters.color=Color.RED;
         parms.fontParameters.borderColor=Color.BLACK;
         assetManager.load( "fonts/Retro_Gaming.ttf", BitmapFont.class, parms);
+
+        FreetypeFontLoader.FreeTypeFontLoaderParameter parms2 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+        parms2.fontFileName = "fonts/Retro_Gaming.ttf";
+        parms2.fontParameters.size = 24;
+        parms2.fontParameters.color=Color.RED;
+        parms2.fontParameters.borderColor=Color.BLACK;
+        assetManager.load( "fonts/Retro_Gaming2.ttf", BitmapFont.class, parms2);
         //sprites
         assetManager.load("sprites/cherry.png", Texture.class);
         assetManager.load("tiles/treasure32x32.png", Texture.class);
