@@ -51,7 +51,7 @@ public class AttackSystem extends IteratingSystem {
                         Vector3 MP=monsterPosition.getPosition();
                         if( MP.x>=position.x-20&&MP.x<=position.x+20&&MP.y>=position.y+20&&MP.y<=position.y+40) {
                             HealthComponent monsterHealth = heam.get(e);
-                            System.out.println(monsterHealth.getHealthPoint());
+                            //System.out.println(monsterHealth.getHealthPoint());
                             monsterHealth.minusHealthPoint(damage);
                         }
                     }
@@ -63,7 +63,7 @@ public class AttackSystem extends IteratingSystem {
                         Vector3 MP=monsterPosition.getPosition();
                         if (MP.x>=position.x-20&&MP.x<=position.x+20&&MP.y<=position.y-20&&MP.y>=position.y-40) {
                             HealthComponent monsterHealth = heam.get(e);
-                            System.out.println(monsterHealth.getHealthPoint());
+                            //System.out.println(monsterHealth.getHealthPoint());
                             monsterHealth.minusHealthPoint(damage);
                         }
                     }
@@ -75,7 +75,7 @@ public class AttackSystem extends IteratingSystem {
                         Vector3 MP=monsterPosition.getPosition();
                         if (MP.x>=position.x+20&&MP.x<=position.x+40&&MP.y>=position.y-20&&MP.y<=position.y+20) {
                             HealthComponent monsterHealth = heam.get(e);
-                            System.out.println(monsterHealth.getHealthPoint());
+                            //System.out.println(monsterHealth.getHealthPoint());
                             monsterHealth.minusHealthPoint(damage);
                         }
                     }
@@ -87,7 +87,7 @@ public class AttackSystem extends IteratingSystem {
                         Vector3 MP=monsterPosition.getPosition();
                         if (MP.x<=position.x-20&&MP.x>=position.x-40&&MP.y>=position.y-20&&MP.y<=position.y+20) {
                             HealthComponent monsterHealth = heam.get(e);
-                            System.out.println(monsterHealth.getHealthPoint());
+                            //System.out.println(monsterHealth.getHealthPoint());
                             monsterHealth.minusHealthPoint(damage);
                         }
                     }

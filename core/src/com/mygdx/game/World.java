@@ -60,7 +60,7 @@ public class World {
         try{
             this.SizeReader = new Scanner(mapFile);
             } catch (FileNotFoundException e){
-                System.out.println("File not found");
+                //System.out.println("File not found");
         }
         /* Get the width and the height of the map */
         while (SizeReader.hasNext()) {
@@ -85,7 +85,7 @@ public class World {
         try{
             this.TileReader = new Scanner(mapFile);
             } catch(FileNotFoundException e){
-                System.out.println("File not found");
+                //System.out.println("File not found");
         }
         this.grid = new char[this.height][this.width];
         while (TileReader.hasNext()) {
@@ -186,7 +186,7 @@ public class World {
     public void checkVictory(){
         if( (int) transformComponent.getPosition().x/32 == (int)treasureVector.x
                 && (int) transformComponent.getPosition().y/32 == (int)treasureVector.y ){
-            System.out.println((int)transformComponent.getPosition().x/32 +" - "+ (int)treasureVector.x);
+            //System.out.println((int)transformComponent.getPosition().x/32 +" - "+ (int)treasureVector.x);
             won = true;
         }
     }

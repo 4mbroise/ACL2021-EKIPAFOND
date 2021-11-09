@@ -49,7 +49,7 @@ public class Assets {
         assetManager.load("tiles/dungeonDecoration_portal.png", Texture.class);
         assetManager.load("sprites/spr_orange.png", Texture.class);
         //load
-        System.out.println(assetManager.getProgress());
+        //System.out.println(assetManager.getProgress());
 
     }
 
