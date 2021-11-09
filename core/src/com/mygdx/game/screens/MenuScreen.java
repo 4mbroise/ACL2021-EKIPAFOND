@@ -18,7 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
-import com.mygdx.game.tools.Font;
 
 public class MenuScreen extends ScreenAdapter{
     //main game
@@ -41,7 +40,6 @@ public class MenuScreen extends ScreenAdapter{
     private Button startButton;
     private Button regleButton;
     //font
-    private Font font;
     private BitmapFont title;
     //batch
     private Batch batch;
@@ -126,6 +124,7 @@ public class MenuScreen extends ScreenAdapter{
 
     @Override
     public void dispose() {
+
     }
 
     @Override

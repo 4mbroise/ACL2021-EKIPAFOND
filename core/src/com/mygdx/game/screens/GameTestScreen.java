@@ -139,6 +139,7 @@ public class GameTestScreen extends GameScreen {
 
 
         this.engine.addEntity(hero);
+        this.world.createMap();
     }
 
     @Override

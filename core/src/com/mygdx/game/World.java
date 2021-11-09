@@ -56,7 +56,6 @@ public class World {
 
     public void createMap(){
         mapFile = Gdx.files.internal(this.MapDir).file();
-        System.out.println(mapFile.exists());
         //mapFile = new File(this.MapDir);
         try{
             this.SizeReader = new Scanner(mapFile);
@@ -155,6 +154,8 @@ public class World {
         }
 
         this.TileReader.close();
+
+
     }
 
     public void updateMap(){
@@ -222,6 +223,10 @@ public class World {
 
         hero.add(new CollisionComponent());
 
+        hero.add(new HealthComponent(5));
+
+        hero.add(new AttackerComponent(1));
+
 
         this.engine.addEntity(hero);
     }
@@ -250,6 +255,10 @@ public class World {
 
         // Add Collision
         monster.add(new CollisionComponent());
+
+        //Add Health Point
+        monster.add(new HealthComponent(3));
+
 
 
         BodyDef bd = new BodyDef();
@@ -295,4 +304,5 @@ public class World {
     public boolean isWon() {
         return won;
     }
+
 }

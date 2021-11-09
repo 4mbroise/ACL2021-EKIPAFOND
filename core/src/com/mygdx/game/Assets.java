@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
-import com.mygdx.game.tools.Font;
 
 public class Assets {
     private InternalFileHandleResolver resolver=new  InternalFileHandleResolver();
@@ -36,6 +35,13 @@ public class Assets {
         parms.fontParameters.color=Color.RED;
         parms.fontParameters.borderColor=Color.BLACK;
         assetManager.load( "fonts/Retro_Gaming.ttf", BitmapFont.class, parms);
+
+        FreetypeFontLoader.FreeTypeFontLoaderParameter parms2 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+        parms2.fontFileName = "fonts/Retro_Gaming.ttf";
+        parms2.fontParameters.size = 24;
+        parms2.fontParameters.color=Color.RED;
+        parms2.fontParameters.borderColor=Color.BLACK;
+        assetManager.load( "fonts/Retro_Gaming2.ttf", BitmapFont.class, parms2);
         //sprites
         assetManager.load("sprites/cherry.png", Texture.class);
         assetManager.load("tiles/treasure32x32.png", Texture.class);
@@ -44,6 +50,7 @@ public class Assets {
         assetManager.load("sprites/spr_orange.png", Texture.class);
         //load
         System.out.println(assetManager.getProgress());
+
     }
 
     public AssetManager getManager() {

@@ -16,7 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
-import com.mygdx.game.tools.Font;
 
 public class RegleScreen extends ScreenAdapter {
     //main game
@@ -24,8 +23,6 @@ public class RegleScreen extends ScreenAdapter {
     //stage
     private Stage stage;
     //font
-    private Font titleFont;
-    private Font contentFont;
     private BitmapFont title;
     private BitmapFont content;
     //batch
@@ -58,7 +55,7 @@ public class RegleScreen extends ScreenAdapter {
         backGroud.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         //font
         title= assets.getManager().get("fonts/Retro_Gaming.ttf");
-        content=assets.getManager().get("fonts/Retro_Gaming.ttf");
+        content=assets.getManager().get("fonts/Retro_Gaming2.ttf");
         //button
         homeUpTexture=assets.getManager().get("UI/homeUp.png");
         homeDownTexture=assets.getManager().get("UI/homeUp.png");
@@ -90,7 +87,8 @@ public class RegleScreen extends ScreenAdapter {
         stage.act();
         stage.draw();
         title.draw(batch, "Regle",260,400);
-        content.draw(batch, "It's a game pacman",0,300);
+        content.draw(batch, "'z/w','q/a','s','d' control the hero's walking direction" +
+                "\n 'j' attack ",0,300);
         batch.end();
     }
 

@@ -45,5 +45,11 @@ public class MonsterComponent implements Component, Pool.Poolable {
         return monsterType;
     }
 
+    public void dead(){
+        isDead=true;
+    }
 
+    public boolean getDead(){
+        return isDead;
+    }
 }
