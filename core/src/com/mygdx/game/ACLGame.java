@@ -25,10 +25,10 @@ public class ACLGame extends Game {
 
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //batcher.setProjectionMatrix(camera.combined);
-        camera.translate((float) (Gdx.graphics.getWidth()*0.5), (float) (Gdx.graphics.getHeight()*0.5));
+        //camera.translate((float) (Gdx.graphics.getWidth()*0.5), (float) (Gdx.graphics.getHeight()*0.5));
         camera.update();
-        /*camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        batcher.setProjectionMatrix(camera.combined);*/
+        /*camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());*/
+        batcher.setProjectionMatrix(camera.combined);
         assets.getManager().finishLoading();
         setScreen(new MenuScreen(this));
 

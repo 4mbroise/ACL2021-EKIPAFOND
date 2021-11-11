@@ -15,7 +15,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
 import com.mygdx.game.World;
+import com.mygdx.game.components.TypeComponent;
 import com.mygdx.game.listeners.ACLGameListener;
+import com.mygdx.game.systems.*;
+import com.mygdx.game.systems.physics.CollisionsSystem;
+import com.mygdx.game.systems.physics.PhysicsSystem;
+import com.mygdx.game.systems.physics.collisionhandler.HeroWallCollisionHandler;
 
 public class GameScreen extends ScreenAdapter {
 
@@ -33,6 +38,20 @@ public class GameScreen extends ScreenAdapter {
     protected Stage stage;
     public GameScreen(ACLGame game) {
         this.engine = new PooledEngine();
+
+        //Add System
+        this.engine.addSystem(new RenderSystem(game.batcher));
+        this.engine.addSystem(new MovementSystem());
+        this.engine.addSystem(new HeroSystem());
+        this.engine.addSystem(new PhysicsSystem());
+        this.engine.addSystem(new RandomMovementSystem());
+        this.engine.addSystem(new DebugRenderSystem(game.batcher, game.camera));
+        this.engine.addSystem(new AttackSystem());
+        this.engine.addSystem(new DeathSystem());
+        CollisionsSystem collisionsSystem = new CollisionsSystem();
+        collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
+        this.engine.addSystem(collisionsSystem);
+
         this.game = game;
         this.assets = game.getAssets();
         this.world = new World(this.engine, this.assets);
