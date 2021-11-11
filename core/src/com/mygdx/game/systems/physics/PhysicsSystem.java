@@ -29,6 +29,21 @@ public class PhysicsSystem extends IteratingSystem {
         this.shapePrototype =  new PolygonShape();
     }
 
+    private Body addOctogonBody(float abscissa , float ordinate, float width, float heigth){
+        BodyDefPrototype.position.set(abscissa, ordinate);
+        float[] vertices = {0-width,2-heigth,
+                            0-width,heigth-2,
+                            2-width,heigth,
+                            width-2,heigth,
+                            width,heigth-2,
+                            width,2-heigth,
+                            width-2,0-heigth,
+                            2-width,0-heigth};
+        shapePrototype.set(vertices);
+        fixturePrototype.shape = shapePrototype;
+        return this.physicsWorld.createBody(BodyDefPrototype);
+    }
+
     private Body addBoxBody(float abscissa , float ordinate, float width, float heigth){
         BodyDefPrototype.position.set(abscissa, ordinate);
         shapePrototype.setAsBox(width, heigth);
@@ -39,7 +54,7 @@ public class PhysicsSystem extends IteratingSystem {
     public Body addDynamicBody(float abscissa , float ordinate, float width, float heigth ){
         BodyDefPrototype.type = BodyDef.BodyType.DynamicBody;
         fixturePrototype.isSensor = false;
-        Body body = addBoxBody(abscissa , ordinate, width, heigth);
+        Body body = addOctogonBody(abscissa , ordinate, width, heigth);
         body.createFixture(fixturePrototype);
         return body;
     }
@@ -47,7 +62,7 @@ public class PhysicsSystem extends IteratingSystem {
     public Body addStaticBody(float abscissa , float ordinate, float width, float heigth ){
         BodyDefPrototype.type = BodyDef.BodyType.StaticBody;
         fixturePrototype.isSensor = false;
-        Body body = addBoxBody(abscissa , ordinate, width, heigth);
+        Body body = addOctogonBody(abscissa , ordinate, width, heigth);
         body.createFixture(fixturePrototype);
         return body;
     }
@@ -55,7 +70,7 @@ public class PhysicsSystem extends IteratingSystem {
     public Body addSensorBody(float abscissa , float ordinate, float width, float heigth){
         BodyDefPrototype.type = BodyDef.BodyType.StaticBody;
         fixturePrototype.isSensor = true;
-        Body body = addBoxBody(abscissa , ordinate, width, heigth);
+        Body body = addOctogonBody(abscissa , ordinate, width, heigth);
         body.createFixture(fixturePrototype);
         return body;
     }

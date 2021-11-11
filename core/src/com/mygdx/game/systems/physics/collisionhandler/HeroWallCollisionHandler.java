@@ -16,6 +16,6 @@ public class HeroWallCollisionHandler implements CollisionHandler{
         HeroComponent heroComponent = hm.get(colliedA);
         heroComponent.setState(HeroComponent.STATE_STATIC);
         SteeringComponent steeringComponent = bm.get(colliedA);
-        steeringComponent.setLinearVelocity(new Vector2(0,0));
+        //steeringComponent.setLinearVelocity(new Vector2(0,0));
     }
 }
