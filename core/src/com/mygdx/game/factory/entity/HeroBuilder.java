@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.game.Assets;
 import com.mygdx.game.World;
 import com.mygdx.game.components.*;
+import com.mygdx.game.systems.pathfinding.PathFindingSystem;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
 public class HeroBuilder implements EntityBuilder{
@@ -53,6 +54,8 @@ public class HeroBuilder implements EntityBuilder{
         hero.add(new HealthComponent(5));
 
         hero.add(new AttackerComponent(1));
+
+        this.physicsSystem.getEngine().getSystem(PathFindingSystem.class).setTarget(hero);
 
         return  hero;
     }

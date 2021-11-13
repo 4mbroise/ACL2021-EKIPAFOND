@@ -53,7 +53,7 @@ public class PhysicsSystem extends IteratingSystem {
 
     public Body addDynamicBody(float abscissa , float ordinate, float width, float heigth ){
         BodyDefPrototype.type = BodyDef.BodyType.DynamicBody;
-        fixturePrototype.isSensor = true;
+        fixturePrototype.isSensor = false;
         Body body = addOctogonBody(abscissa , ordinate, width, heigth);
         body.createFixture(fixturePrototype);
         return body;

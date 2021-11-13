@@ -42,6 +42,22 @@ public class Node {
         addNeighboringNodes(n);
     }
 
+    public Node getTopNode() {
+        return topNode;
+    }
+
+    public Node getBottomNode() {
+        return bottomNode;
+    }
+
+    public Node getLeftNode() {
+        return leftNode;
+    }
+
+    public Node getRightNode() {
+        return rightNode;
+    }
+
     public void addNeighboringNodes(Node n){
         neighboringNodes.add(new DefaultConnection<Node>(this, n));
     }

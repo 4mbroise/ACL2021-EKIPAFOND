@@ -224,4 +224,65 @@ public class WorldTest {
 
     }
 
+    @Test
+    public void graphMapTest3() {
+        System.out.println(new File("assets/maps/mapTest3.txt").exists());
+        this.world.createMapChar(new File("assets/maps/mapTest3.txt"));
+        MapGraph graph = this.world.getMapGraph();
+        System.out.println(graph.numberOfNodes());
+
+        for (int j = 1; j < 5; j++) {
+            assertTrue(graph.nodeExist(j, 1));
+        }
+
+        //Node 1,1
+        ArrayList<Node> list1 = new ArrayList<>();
+        list1.add(graph.getNode(2, 1));
+        for (Connection<Node> connection : graph.getConnections(graph.getNode(1, 1))) {
+            assertTrue(list1.contains(connection.getToNode()));
+            list1.remove(connection.getToNode());
+        }
+        assertEquals(0, list1.size());
+
+        //Node 1,2
+        ArrayList<Node> list2 = new ArrayList<>();
+        list2.add(graph.getNode(1, 1));
+        list2.add(graph.getNode(3, 1));
+        for (Connection<Node> connection : graph.getConnections(graph.getNode(1, 2))) {
+            assertTrue(list2.contains(connection.getToNode()));
+            list2.remove(connection.getToNode());
+        }
+        assertEquals(0, list2.size());
+
+        //Node 1,3
+        ArrayList<Node> list3 = new ArrayList<>();
+        list3.add(graph.getNode(2, 1));
+        list3.add(graph.getNode(4, 1));
+        for (Connection<Node> connection : graph.getConnections(graph.getNode(1, 3))) {
+            assertTrue(list3.contains(connection.getToNode()));
+            list3.remove(connection.getToNode());
+        }
+        assertEquals(0, list3.size());
+
+        //Node 1,4
+        ArrayList<Node> list4 = new ArrayList<>();
+        list3.add(graph.getNode(3, 1));
+        list3.add(graph.getNode(5, 1));
+        for (Connection<Node> connection : graph.getConnections(graph.getNode(1, 4))) {
+            assertTrue(list3.contains(connection.getToNode()));
+            list3.remove(connection.getToNode());
+        }
+        assertEquals(0, list3.size());
+
+        //Node 1,5
+        ArrayList<Node> list5 = new ArrayList<>();
+        list3.add(graph.getNode(4, 1));
+        for (Connection<Node> connection : graph.getConnections(graph.getNode(1, 5))) {
+            assertTrue(list3.contains(connection.getToNode()));
+            list3.remove(connection.getToNode());
+        }
+        assertEquals(0, list3.size());
+
+    }
+
 }

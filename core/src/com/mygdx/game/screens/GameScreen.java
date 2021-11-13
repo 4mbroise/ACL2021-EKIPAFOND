@@ -18,6 +18,7 @@ import com.mygdx.game.World;
 import com.mygdx.game.components.TypeComponent;
 import com.mygdx.game.listeners.ACLGameListener;
 import com.mygdx.game.systems.*;
+import com.mygdx.game.systems.pathfinding.PathFindingSystem;
 import com.mygdx.game.systems.physics.CollisionsSystem;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 import com.mygdx.game.systems.physics.collisionhandler.HeroWallCollisionHandler;
@@ -48,6 +49,7 @@ public class GameScreen extends ScreenAdapter {
         this.engine.addSystem(new DebugRenderSystem(game.batcher, game.camera));
         this.engine.addSystem(new AttackSystem());
         this.engine.addSystem(new DeathSystem());
+        this.engine.addSystem(new PathFindingSystem());
         CollisionsSystem collisionsSystem = new CollisionsSystem();
         collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
         this.engine.addSystem(collisionsSystem);

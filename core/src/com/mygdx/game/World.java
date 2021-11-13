@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.mygdx.game.factory.EntityFactory;
 import com.mygdx.game.factory.entity.HeroBuilder;
+import com.mygdx.game.factory.entity.InteligentMonsterBuilder;
 import com.mygdx.game.factory.entity.MonsterBuilder;
 import com.mygdx.game.factory.entity.WallBuilder;
 import com.mygdx.game.systems.pathfinding.MapGraph;
@@ -33,6 +34,7 @@ public class World {
         this.entityFactory.addEntityBuilder("-", new WallBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("1", new HeroBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("m", new MonsterBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("M", new InteligentMonsterBuilder(assets, physicsSystem));
 
     }
 
@@ -142,20 +144,18 @@ public class World {
 
         MapGraph graph = new MapGraph();
         int[] firstCaseCoords = getFirstCase();
-        System.out.println("test");
 
         graph.setNode(firstCaseCoords[0], firstCaseCoords[1], getNode(firstCaseCoords[0], firstCaseCoords[1],graph));
-        System.out.println(graph);
 
         return graph;
     }
 
     public Node getNode(int x, int y, MapGraph graph){
         //If this node has not been has already been processed
-        if(!graph.nodeExist(x, y) && this.map[x][y]!='-' && this.map[x][y]!=' '){
+        if(!graph.nodeExist(x, y) && this.map[y][x]!='-' && this.map[y][x]!=' '){
              Node node = new Node();
              graph.setNode(x, y, node);
-             if(y+1<maxHeight){
+             if(y+1<=maxHeight){
                  Node topNode = getNode(x, y+1, graph);
                  if(topNode != null){
                      node.setTopNode(topNode);
@@ -168,15 +168,15 @@ public class World {
                  }
              }
              if(x-1>=0){
-                 Node bottomNode = getNode(x-1, y, graph);
-                 if(bottomNode != null){
-                     node.setLeftNode(bottomNode);
+                 Node leftNode = getNode(x-1, y, graph);
+                 if(leftNode != null){
+                     node.setLeftNode(leftNode);
                  }
              }
-             if(x+1<maxWidth){
-                 Node leftNode = getNode(x+1, y, graph);
-                 if(leftNode != null){
-                     node.setRightNode(leftNode);
+             if(x+1<=maxWidth){
+                 Node rightNode = getNode(x+1, y, graph);
+                 if(rightNode != null){
+                     node.setRightNode(rightNode);
                  }
              }
              return node;
