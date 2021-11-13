@@ -58,6 +58,8 @@ project(":core") {
     apply plugin: "java-library"
 
     dependencies {
+        compile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        compile "org.mockito:mockito-all:1.9.5"
         testCompile "junit:junit:+"
         compile "com.badlogicgames.gdx:gdx-ai:1.8.1"
         compile "com.badlogicgames.ashley:ashley:1.7.3"

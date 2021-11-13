@@ -6,11 +6,11 @@ import java.util.List;
 
 public class AStar {
 
-        private final List<Node> open;
-        private final List<Node> closed;
-        private final List<Node> path;
+        private final List<NodeEnes> open;
+        private final List<NodeEnes> closed;
+        private final List<NodeEnes> path;
         private final int[][] maze;
-        private Node now;
+        private NodeEnes now;
         private final int xstart;
         private final int ystart;
         private int xend, yend;
@@ -21,7 +21,7 @@ public class AStar {
             this.closed = new ArrayList<>();
             this.path = new ArrayList<>();
             this.maze = maze;
-            this.now = new Node(null, xstart, ystart, 0, 0);
+            this.now = new NodeEnes(null, xstart, ystart, 0, 0);
             this.xstart = xstart;
             this.ystart = ystart;
             this.diag = diag;
@@ -34,7 +34,7 @@ public class AStar {
      * @param  yend ordinate of the target position
      * @return (List<Node> | null) the path
      */
-    public List<Node> findPathTo(int xend, int yend) {
+    public List<NodeEnes> findPathTo(int xend, int yend) {
         this.xend = xend;
         this.yend = yend;
         this.closed.add(this.now);
@@ -61,8 +61,8 @@ public class AStar {
      *
      * @return true if neighbor is found, false else
      */
-    public boolean findNeighborInList(List<Node> array, Node node) {
-        for (Node n: array){
+    public boolean findNeighborInList(List<NodeEnes> array, NodeEnes node) {
+        for (NodeEnes n: array){
             if(n.x== node.x && n.y == node.y){
                 return true;
             }
@@ -87,13 +87,13 @@ public class AStar {
      * Add neighbors for selected node
      */
     public void addNeigborsToOpenList() {
-        Node node;
+        NodeEnes node;
         for (int x = -1; x <= 1; x++) {
             for (int y = -1; y <= 1; y++) {
                 if (!this.diag && x != 0 && y != 0) {
                     continue; // skip if diagonal movement is not allowed
                 }
-                node = new Node(this.now, this.now.x + x, this.now.y + y, this.now.g, this.distance(x, y));
+                node = new NodeEnes(this.now, this.now.x + x, this.now.y + y, this.now.g, this.distance(x, y));
                 if ((x != 0 || y != 0) // not this.now
                         && this.now.x + x >= 0 && this.now.x + x < this.maze[0].length // check maze boundaries
                         && this.now.y + y >= 0 && this.now.y + y < this.maze.length

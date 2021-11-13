@@ -1,12 +1,12 @@
 package com.mygdx.game.pathfinding;
 
-public class Node implements Comparable {
-    public Node parent;
+public class NodeEnes implements Comparable {
+    public NodeEnes parent;
     public int x, y;
     public double g;
     public double h;
 
-    Node(Node parent, int xpos, int ypos, double g, double h) {
+    NodeEnes(NodeEnes parent, int xpos, int ypos, double g, double h) {
         this.parent = parent;
         this.x = xpos;
         this.y = ypos;
@@ -16,7 +16,7 @@ public class Node implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        Node that = (Node) o;
+        NodeEnes that = (NodeEnes) o;
         return (int)((this.g + this.h) - (that.g + that.h));
     }
 }
