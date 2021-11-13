@@ -15,6 +15,7 @@ import com.mygdx.game.World;
 import com.mygdx.game.components.TypeComponent;
 import com.mygdx.game.listeners.ACLGameListener;
 import com.mygdx.game.systems.*;
+import com.mygdx.game.systems.pathfinding.PathFindingSystem;
 import com.mygdx.game.systems.physics.CollisionsSystem;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 import com.mygdx.game.systems.physics.collisionhandler.HeroWallCollisionHandler;
@@ -26,9 +27,10 @@ public class MazeTestScreen extends GameScreen {
         super(game);
 
         this.assets.getManager().finishLoading();
-        int[] mapDim = this.world.createMap(Gdx.files.internal("maps/map1.txt").file());
+        int[] mapDim = this.world.createMap(Gdx.files.internal("maps/map3.txt").file());
+        this.engine.getSystem(PathFindingSystem.class).setGraph(this.world.getMapGraph());
         float x = (float) ((mapDim[0]-1)*World.CASE_DIMENSION);
-        float y = World.CASE_DIMENSION;
+        float y = (mapDim[1])*World.CASE_DIMENSION;
         this.game.camera.position.set(x,y,0);
         this.game.camera.update();
         this.game.batcher.setProjectionMatrix(this.game.camera.combined);

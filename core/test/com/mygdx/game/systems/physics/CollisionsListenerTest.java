@@ -86,6 +86,7 @@ public class CollisionsListenerTest {
          * staticEntity2 should have staticEntity1 in its CollisionsComponent
          */
 
+
         assertEquals(staticEntity, dynamicEntity.getComponent(CollisionComponent.class).getEntityCollied());
         assertEquals(dynamicEntity, staticEntity.getComponent(CollisionComponent.class).getEntityCollied());
 

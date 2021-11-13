@@ -88,6 +88,7 @@ public class PhysicsSystemTest {
          * The static body should not have mooved
          */
         assertEquals(2, physicsWorld.getBodyCount());
+
         assertEquals(1, physicsWorld.getContactCount());
 
         assertEquals(50, dynamicBody.getPosition().x, 0);
@@ -155,6 +156,7 @@ public class PhysicsSystemTest {
          * The static body should not have mooved
          */
         assertEquals(2, physicsWorld.getBodyCount());
+
         assertEquals(1, physicsWorld.getContactCount());
 
         assertEquals(20, dynamicBody.getPosition().x, 0);
@@ -221,6 +223,7 @@ public class PhysicsSystemTest {
          * The static body should not have mooved
          */
         assertEquals(2, physicsWorld.getBodyCount());
+
         assertEquals(1, physicsWorld.getContactCount());
 
         assertEquals(10+2, dynamicBody.getPosition().x, 0.1);
@@ -285,6 +288,7 @@ public class PhysicsSystemTest {
          * (There is a little difference of position, the dynamic body should be a little bit above the static one, a difference < 0.1 )
          * The static body should not have mooved
          */
+
         assertEquals(2, physicsWorld.getBodyCount());
         assertEquals(1, physicsWorld.getContactCount());
 
