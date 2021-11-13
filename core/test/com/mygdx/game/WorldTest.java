@@ -248,7 +248,7 @@ public class WorldTest {
         ArrayList<Node> list2 = new ArrayList<>();
         list2.add(graph.getNode(1, 1));
         list2.add(graph.getNode(3, 1));
-        for (Connection<Node> connection : graph.getConnections(graph.getNode(1, 2))) {
+        for (Connection<Node> connection : graph.getConnections(graph.getNode(2, 1))) {
             assertTrue(list2.contains(connection.getToNode()));
             list2.remove(connection.getToNode());
         }
@@ -258,7 +258,7 @@ public class WorldTest {
         ArrayList<Node> list3 = new ArrayList<>();
         list3.add(graph.getNode(2, 1));
         list3.add(graph.getNode(4, 1));
-        for (Connection<Node> connection : graph.getConnections(graph.getNode(1, 3))) {
+        for (Connection<Node> connection : graph.getConnections(graph.getNode(3, 1))) {
             assertTrue(list3.contains(connection.getToNode()));
             list3.remove(connection.getToNode());
         }
@@ -268,7 +268,7 @@ public class WorldTest {
         ArrayList<Node> list4 = new ArrayList<>();
         list3.add(graph.getNode(3, 1));
         list3.add(graph.getNode(5, 1));
-        for (Connection<Node> connection : graph.getConnections(graph.getNode(1, 4))) {
+        for (Connection<Node> connection : graph.getConnections(graph.getNode(4, 1))) {
             assertTrue(list3.contains(connection.getToNode()));
             list3.remove(connection.getToNode());
         }
@@ -277,7 +277,7 @@ public class WorldTest {
         //Node 1,5
         ArrayList<Node> list5 = new ArrayList<>();
         list3.add(graph.getNode(4, 1));
-        for (Connection<Node> connection : graph.getConnections(graph.getNode(1, 5))) {
+        for (Connection<Node> connection : graph.getConnections(graph.getNode(5, 1))) {
             assertTrue(list3.contains(connection.getToNode()));
             list3.remove(connection.getToNode());
         }
