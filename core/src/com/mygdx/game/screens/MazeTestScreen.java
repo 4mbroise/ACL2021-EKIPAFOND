@@ -27,8 +27,9 @@ public class MazeTestScreen extends GameScreen {
 
         this.assets.getManager().finishLoading();
         int[] mapDim = this.world.createMap(Gdx.files.internal("maps/map1.txt").file());
-        float x = (float) ((mapDim[0]-1)*World.CASE_DIMENSION);
-        float y = World.CASE_DIMENSION;
+        this.world.getMapGraph();
+        float x = (float) ((mapDim[1])*World.CASE_DIMENSION);
+        float y = (mapDim[0])*World.CASE_DIMENSION;
         this.game.camera.position.set(x,y,0);
         this.game.camera.update();
         this.game.batcher.setProjectionMatrix(this.game.camera.combined);
