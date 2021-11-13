@@ -26,7 +26,8 @@ public class MazeTestScreen extends GameScreen {
         this.engine.addSystem(new MovementSystem());
         this.engine.addSystem(new HeroSystem());
         this.engine.addSystem(new PhysicsSystem());
-        this.engine.addSystem(new RandomMovementSystem());
+        //this.engine.addSystem(new RandomMovementSystem());
+
         this.engine.addSystem(new DebugRenderSystem(this.game.batcher, this.game.camera));
         this.engine.addSystem(new AttackSystem());
         this.engine.addSystem(new DeathSystem());
@@ -35,6 +36,7 @@ public class MazeTestScreen extends GameScreen {
         this.engine.addSystem(collisionsSystem);
         this.assets.getManager().finishLoading();
         this.world.createMap();
+        this.engine.addSystem(new MonsterSystem(this.world.getHero()));
 
     }
 

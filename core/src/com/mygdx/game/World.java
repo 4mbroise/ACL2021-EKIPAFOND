@@ -37,6 +37,7 @@ public class World {
     private Body heroBody;
     private Vector3 treasureVector;
 
+
     public World(Engine engine, Assets assets) {
         this.Maps = new ArrayList<File>();
         this.MapDir = "maps/map1.txt" ;
@@ -241,8 +242,8 @@ public class World {
         monster.add(textureComponent);
 
         //Add Movement
-        RandomMovementComponent movementComponent = new RandomMovementComponent(MonsterComponent.MONSTER_VELOCITY);
-        monster.add(movementComponent);
+        /*RandomMovementComponent movementComponent = new RandomMovementComponent(MonsterComponent.MONSTER_VELOCITY);
+        monster.add(movementComponent);*/
 
         // Add Monster component
         MonsterComponent monsterComponent = new MonsterComponent();
@@ -304,5 +305,9 @@ public class World {
     public boolean isWon() {
         return won;
     }
+    public Entity getHero() {
+        return hero;
+    }
+
 
 }
