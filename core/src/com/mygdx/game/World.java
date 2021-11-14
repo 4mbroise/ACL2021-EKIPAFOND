@@ -2,307 +2,187 @@ package com.mygdx.game;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.mygdx.game.components.*;
+import com.mygdx.game.factory.EntityFactory;
+import com.mygdx.game.factory.entity.HeroBuilder;
+import com.mygdx.game.factory.entity.InteligentMonsterBuilder;
+import com.mygdx.game.factory.entity.MonsterBuilder;
+import com.mygdx.game.factory.entity.WallBuilder;
+import com.mygdx.game.systems.pathfinding.MapGraph;
+import com.mygdx.game.systems.pathfinding.Node;
 import com.mygdx.game.systems.physics.PhysicsSystem;
-
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class World {
 
-    private char[][] grid;
-    private int width, height, ctr, nbportal;
-    private boolean won;
-    private Scanner SizeReader,TileReader;
-    private File mapFile;
-    private String MapDir;
-    private List<File> Maps;
-    private List<Vector3> portals;
+    public static final int CASE_DIMENSION = 16;
     private Engine engine;
     private Assets assets;
     private PhysicsSystem physicsSystem;
-    private Entity hero, monster;
-    private TransformComponent transformComponent;
-    private Body heroBody;
-    private Vector3 treasureVector;
+    private EntityFactory entityFactory;
+    private int maxWidth;
+    private int maxHeight;
+    private char[][] map;
 
     public World(Engine engine, Assets assets) {
-        this.Maps = new ArrayList<File>();
-        this.MapDir = "maps/map1.txt" ;
-        this.ctr = 0;
-        this.nbportal = 0;
-        this.won =  false;
         this.engine = engine;
         this.assets = assets;
         this.physicsSystem = this.engine.getSystem(PhysicsSystem.class);
-        this.portals = new ArrayList<Vector3>();
 
+        this.entityFactory = new EntityFactory();
+        this.entityFactory.addEntityBuilder("-", new WallBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("1", new HeroBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("m", new MonsterBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("M", new InteligentMonsterBuilder(assets, physicsSystem));
 
     }
 
     public World() {
     }
 
-    public void createMap(){
-        mapFile = Gdx.files.internal(this.MapDir).file();
-        //mapFile = new File(this.MapDir);
-        try{
-            this.SizeReader = new Scanner(mapFile);
-            } catch (FileNotFoundException e){
-                System.out.println("File not found");
-        }
-        /* Get the width and the height of the map */
-        while (SizeReader.hasNext()) {
-            String data = SizeReader.nextLine();
-            if (data.length() > this.width) {
-                this.width = data.length();
-            }
-            this.height++;
-        }
+    public void createMapChar(File mapFile){
+        int[] mapMaxDimensions = getMapMaxDimension(mapFile);
+        int x = 0;
+        int y = mapMaxDimensions[1];
+        this.map = new char[y][mapMaxDimensions[0]];
+        Scanner mapReader = null;
+        try {
+            mapReader = new Scanner(mapFile);
 
-        /* In case the file does not contain a single column and/or row */
-
-        if (this.height == 0){
-            this.height = 1;
-        }
-        if (this.width == 0){
-            this.width = 1;
-        }
-
-        SizeReader.close();
-
-        try{
-            this.TileReader = new Scanner(mapFile);
-            } catch(FileNotFoundException e){
-                System.out.println("File not found");
-        }
-        this.grid = new char[this.height][this.width];
-        while (TileReader.hasNext()) {
-            String data = TileReader.nextLine();
-                for (int j = 0; j < this.width ; j++){
-                    grid[ctr][j] = data.charAt(j);
-                    switch (data.charAt(j)){
-                        case '-':
-                            Entity wall = new Entity();
-                            this.engine.addEntity(wall);
-                            TextureComponent textureComponent = new TextureComponent();
-                            textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/damage_up.png", Texture.class)));
-                            wall.add(textureComponent);
-                            TransformComponent transformComponent = new TransformComponent(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,10));
-                            wall.add(transformComponent);
-                            PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
-                            Body body = physicsSystem.addStaticBody((float)(j+ 0.5) * 16 * 2 , 480 - (float)(ctr+0.5) * 16 * 2,16,16);
-                            body.setUserData(wall);
-                            //System.out.print("  Wall  ");
-                            wall.add(new SteeringComponent(body));
-                            wall.add(new CollisionComponent());
-                            wall.add(new TypeComponent(TypeComponent.TYPE_WALL));
-                            break;
-                        case '+':
-                            Entity ground = new Entity();
-                            this.engine.addEntity(ground);
-                            //System.out.print(" Ground ");
-                            break;
-                        case '1':
-                            createHero((float)(j + 0.5) * 16 * 2, 480 - (float)(ctr + 0.5) * 16 * 2);
-
-                            //System.out.print("  Hero  ");
-                            break;
-                        case 'm':
-                            createMonster((float)(j + 0.5) * 16 * 2, 480 - (float)(ctr + 0.5) * 16 * 2);
-                            break;
-                        case 'p':
-                            nbportal++;
-                            Entity portal = new Entity();
-                            this.engine.addEntity(portal);
-                            TextureComponent textureComponentP = new TextureComponent();
-                            textureComponentP.setRegion(new TextureRegion(this.assets.getManager().get("tiles/dungeonDecoration_portal.png", Texture.class)));
-                            portal.add(textureComponentP);
-                            //System.out.print(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,0));
-                            TransformComponent transformComponentP = new TransformComponent(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,10));
-                            portal.add(transformComponentP);
-                            portals.add(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,0));
-                            break;
-                        case 'k':
-                            Entity treasure = new Entity();
-                            this.engine.addEntity(treasure);
-                            TextureComponent textureComponentT = new TextureComponent();
-                            textureComponentT.setRegion(new TextureRegion(this.assets.getManager().get("tiles/treasure32x32.png", Texture.class)));
-                            treasure.add(textureComponentT);
-                            //System.out.print(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,0));
-                            TransformComponent transformComponentT = new TransformComponent(new Vector3((float)(j+ 0.5) * 16 * 2 , 480-(float)(ctr+0.5) * 16 * 2,10));
-                            treasure.add(transformComponentT);
-                            treasureVector = new Vector3(new Vector3((float)(j+ 0.5), height - (float)(ctr+0.5),0));
-
-                        default :
-                            //System.out.print("Ground-d");
-                    }
+            while (mapReader.hasNext()) {
+                String data = mapReader.nextLine();
+                for (int j = 0; j < data.length(); j++) {
+                    map[y-1][x] = data.charAt(j);
+                    x++;
                 }
-            ctr++;
-            //System.out.println("");
-        }
-
-        this.TileReader.close();
-
-
-    }
-
-    public void updateMap(){
-        if (nbportal != 0 && nbportal != 2){
-            try{
-                throw new Exception("Error creating map; only one portal exists");
-            } catch (Exception e){
-                e.printStackTrace();
-                System.exit(222);
+                x = 0;
+                y--;
             }
-        } else {
-            if( (int) transformComponent.getPosition().x/32 == (int)portals.get(0).x /32
-                && (int) transformComponent.getPosition().y/32 == (int)portals.get(0).y/32){
-                transformComponent.setAbscissa((portals.get(1).x + 32));
-                transformComponent.setOrdinate((int)portals.get(1).y);
-                heroBody.setTransform((int)portals.get(1).x + 32,portals.get(1).y,0);
-            }
-             else if( (int) transformComponent.getPosition().x/32 == (int)portals.get(1).x /32
-                    && (int) transformComponent.getPosition().y/32 == (int)portals.get(1).y/32) {
-                transformComponent.setAbscissa((portals.get(0).x - 32));
-                transformComponent.setOrdinate((int) portals.get(0).y );
-                heroBody.setTransform((int) portals.get(0).x - 32 , portals.get(0).y, 0);
-            }
-             checkVictory();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
-    public void checkVictory(){
-        if( (int) transformComponent.getPosition().x/32 == (int)treasureVector.x
-                && (int) transformComponent.getPosition().y/32 == (int)treasureVector.y ){
-            System.out.println((int)transformComponent.getPosition().x/32 +" - "+ (int)treasureVector.x);
-            won = true;
+    private int[] getMapMaxDimension(File mapFile) {
+        int maxWidth = 0;
+        int maxHeight = 0;
+        try{
+            Scanner scanner = new Scanner(mapFile);
+            while (scanner.hasNext()) {
+                String data = scanner.nextLine();
+                if (data.length() > maxWidth) {
+                    maxWidth = data.length();
+                }
+                maxHeight++;
+            }
+            int result[] = new int[2];
+            result[0] = maxWidth;
+            result[1] = maxHeight;
+            this.maxWidth = maxWidth;
+            this.maxHeight = maxHeight;
+            scanner.close();
+
+            return result;
+        } catch (FileNotFoundException e){
+            System.out.println("Map "+mapFile.getPath()+" not found");
+        }
+        return null;
+    }
+
+    public int[] createMap(File mapFile) {
+        int[] mapMaxDimensions = getMapMaxDimension(mapFile);
+        int mapWidth = mapMaxDimensions[0];
+        int mapHeight = mapMaxDimensions[1];
+        int x = 0;
+        int y = CASE_DIMENSION * mapHeight * 2;
+
+        this.map = new char[mapHeight][mapWidth];
+
+        Scanner mapReader = null;
+        try {
+            mapReader = new Scanner(mapFile);
+
+            while (mapReader.hasNext()) {
+                String data = mapReader.nextLine();
+                for (int j = 0; j < data.length(); j++) {
+                    System.out.println("("+x+";"+y+")");
+                    Entity entity = entityFactory.createEntity(Character.toString(data.charAt(j)), x, y);
+                    map[y/(CASE_DIMENSION*2)-1][x/(CASE_DIMENSION*2)] = data.charAt(j);
+                    if(entity != null){
+                        this.engine.addEntity(entity);
+                    }
+                    x += CASE_DIMENSION*2;
+                }
+                x = 0;
+                y -= CASE_DIMENSION*2;
+            }
+            return mapMaxDimensions;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //Look for the first case's coords that isn't a wall, it will be our first Node
+    private int[] getFirstCase(){
+        int y = 0;
+        while(true){
+            for(int i=0; i<maxWidth;i++){
+                System.out.println(this.map[y][i]);
+                System.out.println(this.map[y][i] != '-' && this.map[y][i] != ' ');
+                if(this.map[y][i] != '-' && this.map[y][i] != ' ')
+                {
+                    return new int[]{i, y};
+                }
+            }
+            y++;
         }
     }
 
-    public void createHero(float posx, float posy){
+    public MapGraph getMapGraph(){
 
-        this.hero = new Entity();
+        MapGraph graph = new MapGraph();
+        int[] firstCaseCoords = getFirstCase();
 
-        //Add Texture
-        TextureComponent textureComponent = new TextureComponent();
-        textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/cherry.png", Texture.class)));
-        hero.add(textureComponent);
+        graph.setNode(firstCaseCoords[0], firstCaseCoords[1], getNode(firstCaseCoords[0], firstCaseCoords[1],graph));
 
-        //Add Position
-        transformComponent = new TransformComponent(new Vector3(posx,posy,0));
-        hero.add(transformComponent);
-
-        //Add Position
-        DirectionComponent directionComponent = new DirectionComponent();
-        hero.add(directionComponent);
-
-        MovementComponent movementComponent = new MovementComponent(HeroComponent.HERO_VELOCITY);
-        hero.add(movementComponent);
-
-        HeroComponent heroComponent = new HeroComponent();
-        hero.add(heroComponent);
-
-        PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
-        heroBody = physicsSystem.addDynamicBody(posx, posy, 10, 10);
-        heroBody.setUserData(hero);
-        hero.add(new SteeringComponent(heroBody));
-
-        hero.add(new TypeComponent(TypeComponent.TYPE_HERO));
-
-        hero.add(new CollisionComponent());
-
-        hero.add(new HealthComponent(5));
-
-        hero.add(new AttackerComponent(1));
-
-
-        this.engine.addEntity(hero);
+        return graph;
     }
 
-    public void createMonster(float posx, float posy){
-        monster = new Entity();
-
-
-        // Add texture
-        TextureComponent textureComponent = new TextureComponent();
-        textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/spr_orange.png", Texture.class)));
-        monster.add(textureComponent);
-
-        //Add Movement
-        RandomMovementComponent movementComponent = new RandomMovementComponent(MonsterComponent.MONSTER_VELOCITY);
-        monster.add(movementComponent);
-
-        // Add Monster component
-        MonsterComponent monsterComponent = new MonsterComponent();
-        monster.add(monsterComponent);
-
-
-        // Add transform
-        TransformComponent transformComponent = new TransformComponent(new Vector3(posx,posy,0));
-        monster.add(transformComponent);
-
-        // Add Collision
-        monster.add(new CollisionComponent());
-
-        //Add Health Point
-        monster.add(new HealthComponent(3));
-
-
-
-        BodyDef bd = new BodyDef();
-        bd.type = BodyDef.BodyType.DynamicBody;
-        bd.position.set(8, 8);
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(16, 16);
-
-        PhysicsSystem physicsSystem = this.engine.getSystem(PhysicsSystem.class);
-
-        Body body = physicsSystem.addDynamicBody(posx, posy, 10, 10);
-        body.setUserData(monster);
-        body.setLinearVelocity(new Vector2(0,0));
-
-
-        // Add steering
-        SteeringComponent steeringComponent = new SteeringComponent(body);
-        monster.add(steeringComponent);
-        //monster.getComponent(SteeringComponent.class).steeringBehavior  = SteeringPresets.getSeek(monster.getComponent(SteeringComponent.class),hero.getComponent(SteeringComponent.class));
-        //monster.getComponent(SteeringComponent.class).currentMode = SteeringComponent.SteeringState.SEEK;
-
-        monster.add(new TypeComponent(TypeComponent.TYPE_MONSTER));
-        this.engine.addEntity(monster);
-
-    }
-
-    public char[][] getGrid() {
-        return grid;
-    }
-
-    public void setGrid(char[][] grid) {
-        this.grid = grid;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public boolean isWon() {
-        return won;
+    public Node getNode(int x, int y, MapGraph graph){
+        //If this node has not been has already been processed
+        if(!graph.nodeExist(x, y) && this.map[y][x]!='-' && this.map[y][x]!=' '){
+             Node node = new Node();
+             graph.setNode(x, y, node);
+             if(y+1<=maxHeight){
+                 Node topNode = getNode(x, y+1, graph);
+                 if(topNode != null){
+                     node.setTopNode(topNode);
+                 }
+             }
+             if(y-1>=0){
+                 Node bottomNode = getNode(x, y-1, graph);
+                 if(bottomNode != null){
+                     node.setBottomNode(bottomNode);
+                 }
+             }
+             if(x-1>=0){
+                 Node leftNode = getNode(x-1, y, graph);
+                 if(leftNode != null){
+                     node.setLeftNode(leftNode);
+                 }
+             }
+             if(x+1<=maxWidth){
+                 Node rightNode = getNode(x+1, y, graph);
+                 if(rightNode != null){
+                     node.setRightNode(rightNode);
+                 }
+             }
+             return node;
+        } else{
+            return graph.getNode(x, y);
+        }
     }
 
 }
