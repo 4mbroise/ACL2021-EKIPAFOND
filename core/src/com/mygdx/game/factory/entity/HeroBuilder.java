@@ -26,12 +26,15 @@ public class HeroBuilder implements EntityBuilder{
         Entity hero = new Entity();
         //Add Texture
         TextureComponent textureComponent = new TextureComponent();
-        textureComponent.setRegion(new TextureRegion(assets.getManager().get("sprites/cherry.png", Texture.class)));
+        textureComponent.setRegion(new TextureRegion(assets.getManager().get("sprites/HeroPack.png", Texture.class)));
         hero.add(textureComponent);
 
         //Add Position
         TransformComponent transformComponent = new TransformComponent(new Vector3(x,y,10));
         hero.add(transformComponent);
+
+        AnimationComponent animationComponent = new AnimationComponent();
+        hero.add(animationComponent);
 
         //Add Position
         DirectionComponent directionComponent = new DirectionComponent();

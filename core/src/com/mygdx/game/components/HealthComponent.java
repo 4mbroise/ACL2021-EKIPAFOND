@@ -21,7 +21,7 @@ public class HealthComponent implements Component {
         healthPoint+=point;
     }
 
-    public void minusHealthPoint(int point){
+    public void reduceHealthPoint(int point){
         healthPoint-=point;
     }
 }
