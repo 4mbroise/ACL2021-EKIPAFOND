@@ -21,14 +21,14 @@ import com.mygdx.game.systems.*;
 import com.mygdx.game.systems.pathfinding.PathFindingSystem;
 import com.mygdx.game.systems.physics.CollisionsSystem;
 import com.mygdx.game.systems.physics.PhysicsSystem;
-import com.mygdx.game.systems.physics.collisionhandler.HeroWallCollisionHandler;
+import com.mygdx.game.systems.physics.collisionhandler.*;
 
 public class GameScreen extends ScreenAdapter {
 
     public ACLGame game;
     public Assets assets;
     public Engine engine;
-    public World world;
+    public static World world;
     public boolean active;
     protected InputMultiplexer multiplexer;
     //button
@@ -52,6 +52,11 @@ public class GameScreen extends ScreenAdapter {
         this.engine.addSystem(new PathFindingSystem());
         CollisionsSystem collisionsSystem = new CollisionsSystem();
         collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
+        collisionsSystem.addCollisionStrategy(new HeroTreasureCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
+        collisionsSystem.addCollisionStrategy(new HeroTrapCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TRAP);
+        collisionsSystem.addCollisionStrategy(new HeroMagicCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MAGIC);
+        collisionsSystem.addCollisionStrategy(new HeroPortalCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_PORTAL);
+
         this.engine.addSystem(collisionsSystem);
 
         this.game = game;

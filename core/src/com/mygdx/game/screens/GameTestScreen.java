@@ -28,7 +28,9 @@ public class GameTestScreen extends GameScreen {
         this.engine.addSystem(new DebugRenderSystem(this.game.batcher, this.game.camera));
 
         CollisionsSystem  collisionsSystem = new CollisionsSystem();
+        collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
         collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
+        //collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
 
         this.engine.addSystem(collisionsSystem);
 

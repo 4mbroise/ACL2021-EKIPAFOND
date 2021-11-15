@@ -30,7 +30,7 @@ public class HeroBuilder implements EntityBuilder{
         hero.add(textureComponent);
 
         //Add Position
-        TransformComponent transformComponent = new TransformComponent(new Vector3(x,y,0));
+        TransformComponent transformComponent = new TransformComponent(new Vector3(x,y,10));
         hero.add(transformComponent);
 
         //Add Position
@@ -43,7 +43,7 @@ public class HeroBuilder implements EntityBuilder{
         HeroComponent heroComponent = new HeroComponent();
         hero.add(heroComponent);
 
-        Body heroBody = physicsSystem.addDynamicBody(x, y, World.CASE_DIMENSION/2, World.CASE_DIMENSION/2);
+        Body heroBody = physicsSystem.addDynamicBody(x, y, World.CASE_DIMENSION - 1 , World.CASE_DIMENSION - 1);
         heroBody.setUserData(hero);
         hero.add(new SteeringComponent(heroBody));
 
