@@ -52,7 +52,7 @@ public class MonsterBuilder implements EntityBuilder{
         //Add Health Point
         monster.add(new HealthComponent(3));
 
-        Body body = physicsSystem.addDynamicBody(x, y, World.CASE_DIMENSION/2, World.CASE_DIMENSION/2);
+        Body body = physicsSystem.addDynamicBody(x, y, World.CASE_DIMENSION - 1, World.CASE_DIMENSION - 1);
         body.setUserData(monster);
         body.setLinearVelocity(new Vector2(0,0));
 

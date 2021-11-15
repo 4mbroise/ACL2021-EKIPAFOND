@@ -16,7 +16,7 @@ public class EntityFactory {
     public Entity createEntity(String code, float x, float y){
         if(entityBuilderMap.containsKey(code)){
             return entityBuilderMap.get(code).buildEntity(x, y);
-        } else {
+        } else if (!code.equals("+")){
             System.out.println("Case "+code + "non implémentée");
         }
         return null;
