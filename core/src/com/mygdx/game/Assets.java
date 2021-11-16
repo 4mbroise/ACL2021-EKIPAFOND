@@ -58,6 +58,7 @@ public class Assets {
         assetManager.load("tiles/portal.png", Texture.class);
         assetManager.load("sprites/spr_orange.png", Texture.class);
         assetManager.load("tiles/magic.png", Texture.class);
+        assetManager.load(("tiles/vie.png"), Texture.class);
         //load
         //System.out.println(assetManager.getProgress());
 
