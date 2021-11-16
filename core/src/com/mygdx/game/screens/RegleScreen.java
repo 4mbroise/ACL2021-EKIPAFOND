@@ -14,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
 
@@ -41,7 +43,7 @@ public class RegleScreen extends ScreenAdapter {
     public RegleScreen (ACLGame game){
         this.game=game;
         this.batch=game.batcher;
-        stage=new Stage();
+        stage = new Stage(new StretchViewport(800, 480));
         assets=game.getAssets();
         create();
     }
@@ -65,7 +67,7 @@ public class RegleScreen extends ScreenAdapter {
         homeStyle.up=new TextureRegionDrawable(new TextureRegion(homeUpTexture));
         homeStyle.down=new TextureRegionDrawable(new TextureRegion(homeDownTexture));
         homeButton=new Button(homeStyle);
-        homeButton.setPosition(Gdx.graphics.getWidth()/2-homeUpTexture.getWidth()/2,50);
+        homeButton.setPosition(stage.getWidth()/2-homeUpTexture.getWidth()/2,50);
         homeButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -110,6 +112,8 @@ public class RegleScreen extends ScreenAdapter {
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);
+        stage.getViewport().update(width, height, true);
+
     }
 
     @Override

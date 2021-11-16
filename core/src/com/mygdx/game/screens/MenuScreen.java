@@ -16,6 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
 
@@ -51,7 +53,7 @@ public class MenuScreen extends ScreenAdapter{
         //initialization
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         batch=game.batcher;
-        stage=new Stage();
+        stage = new Stage(new StretchViewport(800, 480));
         group=new Group();
         assets=game.getAssets();
         create();
@@ -77,7 +79,7 @@ public class MenuScreen extends ScreenAdapter{
         startStyle.up=new TextureRegionDrawable(new TextureRegion(startUpTexture));
         startStyle.down=new TextureRegionDrawable(new TextureRegion(startDownTexture));
         startButton=new Button(startStyle);
-        startButton.setPosition(Gdx.graphics.getWidth()/2-startUpTexture.getWidth()/2,200);
+        startButton.setPosition(stage.getWidth()/2-startUpTexture.getWidth()/2,200);
         startButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -90,7 +92,7 @@ public class MenuScreen extends ScreenAdapter{
         regleStyle.up=new TextureRegionDrawable(new TextureRegion(regleUpTexture));
         regleStyle.down=new TextureRegionDrawable(new TextureRegion(regleDownTexture));
         regleButton=new Button(regleStyle);
-        regleButton.setPosition(Gdx.graphics.getWidth()/2-regleUpTexture.getWidth()/2,100);
+        regleButton.setPosition(stage.getWidth()/2-regleUpTexture.getWidth()/2,100);
         regleButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -145,6 +147,7 @@ public class MenuScreen extends ScreenAdapter{
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);
+        stage.getViewport().update(width, height, true);
     }
 
     @Override

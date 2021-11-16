@@ -12,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
 import com.mygdx.game.World;
@@ -58,7 +60,7 @@ public class GameScreen extends ScreenAdapter {
         this.game = game;
         this.assets = game.getAssets();
         this.world = new World(this.engine, this.assets);
-        this.stage=new Stage();
+        stage = new Stage(new StretchViewport(800, 480));
         this.multiplexer=new InputMultiplexer();
         multiplexer.addProcessor(new ACLGameListener(this));
         createBouton();
@@ -76,7 +78,7 @@ public class GameScreen extends ScreenAdapter {
         homeStyle.up=new TextureRegionDrawable(new TextureRegion(homeUpTexture));
         homeStyle.down=new TextureRegionDrawable(new TextureRegion(homeDownTexture));
         homeButton=new Button(homeStyle);
-        homeButton.setPosition(700,400);
+        homeButton.setPosition(stage.getWidth()-100, stage.getHeight()-100);
         homeButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -99,5 +101,12 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void show() {
         super.show();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+        stage.getViewport().update(width, height, true);
+
     }
 }
