@@ -46,9 +46,11 @@ public class Assets {
         assetManager.load("sprites/HeroPack.png", Texture.class);
         assetManager.load("sprites/cherry.png", Texture.class);
         assetManager.load("tiles/treasure32x32.png", Texture.class);
-        assetManager.load("sprites/damage_up.png", Texture.class);
-        assetManager.load("tiles/dungeonDecoration_portal.png", Texture.class);
+        assetManager.load("tiles/wall2.png", Texture.class);
+        assetManager.load("tiles/fire.png", Texture.class);
+        assetManager.load("tiles/portal.png", Texture.class);
         assetManager.load("sprites/spr_orange.png", Texture.class);
+        assetManager.load("tiles/magic.png", Texture.class);
         //load
         //System.out.println(assetManager.getProgress());
 
