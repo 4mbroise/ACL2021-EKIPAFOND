@@ -17,14 +17,18 @@ public class AnimationSystem extends IteratingSystem {
     private ComponentMapper<TransformComponent> trm;
     private ComponentMapper<AnimationComponent> am;
     private ComponentMapper<DirectionComponent> dm;
+    private ComponentMapper<HeroComponent> hm;
 
+    private float sumDelta;
     public AnimationSystem() {
-        super(Family.all(TextureComponent.class, TransformComponent.class, AnimationComponent.class).get());
+        super(Family.all(TextureComponent.class, TransformComponent.class, AnimationComponent.class,HeroComponent.class).get());
 
         tm = ComponentMapper.getFor(TextureComponent.class);
         trm = ComponentMapper.getFor(TransformComponent.class);
         am = ComponentMapper.getFor(AnimationComponent.class);
         dm = ComponentMapper.getFor(DirectionComponent.class);
+        hm = ComponentMapper.getFor(HeroComponent.class);
+        sumDelta=0;
     }
 
     @Override
@@ -33,6 +37,7 @@ public class AnimationSystem extends IteratingSystem {
         TransformComponent trmComp = trm.get(entity);
         AnimationComponent amComp = am.get(entity);
         DirectionComponent dComp = dm.get(entity);
+        HeroComponent hComp= hm.get(entity);
 
 
         float textureWidth = txtComp.getRegion().getRegionWidth();
@@ -47,23 +52,63 @@ public class AnimationSystem extends IteratingSystem {
 
         switch (dComp.getDirection()) {
             case DirectionComponent.UP:
-                txtComp.setRegion(((TextureAtlas.AtlasRegion)amComp.getAnimationUp().getKeyFrame(amComp.animTime)));
-                amComp.animTime+=deltaTime;
-                break;
-            case DirectionComponent.DOWN:
-                txtComp.setRegion(((TextureAtlas.AtlasRegion)amComp.getAnimationDown().getKeyFrame(amComp.animTime)));
-                amComp.animTime+=deltaTime;
-                break;
-            case DirectionComponent.RIGHT:
-                txtComp.setRegion(((TextureAtlas.AtlasRegion)amComp.getAnimationRight().getKeyFrame(amComp.animTime)));
-                amComp.animTime+=deltaTime;
-                break;
-            case DirectionComponent.LEFT:
-                txtComp.setRegion(((TextureAtlas.AtlasRegion)amComp.getAnimationLeft().getKeyFrame(amComp.animTime)));
-                amComp.animTime+=deltaTime;
+                if(hComp.getState()==hComp.STATE_ATTACKING||(sumDelta>0&&sumDelta<=0.3)) {
+                    txtComp.setRegion(((TextureAtlas.AtlasRegion) amComp.getAnimationAttackUp().getKeyFrame(amComp.animTime)));
+                    sumDelta+=deltaTime;
+                    if(sumDelta>0.3){
+                        hComp.setState(hComp.STATE_WALKING);
+                        sumDelta=0;
+                    }
+                }else {
+                    txtComp.setRegion(((TextureAtlas.AtlasRegion) amComp.getAnimationUp().getKeyFrame(amComp.animTime)));
+                }
+                amComp.animTime += deltaTime;
                 break;
 
+            case DirectionComponent.DOWN:
+                if(hComp.getState()==hComp.STATE_ATTACKING||(sumDelta>0&&sumDelta<=0.3)) {
+                    txtComp.setRegion(((TextureAtlas.AtlasRegion) amComp.getAnimationAttackDown().getKeyFrame(amComp.animTime)));
+                    sumDelta+=deltaTime;
+                    if(sumDelta>0.3){
+                        hComp.setState(hComp.STATE_WALKING);
+                        sumDelta=0;
+                    }
+                }else {
+                    txtComp.setRegion(((TextureAtlas.AtlasRegion) amComp.getAnimationDown().getKeyFrame(amComp.animTime)));
+                }
+                amComp.animTime += deltaTime;
+                break;
+
+            case DirectionComponent.RIGHT:
+                if(hComp.getState()==hComp.STATE_ATTACKING||(sumDelta>0&&sumDelta<=0.3)) {
+                    txtComp.setRegion(((TextureAtlas.AtlasRegion) amComp.getAnimationAttackRight().getKeyFrame(amComp.animTime)));
+                    sumDelta+=deltaTime;
+                    if(sumDelta>0.3){
+                        hComp.setState(hComp.STATE_WALKING);
+                        sumDelta=0;
+                    }
+                } else{
+                    txtComp.setRegion(((TextureAtlas.AtlasRegion) amComp.getAnimationRight().getKeyFrame(amComp.animTime)));
+                }
+                amComp.animTime += deltaTime;
+                break;
+
+            case DirectionComponent.LEFT:
+                if(hComp.getState()==hComp.STATE_ATTACKING||(sumDelta>0&&sumDelta<=0.3)) {
+                    txtComp.setRegion(((TextureAtlas.AtlasRegion) amComp.getAnimationAttackLeft().getKeyFrame(amComp.animTime)));
+                    sumDelta+=deltaTime;
+                    if(sumDelta>0.3){
+                        hComp.setState(hComp.STATE_WALKING);
+                        sumDelta=0;
+                    }
+                }else {
+                    txtComp.setRegion(((TextureAtlas.AtlasRegion) amComp.getAnimationLeft().getKeyFrame(amComp.animTime)));
+                }
+                amComp.animTime += deltaTime;
+                System.out.println("delta:"+deltaTime);
+                break;
         }
+
     }
 
 

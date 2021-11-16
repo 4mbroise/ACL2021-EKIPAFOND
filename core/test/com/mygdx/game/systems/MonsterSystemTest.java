@@ -27,7 +27,7 @@ public class MonsterSystemTest {
     public void setUp() throws Exception {
         engine = new PooledEngine();
         hero= new Entity();
-        monsterSystem = new MonsterSystem(hero);
+        //monsterSystem = new MonsterSystem(hero);
         monsterComponent = new MonsterComponent();
         monsterComponent1 = new MonsterComponent(1);
         monster = new Entity();

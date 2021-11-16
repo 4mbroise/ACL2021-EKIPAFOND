@@ -8,7 +8,7 @@ public class MonsterComponent implements Component, Pool.Poolable {
     public static enum Type {MONSTER, GHOST} // enum types of the monster
     private boolean isDead; // monster's life status
     private float xPosCenter; //position of the monster
-    private Type monsterType; // type of the monster
+    public Type monsterType; // type of the monster
     public static final float MONSTER_VELOCITY = 1;
 
     /**

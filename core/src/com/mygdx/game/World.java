@@ -127,8 +127,8 @@ public class World {
         int y = 0;
         while(true){
             for(int i=0; i<maxWidth;i++){
-                System.out.println(this.map[y][i]);
-                System.out.println(this.map[y][i] != '-' && this.map[y][i] != ' ');
+                //System.out.println(this.map[y][i]);
+                //System.out.println(this.map[y][i] != '-' && this.map[y][i] != ' ');
                 if(this.map[y][i] != '-' && this.map[y][i] != ' ')
                 {
                     return new int[]{i, y};
