@@ -54,7 +54,7 @@ public class HeroBuilder implements EntityBuilder{
 
         hero.add(new CollisionComponent());
 
-        hero.add(new HealthComponent(5));
+        hero.add(new HealthComponent(HeroComponent.START_HEALTH));
 
         hero.add(new AttackerComponent(1));
 

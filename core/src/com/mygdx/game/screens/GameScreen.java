@@ -51,6 +51,7 @@ public class GameScreen extends ScreenAdapter {
         this.engine.addSystem(new AttackSystem());
         this.engine.addSystem(new DeathSystem());
         this.engine.addSystem(new PathFindingSystem());
+        this.engine.addSystem(new HealthRenderSystem(game.batcher, game.getAssets()));
         CollisionsSystem collisionsSystem = new CollisionsSystem();
         collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
         collisionsSystem.addCollisionStrategy(new HeroTreasureCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
