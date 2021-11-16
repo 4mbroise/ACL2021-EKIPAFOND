@@ -106,7 +106,7 @@ public class World {
             while (mapReader.hasNext()) {
                 String data = mapReader.nextLine();
                 for (int j = 0; j < data.length(); j++) {
-                    System.out.println("("+x+";"+y+")");
+                    //System.out.println("("+x+";"+y+")");
                     Entity entity = entityFactory.createEntity(Character.toString(data.charAt(j)), x, y);
                     map[y/(CASE_DIMENSION*2)-1][x/(CASE_DIMENSION*2)] = data.charAt(j);
                     if(entity != null){
@@ -129,8 +129,8 @@ public class World {
         int y = 0;
         while(true){
             for(int i=0; i<maxWidth;i++){
-                System.out.println(this.map[y][i]);
-                System.out.println(this.map[y][i] != '-' && this.map[y][i] != ' ');
+                //System.out.println(this.map[y][i]);
+                //System.out.println(this.map[y][i] != '-' && this.map[y][i] != ' ');
                 if(this.map[y][i] != '-' && this.map[y][i] != ' ')
                 {
                     return new int[]{i, y};
