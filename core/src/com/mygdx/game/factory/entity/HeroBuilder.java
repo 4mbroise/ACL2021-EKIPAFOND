@@ -15,6 +15,7 @@ public class HeroBuilder implements EntityBuilder{
 
     private Assets assets;
     private PhysicsSystem physicsSystem;
+    private GroundBuilder groundBuilder;
 
     public HeroBuilder(Assets assets, PhysicsSystem physicsSystem) {
         this.assets = assets;

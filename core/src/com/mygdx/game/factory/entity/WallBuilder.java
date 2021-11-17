@@ -24,7 +24,7 @@ public class WallBuilder implements EntityBuilder{
     public Entity buildEntity(float x, float y) {
         Entity wall = new Entity();
         TextureComponent textureComponent = new TextureComponent();
-        textureComponent.setRegion(new TextureRegion(assets.getManager().get("tiles/wall2.png", Texture.class)));
+        textureComponent.setRegion(new TextureRegion(assets.getManager().get("tiles/wall.png", Texture.class)));
         wall.add(textureComponent);
         TransformComponent transformComponent = new TransformComponent(new Vector3(x , y,0));
         wall.add(transformComponent);

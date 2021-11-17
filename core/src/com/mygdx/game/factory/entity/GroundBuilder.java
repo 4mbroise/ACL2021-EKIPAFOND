@@ -10,35 +10,25 @@ import com.mygdx.game.World;
 import com.mygdx.game.components.*;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
-public class TrapBuilder implements EntityBuilder{
+public class GroundBuilder implements EntityBuilder{
 
     private Assets assets;
     private PhysicsSystem physicsSystem;
-    private Body body ;
 
-    public TrapBuilder(Assets assetManager, PhysicsSystem physicsSystem) {
+    public GroundBuilder(Assets assetManager, PhysicsSystem physicsSystem) {
         this.assets = assetManager;
         this.physicsSystem = physicsSystem;
     }
 
     @Override
     public Entity buildEntity(float x, float y) {
-
-        Entity treasure = new Entity();
-
+        Entity ground = new Entity();
         TextureComponent textureComponent = new TextureComponent();
-        textureComponent.setRegion(new TextureRegion(assets.getManager().get("tiles/fire.png", Texture.class)));
-        treasure.add(textureComponent);
-
+        textureComponent.setRegion(new TextureRegion(assets.getManager().get("tiles/ground.png", Texture.class)));
+        ground.add(textureComponent);
         TransformComponent transformComponent = new TransformComponent(new Vector3(x , y,0));
-        treasure.add(transformComponent);
-
-        body = physicsSystem.addSensorBody(x , y, World.CASE_DIMENSION,World.CASE_DIMENSION);
-        body.setUserData(treasure);
-        //System.out.print("  Treasure  ");
-        treasure.add(new SteeringComponent(body));
-        treasure.add(new CollisionComponent());
-        treasure.add(new TypeComponent(TypeComponent.TYPE_TRAP));
-        return treasure;
+        ground.add(transformComponent);
+        ground.add(new TypeComponent(TypeComponent.TYPE_GROUND));
+        return ground;
     }
 }

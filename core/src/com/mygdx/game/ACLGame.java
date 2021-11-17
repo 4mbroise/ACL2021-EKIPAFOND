@@ -14,6 +14,7 @@ public class ACLGame extends Game {
     public SpriteBatch batcher;
     public OrthographicCamera camera;
     private Assets assets;
+    private int level;
 
 
 
@@ -51,6 +52,7 @@ public class ACLGame extends Game {
     public Assets getAssets() {
         return this.assets;
     }
+
 
     @Override
     public void dispose() {

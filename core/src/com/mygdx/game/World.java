@@ -21,14 +21,17 @@ public class World {
     private int maxWidth;
     private int maxHeight;
     private char[][] map;
+    private int level;
 
     public World(Engine engine, Assets assets) {
         this.engine = engine;
         this.assets = assets;
         this.physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+        this.level = 1;
 
         this.entityFactory = new EntityFactory();
         this.entityFactory.addEntityBuilder("-", new WallBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("+", new GroundBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("1", new HeroBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("2", new MonsterBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("3", new InteligentMonsterBuilder(assets, physicsSystem));
@@ -108,6 +111,7 @@ public class World {
                     Entity entity = entityFactory.createEntity(Character.toString(data.charAt(j)), x, y);
                     map[y/(CASE_DIMENSION*2)-1][x/(CASE_DIMENSION*2)] = data.charAt(j);
                     if(entity != null){
+                        this.engine.addEntity(entityFactory.createEntity("+",x,y));
                         this.engine.addEntity(entity);
                     }
                     x += CASE_DIMENSION*2;
@@ -181,6 +185,14 @@ public class World {
         } else{
             return graph.getNode(x, y);
         }
+    }
+
+    public void levelUp(){
+        level++;
+    }
+
+    public int getCurrentLevel(){
+        return level;
     }
 
 }
