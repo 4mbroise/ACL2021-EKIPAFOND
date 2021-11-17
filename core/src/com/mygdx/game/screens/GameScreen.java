@@ -39,7 +39,7 @@ public class GameScreen extends ScreenAdapter {
     protected Stage stage;
     public GameScreen(ACLGame game) {
         this.engine = new PooledEngine();
-
+        this.stage=new Stage();
         //Add System
         this.engine.addSystem(new RenderSystem(game.batcher));
         this.engine.addSystem(new AnimationSystem());
@@ -51,7 +51,8 @@ public class GameScreen extends ScreenAdapter {
         this.engine.addSystem(new AttackSystem());
         this.engine.addSystem(new DeathSystem());
         this.engine.addSystem(new PathFindingSystem());
-        this.engine.addSystem(new HealthRenderSystem(game.batcher, game.getAssets()));
+        this.engine.addSystem(new MonsterSystem());
+        this.engine.addSystem(new HealthRenderSystem(game.batcher, game.getAssets(), stage));
         CollisionsSystem collisionsSystem = new CollisionsSystem();
         collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
         collisionsSystem.addCollisionStrategy(new HeroTreasureCollisionHandler(this.engine), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
@@ -64,7 +65,7 @@ public class GameScreen extends ScreenAdapter {
         this.game = game;
         this.assets = game.getAssets();
         this.world = new World(this.engine, this.assets);
-        this.stage=new Stage();
+
         this.multiplexer=new InputMultiplexer();
         multiplexer.addProcessor(new ACLGameListener(this));
         createBouton();

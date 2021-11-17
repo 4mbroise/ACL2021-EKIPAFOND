@@ -6,21 +6,19 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.mygdx.game.Assets;
 import com.mygdx.game.World;
 import com.mygdx.game.components.*;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
-public class MonsterBuilder implements EntityBuilder{
+public class GhostBuilder implements EntityBuilder{
+
 
     private Assets assets;
     private PhysicsSystem physicsSystem;
-
-    public MonsterBuilder(Assets assets, PhysicsSystem physicsSystem) {
-        this.assets = assets;
-        this.physicsSystem = physicsSystem;
+    public GhostBuilder( Assets a, PhysicsSystem p) {
+        this.assets = a;
+        this.physicsSystem = p;
     }
 
     @Override
@@ -34,25 +32,23 @@ public class MonsterBuilder implements EntityBuilder{
         monster.add(textureComponent);
 
         //Add Movement
-        RandomMovementComponent movementComponent = new RandomMovementComponent(MonsterComponent.MONSTER_VELOCITY);
+        MovementComponent movementComponent = new MovementComponent(MonsterComponent.MONSTER_VELOCITY);
         monster.add(movementComponent);
 
         // Add Monster component
-        MonsterComponent monsterComponent = new MonsterComponent();
+        MonsterComponent monsterComponent = new MonsterComponent(1);
         monster.add(monsterComponent);
 
+        monster.add(new CollisionComponent());
 
         // Add transform
-        TransformComponent transformComponent = new TransformComponent(new Vector3(x,y,10));
+        TransformComponent transformComponent = new TransformComponent(new Vector3(x,y,0));
         monster.add(transformComponent);
-
-        // Add Collision
-        monster.add(new CollisionComponent());
 
         //Add Health Point
         monster.add(new HealthComponent(3));
 
-        Body body = physicsSystem.addDynamicBody(x, y, World.CASE_DIMENSION - 1, World.CASE_DIMENSION - 1);
+        Body body = physicsSystem.addSensorDynamicBody(x, y, World.CASE_DIMENSION - 1, World.CASE_DIMENSION - 1);
         body.setUserData(monster);
         body.setLinearVelocity(new Vector2(0,0));
 
@@ -62,7 +58,7 @@ public class MonsterBuilder implements EntityBuilder{
         //monster.getComponent(SteeringComponent.class).steeringBehavior  = SteeringPresets.getSeek(monster.getComponent(SteeringComponent.class),hero.getComponent(SteeringComponent.class));
         //monster.getComponent(SteeringComponent.class).currentMode = SteeringComponent.SteeringState.SEEK;
 
-        monster.add(new TypeComponent(TypeComponent.TYPE_MONSTER));
+        monster.add(new TypeComponent(TypeComponent.TYPE_GHOST));
 
         return monster;
     }

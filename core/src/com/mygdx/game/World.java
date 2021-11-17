@@ -187,10 +187,6 @@ public class World {
         }
     }
 
-    public void levelUp(){
-        level++;
-    }
-
     public int getCurrentLevel(){
         return level;
     }

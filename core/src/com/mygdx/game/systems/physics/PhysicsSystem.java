@@ -75,9 +75,19 @@ public class PhysicsSystem extends IteratingSystem {
         return body;
     }
 
+    public Body addSensorDynamicBody(float abscissa , float ordinate, float width, float height ){
+        BodyDefPrototype.type = BodyDef.BodyType.DynamicBody;
+        fixturePrototype.isSensor = true;
+        Body body = addOctogonBody(abscissa , ordinate, width, height);
+        body.createFixture(fixturePrototype);
+        return body;
+    }
+
     public World getPhysicsWorld() {
         return physicsWorld;
     }
+
+
 
     @Override
     public void update(float deltaTime) {
