@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.factory.EntityFactory;
 import com.mygdx.game.factory.entity.*;
 import com.mygdx.game.systems.pathfinding.MapGraph;
@@ -21,13 +22,14 @@ public class World {
     private int maxWidth;
     private int maxHeight;
     private char[][] map;
-    private int level;
+    private int nbPortals;
+    private Vector2 portal1;
+    private Vector2 portal2;
 
     public World(Engine engine, Assets assets) {
         this.engine = engine;
-        this.assets = assets;
         this.physicsSystem = this.engine.getSystem(PhysicsSystem.class);
-        this.level = 1;
+        this.nbPortals = 0;
 
         this.entityFactory = new EntityFactory();
         this.entityFactory.addEntityBuilder("-", new WallBuilder(assets, physicsSystem));
@@ -39,6 +41,7 @@ public class World {
         this.entityFactory.addEntityBuilder("m", new MagicBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("t", new TrapBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("p", new PortalBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("g", new GhostBuilder(assets, physicsSystem));
 
     }
 
@@ -110,6 +113,13 @@ public class World {
                     //System.out.println("("+x+";"+y+")");
                     Entity entity = entityFactory.createEntity(Character.toString(data.charAt(j)), x, y);
                     map[y/(CASE_DIMENSION*2)-1][x/(CASE_DIMENSION*2)] = data.charAt(j);
+                    if (data.charAt(j) == 'p' && nbPortals == 0){
+                        this.portal1 = new Vector2(x,y);
+                        nbPortals++;
+                    } else if (data.charAt(j) == 'p' && nbPortals == 1){
+                        this.portal2 = new Vector2(x,y);
+                        nbPortals++;
+                    }
                     if(entity != null){
                         this.engine.addEntity(entityFactory.createEntity("+",x,y));
                         this.engine.addEntity(entity);
@@ -186,9 +196,4 @@ public class World {
             return graph.getNode(x, y);
         }
     }
-
-    public int getCurrentLevel(){
-        return level;
-    }
-
 }

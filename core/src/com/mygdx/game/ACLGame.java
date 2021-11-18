@@ -23,7 +23,7 @@ public class ACLGame extends Game {
     public void create() {
         this.assets = new Assets();
         batcher = new SpriteBatch();
-        this.level = 2;
+        this.level = 1;
 
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //batcher.setProjectionMatrix(camera.combined);
@@ -56,6 +56,10 @@ public class ACLGame extends Game {
 
     public int getLevel(){
         return level;
+    }
+
+    public void levelUp(){
+        level++;
     }
 
 
