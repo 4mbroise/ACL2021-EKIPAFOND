@@ -11,6 +11,10 @@ import com.mygdx.game.World;
 import com.mygdx.game.components.*;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
+
+/**
+ * Entity builder for ghosts
+ */
 public class GhostBuilder implements EntityBuilder{
 
 
@@ -55,9 +59,6 @@ public class GhostBuilder implements EntityBuilder{
         // Add steering
         SteeringComponent steeringComponent = new SteeringComponent(body);
         monster.add(steeringComponent);
-        //monster.getComponent(SteeringComponent.class).steeringBehavior  = SteeringPresets.getSeek(monster.getComponent(SteeringComponent.class),hero.getComponent(SteeringComponent.class));
-        //monster.getComponent(SteeringComponent.class).currentMode = SteeringComponent.SteeringState.SEEK;
-
         monster.add(new TypeComponent(TypeComponent.TYPE_GHOST));
 
         return monster;

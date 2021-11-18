@@ -30,7 +30,7 @@ public class GameScreen extends ScreenAdapter {
     public ACLGame game;
     public Assets assets;
     public Engine engine;
-    public World world;
+    public static World world;
     public boolean active;
     protected InputMultiplexer multiplexer;
     //button
@@ -74,12 +74,12 @@ public class GameScreen extends ScreenAdapter {
 
         this.multiplexer=new InputMultiplexer();
         multiplexer.addProcessor(new ACLGameListener(this));
-        createBouton();
+        createButton();
         multiplexer.addProcessor(stage);
         Gdx.input.setInputProcessor(multiplexer);
     }
 
-    public void createBouton(){
+    public void createButton(){
         //button
         homeUpTexture=assets.getManager().get("UI/homeUp.png");
         homeDownTexture=assets.getManager().get("UI/homeDown.png");
@@ -89,6 +89,7 @@ public class GameScreen extends ScreenAdapter {
         homeStyle.up=new TextureRegionDrawable(new TextureRegion(homeUpTexture));
         homeStyle.down=new TextureRegionDrawable(new TextureRegion(homeDownTexture));
         homeButton=new Button(homeStyle);
+        homeButton.setName("HomeButton");
         homeButton.setPosition(stage.getWidth()-100, stage.getHeight()-100);
         homeButton.addListener(new ClickListener(){
             @Override
