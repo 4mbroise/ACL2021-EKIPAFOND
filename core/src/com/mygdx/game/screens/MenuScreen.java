@@ -53,7 +53,7 @@ public class MenuScreen extends ScreenAdapter{
         //initialization
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         batch=game.batcher;
-        stage = new Stage(new StretchViewport(800, 480));
+        stage = new Stage(new StretchViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
         group=new Group();
         assets=game.getAssets();
         create();
@@ -79,7 +79,6 @@ public class MenuScreen extends ScreenAdapter{
         startStyle.up=new TextureRegionDrawable(new TextureRegion(startUpTexture));
         startStyle.down=new TextureRegionDrawable(new TextureRegion(startDownTexture));
         startButton=new Button(startStyle);
-        startButton.setPosition(stage.getWidth()/2-startUpTexture.getWidth()/2,200);
         startButton.setName("StartButton");
         startButton.setPosition(Gdx.graphics.getWidth()/2-startUpTexture.getWidth()/2,200);
         startButton.addListener(new ClickListener(){
@@ -95,7 +94,7 @@ public class MenuScreen extends ScreenAdapter{
         regleStyle.down=new TextureRegionDrawable(new TextureRegion(regleDownTexture));
         regleButton=new Button(regleStyle);
         regleButton.setName("ruleButton");
-        regleButton.setPosition(stage.getWidth()/2-regleUpTexture.getWidth()/2,100);
+        regleButton.setPosition(Gdx.graphics.getWidth()/2-regleUpTexture.getWidth()/2,100);
         regleButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -150,6 +149,8 @@ public class MenuScreen extends ScreenAdapter{
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);
+        stage.getViewport().update(width, height, true);
+
     }
 
     @Override

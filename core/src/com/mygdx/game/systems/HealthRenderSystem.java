@@ -34,7 +34,6 @@ public class HealthRenderSystem extends IteratingSystem {
     private ComponentMapper<HealthComponent> healthMapper;
     private Assets assets;
 
-    private BitmapFont health; //bitmapfont for the health
     private Batch batch;
     private Texture heartTexture;
     private final float fontScale = 0.75f; //static font scale
@@ -50,7 +49,6 @@ public class HealthRenderSystem extends IteratingSystem {
         this.heroMapper = ComponentMapper.getFor(HeroComponent.class);
         this.healthMapper = ComponentMapper.getFor(HealthComponent.class);
         this.assets = assets;
-        this.health =assets.getManager().get("fonts/Minecraft.ttf");
         this.heartTexture = assets.getManager().get("tiles/vie.png");
         this.batch = batch;
         this.stage=stage;
@@ -62,6 +60,8 @@ public class HealthRenderSystem extends IteratingSystem {
 
         // we should remove all heart textures from stage before refresh
         for(Actor actor : stage.getActors()) {
+            System.out.println(actor.getName());
+
             if(actor.getName().equals("heartbutton")){
                 actor.addAction(Actions.removeActor());
             }
@@ -70,8 +70,6 @@ public class HealthRenderSystem extends IteratingSystem {
 
         String currentHealth = String.valueOf(hc.healthPoint);
         float resizing =0;
-        health.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        health.getData().setScale(fontScale);
         batch.begin();
 
         // on heart by health point is drawn
@@ -80,7 +78,7 @@ public class HealthRenderSystem extends IteratingSystem {
             healthStyle.up=new TextureRegionDrawable(new TextureRegion(heartTexture));
             Button heartButton=new Button(healthStyle);
             heartButton.setName("heartbutton");
-            heartButton.setPosition(0,0+resizing);
+            heartButton.setPosition(100,100+resizing);
             stage.addActor(heartButton);
             resizing+=heartTexture.getWidth();
         }
