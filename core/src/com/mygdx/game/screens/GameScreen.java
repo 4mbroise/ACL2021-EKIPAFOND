@@ -23,7 +23,7 @@ import com.mygdx.game.systems.*;
 import com.mygdx.game.systems.pathfinding.PathFindingSystem;
 import com.mygdx.game.systems.physics.CollisionsSystem;
 import com.mygdx.game.systems.physics.PhysicsSystem;
-import com.mygdx.game.systems.physics.collisionhandler.HeroWallCollisionHandler;
+import com.mygdx.game.systems.physics.collisionhandler.*;
 
 public class GameScreen extends ScreenAdapter {
 
@@ -62,6 +62,7 @@ public class GameScreen extends ScreenAdapter {
         collisionsSystem.addCollisionStrategy(new HeroTreasureCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
         collisionsSystem.addCollisionStrategy(new HeroTrapCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TRAP);
         collisionsSystem.addCollisionStrategy(new HeroMagicCollisionHandler(this.engine), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MAGIC);
+        collisionsSystem.addCollisionStrategy(new HeroMonsterCollisionHandler(this.engine,this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MONSTER);
 
         this.engine.addSystem(collisionsSystem);
 

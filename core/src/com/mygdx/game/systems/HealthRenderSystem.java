@@ -59,17 +59,17 @@ public class HealthRenderSystem extends IteratingSystem {
 
         HealthComponent hc = healthMapper.get(entity);
 
-        String currentHealth = String.valueOf(hc.healthPoint);
+        String currentHealth = String.valueOf(hc.getHealthPoint());
         float resizing =0;
         health.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         health.getData().setScale(fontScale);
         batch.begin();
         for(int i = 0; i<hc.healthPoint;i++){
             //batch.draw(heartTexture, -Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()/2+resizing);
-            Button.ButtonStyle homeStyle=new Button.ButtonStyle();
+            Button.ButtonStyle heartStyle=new Button.ButtonStyle();
             //start button
-            homeStyle.up=new TextureRegionDrawable(new TextureRegion(heartTexture));
-            Button heartButton=new Button(homeStyle);
+            heartStyle.up=new TextureRegionDrawable(new TextureRegion(heartTexture));
+            Button heartButton=new Button(heartStyle);
             heartButton.setPosition(0,0+resizing);
             stage.addActor(heartButton);
             resizing+=heartTexture.getWidth();

@@ -252,6 +252,7 @@ public class GameAITestScreen extends GameScreen{
 
         //Add Attack
         hero.add(new HealthComponent(5));
+
     }
 
     private void createMonster(){

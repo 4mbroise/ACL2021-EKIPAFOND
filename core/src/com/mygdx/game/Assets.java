@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -62,6 +63,10 @@ public class Assets {
         assetManager.load(("tiles/vie.png"), Texture.class);
         //load
         //System.out.println(assetManager.getProgress());
+        //sound
+        //attack
+        assetManager.load(("audio/attack/094-Attack06.ogg"), Sound.class);
+
 
     }
 

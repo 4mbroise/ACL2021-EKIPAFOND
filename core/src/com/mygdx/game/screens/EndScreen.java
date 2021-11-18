@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
 
@@ -40,7 +41,7 @@ public class EndScreen extends ScreenAdapter {
     public  EndScreen (ACLGame game){
         this.game=game;
         this.batch=game.batcher;
-        stage=new Stage();
+        this.stage=new Stage(new StretchViewport(800, 480));
         assets=game.getAssets();
         create();
     }
@@ -106,6 +107,7 @@ public class EndScreen extends ScreenAdapter {
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
@@ -116,6 +118,7 @@ public class EndScreen extends ScreenAdapter {
     @Override
     public void show() {
         super.show();
+
     }
 }
 

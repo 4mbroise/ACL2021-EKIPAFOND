@@ -12,22 +12,14 @@ public class HeroWallCollisionHandler implements CollisionHandler{
 
     ComponentMapper<HeroComponent> hm = ComponentMapper.getFor(HeroComponent.class);
     ComponentMapper<SteeringComponent> bm = ComponentMapper.getFor(SteeringComponent.class);
-    ComponentMapper<MonsterComponent> mm = ComponentMapper.getFor(MonsterComponent.class);
-    ComponentMapper<HealthComponent> healm= ComponentMapper.getFor(HealthComponent.class);
+
 
     @Override
     public void handle(Entity colliedA, Entity colliedB) {
         HeroComponent heroComponent = hm.get(colliedA);
         heroComponent.setState(HeroComponent.STATE_STATIC);
         SteeringComponent steeringComponent = bm.get(colliedA);
-        HealthComponent healthComponent = healm.get(colliedA);
 
-       // System.out.println(healthComponent.getHealthPoint());
-        if(mm.has(colliedB)) {
-            System.out.println(healthComponent.getHealthPoint());
-
-            healthComponent.reduceHealthPoint(1);
-        }
         //System.out.println("test");
         //steeringComponent.setLinearVelocity(new Vector2(0,0));
     }

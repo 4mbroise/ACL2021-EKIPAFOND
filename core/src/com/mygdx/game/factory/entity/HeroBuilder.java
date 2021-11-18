@@ -1,6 +1,7 @@
 package com.mygdx.game.factory.entity;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
@@ -59,8 +60,8 @@ public class HeroBuilder implements EntityBuilder{
         hero.add(new CollisionComponent());
 
         hero.add(new HealthComponent(HeroComponent.START_HEALTH));
-
-        hero.add(new AttackerComponent(1));
+        Sound attack=assets.getManager().get("audio/attack/094-Attack06.ogg");
+        hero.add(new AttackerComponent(1,attack));
 
         this.physicsSystem.getEngine().getSystem(PathFindingSystem.class).setTarget(hero);
         this.physicsSystem.getEngine().getSystem(MonsterSystem.class).setTarget(hero);
