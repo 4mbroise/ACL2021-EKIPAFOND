@@ -9,8 +9,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -41,9 +43,10 @@ public class HealthRenderSystem extends IteratingSystem {
      * Constructor
      * @param batch game's batch
      * @param assets game's assets
+     * @param stage game's stage
      */
     public HealthRenderSystem(Batch batch, Assets assets, Stage stage) {
-        super(Family.all(HeroComponent.class, HealthComponent.class).get());
+        super(Family.all(HeroComponent.class, HealthComponent.class).get()); // we want to collect hero's health point
         this.heroMapper = ComponentMapper.getFor(HeroComponent.class);
         this.healthMapper = ComponentMapper.getFor(HealthComponent.class);
         this.assets = assets;
@@ -57,6 +60,12 @@ public class HealthRenderSystem extends IteratingSystem {
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
 
+        // we should remove all heart textures from stage before refresh
+        for(Actor actor : stage.getActors()) {
+            if(actor.getName().equals("heartbutton")){
+                actor.addAction(Actions.removeActor());
+            }
+        }
         HealthComponent hc = healthMapper.get(entity);
 
         String currentHealth = String.valueOf(hc.healthPoint);
@@ -64,16 +73,18 @@ public class HealthRenderSystem extends IteratingSystem {
         health.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         health.getData().setScale(fontScale);
         batch.begin();
+
+        // on heart by health point is drawn
         for(int i = 0; i<hc.healthPoint;i++){
-            //batch.draw(heartTexture, -Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()/2+resizing);
-            Button.ButtonStyle homeStyle=new Button.ButtonStyle();
-            //start button
-            homeStyle.up=new TextureRegionDrawable(new TextureRegion(heartTexture));
-            Button heartButton=new Button(homeStyle);
+            Button.ButtonStyle healthStyle=new Button.ButtonStyle();
+            healthStyle.up=new TextureRegionDrawable(new TextureRegion(heartTexture));
+            Button heartButton=new Button(healthStyle);
+            heartButton.setName("heartbutton");
             heartButton.setPosition(0,0+resizing);
             stage.addActor(heartButton);
             resizing+=heartTexture.getWidth();
         }
+
         batch.end();
     }
 }
