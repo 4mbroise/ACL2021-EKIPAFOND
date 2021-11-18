@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -53,7 +54,8 @@ public class MenuScreen extends ScreenAdapter{
         //initialization
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         batch=game.batcher;
-        stage = new Stage(new StretchViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
+        this.stage=new Stage(new StretchViewport(800, 480));
+        System.out.println("++++++++++++"+Gdx.graphics.getWidth());
         group=new Group();
         assets=game.getAssets();
         create();
@@ -65,7 +67,7 @@ public class MenuScreen extends ScreenAdapter{
         backGroud=new Image(backGroundTexture);
         backGroud.setPosition(0,0);
         backGroud.setOrigin(0,0);
-        backGroud.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        backGroud.setSize(stage.getWidth(),stage.getHeight());
         //listener
         Gdx.input.setInputProcessor(stage);
         //buttons
@@ -80,7 +82,7 @@ public class MenuScreen extends ScreenAdapter{
         startStyle.down=new TextureRegionDrawable(new TextureRegion(startDownTexture));
         startButton=new Button(startStyle);
         startButton.setName("StartButton");
-        startButton.setPosition(Gdx.graphics.getWidth()/2-startUpTexture.getWidth()/2,200);
+        startButton.setPosition(stage.getWidth()/2-regleDownTexture.getWidth()/2,200);
         startButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -94,7 +96,7 @@ public class MenuScreen extends ScreenAdapter{
         regleStyle.down=new TextureRegionDrawable(new TextureRegion(regleDownTexture));
         regleButton=new Button(regleStyle);
         regleButton.setName("ruleButton");
-        regleButton.setPosition(Gdx.graphics.getWidth()/2-regleUpTexture.getWidth()/2,100);
+        regleButton.setPosition(stage.getWidth()/2-regleUpTexture.getWidth()/2,100);
         regleButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -120,7 +122,10 @@ public class MenuScreen extends ScreenAdapter{
         batch.begin();
         stage.act();
         stage.draw();
-        title.draw(batch, "Pacman",260,400);
+        GlyphLayout titleG = new GlyphLayout();
+        titleG.setText(title,"Pacman");
+        float titleW = titleG.width;
+        title.draw(batch, titleG, (stage.getWidth()-titleW)/2, 400);
         batch.end();
 
     }

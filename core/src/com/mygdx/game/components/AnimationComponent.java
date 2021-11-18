@@ -133,7 +133,7 @@ public class AnimationComponent implements Component {
         atlasRegionsAR.add(atlas.findRegion("Character with sword and shield/attack/attack right2.png"));
         atlasRegionsAR.add(atlas.findRegion("Character with sword and shield/attack/attack right3.png"));
         atlasRegionsAR.add(atlas.findRegion("Character with sword and shield/attack/attack right4.png"));
-        animationAttackRight = new Animation(animTime, atlasRegionsAR);
+        animationAttackRight = new Animation(0.1f, atlasRegionsAR);
         animationAttackRight.setPlayMode(Animation.PlayMode.LOOP);
     }
 
@@ -142,7 +142,7 @@ public class AnimationComponent implements Component {
         atlasRegionsAL.add(atlas.findRegion("Character with sword and shield/attack/attack left2.png"));
         atlasRegionsAL.add(atlas.findRegion("Character with sword and shield/attack/attack left3.png"));
         atlasRegionsAL.add(atlas.findRegion("Character with sword and shield/attack/attack left4.png"));
-        animationAttackLeft = new Animation(animTime, atlasRegionsAL);
+        animationAttackLeft = new Animation(0.1f, atlasRegionsAL);
         animationAttackLeft.setPlayMode(Animation.PlayMode.LOOP);
     }
     private void setAttackUpAnim(){
@@ -150,7 +150,7 @@ public class AnimationComponent implements Component {
         atlasRegionsAU.add(atlas.findRegion("Character with sword and shield/attack/attack up2.png"));
         atlasRegionsAU.add(atlas.findRegion("Character with sword and shield/attack/attack up3.png"));
         atlasRegionsAU.add(atlas.findRegion("Character with sword and shield/attack/attack up4.png"));
-        animationAttackUp = new Animation(animTime, atlasRegionsAU);
+        animationAttackUp = new Animation(0.1f, atlasRegionsAU);
         animationAttackUp.setPlayMode(Animation.PlayMode.LOOP);
     }
     private void setAttackDownAnim(){
@@ -158,7 +158,7 @@ public class AnimationComponent implements Component {
         atlasRegionsAD.add(atlas.findRegion("Character with sword and shield/attack/attack down2.png"));
         atlasRegionsAD.add(atlas.findRegion("Character with sword and shield/attack/attack down3.png"));
         atlasRegionsAD.add(atlas.findRegion("Character with sword and shield/attack/attack down4.png"));
-        animationAttackDown = new Animation(animTime, atlasRegionsAD);
+        animationAttackDown = new Animation(0.1f, atlasRegionsAD);
         animationAttackDown.setPlayMode(Animation.PlayMode.LOOP);
     }
 }

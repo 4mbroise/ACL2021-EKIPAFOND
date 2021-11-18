@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -41,7 +42,7 @@ public class EndScreen extends ScreenAdapter {
     public  EndScreen (ACLGame game){
         this.game=game;
         this.batch=game.batcher;
-        this.stage=new Stage(new StretchViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
+        this.stage=new Stage(new StretchViewport(800,480));
         assets=game.getAssets();
         create();
     }
@@ -64,7 +65,7 @@ public class EndScreen extends ScreenAdapter {
         homeStyle.up=new TextureRegionDrawable(new TextureRegion(homeUpTexture));
         homeStyle.down=new TextureRegionDrawable(new TextureRegion(homeDownTexture));
         homeButton=new Button(homeStyle);
-        homeButton.setPosition(Gdx.graphics.getWidth()/2-homeUpTexture.getWidth()/2,50);
+        homeButton.setPosition(stage.getWidth()/2-homeUpTexture.getWidth()/2,50);
         homeButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -85,7 +86,10 @@ public class EndScreen extends ScreenAdapter {
         batch.begin();
         stage.act();
         stage.draw();
-        title.draw(batch, "Game Over",220,300);
+        GlyphLayout titleG = new GlyphLayout();
+        titleG.setText(title,"Game Over");
+        float titleW = titleG.width;
+        title.draw(batch, titleG, (stage.getWidth()-titleW)/2, 400);
         batch.end();
     }
 

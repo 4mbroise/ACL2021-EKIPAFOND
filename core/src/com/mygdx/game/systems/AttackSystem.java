@@ -3,8 +3,10 @@ package com.mygdx.game.systems;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector3;
+import com.mygdx.game.ACLGame;
 import com.mygdx.game.components.*;
 
 public class AttackSystem extends IteratingSystem {
@@ -16,7 +18,9 @@ public class AttackSystem extends IteratingSystem {
     private ComponentMapper<AnimationComponent> anm;
     private ComponentMapper<TextureComponent> txtm;
     private boolean attack;
-    public AttackSystem() {
+    private Sound sound;
+
+    public AttackSystem(ACLGame game) {
         super(Family.all(HealthComponent.class, HeroComponent.class,DirectionComponent.class,TransformComponent.class,AttackerComponent.class,AnimationComponent.class,TextureComponent.class).get());
         am = ComponentMapper.getFor(AttackerComponent.class);
         heam = ComponentMapper.getFor(HealthComponent.class);
@@ -25,7 +29,7 @@ public class AttackSystem extends IteratingSystem {
         tm=ComponentMapper.getFor(TransformComponent.class);
         anm=ComponentMapper.getFor(AnimationComponent.class);
         txtm=ComponentMapper.getFor(TextureComponent.class);
-
+        sound=game.getAssets().getManager().get("audio/attack/094-Attack06.ogg");
         attack=false;
 
     }
@@ -48,7 +52,7 @@ public class AttackSystem extends IteratingSystem {
                 .get();
         ImmutableArray<Entity> entities = this.getEngine().getEntitiesFor(family);
         if(attack) {
-            ac.playAudio();
+            sound.play();
             herc.setState(herc.STATE_ATTACKING);
             switch (direction) {
                 case DirectionComponent.UP:

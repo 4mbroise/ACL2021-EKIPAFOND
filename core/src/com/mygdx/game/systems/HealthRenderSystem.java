@@ -4,24 +4,19 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.Assets;
 import com.mygdx.game.components.HealthComponent;
 import com.mygdx.game.components.HeroComponent;
-import com.mygdx.game.screens.MenuScreen;
 
-import javax.xml.soap.Text;
 
 /**
  * HealthRenderSystem
@@ -33,7 +28,6 @@ public class HealthRenderSystem extends IteratingSystem {
     private ComponentMapper<HeroComponent> heroMapper;
     private ComponentMapper<HealthComponent> healthMapper;
     private Assets assets;
-
     private Batch batch;
     private Texture heartTexture;
     private final float fontScale = 0.75f; //static font scale
@@ -60,8 +54,6 @@ public class HealthRenderSystem extends IteratingSystem {
 
         // we should remove all heart textures from stage before refresh
         for(Actor actor : stage.getActors()) {
-            System.out.println(actor.getName());
-
             if(actor.getName().equals("heartbutton")){
                 actor.addAction(Actions.removeActor());
             }
@@ -78,7 +70,7 @@ public class HealthRenderSystem extends IteratingSystem {
             healthStyle.up=new TextureRegionDrawable(new TextureRegion(heartTexture));
             Button heartButton=new Button(healthStyle);
             heartButton.setName("heartbutton");
-            heartButton.setPosition(100,100+resizing);
+            heartButton.setPosition(0,0+resizing);
             stage.addActor(heartButton);
             resizing+=heartTexture.getWidth();
         }

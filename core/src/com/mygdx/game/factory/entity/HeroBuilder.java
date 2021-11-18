@@ -60,8 +60,7 @@ public class HeroBuilder implements EntityBuilder{
         hero.add(new CollisionComponent());
 
         hero.add(new HealthComponent(HeroComponent.START_HEALTH));
-        Sound attack=assets.getManager().get("audio/attack/094-Attack06.ogg");
-        hero.add(new AttackerComponent(1,attack));
+        hero.add(new AttackerComponent(1));
 
         this.physicsSystem.getEngine().getSystem(PathFindingSystem.class).setTarget(hero);
         this.physicsSystem.getEngine().getSystem(MonsterSystem.class).setTarget(hero);

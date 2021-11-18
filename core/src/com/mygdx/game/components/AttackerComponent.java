@@ -7,11 +7,9 @@ import com.badlogic.gdx.audio.Sound;
 
 public class AttackerComponent implements Component {
     private int damage;
-    private Sound sound;
 
-    public AttackerComponent(int damage,Sound sound){
+    public AttackerComponent(int damage){
         this.damage=damage;
-        this.sound=sound;
     }
 
     public void setDamage(int damage ) {
@@ -22,5 +20,4 @@ public class AttackerComponent implements Component {
         return damage;
     }
 
-    public void playAudio(){sound.play();}
 }

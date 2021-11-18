@@ -42,7 +42,7 @@ public class GameScreen extends ScreenAdapter {
     public GameScreen(ACLGame game) {
         this.engine = new PooledEngine();
         this.assets = game.getAssets();
-        this.stage=new Stage();
+        this.stage=new Stage(new StretchViewport(800, 480));
         this.game = game;
         //Add System
         this.engine.addSystem(new RenderSystem(game.batcher));
@@ -52,7 +52,7 @@ public class GameScreen extends ScreenAdapter {
         this.engine.addSystem(new PhysicsSystem());
         this.engine.addSystem(new RandomMovementSystem());
         this.engine.addSystem(new DebugRenderSystem(game.batcher, game.camera));
-        this.engine.addSystem(new AttackSystem());
+        this.engine.addSystem(new AttackSystem(game));
         this.engine.addSystem(new DeathSystem());
         this.engine.addSystem(new PathFindingSystem());
         this.engine.addSystem(new MonsterSystem());
@@ -63,11 +63,9 @@ public class GameScreen extends ScreenAdapter {
         collisionsSystem.addCollisionStrategy(new HeroTrapCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TRAP);
         collisionsSystem.addCollisionStrategy(new HeroMagicCollisionHandler(this.engine), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MAGIC);
         collisionsSystem.addCollisionStrategy(new HeroMonsterCollisionHandler(this.engine,this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MONSTER);
-
         this.engine.addSystem(collisionsSystem);
 
         this.world = new World(this.engine, this.assets);
-        stage = new Stage(new StretchViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
 
         collisionsSystem.addCollisionStrategy(new HeroPortalCollisionHandler(this.engine, this.world), TypeComponent.TYPE_HERO, TypeComponent.TYPE_PORTAL);
         this.engine.addSystem(collisionsSystem);
