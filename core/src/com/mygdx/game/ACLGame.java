@@ -17,8 +17,6 @@ public class ACLGame extends Game {
     private int level;
 
 
-
-
     @Override
     public void create() {
         this.assets = new Assets();
@@ -61,6 +59,8 @@ public class ACLGame extends Game {
     public void levelUp(){
         level++;
     }
+
+    public void resetLevel() {level = 1;}
 
 
     @Override

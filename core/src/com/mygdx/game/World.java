@@ -30,6 +30,7 @@ public class World {
         this.engine = engine;
         this.physicsSystem = this.engine.getSystem(PhysicsSystem.class);
         this.nbPortals = 0;
+        this.assets = assets;
 
         this.entityFactory = new EntityFactory();
         this.entityFactory.addEntityBuilder("-", new WallBuilder(assets, physicsSystem));
@@ -37,11 +38,11 @@ public class World {
         this.entityFactory.addEntityBuilder("1", new HeroBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("2", new MonsterBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("3", new InteligentMonsterBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("4", new GhostBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("k", new TreasureBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("m", new MagicBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("t", new TrapBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("p", new PortalBuilder(assets, physicsSystem));
-        this.entityFactory.addEntityBuilder("g", new GhostBuilder(assets, physicsSystem));
 
     }
 
@@ -195,5 +196,21 @@ public class World {
         } else{
             return graph.getNode(x, y);
         }
+    }
+
+    public Vector2 getPortal1() {
+        return portal1;
+    }
+
+    public Vector2 getPortal2() {
+        return portal2;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public PhysicsSystem getPhysicsSystem() {
+        return physicsSystem;
     }
 }

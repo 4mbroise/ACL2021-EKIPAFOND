@@ -32,7 +32,7 @@ public class PortalBuilder implements EntityBuilder{
         TransformComponent transformComponent = new TransformComponent(new Vector3(x , y,5));
         treasure.add(transformComponent);
 
-        Body body = physicsSystem.addSensorBody(x , y, World.CASE_DIMENSION,World.CASE_DIMENSION);
+        Body body = physicsSystem.addStaticBody(x , y, World.CASE_DIMENSION,World.CASE_DIMENSION);
         body.setUserData(treasure);
         //System.out.print("  Treasure  ");
         treasure.add(new SteeringComponent(body));
