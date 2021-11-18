@@ -14,6 +14,7 @@ public class TrapBuilder implements EntityBuilder{
 
     private Assets assets;
     private PhysicsSystem physicsSystem;
+    private Body body ;
 
     public TrapBuilder(Assets assetManager, PhysicsSystem physicsSystem) {
         this.assets = assetManager;
@@ -29,10 +30,10 @@ public class TrapBuilder implements EntityBuilder{
         textureComponent.setRegion(new TextureRegion(assets.getManager().get("tiles/fire.png", Texture.class)));
         treasure.add(textureComponent);
 
-        TransformComponent transformComponent = new TransformComponent(new Vector3(x , y,0));
+        TransformComponent transformComponent = new TransformComponent(new Vector3(x , y,5));
         treasure.add(transformComponent);
 
-        Body body = physicsSystem.addSensorBody(x , y, World.CASE_DIMENSION,World.CASE_DIMENSION);
+        body = physicsSystem.addSensorBody(x , y, World.CASE_DIMENSION,World.CASE_DIMENSION);
         body.setUserData(treasure);
         //System.out.print("  Treasure  ");
         treasure.add(new SteeringComponent(body));

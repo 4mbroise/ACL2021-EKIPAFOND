@@ -43,7 +43,7 @@ public class MonsterBuilder implements EntityBuilder{
 
 
         // Add transform
-        TransformComponent transformComponent = new TransformComponent(new Vector3(x,y,0));
+        TransformComponent transformComponent = new TransformComponent(new Vector3(x,y,10));
         monster.add(transformComponent);
 
         // Add Collision

@@ -13,6 +13,10 @@ public class HealthComponent implements Component {
         this.healthPoint = healthPoint;
     }
 
+    public void resetHealthPoint(){
+        this.healthPoint = healthPoint;
+    }
+
     public int getHealthPoint() {
         return healthPoint;
     }

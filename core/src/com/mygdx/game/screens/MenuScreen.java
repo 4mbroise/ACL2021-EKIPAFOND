@@ -77,6 +77,7 @@ public class MenuScreen extends ScreenAdapter{
         startStyle.up=new TextureRegionDrawable(new TextureRegion(startUpTexture));
         startStyle.down=new TextureRegionDrawable(new TextureRegion(startDownTexture));
         startButton=new Button(startStyle);
+        startButton.setName("StartButton");
         startButton.setPosition(Gdx.graphics.getWidth()/2-startUpTexture.getWidth()/2,200);
         startButton.addListener(new ClickListener(){
             @Override
@@ -90,6 +91,7 @@ public class MenuScreen extends ScreenAdapter{
         regleStyle.up=new TextureRegionDrawable(new TextureRegion(regleUpTexture));
         regleStyle.down=new TextureRegionDrawable(new TextureRegion(regleDownTexture));
         regleButton=new Button(regleStyle);
+        regleButton.setName("ruleButton");
         regleButton.setPosition(Gdx.graphics.getWidth()/2-regleUpTexture.getWidth()/2,100);
         regleButton.addListener(new ClickListener(){
             @Override

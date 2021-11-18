@@ -14,14 +14,14 @@ public class ACLGame extends Game {
     public SpriteBatch batcher;
     public OrthographicCamera camera;
     private Assets assets;
-
-
+    private int level;
 
 
     @Override
     public void create() {
         this.assets = new Assets();
         batcher = new SpriteBatch();
+        this.level = 1;
 
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //batcher.setProjectionMatrix(camera.combined);
@@ -51,6 +51,17 @@ public class ACLGame extends Game {
     public Assets getAssets() {
         return this.assets;
     }
+
+    public int getLevel(){
+        return level;
+    }
+
+    public void levelUp(){
+        level++;
+    }
+
+    public void resetLevel() {level = 1;}
+
 
     @Override
     public void dispose() {

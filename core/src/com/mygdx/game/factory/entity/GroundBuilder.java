@@ -10,30 +10,25 @@ import com.mygdx.game.World;
 import com.mygdx.game.components.*;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
-public class WallBuilder implements EntityBuilder{
+public class GroundBuilder implements EntityBuilder{
 
     private Assets assets;
     private PhysicsSystem physicsSystem;
 
-    public WallBuilder(Assets assetManager, PhysicsSystem physicsSystem) {
+    public GroundBuilder(Assets assetManager, PhysicsSystem physicsSystem) {
         this.assets = assetManager;
         this.physicsSystem = physicsSystem;
     }
 
     @Override
     public Entity buildEntity(float x, float y) {
-        Entity wall = new Entity();
+        Entity ground = new Entity();
         TextureComponent textureComponent = new TextureComponent();
-        textureComponent.setRegion(new TextureRegion(assets.getManager().get("tiles/wall.png", Texture.class)));
-        wall.add(textureComponent);
+        textureComponent.setRegion(new TextureRegion(assets.getManager().get("tiles/ground.png", Texture.class)));
+        ground.add(textureComponent);
         TransformComponent transformComponent = new TransformComponent(new Vector3(x , y,0));
-        wall.add(transformComponent);
-        Body body = physicsSystem.addStaticBody(x , y, World.CASE_DIMENSION,World.CASE_DIMENSION);
-        body.setUserData(wall);
-        //System.out.print("  Wall  ");
-        wall.add(new SteeringComponent(body));
-        wall.add(new CollisionComponent());
-        wall.add(new TypeComponent(TypeComponent.TYPE_WALL));
-        return wall;
+        ground.add(transformComponent);
+        ground.add(new TypeComponent(TypeComponent.TYPE_GROUND));
+        return ground;
     }
 }
