@@ -105,7 +105,6 @@ public class AnimationSystem extends IteratingSystem {
                     txtComp.setRegion(((TextureAtlas.AtlasRegion) amComp.getAnimationLeft().getKeyFrame(amComp.animTime)));
                 }
                 amComp.animTime += deltaTime;
-                System.out.println("delta:"+deltaTime);
                 break;
         }
 
