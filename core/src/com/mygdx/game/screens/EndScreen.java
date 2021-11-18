@@ -84,7 +84,7 @@ public class EndScreen extends ScreenAdapter {
         batch.begin();
         stage.act();
         stage.draw();
-        title.draw(batch, "Game Over",220,400);
+        title.draw(batch, "Game Over",220,300);
         batch.end();
     }
 

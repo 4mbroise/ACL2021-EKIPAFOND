@@ -29,7 +29,7 @@ public class TreasureBuilder implements EntityBuilder{
         textureComponent.setRegion(new TextureRegion(assets.getManager().get("tiles/treasure32x32.png", Texture.class)));
         treasure.add(textureComponent);
 
-        TransformComponent transformComponent = new TransformComponent(new Vector3(x , y,0));
+        TransformComponent transformComponent = new TransformComponent(new Vector3(x , y,5));
         treasure.add(transformComponent);
 
         Body body = physicsSystem.addSensorBody(x , y, World.CASE_DIMENSION,World.CASE_DIMENSION);

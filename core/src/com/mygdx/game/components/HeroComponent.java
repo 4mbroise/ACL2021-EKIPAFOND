@@ -21,5 +21,9 @@ public class HeroComponent implements Component{
         return state;
     }
 
+    public int getStartHealth(){
+        return START_HEALTH;
+    }
+
 
 }

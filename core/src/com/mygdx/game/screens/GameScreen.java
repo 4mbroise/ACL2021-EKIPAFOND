@@ -39,7 +39,9 @@ public class GameScreen extends ScreenAdapter {
     protected Stage stage;
     public GameScreen(ACLGame game) {
         this.engine = new PooledEngine();
+        this.assets = game.getAssets();
         this.stage=new Stage();
+        this.game = game;
         //Add System
         this.engine.addSystem(new RenderSystem(game.batcher));
         this.engine.addSystem(new AnimationSystem());
@@ -55,25 +57,25 @@ public class GameScreen extends ScreenAdapter {
         this.engine.addSystem(new HealthRenderSystem(game.batcher, game.getAssets(), stage));
         CollisionsSystem collisionsSystem = new CollisionsSystem();
         collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
-        collisionsSystem.addCollisionStrategy(new HeroTreasureCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
-        collisionsSystem.addCollisionStrategy(new HeroTrapCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TRAP);
-        collisionsSystem.addCollisionStrategy(new HeroMagicCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MAGIC);
-        collisionsSystem.addCollisionStrategy(new HeroPortalCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_PORTAL);
+        collisionsSystem.addCollisionStrategy(new HeroTreasureCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
+        collisionsSystem.addCollisionStrategy(new HeroTrapCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TRAP);
+        collisionsSystem.addCollisionStrategy(new HeroMagicCollisionHandler(this.engine), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MAGIC);
 
         this.engine.addSystem(collisionsSystem);
 
-        this.game = game;
-        this.assets = game.getAssets();
         this.world = new World(this.engine, this.assets);
+
+        collisionsSystem.addCollisionStrategy(new HeroPortalCollisionHandler(this.engine, this.world), TypeComponent.TYPE_HERO, TypeComponent.TYPE_PORTAL);
+        this.engine.addSystem(collisionsSystem);
 
         this.multiplexer=new InputMultiplexer();
         multiplexer.addProcessor(new ACLGameListener(this));
-        createBouton();
+        createButton();
         multiplexer.addProcessor(stage);
         Gdx.input.setInputProcessor(multiplexer);
     }
 
-    public void createBouton(){
+    public void createButton(){
         //button
         homeUpTexture=assets.getManager().get("UI/homeUp.png");
         homeDownTexture=assets.getManager().get("UI/homeDown.png");
@@ -88,6 +90,7 @@ public class GameScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                game.resetLevel();
                 game.setScreen(new MenuScreen(game));
             }
         });
