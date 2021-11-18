@@ -50,7 +50,7 @@ public class PathFindingSystem extends IteratingSystem {
         int caseX = (int) Math.round((x)/(World.CASE_DIMENSION*2));
         int caseY = (int) Math.round((y)/(World.CASE_DIMENSION*2));
         caseY--;
-        System.out.println(caseX+" */*//* "+caseY);
+        //System.out.println(caseX+" */*//* "+caseY);
         return graph.getNode(caseX, caseY);
     }
 

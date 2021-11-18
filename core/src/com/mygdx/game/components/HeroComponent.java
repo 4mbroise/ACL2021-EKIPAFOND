@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class HeroComponent implements Component{
     public static final float HERO_VELOCITY = 1;
+    public static final int START_HEALTH = 5; // starting health
     public static final int STATE_STATIC = 0;
     public static final int STATE_WALKING = 1;
     public static final int STATE_ATTACKING = 2;
@@ -18,6 +19,10 @@ public class HeroComponent implements Component{
 
     public int getState() {
         return state;
+    }
+
+    public int getStartHealth(){
+        return START_HEALTH;
     }
 
 

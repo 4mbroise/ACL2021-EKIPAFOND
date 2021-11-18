@@ -2,11 +2,9 @@ package com.mygdx.game;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.factory.EntityFactory;
-import com.mygdx.game.factory.entity.HeroBuilder;
-import com.mygdx.game.factory.entity.InteligentMonsterBuilder;
-import com.mygdx.game.factory.entity.MonsterBuilder;
-import com.mygdx.game.factory.entity.WallBuilder;
+import com.mygdx.game.factory.entity.*;
 import com.mygdx.game.systems.pathfinding.MapGraph;
 import com.mygdx.game.systems.pathfinding.Node;
 import com.mygdx.game.systems.physics.PhysicsSystem;
@@ -24,21 +22,28 @@ public class World {
     private int maxWidth;
     private int maxHeight;
     private char[][] map;
+    private int nbPortals;
+    private Vector2 portal1;
+    private Vector2 portal2;
 
     public World(Engine engine, Assets assets) {
         this.engine = engine;
-        this.assets = assets;
         this.physicsSystem = this.engine.getSystem(PhysicsSystem.class);
+        this.nbPortals = 0;
+        this.assets = assets;
 
         this.entityFactory = new EntityFactory();
         this.entityFactory.addEntityBuilder("-", new WallBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("+", new GroundBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("1", new HeroBuilder(assets, physicsSystem));
-        this.entityFactory.addEntityBuilder("m", new MonsterBuilder(assets, physicsSystem));
-        this.entityFactory.addEntityBuilder("M", new InteligentMonsterBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("2", new MonsterBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("3", new InteligentMonsterBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("4", new GhostBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("k", new TreasureBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("m", new MagicBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("t", new TrapBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("p", new PortalBuilder(assets, physicsSystem));
 
-    }
-
-    public World() {
     }
 
     public void createMapChar(File mapFile){
@@ -106,10 +111,18 @@ public class World {
             while (mapReader.hasNext()) {
                 String data = mapReader.nextLine();
                 for (int j = 0; j < data.length(); j++) {
-                    System.out.println("("+x+";"+y+")");
+                    //System.out.println("("+x+";"+y+")");
                     Entity entity = entityFactory.createEntity(Character.toString(data.charAt(j)), x, y);
                     map[y/(CASE_DIMENSION*2)-1][x/(CASE_DIMENSION*2)] = data.charAt(j);
+                    if (data.charAt(j) == 'p' && nbPortals == 0){
+                        this.portal1 = new Vector2(x,y);
+                        nbPortals++;
+                    } else if (data.charAt(j) == 'p' && nbPortals == 1){
+                        this.portal2 = new Vector2(x,y);
+                        nbPortals++;
+                    }
                     if(entity != null){
+                        this.engine.addEntity(entityFactory.createEntity("+",x,y));
                         this.engine.addEntity(entity);
                     }
                     x += CASE_DIMENSION*2;
@@ -129,8 +142,8 @@ public class World {
         int y = 0;
         while(true){
             for(int i=0; i<maxWidth;i++){
-                System.out.println(this.map[y][i]);
-                System.out.println(this.map[y][i] != '-' && this.map[y][i] != ' ');
+                //System.out.println(this.map[y][i]);
+                //System.out.println(this.map[y][i] != '-' && this.map[y][i] != ' ');
                 if(this.map[y][i] != '-' && this.map[y][i] != ' ')
                 {
                     return new int[]{i, y};
@@ -185,4 +198,19 @@ public class World {
         }
     }
 
+    public Vector2 getPortal1() {
+        return portal1;
+    }
+
+    public Vector2 getPortal2() {
+        return portal2;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public PhysicsSystem getPhysicsSystem() {
+        return physicsSystem;
+    }
 }

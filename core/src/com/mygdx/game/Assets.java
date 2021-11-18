@@ -42,13 +42,24 @@ public class Assets {
         parms2.fontParameters.color=Color.RED;
         parms2.fontParameters.borderColor=Color.BLACK;
         assetManager.load( "fonts/Retro_Gaming2.ttf", BitmapFont.class, parms2);
+
+         parms2 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+        parms2.fontFileName = "fonts/Retro_Gaming.ttf";
+        parms2.fontParameters.size = 24;
+        parms2.fontParameters.color=Color.BLUE;
+        parms2.fontParameters.borderColor=Color.BLACK;
+        assetManager.load( "fonts/Minecraft.ttf", BitmapFont.class, parms2);
         //sprites
         assetManager.load("sprites/HeroPack.png", Texture.class);
         assetManager.load("sprites/cherry.png", Texture.class);
         assetManager.load("tiles/treasure32x32.png", Texture.class);
-        assetManager.load("sprites/damage_up.png", Texture.class);
-        assetManager.load("tiles/dungeonDecoration_portal.png", Texture.class);
+        assetManager.load("tiles/wall.png", Texture.class);
+        assetManager.load("tiles/ground.png", Texture.class);
+        assetManager.load("tiles/fire.png", Texture.class);
+        assetManager.load("tiles/portal.png", Texture.class);
         assetManager.load("sprites/spr_orange.png", Texture.class);
+        assetManager.load("tiles/magic.png", Texture.class);
+        assetManager.load(("tiles/vie.png"), Texture.class);
         //load
         //System.out.println(assetManager.getProgress());
 

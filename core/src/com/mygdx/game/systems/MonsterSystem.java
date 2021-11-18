@@ -21,15 +21,17 @@ public class MonsterSystem extends IteratingSystem {
 
     private Entity hero;
     private ComponentMapper<SteeringComponent> steerMap;
+    private ComponentMapper<MonsterComponent> monsMap;
+
+
 
     /**
      * Constructor of the MonsterSystem
-     * @param entity we need hero entity to apply Seek Behaviour to the monster
      */
-    public MonsterSystem(Entity entity) {
+    public MonsterSystem() {
         super(Family.all(MonsterComponent.class, SteeringComponent.class).get());
-        this.hero=entity;
         this.steerMap = ComponentMapper.getFor(SteeringComponent.class);
+        this.monsMap = ComponentMapper.getFor(MonsterComponent.class);
     }
 
     @Override
@@ -37,7 +39,10 @@ public class MonsterSystem extends IteratingSystem {
         SteeringComponent bHero = steerMap.get(hero);
         SteeringComponent bMonster = steerMap.get(entity); //get monster's entity
 
-        this.applySeek(bMonster,bHero);
+        MonsterComponent monsComp = monsMap.get(entity); //get monster's entity
+        if(monsComp.getMonsterType()== MonsterComponent.Type.GHOST){
+            this.applySeek(bMonster,bHero);
+        }
         bMonster.update(deltaTime); //update SteeringComponent
     }
 
@@ -60,6 +65,9 @@ public class MonsterSystem extends IteratingSystem {
         s.steeringBehavior=prioritySteering;
         s.currentMode= SteeringComponent.SteeringState.SEEK;
 
+    }
+    public void setTarget(Entity hero) {
+        this.hero = hero;
     }
 
 }

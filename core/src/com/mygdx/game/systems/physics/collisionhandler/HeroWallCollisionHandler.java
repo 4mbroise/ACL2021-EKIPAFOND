@@ -28,6 +28,7 @@ public class HeroWallCollisionHandler implements CollisionHandler{
 
             healthComponent.reduceHealthPoint(1);
         }
+        //System.out.println("test");
         //steeringComponent.setLinearVelocity(new Vector2(0,0));
     }
 }

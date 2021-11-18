@@ -44,33 +44,41 @@ public class PhysicsSystem extends IteratingSystem {
         return this.physicsWorld.createBody(BodyDefPrototype);
     }
 
-    private Body addBoxBody(float abscissa , float ordinate, float width, float heigth){
+    private Body addBoxBody(float abscissa , float ordinate, float width, float height){
         BodyDefPrototype.position.set(abscissa, ordinate);
-        shapePrototype.setAsBox(width, heigth);
+        shapePrototype.setAsBox(width, height);
         fixturePrototype.shape = shapePrototype;
         return this.physicsWorld.createBody(BodyDefPrototype);
     }
 
-    public Body addDynamicBody(float abscissa , float ordinate, float width, float heigth ){
+    public Body addDynamicBody(float abscissa , float ordinate, float width, float height ){
         BodyDefPrototype.type = BodyDef.BodyType.DynamicBody;
         fixturePrototype.isSensor = false;
-        Body body = addOctogonBody(abscissa , ordinate, width, heigth);
+        Body body = addOctogonBody(abscissa , ordinate, width, height);
         body.createFixture(fixturePrototype);
         return body;
     }
 
-    public Body addStaticBody(float abscissa , float ordinate, float width, float heigth ){
+    public Body addStaticBody(float abscissa , float ordinate, float width, float height ){
         BodyDefPrototype.type = BodyDef.BodyType.StaticBody;
         fixturePrototype.isSensor = false;
-        Body body = addOctogonBody(abscissa , ordinate, width, heigth);
+        Body body = addOctogonBody(abscissa , ordinate, width, height);
         body.createFixture(fixturePrototype);
         return body;
     }
 
-    public Body addSensorBody(float abscissa , float ordinate, float width, float heigth){
+    public Body addSensorBody(float abscissa , float ordinate, float width, float height){
         BodyDefPrototype.type = BodyDef.BodyType.StaticBody;
         fixturePrototype.isSensor = true;
-        Body body = addOctogonBody(abscissa , ordinate, width, heigth);
+        Body body = addOctogonBody(abscissa , ordinate, width, height);
+        body.createFixture(fixturePrototype);
+        return body;
+    }
+
+    public Body addSensorDynamicBody(float abscissa , float ordinate, float width, float height ){
+        BodyDefPrototype.type = BodyDef.BodyType.DynamicBody;
+        fixturePrototype.isSensor = true;
+        Body body = addOctogonBody(abscissa , ordinate, width, height);
         body.createFixture(fixturePrototype);
         return body;
     }
@@ -78,6 +86,8 @@ public class PhysicsSystem extends IteratingSystem {
     public World getPhysicsWorld() {
         return physicsWorld;
     }
+
+
 
     @Override
     public void update(float deltaTime) {

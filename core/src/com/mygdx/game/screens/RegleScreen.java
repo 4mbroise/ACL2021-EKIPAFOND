@@ -88,9 +88,12 @@ public class RegleScreen extends ScreenAdapter {
         batch.begin();
         stage.act();
         stage.draw();
-        title.draw(batch, "Regle",260,400);
-        content.draw(batch, "'z/w','q/a','s','d' control the hero's walking direction" +
-                "\n 'j' attack ",0,300);
+        title.draw(batch, "Les Règles",200,400);
+        content.draw(batch, " - 'Z/W' to move upwards \n" +
+                                " - 'S' to move downwards \n" +
+                                " - 'Q/A' to move left \n" +
+                                " - 'D' to move right \n" +
+                                " - 'J' to attack ",20,300);
         batch.end();
     }
 
