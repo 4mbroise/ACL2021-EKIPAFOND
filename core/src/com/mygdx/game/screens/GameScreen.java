@@ -58,7 +58,7 @@ public class GameScreen extends ScreenAdapter {
         CollisionsSystem collisionsSystem = new CollisionsSystem();
         collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
         collisionsSystem.addCollisionStrategy(new HeroTreasureCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
-        collisionsSystem.addCollisionStrategy(new HeroTrapCollisionHandler(this.engine), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TRAP);
+        collisionsSystem.addCollisionStrategy(new HeroTrapCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TRAP);
         collisionsSystem.addCollisionStrategy(new HeroMagicCollisionHandler(this.engine), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MAGIC);
         collisionsSystem.addCollisionStrategy(new HeroPortalCollisionHandler(this.engine), TypeComponent.TYPE_HERO, TypeComponent.TYPE_PORTAL);
 

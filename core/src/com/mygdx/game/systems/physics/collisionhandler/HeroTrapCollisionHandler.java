@@ -3,7 +3,9 @@ package com.mygdx.game.systems.physics.collisionhandler;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
+import com.mygdx.game.ACLGame;
 import com.mygdx.game.components.*;
+import com.mygdx.game.screens.EndScreen;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
 public class HeroTrapCollisionHandler implements CollisionHandler{
@@ -12,9 +14,11 @@ public class HeroTrapCollisionHandler implements CollisionHandler{
     ComponentMapper<SteeringComponent> bm = ComponentMapper.getFor(SteeringComponent.class);
     ComponentMapper<HealthComponent> healthMapper = ComponentMapper.getFor(HealthComponent.class);
     Engine engine;
+    ACLGame game;
 
-    public HeroTrapCollisionHandler(Engine engine) {
+    public HeroTrapCollisionHandler(Engine engine, ACLGame game) {
         this.engine = engine;
+        this.game = game;
     }
 
     @Override
@@ -25,7 +29,11 @@ public class HeroTrapCollisionHandler implements CollisionHandler{
         engine.removeEntity(colliedB);
         engine.getSystem(PhysicsSystem.class).getPhysicsWorld().destroyBody(steeringComponent.getBody());
         HealthComponent hc = healthMapper.get(colliedA);
+        if (hc.getHealthPoint() > 1) {
         hc.reduceHealthPoint(1);
+        } else {
+            game.setScreen(new EndScreen(game));
+        }
         System.out.println(hc.getHealthPoint());
     }
 }
