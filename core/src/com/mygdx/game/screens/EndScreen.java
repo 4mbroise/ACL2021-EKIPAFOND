@@ -41,7 +41,7 @@ public class EndScreen extends ScreenAdapter {
     public  EndScreen (ACLGame game){
         this.game=game;
         this.batch=game.batcher;
-        this.stage=new Stage(new StretchViewport(800, 480));
+        this.stage=new Stage(new StretchViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
         assets=game.getAssets();
         create();
     }

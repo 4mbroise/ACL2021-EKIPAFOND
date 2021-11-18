@@ -67,7 +67,7 @@ public class GameScreen extends ScreenAdapter {
         this.engine.addSystem(collisionsSystem);
 
         this.world = new World(this.engine, this.assets);
-        stage = new Stage(new StretchViewport(800, 480));
+        stage = new Stage(new StretchViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
 
         collisionsSystem.addCollisionStrategy(new HeroPortalCollisionHandler(this.engine, this.world), TypeComponent.TYPE_HERO, TypeComponent.TYPE_PORTAL);
         this.engine.addSystem(collisionsSystem);
