@@ -6,7 +6,7 @@ import com.badlogic.ashley.core.Entity;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.components.HeroComponent;
 import com.mygdx.game.components.SteeringComponent;
-import com.mygdx.game.screens.EndScreen;
+import com.mygdx.game.screens.EndScreenWin;
 import com.mygdx.game.screens.MazeTestScreen;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
@@ -33,7 +33,7 @@ public class HeroTreasureCollisionHandler implements CollisionHandler{
             game.levelUp();
             game.setScreen(new MazeTestScreen(game));
         } else {
-            game.setScreen(new EndScreen(game));
+            game.setScreen(new EndScreenWin(game));
         }
     }
 }

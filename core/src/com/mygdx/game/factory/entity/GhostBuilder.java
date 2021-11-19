@@ -32,7 +32,7 @@ public class GhostBuilder implements EntityBuilder{
 
         // Add texture
         TextureComponent textureComponent = new TextureComponent();
-        textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/spr_orange.png", Texture.class)));
+        textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/ghost.png", Texture.class)));
         monster.add(textureComponent);
 
         //Add Movement
@@ -46,7 +46,7 @@ public class GhostBuilder implements EntityBuilder{
         monster.add(new CollisionComponent());
 
         // Add transform
-        TransformComponent transformComponent = new TransformComponent(new Vector3(x,y,0));
+        TransformComponent transformComponent = new TransformComponent(new Vector3(x,y,2));
         monster.add(transformComponent);
 
         //Add Health Point

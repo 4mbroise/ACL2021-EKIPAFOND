@@ -12,12 +12,18 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.components.*;
 
+
+/**
+ * Hero animation system
+ * It includes movement animation and also attack animation
+ */
 public class AnimationSystem extends IteratingSystem {
-    private ComponentMapper<TextureComponent> tm;
-    private ComponentMapper<TransformComponent> trm;
-    private ComponentMapper<AnimationComponent> am;
-    private ComponentMapper<DirectionComponent> dm;
-    private ComponentMapper<HeroComponent> hm;
+
+    private ComponentMapper<TextureComponent> tm; // TextureComponent Mapper
+    private ComponentMapper<TransformComponent> trm; // TransformComponent Mapper
+    private ComponentMapper<AnimationComponent> am; // AnimationComponent Mapper
+    private ComponentMapper<DirectionComponent> dm; // DirectionComponent Mapper
+    private ComponentMapper<HeroComponent> hm; // HeroComponent Mapper
 
     private float sumDelta;
     public AnimationSystem() {
@@ -49,17 +55,17 @@ public class AnimationSystem extends IteratingSystem {
         float xDraw = x - textureWidth / 2;
         float yDraw = y - textureHeigth / 2;
 
-
+        /// for each direction we apply an animation (UP, DOWN, LEFT, RIGHT)
         switch (dComp.getDirection()) {
             case DirectionComponent.UP:
-                if(hComp.getState()==hComp.STATE_ATTACKING||(sumDelta>0&&sumDelta<=0.3)) {
+                if(hComp.getState()==hComp.STATE_ATTACKING||(sumDelta>0&&sumDelta<=0.3)) { // if hero attacks ---> attacking animation which is active during 0.3 second
                     txtComp.setRegion(((TextureAtlas.AtlasRegion) amComp.getAnimationAttackUp().getKeyFrame(amComp.animTime)));
                     sumDelta+=deltaTime;
                     if(sumDelta>0.3){
                         hComp.setState(hComp.STATE_WALKING);
                         sumDelta=0;
                     }
-                }else {
+                }else { // else we apply a walking animation (here it's up animation)
                     txtComp.setRegion(((TextureAtlas.AtlasRegion) amComp.getAnimationUp().getKeyFrame(amComp.animTime)));
                 }
                 amComp.animTime += deltaTime;
@@ -105,7 +111,6 @@ public class AnimationSystem extends IteratingSystem {
                     txtComp.setRegion(((TextureAtlas.AtlasRegion) amComp.getAnimationLeft().getKeyFrame(amComp.animTime)));
                 }
                 amComp.animTime += deltaTime;
-                //System.out.println("delta:"+deltaTime);
                 break;
         }
 

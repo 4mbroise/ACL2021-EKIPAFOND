@@ -261,7 +261,7 @@ public class GameAITestScreen extends GameScreen{
 
         // Add texture
         TextureComponent textureComponent = new TextureComponent();
-        textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/spr_orange.png", Texture.class)));
+        textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/monster.png", Texture.class)));
         monster.add(textureComponent);
 
         //Add Movement
