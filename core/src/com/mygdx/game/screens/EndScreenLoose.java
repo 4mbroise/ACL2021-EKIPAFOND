@@ -17,7 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
 
-public class EndScreen extends ScreenAdapter {
+public class EndScreenLoose extends ScreenAdapter {
     //main game
     private ACLGame game;
     //stage
@@ -37,7 +37,7 @@ public class EndScreen extends ScreenAdapter {
     private Button homeButton;
     //assets
     private Assets assets;
-    public  EndScreen (ACLGame game){
+    public EndScreenLoose(ACLGame game){
         this.game=game;
         this.batch=game.batcher;
         stage=new Stage();

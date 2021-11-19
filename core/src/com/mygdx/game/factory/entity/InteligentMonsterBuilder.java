@@ -33,7 +33,7 @@ public class InteligentMonsterBuilder implements EntityBuilder{
 
         // Add texture
         TextureComponent textureComponent = new TextureComponent();
-        textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/spr_orange.png", Texture.class)));
+        textureComponent.setRegion(new TextureRegion(this.assets.getManager().get("sprites/monster.png", Texture.class)));
         monster.add(textureComponent);
 
         // Add Monster component
@@ -41,7 +41,7 @@ public class InteligentMonsterBuilder implements EntityBuilder{
         monster.add(monsterComponent);
 
         // Add transform
-        TransformComponent transformComponent = new TransformComponent(new Vector3(x,y,0));
+        TransformComponent transformComponent = new TransformComponent(new Vector3(x,y,1));
         monster.add(transformComponent);
 
         // Add Collision
