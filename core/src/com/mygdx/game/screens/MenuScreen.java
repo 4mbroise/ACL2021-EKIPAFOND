@@ -87,6 +87,7 @@ public class MenuScreen extends ScreenAdapter{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                game.resetLevel();
                 game.setScreen(new MazeTestScreen(game));
             }
         });

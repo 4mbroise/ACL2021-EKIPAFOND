@@ -58,7 +58,9 @@ public class Assets {
         assetManager.load("tiles/ground.png", Texture.class);
         assetManager.load("tiles/fire.png", Texture.class);
         assetManager.load("tiles/portal.png", Texture.class);
-        assetManager.load("sprites/spr_orange.png", Texture.class);
+        assetManager.load("sprites/cherry.png", Texture.class);
+        assetManager.load("sprites/ghost.png", Texture.class);
+        assetManager.load("sprites/monster.png", Texture.class);
         assetManager.load("tiles/magic.png", Texture.class);
         assetManager.load(("tiles/vie.png"), Texture.class);
         //load

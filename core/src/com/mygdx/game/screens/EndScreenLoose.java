@@ -19,7 +19,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
 
-public class EndScreen extends ScreenAdapter {
+public class EndScreenLoose extends ScreenAdapter {
     //main game
     private ACLGame game;
     //stage
@@ -39,7 +39,7 @@ public class EndScreen extends ScreenAdapter {
     private Button homeButton;
     //assets
     private Assets assets;
-    public  EndScreen (ACLGame game){
+    public EndScreenLoose(ACLGame game){
         this.game=game;
         this.batch=game.batcher;
         this.stage=new Stage(new StretchViewport(800,480));
@@ -70,6 +70,7 @@ public class EndScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                game.resetLevel();
                 game.setScreen(new MenuScreen(game));
             }
         });

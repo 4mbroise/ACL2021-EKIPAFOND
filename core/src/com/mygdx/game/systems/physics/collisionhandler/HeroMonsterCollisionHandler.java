@@ -7,9 +7,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.components.*;
-import com.mygdx.game.screens.EndScreen;
-import com.mygdx.game.systems.HeroSystem;
-import com.mygdx.game.systems.physics.PhysicsSystem;
+import com.mygdx.game.screens.*;
+
 
 public class HeroMonsterCollisionHandler implements CollisionHandler{
 
@@ -38,7 +37,7 @@ public class HeroMonsterCollisionHandler implements CollisionHandler{
 
 
         if (healthComponent.getHealthPoint() <= 0) {
-            game.setScreen(new EndScreen(game));
+            game.setScreen(new EndScreenLoose(game));
         }
 
         System.out.println(healthComponent.getHealthPoint());

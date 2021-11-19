@@ -51,7 +51,7 @@ public class HeroBuilder implements EntityBuilder{
         HeroComponent heroComponent = new HeroComponent();
         hero.add(heroComponent);
 
-        heroBody = physicsSystem.addDynamicBody(x, y, World.CASE_DIMENSION - 1 , World.CASE_DIMENSION - 1);
+        heroBody = physicsSystem.addDynamicBody(x, y, World.CASE_DIMENSION /2 , World.CASE_DIMENSION /2);
         heroBody.setUserData(hero);
         hero.add(new SteeringComponent(heroBody));
 

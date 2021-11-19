@@ -6,18 +6,23 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
 
+
+
 public class AnimationComponent implements Component {
 
-    private TextureAtlas atlas;
-    private Array<TextureAtlas.AtlasRegion> atlasRegions, atlasRegionsL,atlasRegionsR, atlasRegionsU, atlasRegionsD;
-    public float animTime = 0.3f;
-    private Animation animationRight, animationLeft, animationUp, animationDown;
-    private Array<TextureAtlas.AtlasRegion>atlasRegionsAL,atlasRegionsAR, atlasRegionsAU, atlasRegionsAD;
-    private Animation animationAttackRight, animationAttackLeft, animationAttackUp, animationAttackDown;
+    private TextureAtlas atlas; // Texture atlas
+    private Array<TextureAtlas.AtlasRegion>  atlasRegionsL,atlasRegionsR, atlasRegionsU, atlasRegionsD; // AtlasRegion array for each walking direction (UP, DOWN, LEFT, RIGHT)
+    public float animTime = 0.3f; // animation time
+    private Animation animationRight, animationLeft, animationUp, animationDown; // animation for each walking direction
+    private Array<TextureAtlas.AtlasRegion>atlasRegionsAL,atlasRegionsAR, atlasRegionsAU, atlasRegionsAD;  // AtlasRegion array for each attacking direction (UP, DOWN, LEFT, RIGHT)
+    private Animation animationAttackRight, animationAttackLeft, animationAttackUp, animationAttackDown; // animation for each attacking direction
 
+
+    /**
+     * Constructor
+     */
     public AnimationComponent() {
         atlas = new TextureAtlas(Gdx.files.internal("sprites/HeroPack.atlas"));
-        atlasRegions= atlas.getRegions();
         //walk
         atlasRegionsD = new Array<>();
         atlasRegionsU = new Array<>();
@@ -38,62 +43,73 @@ public class AnimationComponent implements Component {
         setAttackRightAnim();
     }
 
-    public TextureAtlas getAtlas() {
-        return atlas;
-    }
-
-    public Array<TextureAtlas.AtlasRegion> getAtlasRegions() {
-        return atlasRegions;
-    }
-
-    public Array<TextureAtlas.AtlasRegion> getAtlasRegionsL() {
-        return atlasRegionsL;
-    }
-
-    public Array<TextureAtlas.AtlasRegion> getAtlasRegionsR() {
-        return atlasRegionsR;
-    }
-
-    public Array<TextureAtlas.AtlasRegion> getAtlasRegionsU() {
-        return atlasRegionsU;
-    }
-
-    public Array<TextureAtlas.AtlasRegion> getAtlasRegionsD() {
-        return atlasRegionsD;
-    }
-
+    /**
+     * Right walking animation getter
+     * @return right walking animation
+     */
     public Animation getAnimationRight() {
         return animationRight;
     }
 
+    /**
+     * Left walking animation getter
+     * @return left walking animation
+     */
     public Animation getAnimationLeft() {
         return animationLeft;
     }
 
+    /**
+     * Up walking animation getter
+     * @return up walking animation
+     */
     public Animation getAnimationUp() {
         return animationUp;
     }
 
+    /**
+     * Down walking animation getter
+     * @return down walking animation
+     */
     public Animation getAnimationDown() {
         return animationDown;
     }
 
+    /**
+     * Right attacking animation getter
+     * @return right attacking animation
+     */
     public Animation getAnimationAttackRight() {
         return animationAttackRight;
     }
 
+    /**
+     * Left attacking animation getter
+     * @return left attacking animation
+     */
     public Animation getAnimationAttackLeft() {
         return animationAttackLeft;
     }
 
+    /**
+     * Up attacking animation getter
+     * @return up attacking animation
+     */
     public Animation getAnimationAttackUp() {
         return animationAttackUp;
     }
 
+    /**
+     * Down attacking animation getter
+     * @return down attacking animation
+     */
     public Animation getAnimationAttackDown() {
         return animationAttackDown;
     }
 
+    /**
+     * Right walking animation setter
+     */
     private void setRightAnim(){
         atlasRegionsR.add(atlas.findRegion("Character without weapon/walk/walk right1.png"));
         atlasRegionsR.add(atlas.findRegion("Character without weapon/walk/walk right2.png"));
@@ -103,6 +119,9 @@ public class AnimationComponent implements Component {
         animationRight.setPlayMode(Animation.PlayMode.LOOP);
     }
 
+    /**
+     * Left walking animation setter
+     */
     private void setLeftAnim(){
         atlasRegionsL.add(atlas.findRegion("Character without weapon/walk/walk left1.png"));
         atlasRegionsL.add(atlas.findRegion("Character without weapon/walk/walk left2.png"));
@@ -111,6 +130,10 @@ public class AnimationComponent implements Component {
         animationLeft = new Animation(animTime, atlasRegionsL);
         animationLeft.setPlayMode(Animation.PlayMode.LOOP);
     }
+
+    /**
+     * Up walking animation setter
+     */
     private void setUpAnim(){
         atlasRegionsU.add(atlas.findRegion("Character without weapon/walk/walk up1.png"));
         atlasRegionsU.add(atlas.findRegion("Character without weapon/walk/walk up2.png"));
@@ -119,6 +142,10 @@ public class AnimationComponent implements Component {
         animationUp = new Animation(animTime, atlasRegionsU);
         animationUp.setPlayMode(Animation.PlayMode.LOOP);
     }
+
+    /**
+     * Down walking animation setter
+     */
     private void setDownAnim(){
         atlasRegionsD.add(atlas.findRegion("Character without weapon/walk/walk down1.png"));
         atlasRegionsD.add(atlas.findRegion("Character without weapon/walk/walk down2.png"));
@@ -128,6 +155,9 @@ public class AnimationComponent implements Component {
         animationDown.setPlayMode(Animation.PlayMode.LOOP);
     }
 
+    /**
+     * Right attacking animation setter
+     */
     private void setAttackRightAnim(){
         atlasRegionsAR.add(atlas.findRegion("Character with sword and shield/attack/attack right1.png"));
         atlasRegionsAR.add(atlas.findRegion("Character with sword and shield/attack/attack right2.png"));
@@ -137,6 +167,9 @@ public class AnimationComponent implements Component {
         animationAttackRight.setPlayMode(Animation.PlayMode.LOOP);
     }
 
+    /**
+     * Left attacking animation setter
+     */
     private void setAttackLeftAnim(){
         atlasRegionsAL.add(atlas.findRegion("Character with sword and shield/attack/attack left1.png"));
         atlasRegionsAL.add(atlas.findRegion("Character with sword and shield/attack/attack left2.png"));
@@ -145,6 +178,10 @@ public class AnimationComponent implements Component {
         animationAttackLeft = new Animation(0.1f, atlasRegionsAL);
         animationAttackLeft.setPlayMode(Animation.PlayMode.LOOP);
     }
+
+    /**
+     * Up attacking animation setter
+     */
     private void setAttackUpAnim(){
         atlasRegionsAU.add(atlas.findRegion("Character with sword and shield/attack/attack up1.png"));
         atlasRegionsAU.add(atlas.findRegion("Character with sword and shield/attack/attack up2.png"));
@@ -153,6 +190,10 @@ public class AnimationComponent implements Component {
         animationAttackUp = new Animation(0.1f, atlasRegionsAU);
         animationAttackUp.setPlayMode(Animation.PlayMode.LOOP);
     }
+
+    /**
+     * Down attacking animation setter
+     */
     private void setAttackDownAnim(){
         atlasRegionsAD.add(atlas.findRegion("Character with sword and shield/attack/attack down1.png"));
         atlasRegionsAD.add(atlas.findRegion("Character with sword and shield/attack/attack down2.png"));
