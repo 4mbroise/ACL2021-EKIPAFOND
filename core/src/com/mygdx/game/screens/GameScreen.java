@@ -85,6 +85,7 @@ public class GameScreen extends ScreenAdapter {
         homeStyle.up=new TextureRegionDrawable(new TextureRegion(homeUpTexture));
         homeStyle.down=new TextureRegionDrawable(new TextureRegion(homeDownTexture));
         homeButton=new Button(homeStyle);
+        homeButton.setName("HomeButton");
         homeButton.setPosition(700,400);
         homeButton.addListener(new ClickListener(){
             @Override
