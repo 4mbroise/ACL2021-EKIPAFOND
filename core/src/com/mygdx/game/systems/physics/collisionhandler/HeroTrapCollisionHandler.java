@@ -3,6 +3,7 @@ package com.mygdx.game.systems.physics.collisionhandler;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.audio.Sound;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.components.*;
 import com.mygdx.game.screens.EndScreenLoose;
@@ -15,14 +16,16 @@ public class HeroTrapCollisionHandler implements CollisionHandler{
     ComponentMapper<HealthComponent> healthMapper = ComponentMapper.getFor(HealthComponent.class);
     Engine engine;
     ACLGame game;
-
+    Sound sound;
     public HeroTrapCollisionHandler(Engine engine, ACLGame game) {
         this.engine = engine;
         this.game = game;
+        this.sound=game.getAssets().getManager().get("audio/game/Fire.ogg");
     }
 
     @Override
     public void handle(Entity colliedA, Entity colliedB) {
+        sound.play();
         HeroComponent heroComponent = hm.get(colliedA);
         heroComponent.setState(HeroComponent.STATE_STATIC);
         SteeringComponent steeringComponent = bm.get(colliedB);

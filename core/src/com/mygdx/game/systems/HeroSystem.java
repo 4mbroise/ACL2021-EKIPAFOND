@@ -27,20 +27,16 @@ public class HeroSystem extends IteratingSystem {
         DirectionComponent  dirComp     = dm.get(entity);
         dirComp.setDirection(this.direction);
         HeroComponent herc=hm.get(entity);
-        liftInvincibility(herc,deltaTime);
+        if(stateTime < 2) {
+            stateTime += Gdx.graphics.getDeltaTime();
+        } else {
+            stateTime = 0;
+            herc.liftInvincibility();
+        }
     }
 
     public void setHeroDirection(int directionCode){
         this.direction = directionCode;
-    }
-
-    public void liftInvincibility(HeroComponent herc,float deltaTime) {
-            if(stateTime < 2) {
-                stateTime += Gdx.graphics.getDeltaTime();
-            } else {
-                stateTime = 0;
-                herc.liftInvincibility();
-            }
     }
 
 }
