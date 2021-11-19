@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -15,12 +14,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
 
-public class RegleScreen extends ScreenAdapter {
+public class EndScreenWin extends ScreenAdapter {
     //main game
     private ACLGame game;
     //stage
@@ -36,39 +33,37 @@ public class RegleScreen extends ScreenAdapter {
     private Texture backGroundTexture;
     private Texture homeUpTexture;
     private Texture homeDownTexture;
-    //button
+    //Button
     private Button homeButton;
     //assets
     private Assets assets;
-
-    public RegleScreen (ACLGame game){
+    public  EndScreenWin (ACLGame game){
         this.game=game;
         this.batch=game.batcher;
-        this.stage=new Stage(new StretchViewport(800, 480));
+        stage=new Stage();
         assets=game.getAssets();
         create();
     }
 
     public void create(){
         //background
-        backGroundTexture=assets.getManager().get("UI/noonbackground.png");
+        backGroundTexture=assets.getManager().get("UI/nightbackgroundwithmoon.png");
         backGroud=new Image(backGroundTexture);
         backGroud.setPosition(0,0);
         backGroud.setOrigin(0,0);
         backGroud.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         //font
-        title= assets.getManager().get("fonts/Retro_Gaming.ttf");
-        content=assets.getManager().get("fonts/Retro_Gaming2.ttf");
+        title=assets.getManager().get("fonts/Retro_Gaming.ttf");
         //button
         homeUpTexture=assets.getManager().get("UI/homeUp.png");
-        homeDownTexture=assets.getManager().get("UI/homeUp.png");
+        homeDownTexture=assets.getManager().get("UI/homeDown.png");
         //button style
         Button.ButtonStyle homeStyle=new Button.ButtonStyle();
         //start button
         homeStyle.up=new TextureRegionDrawable(new TextureRegion(homeUpTexture));
         homeStyle.down=new TextureRegionDrawable(new TextureRegion(homeDownTexture));
         homeButton=new Button(homeStyle);
-        homeButton.setPosition(stage.getWidth()/2-homeUpTexture.getWidth()/2,50);
+        homeButton.setPosition(Gdx.graphics.getWidth()/2-homeUpTexture.getWidth()/2,50);
         homeButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -89,18 +84,7 @@ public class RegleScreen extends ScreenAdapter {
         batch.begin();
         stage.act();
         stage.draw();
-        GlyphLayout titleG = new GlyphLayout();
-        titleG.setText(title,"Rule");
-        float titleW = titleG.width;
-        title.draw(batch, titleG, (stage.getWidth()-titleW)/2, 400);
-        GlyphLayout contentG = new GlyphLayout();
-        String contentS= "\" - 'Z/W' to move upwards \\n\" +\n" +
-                " - 'S' to move downwards \\n\" +\n" +
-                " - 'Q/A' to move left \\n\" +\n" +
-                " - 'D' to move right \\n\" +\n" +
-                " - 'J' to attack \"";
-        contentG.setText(content,contentS);
-        content.draw(batch,contentS, 20, 300);
+        title.draw(batch, "YOU WIN!!!!",220,300);
         batch.end();
     }
 
@@ -122,7 +106,6 @@ public class RegleScreen extends ScreenAdapter {
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);
-        stage.getViewport().update(width, height, true);
     }
 
     @Override
@@ -135,3 +118,5 @@ public class RegleScreen extends ScreenAdapter {
         super.show();
     }
 }
+
+

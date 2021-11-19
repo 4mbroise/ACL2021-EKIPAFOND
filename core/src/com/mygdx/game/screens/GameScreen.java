@@ -12,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
 import com.mygdx.game.World;
@@ -40,7 +42,7 @@ public class GameScreen extends ScreenAdapter {
     public GameScreen(ACLGame game) {
         this.engine = new PooledEngine();
         this.assets = game.getAssets();
-        this.stage=new Stage();
+        this.stage=new Stage(new StretchViewport(800, 480));
         this.game = game;
         //Add System
         this.engine.addSystem(new RenderSystem(game.batcher));
@@ -50,7 +52,7 @@ public class GameScreen extends ScreenAdapter {
         this.engine.addSystem(new PhysicsSystem());
         this.engine.addSystem(new RandomMovementSystem());
         this.engine.addSystem(new DebugRenderSystem(game.batcher, game.camera));
-        this.engine.addSystem(new AttackSystem());
+        this.engine.addSystem(new AttackSystem(game));
         this.engine.addSystem(new DeathSystem());
         this.engine.addSystem(new PathFindingSystem());
         this.engine.addSystem(new MonsterSystem());
@@ -60,7 +62,7 @@ public class GameScreen extends ScreenAdapter {
         collisionsSystem.addCollisionStrategy(new HeroTreasureCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
         collisionsSystem.addCollisionStrategy(new HeroTrapCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TRAP);
         collisionsSystem.addCollisionStrategy(new HeroMagicCollisionHandler(this.engine), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MAGIC);
-
+        collisionsSystem.addCollisionStrategy(new HeroMonsterCollisionHandler(this.engine,this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MONSTER);
         this.engine.addSystem(collisionsSystem);
 
         this.world = new World(this.engine, this.assets);
@@ -86,7 +88,7 @@ public class GameScreen extends ScreenAdapter {
         homeStyle.down=new TextureRegionDrawable(new TextureRegion(homeDownTexture));
         homeButton=new Button(homeStyle);
         homeButton.setName("HomeButton");
-        homeButton.setPosition(700,400);
+        homeButton.setPosition(stage.getWidth()-100, stage.getHeight()-100);
         homeButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -110,5 +112,12 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void show() {
         super.show();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+        stage.getViewport().update(width, height, true);
+
     }
 }

@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -43,7 +44,7 @@ public class Assets {
         parms2.fontParameters.borderColor=Color.BLACK;
         assetManager.load( "fonts/Retro_Gaming2.ttf", BitmapFont.class, parms2);
 
-         parms2 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+        parms2 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
         parms2.fontFileName = "fonts/Retro_Gaming.ttf";
         parms2.fontParameters.size = 24;
         parms2.fontParameters.color=Color.BLUE;
@@ -57,11 +58,17 @@ public class Assets {
         assetManager.load("tiles/ground.png", Texture.class);
         assetManager.load("tiles/fire.png", Texture.class);
         assetManager.load("tiles/portal.png", Texture.class);
-        assetManager.load("sprites/spr_orange.png", Texture.class);
+        assetManager.load("sprites/cherry.png", Texture.class);
+        assetManager.load("sprites/ghost.png", Texture.class);
+        assetManager.load("sprites/monster.png", Texture.class);
         assetManager.load("tiles/magic.png", Texture.class);
         assetManager.load(("tiles/vie.png"), Texture.class);
         //load
         //System.out.println(assetManager.getProgress());
+        //sound
+        //attack
+        assetManager.load(("audio/attack/094-Attack06.ogg"), Sound.class);
+
 
     }
 

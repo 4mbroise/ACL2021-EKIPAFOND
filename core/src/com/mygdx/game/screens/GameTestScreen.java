@@ -84,7 +84,6 @@ public class GameTestScreen extends GameScreen {
         hero.add(new CollisionComponent());
 
 
-
         this.engine.addEntity(hero);
     }
 
