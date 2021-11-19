@@ -31,7 +31,7 @@ public class GameAITestScreen extends GameScreen{
         this.engine.addSystem(new PhysicsSystem());
         createHero();
         //this.engine.addSystem(new MonsterSystem(hero));
-        this.engine.addSystem(new AttackSystem());
+        this.engine.addSystem(new AttackSystem(game));
         this.engine.addSystem(new DeathSystem());
         //this.engine.addSystem(new MonsterSystem(hero));
         this.engine.addSystem(new RandomMovementSystem());
@@ -252,6 +252,7 @@ public class GameAITestScreen extends GameScreen{
 
         //Add Attack
         hero.add(new HealthComponent(5));
+
     }
 
     private void createMonster(){

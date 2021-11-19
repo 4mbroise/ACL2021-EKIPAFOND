@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -14,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
 
@@ -41,7 +44,7 @@ public class RegleScreen extends ScreenAdapter {
     public RegleScreen (ACLGame game){
         this.game=game;
         this.batch=game.batcher;
-        stage=new Stage();
+        this.stage=new Stage(new StretchViewport(800, 480));
         assets=game.getAssets();
         create();
     }
@@ -65,7 +68,7 @@ public class RegleScreen extends ScreenAdapter {
         homeStyle.up=new TextureRegionDrawable(new TextureRegion(homeUpTexture));
         homeStyle.down=new TextureRegionDrawable(new TextureRegion(homeDownTexture));
         homeButton=new Button(homeStyle);
-        homeButton.setPosition(Gdx.graphics.getWidth()/2-homeUpTexture.getWidth()/2,50);
+        homeButton.setPosition(stage.getWidth()/2-homeUpTexture.getWidth()/2,50);
         homeButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -86,12 +89,18 @@ public class RegleScreen extends ScreenAdapter {
         batch.begin();
         stage.act();
         stage.draw();
-        title.draw(batch, "Les Règles",200,400);
-        content.draw(batch, " - 'Z/W' to move upwards \n" +
-                                " - 'S' to move downwards \n" +
-                                " - 'Q/A' to move left \n" +
-                                " - 'D' to move right \n" +
-                                " - 'J' to attack ",20,300);
+        GlyphLayout titleG = new GlyphLayout();
+        titleG.setText(title,"Rule");
+        float titleW = titleG.width;
+        title.draw(batch, titleG, (stage.getWidth()-titleW)/2, 400);
+        GlyphLayout contentG = new GlyphLayout();
+        String contentS= "\" - 'Z/W' to move upwards \\n\" +\n" +
+                " - 'S' to move downwards \\n\" +\n" +
+                " - 'Q/A' to move left \\n\" +\n" +
+                " - 'D' to move right \\n\" +\n" +
+                " - 'J' to attack \"";
+        contentG.setText(content,contentS);
+        content.draw(batch,contentS, 20, 300);
         batch.end();
     }
 
@@ -113,6 +122,7 @@ public class RegleScreen extends ScreenAdapter {
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
