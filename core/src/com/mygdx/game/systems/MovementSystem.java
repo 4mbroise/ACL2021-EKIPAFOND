@@ -36,7 +36,6 @@ public class MovementSystem extends IteratingSystem {
         float velocity = mvComp.getVelocity();
 
 
-
         switch(dirComp.getDirection()){
             case DirectionComponent.UP:
                 sComp.setLinearVelocity(new Vector2(0, velocity));
@@ -49,6 +48,9 @@ public class MovementSystem extends IteratingSystem {
                 break;
             case DirectionComponent.LEFT:
                 sComp.setLinearVelocity(new Vector2(-velocity, 0));
+                break;
+            case DirectionComponent.STATIC:
+                sComp.setLinearVelocity(new Vector2(0, 0));
                 break;
         }
     }

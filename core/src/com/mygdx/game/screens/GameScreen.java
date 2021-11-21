@@ -14,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
@@ -55,14 +54,14 @@ public class GameScreen extends ScreenAdapter {
         //soundButton=game.getAssets().getManager().get("audio/system/button.ogg");
         //Add System
         this.engine.addSystem(new RenderSystem(game.batcher));
-        this.engine.addSystem(new AnimationSystem());
+        this.engine.addSystem(new AnimationSystem(game));
         this.engine.addSystem(new MovementSystem());
         this.engine.addSystem(new HeroSystem());
         this.engine.addSystem(new PhysicsSystem());
         this.engine.addSystem(new RandomMovementSystem());
         this.engine.addSystem(new DebugRenderSystem(game.batcher, game.camera));
         this.engine.addSystem(new AttackSystem(game));
-        this.engine.addSystem(new DeathSystem());
+        this.engine.addSystem(new DeathSystem(game));
         this.engine.addSystem(new PathFindingSystem());
         this.engine.addSystem(new MonsterSystem());
         this.engine.addSystem(new HealthRenderSystem(game.batcher, game.getAssets(), stage));
@@ -72,8 +71,7 @@ public class GameScreen extends ScreenAdapter {
         collisionsSystem.addCollisionStrategy(new HeroTrapCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TRAP);
         collisionsSystem.addCollisionStrategy(new HeroMagicCollisionHandler(this.engine,this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MAGIC);
         collisionsSystem.addCollisionStrategy(new HeroMonsterCollisionHandler(this.engine,this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MONSTER);
-        collisionsSystem.addCollisionStrategy(new HeroPhantomCollisionHandler(this.engine,this.game), TypeComponent.TYPE_HERO, TypeComponent.        TYPE_GHOST
-        );
+        collisionsSystem.addCollisionStrategy(new HeroPhantomCollisionHandler(this.engine,this.game), TypeComponent.TYPE_HERO, TypeComponent.        TYPE_GHOST);
 
         this.engine.addSystem(collisionsSystem);
         this.world = new World(this.engine, this.assets);

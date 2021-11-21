@@ -28,16 +28,9 @@ public class HeroPhantomCollisionHandler implements CollisionHandler{
         HealthComponent healthComponent = healm.get(colliedA);
         HeroComponent herc= hm.get(colliedA);
 
-        if(herc.getState()!=herc.STATE_INVINCIBILITY) {
+        if(herc.getState()!=herc.STATE_INVINCIBILITY&&herc.getState()!=herc.STATE_DEATH) {
             healthComponent.reduceHealthPoint(1);
-            herc.setState(herc.STATE_INVINCIBILITY);
+            herc.setStateInvincibility();
         }
-
-
-        if (healthComponent.getHealthPoint() <= 0) {
-            game.setScreen(new EndScreenLoose(game));
-        }
-
-        System.out.println(healthComponent.getHealthPoint());
     }
 }

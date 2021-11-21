@@ -32,10 +32,9 @@ public class HeroTrapCollisionHandler implements CollisionHandler{
         engine.removeEntity(colliedB);
         engine.getSystem(PhysicsSystem.class).getPhysicsWorld().destroyBody(steeringComponent.getBody());
         HealthComponent hc = healthMapper.get(colliedA);
-        if (hc.getHealthPoint() <= 1) {
-            game.setScreen(new EndScreenLoose(game));
+        if(heroComponent.getState()!=heroComponent.STATE_INVINCIBILITY&&heroComponent.getState()!=heroComponent.STATE_DEATH) {
+            hc.reduceHealthPoint(1);
         }
-        hc.reduceHealthPoint(1);
-        System.out.println(hc.getHealthPoint());
+
     }
 }
