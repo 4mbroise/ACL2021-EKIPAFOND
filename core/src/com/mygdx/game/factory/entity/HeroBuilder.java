@@ -1,7 +1,6 @@
 package com.mygdx.game.factory.entity;
 
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;

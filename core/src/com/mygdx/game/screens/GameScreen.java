@@ -5,6 +5,8 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -12,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
@@ -37,23 +38,30 @@ public class GameScreen extends ScreenAdapter {
     private Texture homeUpTexture;
     private Texture homeDownTexture;
     protected Button homeButton;
+    protected Sound soundButton;
     //stage
     protected Stage stage;
+    //audio
+    private Music BGM;
     public GameScreen(ACLGame game) {
         this.engine = new PooledEngine();
         this.assets = game.getAssets();
         this.stage=new Stage(new StretchViewport(800, 480));
         this.game = game;
+        this.BGM=assets.getManager().get("audio/BGM/MusMus-BGM-125.mp3");
+        this.BGM.setLooping(true);
+        this.BGM.setVolume(0.5f);
+        //soundButton=game.getAssets().getManager().get("audio/system/button.ogg");
         //Add System
         this.engine.addSystem(new RenderSystem(game.batcher));
-        this.engine.addSystem(new AnimationSystem());
+        this.engine.addSystem(new AnimationSystem(game));
         this.engine.addSystem(new MovementSystem());
         this.engine.addSystem(new HeroSystem());
         this.engine.addSystem(new PhysicsSystem());
         this.engine.addSystem(new RandomMovementSystem());
         this.engine.addSystem(new DebugRenderSystem(game.batcher, game.camera));
         this.engine.addSystem(new AttackSystem(game));
-        this.engine.addSystem(new DeathSystem());
+        this.engine.addSystem(new DeathSystem(game));
         this.engine.addSystem(new PathFindingSystem());
         this.engine.addSystem(new MonsterSystem());
         this.engine.addSystem(new HealthRenderSystem(game.batcher, game.getAssets(), stage));
@@ -61,10 +69,11 @@ public class GameScreen extends ScreenAdapter {
         collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
         collisionsSystem.addCollisionStrategy(new HeroTreasureCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
         collisionsSystem.addCollisionStrategy(new HeroTrapCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TRAP);
-        collisionsSystem.addCollisionStrategy(new HeroMagicCollisionHandler(this.engine), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MAGIC);
+        collisionsSystem.addCollisionStrategy(new HeroMagicCollisionHandler(this.engine,this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MAGIC);
         collisionsSystem.addCollisionStrategy(new HeroMonsterCollisionHandler(this.engine,this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MONSTER);
-        this.engine.addSystem(collisionsSystem);
+        collisionsSystem.addCollisionStrategy(new HeroPhantomCollisionHandler(this.engine,this.game), TypeComponent.TYPE_HERO, TypeComponent.        TYPE_GHOST);
 
+        this.engine.addSystem(collisionsSystem);
         this.world = new World(this.engine, this.assets);
 
         collisionsSystem.addCollisionStrategy(new HeroPortalCollisionHandler(this.engine, this.world), TypeComponent.TYPE_HERO, TypeComponent.TYPE_PORTAL);
@@ -92,9 +101,11 @@ public class GameScreen extends ScreenAdapter {
         homeButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                //soundButton.play();
                 super.clicked(event, x, y);
                 game.resetLevel();
                 game.setScreen(new MenuScreen(game));
+
             }
         });
         stage.addActor(homeButton);
@@ -112,6 +123,7 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void show() {
         super.show();
+        BGM.play();
     }
 
     @Override
@@ -119,5 +131,23 @@ public class GameScreen extends ScreenAdapter {
         super.resize(width, height);
         stage.getViewport().update(width, height, true);
 
+    }
+
+    @Override
+    public void pause() {
+        super.pause();
+        BGM.pause();
+    }
+
+    @Override
+    public void hide() {
+        super.hide();
+        BGM.dispose();
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        BGM.dispose();
     }
 }

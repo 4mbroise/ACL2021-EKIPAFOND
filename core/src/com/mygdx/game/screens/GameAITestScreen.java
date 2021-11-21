@@ -10,8 +10,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.mygdx.game.ACLGame;
-import com.mygdx.game.Assets;
-import com.mygdx.game.tools.SteeringPresets;
 import com.mygdx.game.components.*;
 import com.mygdx.game.listeners.ACLGameListener;
 import com.mygdx.game.systems.*;
@@ -32,7 +30,7 @@ public class GameAITestScreen extends GameScreen{
         createHero();
         //this.engine.addSystem(new MonsterSystem(hero));
         this.engine.addSystem(new AttackSystem(game));
-        this.engine.addSystem(new DeathSystem());
+        this.engine.addSystem(new DeathSystem(game));
         //this.engine.addSystem(new MonsterSystem(hero));
         this.engine.addSystem(new RandomMovementSystem());
         this.assets.getManager().finishLoading();

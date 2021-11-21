@@ -3,14 +3,13 @@ package com.mygdx.game.systems.physics.collisionhandler;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.ACLGame;
-import com.mygdx.game.components.*;
-import com.mygdx.game.screens.*;
+import com.mygdx.game.components.HealthComponent;
+import com.mygdx.game.components.HeroComponent;
+import com.mygdx.game.screens.EndScreenLoose;
 
 
-public class HeroMonsterCollisionHandler implements CollisionHandler{
+public class HeroPhantomCollisionHandler implements CollisionHandler{
 
     ComponentMapper<HealthComponent> healm= ComponentMapper.getFor(HealthComponent.class);
     ComponentMapper<HeroComponent> hm=ComponentMapper.getFor(HeroComponent.class);
@@ -18,11 +17,10 @@ public class HeroMonsterCollisionHandler implements CollisionHandler{
     ACLGame game;
     float stateTime;
 
-    public HeroMonsterCollisionHandler(Engine engine, ACLGame game) {
+    public HeroPhantomCollisionHandler(Engine engine, ACLGame game) {
         this.engine = engine;
         this.game = game;
         stateTime=0;
-
     }
 
     @Override
@@ -34,7 +32,5 @@ public class HeroMonsterCollisionHandler implements CollisionHandler{
             healthComponent.reduceHealthPoint(1);
             herc.setStateInvincibility();
         }
-
-        System.out.println("hero:"+herc.getState());
     }
 }
