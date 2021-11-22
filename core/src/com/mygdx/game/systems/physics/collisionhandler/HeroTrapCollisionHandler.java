@@ -3,6 +3,7 @@ package com.mygdx.game.systems.physics.collisionhandler;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.audio.Sound;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.components.*;
 import com.mygdx.game.screens.EndScreenLoose;
@@ -14,25 +15,24 @@ public class HeroTrapCollisionHandler implements CollisionHandler{
     ComponentMapper<SteeringComponent> bm = ComponentMapper.getFor(SteeringComponent.class);
     ComponentMapper<HealthComponent> healthMapper = ComponentMapper.getFor(HealthComponent.class);
     Engine engine;
-    ACLGame game;
-
-    public HeroTrapCollisionHandler(Engine engine, ACLGame game) {
+    Sound sound;
+    public HeroTrapCollisionHandler(Engine engine, Sound sound) {
         this.engine = engine;
-        this.game = game;
+        this.sound=sound;
     }
 
     @Override
     public void handle(Entity colliedA, Entity colliedB) {
+        sound.play();
         HeroComponent heroComponent = hm.get(colliedA);
         heroComponent.setState(HeroComponent.STATE_STATIC);
         SteeringComponent steeringComponent = bm.get(colliedB);
         engine.removeEntity(colliedB);
         engine.getSystem(PhysicsSystem.class).getPhysicsWorld().destroyBody(steeringComponent.getBody());
         HealthComponent hc = healthMapper.get(colliedA);
-        if (hc.getHealthPoint() <= 1) {
-            game.setScreen(new EndScreenLoose(game));
+        if(heroComponent.getState()!=heroComponent.STATE_INVINCIBILITY&&heroComponent.getState()!=heroComponent.STATE_DEATH) {
+            hc.reduceHealthPoint(1);
         }
-        hc.reduceHealthPoint(1);
-        System.out.println(hc.getHealthPoint());
+
     }
 }

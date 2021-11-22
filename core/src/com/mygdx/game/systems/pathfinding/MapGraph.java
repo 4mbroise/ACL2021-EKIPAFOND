@@ -49,7 +49,7 @@ public class MapGraph implements IndexedGraph<Node> {
         return getNodes().size();
     }
 
-    public Node setNode(int x, int y, Node node){
+    public void setNode(int x, int y, Node node){
         if(!graphMapIndex.containsKey(y)){
             graphMapIndex.put(y, new HashMap<Integer, Node>());
         }
@@ -57,7 +57,6 @@ public class MapGraph implements IndexedGraph<Node> {
             graphMapIndex.get(y).put(x, node);
             graphListIndex.add(node);
         }
-        return null;
     }
 
     public Node getNode(int x, int y){

@@ -43,10 +43,6 @@ public class ACLGame extends Game {
         super.render();
     }
 
-    @Override
-    public void setScreen(Screen screen) {
-        this.screen = screen;
-    }
 
     public Assets getAssets() {
         return this.assets;

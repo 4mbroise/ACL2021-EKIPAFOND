@@ -16,6 +16,8 @@ public class AnimationComponent implements Component {
     private Animation animationRight, animationLeft, animationUp, animationDown; // animation for each walking direction
     private Array<TextureAtlas.AtlasRegion>atlasRegionsAL,atlasRegionsAR, atlasRegionsAU, atlasRegionsAD;  // AtlasRegion array for each attacking direction (UP, DOWN, LEFT, RIGHT)
     private Animation animationAttackRight, animationAttackLeft, animationAttackUp, animationAttackDown; // animation for each attacking direction
+    private Array<TextureAtlas.AtlasRegion>atlasRegionsDeath;
+    private Animation animationDeath;
 
 
     /**
@@ -41,7 +43,12 @@ public class AnimationComponent implements Component {
         setAttackUpAnim();
         setAttackLeftAnim();
         setAttackRightAnim();
+        //death
+        atlasRegionsDeath = new Array<>();
+        setDeathAnim();
     }
+
+
 
     /**
      * Right walking animation getter
@@ -108,6 +115,14 @@ public class AnimationComponent implements Component {
     }
 
     /**
+     * Death animation getter
+     * @return Death animation
+     */
+    public Animation getAnimationDeath() {
+        return animationDeath;
+    }
+
+    /**
      * Right walking animation setter
      */
     private void setRightAnim(){
@@ -163,7 +178,7 @@ public class AnimationComponent implements Component {
         atlasRegionsAR.add(atlas.findRegion("Character with sword and shield/attack/attack right2.png"));
         atlasRegionsAR.add(atlas.findRegion("Character with sword and shield/attack/attack right3.png"));
         atlasRegionsAR.add(atlas.findRegion("Character with sword and shield/attack/attack right4.png"));
-        animationAttackRight = new Animation(animTime, atlasRegionsAR);
+        animationAttackRight = new Animation(0.1f, atlasRegionsAR);
         animationAttackRight.setPlayMode(Animation.PlayMode.LOOP);
     }
 
@@ -175,7 +190,7 @@ public class AnimationComponent implements Component {
         atlasRegionsAL.add(atlas.findRegion("Character with sword and shield/attack/attack left2.png"));
         atlasRegionsAL.add(atlas.findRegion("Character with sword and shield/attack/attack left3.png"));
         atlasRegionsAL.add(atlas.findRegion("Character with sword and shield/attack/attack left4.png"));
-        animationAttackLeft = new Animation(animTime, atlasRegionsAL);
+        animationAttackLeft = new Animation(0.1f, atlasRegionsAL);
         animationAttackLeft.setPlayMode(Animation.PlayMode.LOOP);
     }
 
@@ -187,7 +202,7 @@ public class AnimationComponent implements Component {
         atlasRegionsAU.add(atlas.findRegion("Character with sword and shield/attack/attack up2.png"));
         atlasRegionsAU.add(atlas.findRegion("Character with sword and shield/attack/attack up3.png"));
         atlasRegionsAU.add(atlas.findRegion("Character with sword and shield/attack/attack up4.png"));
-        animationAttackUp = new Animation(animTime, atlasRegionsAU);
+        animationAttackUp = new Animation(0.1f, atlasRegionsAU);
         animationAttackUp.setPlayMode(Animation.PlayMode.LOOP);
     }
 
@@ -199,7 +214,18 @@ public class AnimationComponent implements Component {
         atlasRegionsAD.add(atlas.findRegion("Character with sword and shield/attack/attack down2.png"));
         atlasRegionsAD.add(atlas.findRegion("Character with sword and shield/attack/attack down3.png"));
         atlasRegionsAD.add(atlas.findRegion("Character with sword and shield/attack/attack down4.png"));
-        animationAttackDown = new Animation(animTime, atlasRegionsAD);
+        animationAttackDown = new Animation(0.1f, atlasRegionsAD);
         animationAttackDown.setPlayMode(Animation.PlayMode.LOOP);
+    }
+    /**
+     * Death animation setter
+     */
+    private void setDeathAnim() {
+        atlasRegionsDeath.add(atlas.findRegion("death animation/death1.png"));
+        atlasRegionsDeath.add(atlas.findRegion("death animation/death2.png"));
+        atlasRegionsDeath.add(atlas.findRegion("death animation/death3.png"));
+        atlasRegionsDeath.add(atlas.findRegion("death animation/death4.png"));
+        animationDeath = new Animation(0.25f, atlasRegionsDeath);
+        animationDeath.setPlayMode(Animation.PlayMode.LOOP);
     }
 }

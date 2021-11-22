@@ -12,17 +12,13 @@ import com.mygdx.game.systems.MonsterSystem;
 import com.mygdx.game.systems.pathfinding.PathFindingSystem;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
-public class HeroBuilder implements EntityBuilder{
+public class HeroBuilder extends PhysicalEntityBuilder{
 
-    private Assets assets;
-    private PhysicsSystem physicsSystem;
-    private GroundBuilder groundBuilder;
     private Body heroBody;
     Entity hero;
 
     public HeroBuilder(Assets assets, PhysicsSystem physicsSystem) {
-        this.assets = assets;
-        this.physicsSystem = physicsSystem;
+        super(assets, physicsSystem);
     }
 
     @Override
@@ -50,7 +46,7 @@ public class HeroBuilder implements EntityBuilder{
         HeroComponent heroComponent = new HeroComponent();
         hero.add(heroComponent);
 
-        heroBody = physicsSystem.addDynamicBody(x, y, World.CASE_DIMENSION - 1 , World.CASE_DIMENSION - 1);
+        heroBody = physicsSystem.addDynamicBody(x, y, World.CASE_DIMENSION /2 , World.CASE_DIMENSION /2);
         heroBody.setUserData(hero);
         hero.add(new SteeringComponent(heroBody));
 
@@ -59,7 +55,6 @@ public class HeroBuilder implements EntityBuilder{
         hero.add(new CollisionComponent());
 
         hero.add(new HealthComponent(HeroComponent.START_HEALTH));
-
         hero.add(new AttackerComponent(1));
 
         this.physicsSystem.getEngine().getSystem(PathFindingSystem.class).setTarget(hero);

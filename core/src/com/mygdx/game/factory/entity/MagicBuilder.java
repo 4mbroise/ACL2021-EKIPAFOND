@@ -10,14 +10,10 @@ import com.mygdx.game.World;
 import com.mygdx.game.components.*;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
-public class MagicBuilder implements EntityBuilder{
-
-    private Assets assets;
-    private PhysicsSystem physicsSystem;
+public class MagicBuilder extends PhysicalEntityBuilder{
 
     public MagicBuilder(Assets assetManager, PhysicsSystem physicsSystem) {
-        this.assets = assetManager;
-        this.physicsSystem = physicsSystem;
+        super(assetManager, physicsSystem);
     }
 
     @Override

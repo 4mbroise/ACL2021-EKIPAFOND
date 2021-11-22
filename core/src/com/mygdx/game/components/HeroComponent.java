@@ -11,18 +11,39 @@ public class HeroComponent implements Component{
     public static final int STATE_STATIC = 0;
     public static final int STATE_WALKING = 1;
     public static final int STATE_ATTACKING = 2;
+    public static final int STATE_INVINCIBILITY =-1;
+    public static final int STATE_DEATH=-2;
+
     private int state = 1;
 
     public void setState(int newState) {
-        this.state = newState;
+        if(state!=STATE_DEATH) {
+            if (state != STATE_INVINCIBILITY) {
+                this.state = newState;
+            }
+        }
     }
 
     public int getState() {
         return state;
     }
 
+    public void liftInvincibility(){
+        state=1;
+    }
+
+    public void setStateInvincibility(){
+        if(state!=STATE_DEATH){
+            state=STATE_INVINCIBILITY;
+        }
+    }
+
     public int getStartHealth(){
         return START_HEALTH;
+    }
+
+    public void death(){
+        state=STATE_DEATH;
     }
 
 
