@@ -15,12 +15,10 @@ public class HeroTrapCollisionHandler implements CollisionHandler{
     ComponentMapper<SteeringComponent> bm = ComponentMapper.getFor(SteeringComponent.class);
     ComponentMapper<HealthComponent> healthMapper = ComponentMapper.getFor(HealthComponent.class);
     Engine engine;
-    ACLGame game;
     Sound sound;
-    public HeroTrapCollisionHandler(Engine engine, ACLGame game) {
+    public HeroTrapCollisionHandler(Engine engine, Sound sound) {
         this.engine = engine;
-        this.game = game;
-        this.sound=game.getAssets().getManager().get("audio/game/Fire.ogg");
+        this.sound=sound;
     }
 
     @Override

@@ -68,10 +68,10 @@ public class GameScreen extends ScreenAdapter {
         CollisionsSystem collisionsSystem = new CollisionsSystem();
         collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
         collisionsSystem.addCollisionStrategy(new HeroTreasureCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
-        collisionsSystem.addCollisionStrategy(new HeroTrapCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TRAP);
-        collisionsSystem.addCollisionStrategy(new HeroMagicCollisionHandler(this.engine,this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MAGIC);
-        collisionsSystem.addCollisionStrategy(new HeroMonsterCollisionHandler(this.engine,this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MONSTER);
-        collisionsSystem.addCollisionStrategy(new HeroPhantomCollisionHandler(this.engine,this.game), TypeComponent.TYPE_HERO, TypeComponent.        TYPE_GHOST);
+        collisionsSystem.addCollisionStrategy(new HeroTrapCollisionHandler(this.engine, (Sound) assets.getManager().get("audio/game/Fire.ogg")), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TRAP);
+        collisionsSystem.addCollisionStrategy(new HeroMagicCollisionHandler(this.engine, (Sound) assets.getManager().get("audio/game/Heal.ogg")), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MAGIC);
+        collisionsSystem.addCollisionStrategy(new HeroMonsterCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MONSTER);
+        collisionsSystem.addCollisionStrategy(new HeroPhantomCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.        TYPE_GHOST);
 
         this.engine.addSystem(collisionsSystem);
         this.world = new World(this.engine, this.assets);

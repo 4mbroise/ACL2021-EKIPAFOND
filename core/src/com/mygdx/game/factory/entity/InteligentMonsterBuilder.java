@@ -11,14 +11,10 @@ import com.mygdx.game.World;
 import com.mygdx.game.components.*;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
-public class InteligentMonsterBuilder implements EntityBuilder{
+public class InteligentMonsterBuilder extends PhysicalEntityBuilder{
 
-    private Assets assets;
-    private PhysicsSystem physicsSystem;
-
-    public InteligentMonsterBuilder(Assets assets, PhysicsSystem physicsSystem) {
-        this.assets = assets;
-        this.physicsSystem = physicsSystem;
+     public InteligentMonsterBuilder(Assets assets, PhysicsSystem physicsSystem) {
+        super(assets, physicsSystem);
     }
 
     @Override

@@ -57,7 +57,7 @@ public class MenuScreen extends ScreenAdapter{
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         batch=game.batcher;
         this.stage=new Stage(new StretchViewport(800, 480));
-        System.out.println("++++++++++++"+Gdx.graphics.getWidth());
+        //System.out.println("++++++++++++"+Gdx.graphics.getWidth());
         group=new Group();
         assets=game.getAssets();
         BGM=assets.getManager().get("audio/BGM/MusMus-BGM-115.mp3");

@@ -11,14 +11,14 @@ import com.mygdx.game.systems.physics.PhysicsSystem;
 
 public class HeroMagicCollisionHandler implements CollisionHandler{
 
-    ComponentMapper<HeroComponent> hm = ComponentMapper.getFor(HeroComponent.class);
-    ComponentMapper<SteeringComponent> bm = ComponentMapper.getFor(SteeringComponent.class);
-    ComponentMapper<HealthComponent> healthMapper = ComponentMapper.getFor(HealthComponent.class);
-    Engine engine;
+    private ComponentMapper<HeroComponent> hm = ComponentMapper.getFor(HeroComponent.class);
+    private ComponentMapper<SteeringComponent> bm = ComponentMapper.getFor(SteeringComponent.class);
+    private ComponentMapper<HealthComponent> healthMapper = ComponentMapper.getFor(HealthComponent.class);
+    private Engine engine;
     private Sound sound;
-    public HeroMagicCollisionHandler(Engine engine, ACLGame game) {
+    public HeroMagicCollisionHandler(Engine engine, Sound sound) {
         this.engine = engine;
-        sound=game.getAssets().getManager().get("audio/game/Heal.ogg");
+        this.sound=sound;
 
     }
 
@@ -33,7 +33,7 @@ public class HeroMagicCollisionHandler implements CollisionHandler{
             engine.getSystem(PhysicsSystem.class).getPhysicsWorld().destroyBody(steeringComponent.getBody());
             HealthComponent hc = healthMapper.get(colliedA);
             if(heroComponent.getState()!=heroComponent.STATE_DEATH) {
-                System.out.println("HERO///////////"+heroComponent.getState());
+                //System.out.println("HERO///////////"+heroComponent.getState());
                 hc.addHealthPoint(1);
             }
         }

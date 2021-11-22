@@ -14,16 +14,6 @@ public class HeroMonsterCollisionHandler implements CollisionHandler{
 
     ComponentMapper<HealthComponent> healm= ComponentMapper.getFor(HealthComponent.class);
     ComponentMapper<HeroComponent> hm=ComponentMapper.getFor(HeroComponent.class);
-    Engine engine;
-    ACLGame game;
-    float stateTime;
-
-    public HeroMonsterCollisionHandler(Engine engine, ACLGame game) {
-        this.engine = engine;
-        this.game = game;
-        stateTime=0;
-
-    }
 
     @Override
     public void handle(Entity colliedA, Entity colliedB) {
@@ -35,6 +25,6 @@ public class HeroMonsterCollisionHandler implements CollisionHandler{
             herc.setStateInvincibility();
         }
 
-        System.out.println("hero:"+herc.getState());
+        //System.out.println("hero:"+herc.getState());
     }
 }
