@@ -4,9 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.game.Assets;
-import com.mygdx.game.World;
 import com.mygdx.game.components.*;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 

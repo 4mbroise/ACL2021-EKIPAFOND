@@ -36,7 +36,7 @@ public class GhostBuilder implements EntityBuilder{
         monster.add(textureComponent);
 
         //Add Movement
-        MovementComponent movementComponent = new MovementComponent(MonsterComponent.MONSTER_VELOCITY);
+        MovementComponent movementComponent = new MovementComponent(MonsterComponent.GHOST_VELOCITY);
         monster.add(movementComponent);
 
         // Add Monster component

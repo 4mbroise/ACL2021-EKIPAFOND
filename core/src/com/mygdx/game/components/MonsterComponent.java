@@ -10,6 +10,7 @@ public class MonsterComponent implements Component, Pool.Poolable {
     private float xPosCenter; //position of the monster
     public Type monsterType; // type of the monster
     public static final float MONSTER_VELOCITY = 1;
+    public static final float GHOST_VELOCITY = 1/2;
 
     /**
      * First constructor which creates a monster with the MONSTER type
