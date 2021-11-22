@@ -18,8 +18,8 @@ public class AttackSystem extends IteratingSystem {
     private ComponentMapper<AnimationComponent> anm;
     private ComponentMapper<TextureComponent> txtm;
     private boolean attack;
-    private Sound sound;
-
+    private Sound attackSound;
+    private Sound damageSound;
     public AttackSystem(ACLGame game) {
         super(Family.all(HealthComponent.class, HeroComponent.class,DirectionComponent.class,TransformComponent.class,AttackerComponent.class,AnimationComponent.class,TextureComponent.class).get());
         am = ComponentMapper.getFor(AttackerComponent.class);
@@ -29,7 +29,9 @@ public class AttackSystem extends IteratingSystem {
         tm=ComponentMapper.getFor(TransformComponent.class);
         anm=ComponentMapper.getFor(AnimationComponent.class);
         txtm=ComponentMapper.getFor(TextureComponent.class);
-        sound=game.getAssets().getManager().get("audio/attack/094-Attack06.ogg");
+        attackSound=game.getAssets().getManager().get("audio/attack/Attack.ogg");
+        damageSound=game.getAssets().getManager().get("audio/attack/Damage.ogg");
+
         attack=false;
 
     }
@@ -52,7 +54,7 @@ public class AttackSystem extends IteratingSystem {
                 .get();
         ImmutableArray<Entity> entities = this.getEngine().getEntitiesFor(family);
         if(attack) {
-            sound.play();
+            attackSound.play();
             herc.setState(herc.STATE_ATTACKING);
             switch (direction) {
                 case DirectionComponent.UP:
@@ -60,8 +62,8 @@ public class AttackSystem extends IteratingSystem {
                         TransformComponent monsterPosition = tm.get(e);
                         Vector3 MP=monsterPosition.getPosition();
                         if( MP.x>=position.x-30&&MP.x<=position.x+30&&MP.y>=position.y+15&&MP.y<=position.y+60) {
+                            damageSound.play();
                             HealthComponent monsterHealth = heam.get(e);
-                            System.out.println(monsterHealth.getHealthPoint());
                             monsterHealth.reduceHealthPoint(damage);
                         }
                     }
@@ -71,6 +73,7 @@ public class AttackSystem extends IteratingSystem {
                         TransformComponent monsterPosition = tm.get(e);
                         Vector3 MP=monsterPosition.getPosition();
                         if (MP.x>=position.x-30&&MP.x<=position.x+30&&MP.y<=position.y-15&&MP.y>=position.y-60) {
+                            damageSound.play();
                             HealthComponent monsterHealth = heam.get(e);
                             monsterHealth.reduceHealthPoint(damage);
                         }
@@ -82,6 +85,7 @@ public class AttackSystem extends IteratingSystem {
                         Vector3 MP=monsterPosition.getPosition();
                         System.out.println(MP.x-position.x);
                         if (MP.x>=position.x+15&&MP.x<=position.x+60&&MP.y>=position.y-30&&MP.y<=position.y+30) {
+                            damageSound.play();
                             HealthComponent monsterHealth = heam.get(e);
                             monsterHealth.reduceHealthPoint(damage);
                         }
@@ -92,6 +96,7 @@ public class AttackSystem extends IteratingSystem {
                         TransformComponent monsterPosition = tm.get(e);
                         Vector3 MP=monsterPosition.getPosition();
                         if (MP.x<=position.x-15&&MP.x>=position.x-60&&MP.y>=position.y-30&&MP.y<=position.y+30) {
+                            damageSound.play();
                             HealthComponent monsterHealth = heam.get(e);
                             monsterHealth.reduceHealthPoint(damage);
                         }

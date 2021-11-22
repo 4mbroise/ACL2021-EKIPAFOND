@@ -3,6 +3,7 @@ package com.mygdx.game.screens;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -38,7 +39,6 @@ public class MenuScreen extends ScreenAdapter{
 
     //background
     private Image backGroud;
-
     //buttons
     private Button startButton;
     private Button regleButton;
@@ -48,6 +48,8 @@ public class MenuScreen extends ScreenAdapter{
     private Batch batch;
     //assets
     private Assets assets;
+    //audio
+    private Music BGM;
 
     public MenuScreen(final ACLGame game) {
         this.game = game;
@@ -55,9 +57,12 @@ public class MenuScreen extends ScreenAdapter{
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         batch=game.batcher;
         this.stage=new Stage(new StretchViewport(800, 480));
-        System.out.println("++++++++++++"+Gdx.graphics.getWidth());
+        //System.out.println("++++++++++++"+Gdx.graphics.getWidth());
         group=new Group();
         assets=game.getAssets();
+        BGM=assets.getManager().get("audio/BGM/MusMus-BGM-115.mp3");
+        BGM.setLooping(true);
+        BGM.setVolume(0.6f);
         create();
     }
 
@@ -124,7 +129,7 @@ public class MenuScreen extends ScreenAdapter{
         stage.act();
         stage.draw();
         GlyphLayout titleG = new GlyphLayout();
-        titleG.setText(title,"Pacman");
+        titleG.setText(title,"Enescroc");
         float titleW = titleG.width;
         title.draw(batch, titleG, (stage.getWidth()-titleW)/2, 400);
         batch.end();
@@ -134,22 +139,24 @@ public class MenuScreen extends ScreenAdapter{
 
     @Override
     public void dispose() {
-
+        BGM.dispose();
     }
 
     @Override
     public void hide() {
         super.hide();
+        BGM.stop();
     }
 
     @Override
     public void pause() {
-
+        BGM.pause();
     }
 
     @Override
     public void show() {
         super.show();
+        BGM.play();
     }
 
     @Override

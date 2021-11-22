@@ -13,14 +13,10 @@ import com.mygdx.game.World;
 import com.mygdx.game.components.*;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
-public class MonsterBuilder implements EntityBuilder{
-
-    private Assets assets;
-    private PhysicsSystem physicsSystem;
+public class MonsterBuilder extends PhysicalEntityBuilder{
 
     public MonsterBuilder(Assets assets, PhysicsSystem physicsSystem) {
-        this.assets = assets;
-        this.physicsSystem = physicsSystem;
+        super(assets, physicsSystem);
     }
 
     @Override

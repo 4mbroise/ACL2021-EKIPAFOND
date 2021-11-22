@@ -15,14 +15,10 @@ import com.mygdx.game.systems.physics.PhysicsSystem;
 /**
  * Entity builder for ghosts
  */
-public class GhostBuilder implements EntityBuilder{
+public class GhostBuilder extends PhysicalEntityBuilder{
 
-
-    private Assets assets;
-    private PhysicsSystem physicsSystem;
     public GhostBuilder( Assets a, PhysicsSystem p) {
-        this.assets = a;
-        this.physicsSystem = p;
+        super(a, p);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.mygdx.game.factory.entity;
 
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
@@ -13,17 +12,13 @@ import com.mygdx.game.systems.MonsterSystem;
 import com.mygdx.game.systems.pathfinding.PathFindingSystem;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
-public class HeroBuilder implements EntityBuilder{
+public class HeroBuilder extends PhysicalEntityBuilder{
 
-    private Assets assets;
-    private PhysicsSystem physicsSystem;
-    private GroundBuilder groundBuilder;
     private Body heroBody;
     Entity hero;
 
     public HeroBuilder(Assets assets, PhysicsSystem physicsSystem) {
-        this.assets = assets;
-        this.physicsSystem = physicsSystem;
+        super(assets, physicsSystem);
     }
 
     @Override

@@ -34,7 +34,7 @@ public class World {
 
         this.entityFactory = new EntityFactory();
         this.entityFactory.addEntityBuilder("-", new WallBuilder(assets, physicsSystem));
-        this.entityFactory.addEntityBuilder("+", new GroundBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("+", new GroundBuilder(assets));
         this.entityFactory.addEntityBuilder("1", new HeroBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("2", new MonsterBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("3", new InteligentMonsterBuilder(assets, physicsSystem));

@@ -29,8 +29,8 @@ public class WorldTest {
 
     @Test
     public void graphMapTest1() {
-        System.out.println(new File("assets/maps/map11.txt").exists());
-        this.world.createMapChar(new File("assets/maps/map11.txt"));
+        System.out.println(new File("assets/maps/mapTest1.txt").exists());
+        this.world.createMapChar(new File("assets/maps/mapTest1.txt"));
         MapGraph graph = this.world.getMapGraph();
         System.out.println(graph.numberOfNodes());
 

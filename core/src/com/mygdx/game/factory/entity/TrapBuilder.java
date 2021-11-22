@@ -10,15 +10,12 @@ import com.mygdx.game.World;
 import com.mygdx.game.components.*;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
-public class TrapBuilder implements EntityBuilder{
+public class TrapBuilder extends PhysicalEntityBuilder{
 
-    private Assets assets;
-    private PhysicsSystem physicsSystem;
     private Body body ;
 
     public TrapBuilder(Assets assetManager, PhysicsSystem physicsSystem) {
-        this.assets = assetManager;
-        this.physicsSystem = physicsSystem;
+        super(assetManager, physicsSystem);
     }
 
     @Override

@@ -10,14 +10,10 @@ import com.mygdx.game.World;
 import com.mygdx.game.components.*;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
-public class WallBuilder implements EntityBuilder{
-
-    private Assets assets;
-    private PhysicsSystem physicsSystem;
+public class WallBuilder extends PhysicalEntityBuilder{
 
     public WallBuilder(Assets assetManager, PhysicsSystem physicsSystem) {
-        this.assets = assetManager;
-        this.physicsSystem = physicsSystem;
+        super(assetManager, physicsSystem);
     }
 
     @Override
