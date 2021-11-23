@@ -12,7 +12,7 @@ public class AnimationComponent implements Component {
 
     private TextureAtlas atlas; // Texture atlas
     private Array<TextureAtlas.AtlasRegion>  atlasRegionsL,atlasRegionsR, atlasRegionsU, atlasRegionsD; // AtlasRegion array for each walking direction (UP, DOWN, LEFT, RIGHT)
-    public float animTime = 0.3f; // animation time
+    public static float animTime = 0.3f; // animation time
     private Animation animationRight, animationLeft, animationUp, animationDown; // animation for each walking direction
     private Array<TextureAtlas.AtlasRegion>atlasRegionsAL,atlasRegionsAR, atlasRegionsAU, atlasRegionsAD;  // AtlasRegion array for each attacking direction (UP, DOWN, LEFT, RIGHT)
     private Animation animationAttackRight, animationAttackLeft, animationAttackUp, animationAttackDown; // animation for each attacking direction
@@ -65,6 +65,7 @@ public class AnimationComponent implements Component {
     public Animation getAnimationLeft() {
         return animationLeft;
     }
+
 
     /**
      * Up walking animation getter
