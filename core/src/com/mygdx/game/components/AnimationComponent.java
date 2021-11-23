@@ -66,6 +66,7 @@ public class AnimationComponent implements Component {
         return animationLeft;
     }
 
+
     /**
      * Up walking animation getter
      * @return up walking animation
