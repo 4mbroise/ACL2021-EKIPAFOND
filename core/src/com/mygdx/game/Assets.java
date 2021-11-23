@@ -60,6 +60,7 @@ public class Assets {
         assetManager.load("tiles/treasure32x32.png", Texture.class);
         assetManager.load("tiles/wall.png", Texture.class);
         assetManager.load("tiles/ground.png", Texture.class);
+        assetManager.load("tiles/ground2.png", Texture.class);
         assetManager.load("tiles/fire.png", Texture.class);
         assetManager.load("tiles/portal.png", Texture.class);
         assetManager.load("sprites/cherry.png", Texture.class);

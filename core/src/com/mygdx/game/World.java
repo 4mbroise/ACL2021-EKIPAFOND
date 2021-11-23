@@ -104,7 +104,7 @@ public class World {
 
         this.map = new char[mapHeight][mapWidth];
 
-        Scanner mapReader = null;
+        Scanner mapReader;
         try {
             mapReader = new Scanner(mapFile);
 
