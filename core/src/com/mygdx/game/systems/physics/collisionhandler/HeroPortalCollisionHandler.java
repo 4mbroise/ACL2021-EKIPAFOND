@@ -33,8 +33,8 @@ public class HeroPortalCollisionHandler implements CollisionHandler{
         HeroBuilder hb = new HeroBuilder(this.world.getAssets(), this.world.getPhysicsSystem());
         engine.addEntity(hb.buildEntity(world.getPortal1().x - 32, world.getPortal1().y));*/
 
-        System.out.println(world.getPortal1());
-        System.out.println(world.getPortal2());
+        //System.out.println(world.getPortal1());
+        //System.out.println(world.getPortal2());
 
     }
 }

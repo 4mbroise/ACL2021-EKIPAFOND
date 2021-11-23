@@ -90,7 +90,7 @@ public class World {
 
             return result;
         } catch (FileNotFoundException e){
-            System.out.println("Map "+mapFile.getPath()+" not found");
+            //System.out.println("Map "+mapFile.getPath()+" not found");
         }
         return null;
     }
