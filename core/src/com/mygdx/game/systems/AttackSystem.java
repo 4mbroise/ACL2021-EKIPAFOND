@@ -83,7 +83,6 @@ public class AttackSystem extends IteratingSystem {
                     for (Entity e : entities) {
                         TransformComponent monsterPosition = tm.get(e);
                         Vector3 MP=monsterPosition.getPosition();
-                        System.out.println(MP.x-position.x);
                         if (MP.x>=position.x+15&&MP.x<=position.x+60&&MP.y>=position.y-30&&MP.y<=position.y+30) {
                             damageSound.play();
                             HealthComponent monsterHealth = heam.get(e);
