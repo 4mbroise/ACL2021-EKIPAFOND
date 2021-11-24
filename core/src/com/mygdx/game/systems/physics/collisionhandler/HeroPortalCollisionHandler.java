@@ -56,13 +56,6 @@ public class HeroPortalCollisionHandler implements CollisionHandler{
         } else {
             engine.addEntity(hb.buildEntity(x - 32, y));
         }
-
-        System.out.println(Arrays.deepToString(world.getMap()).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
-
-        //System.out.println(((int)x/32) + " - "+ (((int)y/32) - 2) );
-        System.out.println(world.getMap()[3][2]);
-
-
     }
 
     public double Distance(Vector2 p, double x1, double y1){
