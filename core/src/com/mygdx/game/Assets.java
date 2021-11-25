@@ -67,6 +67,7 @@ public class Assets {
         assetManager.load("sprites/ghost.png", Texture.class);
         assetManager.load("sprites/monster.png", Texture.class);
         assetManager.load("tiles/magic.png", Texture.class);
+        assetManager.load("tiles/gold.png", Texture.class);
         assetManager.load(("tiles/vie.png"), Texture.class);
         //load
         //System.out.println(assetManager.getProgress());
@@ -82,6 +83,7 @@ public class Assets {
         //BGM
         assetManager.load(("audio/BGM/MusMus-BGM-125.mp3"), Music.class);
         assetManager.load(("audio/BGM/MusMus-BGM-115.mp3"), Music.class);
+        assetManager.load(("audio/BGM/music_drill.mp3"), Music.class);
 
     }
 

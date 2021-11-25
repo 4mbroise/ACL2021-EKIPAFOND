@@ -43,6 +43,7 @@ public class World {
         this.entityFactory.addEntityBuilder("m", new MagicBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("t", new TrapBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("p", new PortalBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("g", new GoldBuilder(assets, physicsSystem));
 
     }
 

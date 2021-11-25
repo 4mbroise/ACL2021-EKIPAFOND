@@ -2,7 +2,6 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,6 +14,9 @@ public class ACLGame extends Game {
     public OrthographicCamera camera;
     private Assets assets;
     private int level;
+    private int score;
+    private final static int scoreIncrease = 30;
+
 
 
     @Override
@@ -30,6 +32,7 @@ public class ACLGame extends Game {
         /*camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());*/
         batcher.setProjectionMatrix(camera.combined);
         assets.getManager().finishLoading();
+        this.score=0;
         setScreen(new MenuScreen(this));
 
     }
@@ -59,6 +62,17 @@ public class ACLGame extends Game {
     public void resetLevel() {level = 1;}
 
 
+    public int getScore() {
+        return score;
+    }
+
+    public void increaseScore() {
+        this.score +=scoreIncrease;
+    }
+
+    public void resetScore(){
+        this.score=0;
+    }
     @Override
     public void dispose() {
         if(assets!=null){

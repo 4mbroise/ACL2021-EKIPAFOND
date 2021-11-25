@@ -94,11 +94,11 @@ public class RegleScreen extends ScreenAdapter {
         float titleW = titleG.width;
         title.draw(batch, titleG, (stage.getWidth()-titleW)/2, 400);
         GlyphLayout contentG = new GlyphLayout();
-        String contentS= " - 'Z/W' to move upwards \n" +
-                " - 'S' to move downwards \n"+
-                " - 'Q/A' to move left  \n"+
-                " - 'D' to move right  \n"+
-                " - 'J' to attack \n";
+        String contentS= " - 'Z/W/Up' to move upwards \n" +
+                " - 'S/Down' to move downwards \n"+
+                " - 'Q/A/Left' to move left  \n"+
+                " - 'D/Right' to move right  \n"+
+                " - 'J/Space' to attack \n";
         contentG.setText(content,contentS);
         content.draw(batch,contentS, 20, 300);
         batch.end();
