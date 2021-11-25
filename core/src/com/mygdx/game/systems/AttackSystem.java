@@ -20,6 +20,7 @@ public class AttackSystem extends IteratingSystem {
     private boolean attack;
     private Sound attackSound;
     private Sound damageSound;
+    private ACLGame game;
     public AttackSystem(ACLGame game) {
         super(Family.all(HealthComponent.class, HeroComponent.class,DirectionComponent.class,TransformComponent.class,AttackerComponent.class,AnimationComponent.class,TextureComponent.class).get());
         am = ComponentMapper.getFor(AttackerComponent.class);
@@ -31,7 +32,7 @@ public class AttackSystem extends IteratingSystem {
         txtm=ComponentMapper.getFor(TextureComponent.class);
         attackSound=game.getAssets().getManager().get("audio/attack/Attack.ogg");
         damageSound=game.getAssets().getManager().get("audio/attack/Damage.ogg");
-
+        this.game = game;
         attack=false;
 
     }
@@ -65,6 +66,9 @@ public class AttackSystem extends IteratingSystem {
                             damageSound.play();
                             HealthComponent monsterHealth = heam.get(e);
                             monsterHealth.reduceHealthPoint(damage);
+                            if(monsterHealth.getHealthPoint()==0){
+                                this.game.increaseScore();
+                            }
                         }
                     }
                     break;
@@ -76,6 +80,9 @@ public class AttackSystem extends IteratingSystem {
                             damageSound.play();
                             HealthComponent monsterHealth = heam.get(e);
                             monsterHealth.reduceHealthPoint(damage);
+                            if(monsterHealth.getHealthPoint()==0){
+                                this.game.increaseScore();
+                            }
                         }
                     }
                     break;
@@ -87,6 +94,9 @@ public class AttackSystem extends IteratingSystem {
                             damageSound.play();
                             HealthComponent monsterHealth = heam.get(e);
                             monsterHealth.reduceHealthPoint(damage);
+                            if(monsterHealth.getHealthPoint()==0){
+                                this.game.increaseScore();
+                            }
                         }
                     }
                     break;
@@ -98,12 +108,16 @@ public class AttackSystem extends IteratingSystem {
                             damageSound.play();
                             HealthComponent monsterHealth = heam.get(e);
                             monsterHealth.reduceHealthPoint(damage);
+                            if(monsterHealth.getHealthPoint()==0){
+                                this.game.increaseScore();
+                            }
                         }
                     }
                     break;
             }
         }
         attack=false;
+
     }
 
     public void attack(){

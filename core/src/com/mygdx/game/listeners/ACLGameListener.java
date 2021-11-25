@@ -26,19 +26,24 @@ public class ACLGameListener extends InputAdapter  {
         switch (keycode){
             case Input.Keys.Z:
             case Input.Keys.W:
+            case Input.Keys.UP:
                 engine.getSystem(HeroSystem.class).setHeroDirection(DirectionComponent.UP);
                 return true;
             case Input.Keys.S:
+            case Input.Keys.DOWN:
                 engine.getSystem(HeroSystem.class).setHeroDirection(DirectionComponent.DOWN);
                 return true;
             case Input.Keys.D:
+            case Input.Keys.RIGHT:
                 engine.getSystem(HeroSystem.class).setHeroDirection(DirectionComponent.RIGHT);
                 return true;
             case Input.Keys.Q:
             case Input.Keys.A:
+            case Input.Keys.LEFT:
                 engine.getSystem(HeroSystem.class).setHeroDirection(DirectionComponent.LEFT);
                 return true;
             case Input.Keys.J:
+            case Input.Keys.SPACE:
                 engine.getSystem(AttackSystem.class).attack();
                 engine.getSystem(AnimationSystem.class).attack();
 

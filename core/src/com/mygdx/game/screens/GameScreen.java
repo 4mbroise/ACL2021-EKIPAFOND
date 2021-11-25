@@ -8,10 +8,16 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -43,6 +49,9 @@ public class GameScreen extends ScreenAdapter {
     protected Stage stage;
     //audio
     private Music BGM;
+    private SpriteBatch batch;
+
+    private BitmapFont scoreRenderer;
     public GameScreen(ACLGame game) {
         this.engine = new PooledEngine();
         this.assets = game.getAssets();
@@ -59,7 +68,7 @@ public class GameScreen extends ScreenAdapter {
         this.engine.addSystem(new HeroSystem());
         this.engine.addSystem(new PhysicsSystem());
         this.engine.addSystem(new RandomMovementSystem());
-        this.engine.addSystem(new DebugRenderSystem(game.batcher, game.camera));
+        //this.engine.addSystem(new DebugRenderSystem(game.batcher, game.camera));
         this.engine.addSystem(new AttackSystem(game));
         this.engine.addSystem(new DeathSystem(game));
         this.engine.addSystem(new PathFindingSystem());
@@ -70,6 +79,7 @@ public class GameScreen extends ScreenAdapter {
         collisionsSystem.addCollisionStrategy(new HeroTreasureCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
         collisionsSystem.addCollisionStrategy(new HeroTrapCollisionHandler(this.engine, (Sound) assets.getManager().get("audio/game/Fire.ogg")), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TRAP);
         collisionsSystem.addCollisionStrategy(new HeroMagicCollisionHandler(this.engine, (Sound) assets.getManager().get("audio/game/Heal.ogg")), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MAGIC);
+        collisionsSystem.addCollisionStrategy(new HeroGoldCollisionHandler(this.engine, (Sound) assets.getManager().get("audio/game/Heal.ogg"), game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_GOLD);
         collisionsSystem.addCollisionStrategy(new HeroMonsterCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MONSTER);
         collisionsSystem.addCollisionStrategy(new HeroPhantomCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.        TYPE_GHOST);
 
@@ -81,6 +91,8 @@ public class GameScreen extends ScreenAdapter {
 
         this.multiplexer=new InputMultiplexer();
         multiplexer.addProcessor(new ACLGameListener(this));
+        scoreRenderer = assets.getManager().get("fonts/Retro_Gaming2.ttf");
+        this.batch=game.batcher;
         createButton();
         multiplexer.addProcessor(stage);
         Gdx.input.setInputProcessor(multiplexer);
@@ -104,18 +116,34 @@ public class GameScreen extends ScreenAdapter {
                 //soundButton.play();
                 super.clicked(event, x, y);
                 game.resetLevel();
+                game.resetScore();
                 game.setScreen(new MenuScreen(game));
 
             }
         });
         stage.addActor(homeButton);
+
+
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
         this.engine.update(delta);
-        //game.setScreen(new GameAITestScreen(game, game.getAssets()));
+        for(Actor actor : stage.getActors()) {
+            if(actor.getName().equals("ScoreButton")){
+                actor.addAction(Actions.removeActor());
+            }
+        }
+        this.batch.begin();
+        GlyphLayout scoreContent = new GlyphLayout();
+        String scoreText= String.valueOf(game.getScore());
+        scoreContent.setText(scoreRenderer,scoreText);
+        TextButton scoreButton = new TextButton("Score: " + game.getScore(), new TextButton.TextButtonStyle(null, null, null, scoreRenderer));
+        scoreButton.setPosition(0,stage.getHeight()-scoreButton.getHeight());
+        scoreButton.setName("ScoreButton");
+        stage.addActor(scoreButton);
+        this.batch.end();
     }
 
 

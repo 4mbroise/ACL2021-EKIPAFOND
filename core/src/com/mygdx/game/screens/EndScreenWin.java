@@ -2,6 +2,7 @@ package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,6 +19,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
 
+
 public class EndScreenWin extends ScreenAdapter {
     //main game
     private ACLGame game;
@@ -26,6 +28,9 @@ public class EndScreenWin extends ScreenAdapter {
     //font
     private BitmapFont title;
     private BitmapFont content;
+
+    //music
+    private Music BGM;
     //batch
     private Batch batch;
     //background
@@ -43,6 +48,9 @@ public class EndScreenWin extends ScreenAdapter {
         this.batch=game.batcher;
         stage=new Stage(new StretchViewport(800, 480));
         assets=game.getAssets();
+        BGM=assets.getManager().get("audio/BGM/music_drill.mp3");
+        BGM.setLooping(true);
+        BGM.setVolume(0.6f);
         create();
     }
 
@@ -92,16 +100,19 @@ public class EndScreenWin extends ScreenAdapter {
     @Override
     public void dispose() {
         super.dispose();
+        BGM.dispose();
     }
 
     @Override
     public void pause() {
         super.pause();
+        BGM.pause();
     }
 
     @Override
     public void hide() {
         super.hide();
+        BGM.stop();
     }
 
     @Override
@@ -118,6 +129,7 @@ public class EndScreenWin extends ScreenAdapter {
     @Override
     public void show() {
         super.show();
+        BGM.play();
     }
 }
 
