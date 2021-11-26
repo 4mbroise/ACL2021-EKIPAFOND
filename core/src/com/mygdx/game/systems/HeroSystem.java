@@ -38,7 +38,6 @@ public class HeroSystem extends IteratingSystem {
         } else if(heroComponent.getState()==heroComponent.STATE_INVINCIBILITY) {
             if (timeInvicibility < 2) {
                 timeInvicibility += Gdx.graphics.getDeltaTime();
-                System.out.println(heroComponent.getState());
             } else {
                 timeInvicibility = 0;
                 heroComponent.liftInvincibility();
@@ -48,7 +47,6 @@ public class HeroSystem extends IteratingSystem {
             if(timeSlowed < 3){
                 timeSlowed += Gdx.graphics.getDeltaTime();
                 movementComponent.setVelocity(HeroComponent.HERO_VELOCITY/2);
-                System.out.println(timeSlowed);
             } else{
                 timeSlowed = 0;
                 movementComponent.setVelocity(HeroComponent.HERO_VELOCITY);
