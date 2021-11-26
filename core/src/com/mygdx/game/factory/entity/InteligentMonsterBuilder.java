@@ -44,7 +44,7 @@ public class InteligentMonsterBuilder extends PhysicalEntityBuilder{
         monster.add(new CollisionComponent());
 
         //Add Health Point
-        monster.add(new HealthComponent(3));
+        monster.add(new HealthComponent(4));
 
         Body body = physicsSystem.addDynamicBody(x, y, World.CASE_DIMENSION/2, World.CASE_DIMENSION/2);
         body.setUserData(monster);

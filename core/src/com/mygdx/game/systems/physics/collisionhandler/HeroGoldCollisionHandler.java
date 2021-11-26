@@ -29,8 +29,8 @@ public class HeroGoldCollisionHandler implements CollisionHandler{
         HeroComponent heroComponent = hm.get(colliedA);
         heroComponent.setState(HeroComponent.STATE_STATIC);
         SteeringComponent steeringComponent = sm.get(colliedB);
-        sound.play();
         engine.removeEntity(colliedB);
+        sound.play();
         engine.getSystem(PhysicsSystem.class).getPhysicsWorld().destroyBody(steeringComponent.getBody());
         game.increaseScore();
 

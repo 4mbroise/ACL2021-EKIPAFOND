@@ -30,8 +30,8 @@ public class HeroSlowMalusCollisionHandler implements CollisionHandler{
         HeroComponent heroComponent = hm.get(colliedA);
         heroComponent.setSlowedStatus(true);
         SteeringComponent steeringComponent = sm.get(colliedB);
-        sound.play();
         engine.removeEntity(colliedB);
+        sound.play();
         engine.getSystem(PhysicsSystem.class).getPhysicsWorld().destroyBody(steeringComponent.getBody());
     }
 }
