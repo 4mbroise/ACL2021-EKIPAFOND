@@ -3,14 +3,26 @@ package com.mygdx.game.components;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
 
-public class CollisionComponent implements Component {
-    private Entity entityCollied = null;
+import java.util.*;
 
-    public Entity getEntityCollied() {
-        return entityCollied;
+public class CollisionComponent implements Component, Iterable<Entity>{
+    private Set<Entity> entiesCollied;
+
+    public CollisionComponent() {
+        this.entiesCollied = new HashSet<>();
     }
 
-    public void setEntityCollied(Entity entityCollied) {
-        this.entityCollied = entityCollied;
+    public void addEntityCollied(Entity entityCollied) {
+        this.entiesCollied.add(entityCollied);
+    }
+
+    public void removeEntityCollied(Entity entityCollied) {
+        this.entiesCollied.remove(entityCollied);
+    }
+
+    @Override
+    public Iterator<Entity> iterator() {
+
+        return new HashSet<>(this.entiesCollied).iterator();
     }
 }

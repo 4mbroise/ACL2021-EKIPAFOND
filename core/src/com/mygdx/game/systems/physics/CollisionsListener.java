@@ -3,7 +3,6 @@ package com.mygdx.game.systems.physics;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.components.CollisionComponent;
-import com.mygdx.game.components.TypeComponent;
 
 
 public class CollisionsListener implements ContactListener {
@@ -16,8 +15,8 @@ public class CollisionsListener implements ContactListener {
         Entity entityA = (Entity) fixtureA.getBody().getUserData();
         Entity entityB = (Entity) fixtureB.getBody().getUserData();
 
-        entityA.getComponent(CollisionComponent.class).setEntityCollied(entityB);
-        entityB.getComponent(CollisionComponent.class).setEntityCollied(entityA);
+        entityA.getComponent(CollisionComponent.class).addEntityCollied(entityB);
+        entityB.getComponent(CollisionComponent.class).addEntityCollied(entityA);
 
     }
 
@@ -29,8 +28,8 @@ public class CollisionsListener implements ContactListener {
         Entity entityA = (Entity) fixtureA.getBody().getUserData();
         Entity entityB = (Entity) fixtureB.getBody().getUserData();
 
-        entityA.getComponent(CollisionComponent.class).setEntityCollied(null);
-        entityB.getComponent(CollisionComponent.class).setEntityCollied(null);
+        entityA.getComponent(CollisionComponent.class).removeEntityCollied(entityB);
+        entityB.getComponent(CollisionComponent.class).removeEntityCollied(entityA);
     }
 
     @Override
