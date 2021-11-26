@@ -2,6 +2,7 @@ package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -39,11 +40,18 @@ public class EndScreenLoose extends ScreenAdapter {
     private Button homeButton;
     //assets
     private Assets assets;
+
+    //music
+    private Music BGM;
+
     public EndScreenLoose(ACLGame game){
         this.game=game;
         this.batch=game.batcher;
         this.stage=new Stage(new StretchViewport(800,480));
         assets=game.getAssets();
+        BGM=assets.getManager().get("audio/BGM/end_music.mp3");
+        BGM.setLooping(true);
+        BGM.setVolume(0.6f);
         create();
     }
 
@@ -71,6 +79,7 @@ public class EndScreenLoose extends ScreenAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.resetLevel();
+                game.resetScore();
                 game.setScreen(new MenuScreen(game));
             }
         });
@@ -88,7 +97,7 @@ public class EndScreenLoose extends ScreenAdapter {
         stage.act();
         stage.draw();
         GlyphLayout titleG = new GlyphLayout();
-        titleG.setText(title,"Game Over");
+        titleG.setText(title,"Game Over\nScore: " + game.getScore());
         float titleW = titleG.width;
         title.draw(batch, titleG, (stage.getWidth()-titleW)/2, 400);
         batch.end();
@@ -97,16 +106,19 @@ public class EndScreenLoose extends ScreenAdapter {
     @Override
     public void dispose() {
         super.dispose();
+        BGM.dispose();
     }
 
     @Override
     public void pause() {
         super.pause();
+        BGM.pause();
     }
 
     @Override
     public void hide() {
         super.hide();
+        BGM.stop();
     }
 
     @Override
@@ -123,7 +135,7 @@ public class EndScreenLoose extends ScreenAdapter {
     @Override
     public void show() {
         super.show();
-
+        BGM.play();
     }
 }
 

@@ -83,7 +83,9 @@ public class Assets {
         //BGM
         assetManager.load(("audio/BGM/MusMus-BGM-125.mp3"), Music.class);
         assetManager.load(("audio/BGM/MusMus-BGM-115.mp3"), Music.class);
-        assetManager.load(("audio/BGM/music_drill.mp3"), Music.class);
+        assetManager.load(("audio/BGM/end_music.mp3"), Music.class);
+        assetManager.load(("audio/BGM/winning_music.mp3"), Music.class);
+        assetManager.load(("audio/game/coin_effect.mp3"), Sound.class);
 
     }
 
