@@ -7,33 +7,53 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.components.DirectionComponent;
 import com.mygdx.game.components.HeroComponent;
+import com.mygdx.game.components.MovementComponent;
 
 public class HeroSystem extends IteratingSystem {
 
     private ComponentMapper<DirectionComponent> dm;
+    private ComponentMapper<MovementComponent> mm;
     private int direction = DirectionComponent.DOWN;
     private ComponentMapper<HeroComponent> hm;
-    private float stateTime;
+    private float timeInvicibility;
+    private float timeSlowed;
+
 
     public HeroSystem() {
         super(Family.all(HeroComponent.class).get());
         hm=ComponentMapper.getFor(HeroComponent.class);
         dm =ComponentMapper.getFor(DirectionComponent.class);
-        stateTime=0;
+        mm = ComponentMapper.getFor(MovementComponent.class);
+        timeInvicibility=0;
+        timeSlowed = 0;
     }
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         DirectionComponent  dirComp     = dm.get(entity);
-        HeroComponent herc=hm.get(entity);
-        if(herc.getState()==herc.STATE_DEATH){
+        HeroComponent heroComponent=hm.get(entity);
+        MovementComponent movementComponent = mm.get(entity);
+        if(heroComponent.getState()==heroComponent.STATE_DEATH){
             this.direction=dirComp.STATIC;
-        } else if(herc.getState()==herc.STATE_INVINCIBILITY) {
-            if (stateTime < 2) {
-                stateTime += Gdx.graphics.getDeltaTime();
+        } else if(heroComponent.getState()==heroComponent.STATE_INVINCIBILITY) {
+            if (timeInvicibility < 2) {
+                timeInvicibility += Gdx.graphics.getDeltaTime();
             } else {
-                stateTime = 0;
-                herc.liftInvincibility();
+                timeInvicibility = 0;
+                heroComponent.setState(HeroComponent.STATE_WALKING);
+            }
+        }
+        if(heroComponent.isSlowed()){
+            if(timeSlowed < 3){
+                timeSlowed += Gdx.graphics.getDeltaTime();
+                movementComponent.setVelocity(HeroComponent.HERO_VELOCITY/2);
+                System.out.println("slowed");
+                System.out.println(timeSlowed);
+            } else{
+                System.out.println("stop slow");
+                timeSlowed = 0;
+                movementComponent.setVelocity(HeroComponent.HERO_VELOCITY);
+                heroComponent.setSlowedStatus(false);
             }
         }
         dirComp.setDirection(this.direction);
