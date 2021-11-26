@@ -43,12 +43,14 @@ public class EndScreenWin extends ScreenAdapter {
     private Button homeButton;
     //assets
     private Assets assets;
+
+
     public  EndScreenWin (ACLGame game){
         this.game=game;
         this.batch=game.batcher;
         stage=new Stage(new StretchViewport(800, 480));
         assets=game.getAssets();
-        BGM=assets.getManager().get("audio/BGM/music_drill.mp3");
+        BGM=assets.getManager().get("audio/BGM/winning_music.mp3");
         BGM.setLooping(true);
         BGM.setVolume(0.6f);
         create();
@@ -77,6 +79,7 @@ public class EndScreenWin extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                game.resetScore();
                 game.setScreen(new MenuScreen(game));
             }
         });
@@ -93,7 +96,7 @@ public class EndScreenWin extends ScreenAdapter {
         batch.begin();
         stage.act();
         stage.draw();
-        title.draw(batch, "YOU WIN!!!!",220,300);
+        title.draw(batch, "YOU WIN!!!!\nScore: " + game.getScore(),220,300);
         batch.end();
     }
 

@@ -19,7 +19,6 @@ public class HeroMagicCollisionHandler implements CollisionHandler{
     public HeroMagicCollisionHandler(Engine engine, Sound sound) {
         this.engine = engine;
         this.sound=sound;
-
     }
 
     @Override

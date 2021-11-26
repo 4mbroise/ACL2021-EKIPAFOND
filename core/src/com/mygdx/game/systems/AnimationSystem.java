@@ -122,7 +122,6 @@ public class AnimationSystem extends IteratingSystem {
             deathDelta += deltaTime;
             hComp.death();
             if (deathDelta > amComp.getAnimationDeath().getFrameDuration() * 8) {
-                game.resetScore();
                 getEngine().removeEntity(entity);
                 getEngine().getSystem(PhysicsSystem.class).getPhysicsWorld().destroyBody(sc.getBody());
                 game.setScreen(new EndScreenLoose(game));
