@@ -13,6 +13,7 @@ public class HeroComponent implements Component{
     public static final int STATE_ATTACKING = 2;
     public static final int STATE_INVINCIBILITY =-1;
     public static final int STATE_DEATH=-2;
+    private boolean slowedStatus =  false;
 
     private int state = 1;
 
@@ -36,6 +37,14 @@ public class HeroComponent implements Component{
         if(state!=STATE_DEATH){
             state=STATE_INVINCIBILITY;
         }
+    }
+
+    public boolean isSlowed(){
+        return this.slowedStatus;
+    }
+
+    public void setSlowedStatus(boolean status){
+        slowedStatus = status;
     }
 
     public int getStartHealth(){

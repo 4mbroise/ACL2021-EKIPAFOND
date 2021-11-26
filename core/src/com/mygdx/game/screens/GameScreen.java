@@ -82,6 +82,8 @@ public class GameScreen extends ScreenAdapter {
         collisionsSystem.addCollisionStrategy(new HeroGoldCollisionHandler(this.engine, (Sound) assets.getManager().get("audio/game/coin_effect.mp3"), game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_GOLD);
         collisionsSystem.addCollisionStrategy(new HeroMonsterCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MONSTER);
         collisionsSystem.addCollisionStrategy(new HeroPhantomCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.        TYPE_GHOST);
+        collisionsSystem.addCollisionStrategy(new HeroSlowMalusCollisionHandler(this.engine, (Sound) assets.getManager().get("audio/game/web_effect.mp3"), game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_SLOW_MALUS   );
+
 
         this.engine.addSystem(collisionsSystem);
         this.world = new World(this.engine, this.assets);
