@@ -38,19 +38,18 @@ public class HeroSystem extends IteratingSystem {
         } else if(heroComponent.getState()==heroComponent.STATE_INVINCIBILITY) {
             if (timeInvicibility < 2) {
                 timeInvicibility += Gdx.graphics.getDeltaTime();
+                System.out.println(heroComponent.getState());
             } else {
                 timeInvicibility = 0;
-                heroComponent.setState(HeroComponent.STATE_WALKING);
+                heroComponent.liftInvincibility();
             }
         }
         if(heroComponent.isSlowed()){
             if(timeSlowed < 3){
                 timeSlowed += Gdx.graphics.getDeltaTime();
                 movementComponent.setVelocity(HeroComponent.HERO_VELOCITY/2);
-                System.out.println("slowed");
                 System.out.println(timeSlowed);
             } else{
-                System.out.println("stop slow");
                 timeSlowed = 0;
                 movementComponent.setVelocity(HeroComponent.HERO_VELOCITY);
                 heroComponent.setSlowedStatus(false);
