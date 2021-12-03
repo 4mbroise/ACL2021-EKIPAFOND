@@ -34,7 +34,7 @@ public class World {
 
         this.entityFactory = new EntityFactory();
         this.entityFactory.addEntityBuilder("-", new WallBuilder(assets, physicsSystem));
-        this.entityFactory.addEntityBuilder("+", new GroundBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("+", new GroundBuilder(assets));
         this.entityFactory.addEntityBuilder("1", new HeroBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("2", new MonsterBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("3", new InteligentMonsterBuilder(assets, physicsSystem));
@@ -43,6 +43,8 @@ public class World {
         this.entityFactory.addEntityBuilder("m", new MagicBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("t", new TrapBuilder(assets, physicsSystem));
         this.entityFactory.addEntityBuilder("p", new PortalBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("g", new GoldBuilder(assets, physicsSystem));
+        this.entityFactory.addEntityBuilder("*", new SlowCaseBuilder(assets, physicsSystem));
 
     }
 
@@ -90,7 +92,7 @@ public class World {
 
             return result;
         } catch (FileNotFoundException e){
-            System.out.println("Map "+mapFile.getPath()+" not found");
+            //System.out.println("Map "+mapFile.getPath()+" not found");
         }
         return null;
     }
@@ -104,7 +106,7 @@ public class World {
 
         this.map = new char[mapHeight][mapWidth];
 
-        Scanner mapReader = null;
+        Scanner mapReader;
         try {
             mapReader = new Scanner(mapFile);
 

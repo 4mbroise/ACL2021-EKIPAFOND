@@ -13,6 +13,9 @@ public class TypeComponent implements Component {
     public static final int TYPE_MAGIC = 6;
     public static final int TYPE_PORTAL = 7;
     public static final int TYPE_GHOST = 8;
+    public static final int TYPE_GOLD = 9;
+    public static final int TYPE_SLOW_MALUS = 10;
+
 
     private int type;
 

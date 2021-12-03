@@ -4,20 +4,13 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.game.Assets;
-import com.mygdx.game.World;
 import com.mygdx.game.components.*;
-import com.mygdx.game.systems.physics.PhysicsSystem;
 
-public class GroundBuilder implements EntityBuilder{
+public class GroundBuilder extends GraphicalEntityBuilder {
 
-    private Assets assets;
-    private PhysicsSystem physicsSystem;
-
-    public GroundBuilder(Assets assetManager, PhysicsSystem physicsSystem) {
-        this.assets = assetManager;
-        this.physicsSystem = physicsSystem;
+    public GroundBuilder(Assets assetManager) {
+        super(assetManager);
     }
 
     @Override

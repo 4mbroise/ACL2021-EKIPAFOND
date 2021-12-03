@@ -19,7 +19,7 @@ public class MonsterSystemTest {
 
 
     Engine engine;
-    MonsterSystem monsterSystem;
+    MonsterSystem monsterSystem =  new MonsterSystem();
     MonsterComponent monsterComponent, monsterComponent1;
     Entity monster, hero;
 

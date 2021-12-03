@@ -13,15 +13,7 @@ public class HeroPhantomCollisionHandler implements CollisionHandler{
 
     ComponentMapper<HealthComponent> healm= ComponentMapper.getFor(HealthComponent.class);
     ComponentMapper<HeroComponent> hm=ComponentMapper.getFor(HeroComponent.class);
-    Engine engine;
-    ACLGame game;
-    float stateTime;
 
-    public HeroPhantomCollisionHandler(Engine engine, ACLGame game) {
-        this.engine = engine;
-        this.game = game;
-        stateTime=0;
-    }
 
     @Override
     public void handle(Entity colliedA, Entity colliedB) {

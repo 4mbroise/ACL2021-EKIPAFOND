@@ -17,7 +17,7 @@ public class EntityFactory {
         if(entityBuilderMap.containsKey(code)){
             return entityBuilderMap.get(code).buildEntity(x, y);
         } else if (!code.equals("+")){
-            System.out.println("Case "+code + "non implémentée");
+            //System.out.println("Case "+code + "non implémentée");
         }
         return null;
     }

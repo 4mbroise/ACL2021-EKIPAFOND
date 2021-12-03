@@ -14,7 +14,6 @@ public class PathFindingSystem extends IteratingSystem {
 
     private ComponentMapper<DirectionComponent> dm;
     private ComponentMapper<TransformComponent> tm;
-    private IndexedAStarPathFinder<Node> pathFinder;
     private Entity target;
     private MapGraph graph;
 
@@ -45,8 +44,6 @@ public class PathFindingSystem extends IteratingSystem {
             y+=World.CASE_DIMENSION*0.75;
         }
 
-
-
         int caseX = (int) Math.round((x)/(World.CASE_DIMENSION*2));
         int caseY = (int) Math.round((y)/(World.CASE_DIMENSION*2));
         caseY--;
@@ -56,9 +53,6 @@ public class PathFindingSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        float x = tm.get(target).getPosition().x;
-        float y = tm.get(target).getPosition().y;
-
         float xTarget = tm.get(target).getPosition().x;
         float yTarget = tm.get(target).getPosition().y;
         Node targetCase = getNodeFromPosition(xTarget, yTarget, dm.get(target).getDirection());
@@ -92,10 +86,5 @@ public class PathFindingSystem extends IteratingSystem {
                 }
             }
         }
-
-        /*System.out.println(Math.round(x/(World.CASE_DIMENSION*2))+" --- "+ Math.round(y/(World.CASE_DIMENSION*2)));
-
-        System.out.println(graph.nodeExist(Math.round(x/(World.CASE_DIMENSION*2)), Math.round(y/(World.CASE_DIMENSION*2))));*/
-
     }
 }

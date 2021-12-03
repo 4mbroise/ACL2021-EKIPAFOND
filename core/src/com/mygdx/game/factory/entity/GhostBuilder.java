@@ -15,14 +15,10 @@ import com.mygdx.game.systems.physics.PhysicsSystem;
 /**
  * Entity builder for ghosts
  */
-public class GhostBuilder implements EntityBuilder{
+public class GhostBuilder extends PhysicalEntityBuilder{
 
-
-    private Assets assets;
-    private PhysicsSystem physicsSystem;
     public GhostBuilder( Assets a, PhysicsSystem p) {
-        this.assets = a;
-        this.physicsSystem = p;
+        super(a, p);
     }
 
     @Override
@@ -36,7 +32,7 @@ public class GhostBuilder implements EntityBuilder{
         monster.add(textureComponent);
 
         //Add Movement
-        MovementComponent movementComponent = new MovementComponent(MonsterComponent.MONSTER_VELOCITY);
+        MovementComponent movementComponent = new MovementComponent(MonsterComponent.GHOST_VELOCITY);
         monster.add(movementComponent);
 
         // Add Monster component
@@ -50,7 +46,7 @@ public class GhostBuilder implements EntityBuilder{
         monster.add(transformComponent);
 
         //Add Health Point
-        monster.add(new HealthComponent(3));
+        monster.add(new HealthComponent(5));
 
         Body body = physicsSystem.addSensorDynamicBody(x, y, World.CASE_DIMENSION - 1, World.CASE_DIMENSION - 1);
         body.setUserData(monster);

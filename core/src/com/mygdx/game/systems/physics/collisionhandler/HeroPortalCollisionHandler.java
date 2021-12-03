@@ -14,13 +14,11 @@ public class HeroPortalCollisionHandler implements CollisionHandler{
 
     ComponentMapper<HeroComponent> hm = ComponentMapper.getFor(HeroComponent.class);
     ComponentMapper<SteeringComponent> bm = ComponentMapper.getFor(SteeringComponent.class);
-    Engine engine;
     World world;
     Vector2 portal1;
     Vector2 portal2;
 
     public HeroPortalCollisionHandler(Engine engine, World world) {
-        this.engine = engine;
         this.world = world;
         this.portal1 = world.getPortal1();
         this.portal2 = world.getPortal2();
@@ -35,8 +33,8 @@ public class HeroPortalCollisionHandler implements CollisionHandler{
         HeroBuilder hb = new HeroBuilder(this.world.getAssets(), this.world.getPhysicsSystem());
         engine.addEntity(hb.buildEntity(world.getPortal1().x - 32, world.getPortal1().y));*/
 
-        System.out.println(world.getPortal1());
-        System.out.println(world.getPortal2());
+        //System.out.println(world.getPortal1());
+        //System.out.println(world.getPortal2());
 
     }
 }

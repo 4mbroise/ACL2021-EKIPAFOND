@@ -4,19 +4,11 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.components.*;
 import com.mygdx.game.screens.EndScreenLoose;
 import com.mygdx.game.systems.physics.PhysicsSystem;
-import org.lwjgl.Sys;
 
 public class AnimationSystem extends IteratingSystem {
     private ComponentMapper<TextureComponent> tm;
@@ -44,7 +36,7 @@ public class AnimationSystem extends IteratingSystem {
         sumDelta=0;
         deathDelta=0;
         float stateTime=0f;
-
+        this.game = game;
     }
 
     @Override
