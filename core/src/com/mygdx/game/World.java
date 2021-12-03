@@ -10,6 +10,8 @@ import com.mygdx.game.systems.pathfinding.Node;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class World {
@@ -22,15 +24,14 @@ public class World {
     private int maxWidth;
     private int maxHeight;
     private char[][] map;
-    private int nbPortals;
-    private Vector2 portal1;
-    private Vector2 portal2;
+    private List<Vector2> portals;
+
 
     public World(Engine engine, Assets assets) {
         this.engine = engine;
         this.physicsSystem = this.engine.getSystem(PhysicsSystem.class);
-        this.nbPortals = 0;
         this.assets = assets;
+        this.portals = new ArrayList<>();
 
         this.entityFactory = new EntityFactory();
         this.entityFactory.addEntityBuilder("-", new WallBuilder(assets, physicsSystem));
@@ -116,12 +117,8 @@ public class World {
                     //System.out.println("("+x+";"+y+")");
                     Entity entity = entityFactory.createEntity(Character.toString(data.charAt(j)), x, y);
                     map[y/(CASE_DIMENSION*2)-1][x/(CASE_DIMENSION*2)] = data.charAt(j);
-                    if (data.charAt(j) == 'p' && nbPortals == 0){
-                        this.portal1 = new Vector2(x,y);
-                        nbPortals++;
-                    } else if (data.charAt(j) == 'p' && nbPortals == 1){
-                        this.portal2 = new Vector2(x,y);
-                        nbPortals++;
+                    if (data.charAt(j) == 'p' && portals.size() <=2){
+                        portals.add(new Vector2(x,y));
                     }
                     if(entity != null){
                         this.engine.addEntity(entityFactory.createEntity("+",x,y));
@@ -200,12 +197,20 @@ public class World {
         }
     }
 
-    public Vector2 getPortal1() {
-        return portal1;
+    public List<Vector2> getPortals() {
+        return portals;
     }
 
-    public Vector2 getPortal2() {
-        return portal2;
+    public char[][] getMap() {
+        return map;
+    }
+
+    public int getMaxWidth() {
+        return maxWidth;
+    }
+
+    public int getMaxHeight() {
+        return maxHeight;
     }
 
     public Assets getAssets() {
