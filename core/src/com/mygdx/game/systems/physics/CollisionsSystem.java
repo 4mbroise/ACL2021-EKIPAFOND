@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.mygdx.game.components.CollisionComponent;
+import com.mygdx.game.components.HeroComponent;
 import com.mygdx.game.components.TypeComponent;
 import com.mygdx.game.systems.physics.collisionhandler.CollisionHandler;
 
@@ -18,7 +19,7 @@ public class CollisionsSystem extends IteratingSystem {
     private Map<Integer, HashMap<Integer, CollisionHandler>> collisionStrategies = new HashMap<Integer,HashMap<Integer, CollisionHandler>>();
 
     public CollisionsSystem() {
-        super(Family.all(CollisionComponent.class).get());
+        super(Family.all(CollisionComponent.class, HeroComponent.class).get());
         this.cm = ComponentMapper.getFor(CollisionComponent.class);
         this.tm = ComponentMapper.getFor(TypeComponent.class);
     }
@@ -37,10 +38,10 @@ public class CollisionsSystem extends IteratingSystem {
         CollisionComponent  cComp = cm.get(entity);
         TypeComponent       tComp = tm.get(entity);
 
-        if(cComp.getEntityCollied()!=null){
-            TypeComponent tCompCollied = tm.get(cComp.getEntityCollied());
+        for (Entity entityCollied: cComp) {
+            TypeComponent tCompCollied = tm.get(entityCollied);
             if(collisionStrategies.containsKey(tComp.getType()) && collisionStrategies.get(tComp.getType()).containsKey(tCompCollied.getType())){
-                collisionStrategies.get(tComp.getType()).get(tCompCollied.getType()).handle(entity, cComp.getEntityCollied());
+                collisionStrategies.get(tComp.getType()).get(tCompCollied.getType()).handle(entity, entityCollied);
             }
         }
     }

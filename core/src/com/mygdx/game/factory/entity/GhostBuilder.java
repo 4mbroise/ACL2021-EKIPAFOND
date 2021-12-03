@@ -46,7 +46,7 @@ public class GhostBuilder extends PhysicalEntityBuilder{
         monster.add(transformComponent);
 
         //Add Health Point
-        monster.add(new HealthComponent(3));
+        monster.add(new HealthComponent(5));
 
         Body body = physicsSystem.addSensorDynamicBody(x, y, World.CASE_DIMENSION - 1, World.CASE_DIMENSION - 1);
         body.setUserData(monster);

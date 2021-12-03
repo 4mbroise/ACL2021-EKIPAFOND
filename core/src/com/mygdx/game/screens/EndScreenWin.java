@@ -2,6 +2,7 @@ package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,6 +19,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
 
+
 public class EndScreenWin extends ScreenAdapter {
     //main game
     private ACLGame game;
@@ -26,6 +28,9 @@ public class EndScreenWin extends ScreenAdapter {
     //font
     private BitmapFont title;
     private BitmapFont content;
+
+    //music
+    private Music BGM;
     //batch
     private Batch batch;
     //background
@@ -38,11 +43,16 @@ public class EndScreenWin extends ScreenAdapter {
     private Button homeButton;
     //assets
     private Assets assets;
+
+
     public  EndScreenWin (ACLGame game){
         this.game=game;
         this.batch=game.batcher;
         stage=new Stage(new StretchViewport(800, 480));
         assets=game.getAssets();
+        BGM=assets.getManager().get("audio/BGM/winning_music.mp3");
+        BGM.setLooping(true);
+        BGM.setVolume(0.6f);
         create();
     }
 
@@ -69,6 +79,7 @@ public class EndScreenWin extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                game.resetScore();
                 game.setScreen(new MenuScreen(game));
             }
         });
@@ -85,23 +96,26 @@ public class EndScreenWin extends ScreenAdapter {
         batch.begin();
         stage.act();
         stage.draw();
-        title.draw(batch, "YOU WIN!!!!",220,300);
+        title.draw(batch, "YOU WIN!!!!\nScore: " + game.getScore(),220,300);
         batch.end();
     }
 
     @Override
     public void dispose() {
         super.dispose();
+        BGM.dispose();
     }
 
     @Override
     public void pause() {
         super.pause();
+        BGM.pause();
     }
 
     @Override
     public void hide() {
         super.hide();
+        BGM.stop();
     }
 
     @Override
@@ -118,6 +132,7 @@ public class EndScreenWin extends ScreenAdapter {
     @Override
     public void show() {
         super.show();
+        BGM.play();
     }
 }
 

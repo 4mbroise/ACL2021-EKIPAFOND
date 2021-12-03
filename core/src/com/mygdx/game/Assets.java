@@ -67,7 +67,9 @@ public class Assets {
         assetManager.load("sprites/ghost.png", Texture.class);
         assetManager.load("sprites/monster.png", Texture.class);
         assetManager.load("tiles/magic.png", Texture.class);
+        assetManager.load("tiles/gold.png", Texture.class);
         assetManager.load(("tiles/vie.png"), Texture.class);
+        assetManager.load("tiles/spiderWeb.png", Texture.class);
         //load
         //System.out.println(assetManager.getProgress());
         //sound
@@ -79,9 +81,13 @@ public class Assets {
         assetManager.load(("audio/game/Fire.ogg"), Sound.class);
         assetManager.load(("audio/system/button.ogg"), Sound.class);
         assetManager.load(("audio/game/Heal.ogg"), Sound.class);
+        assetManager.load("audio/game/web_effect.mp3", Sound.class);
         //BGM
         assetManager.load(("audio/BGM/MusMus-BGM-125.mp3"), Music.class);
         assetManager.load(("audio/BGM/MusMus-BGM-115.mp3"), Music.class);
+        assetManager.load(("audio/BGM/end_music.mp3"), Music.class);
+        assetManager.load(("audio/BGM/winning_music.mp3"), Music.class);
+        assetManager.load(("audio/game/coin_effect.mp3"), Sound.class);
 
     }
 

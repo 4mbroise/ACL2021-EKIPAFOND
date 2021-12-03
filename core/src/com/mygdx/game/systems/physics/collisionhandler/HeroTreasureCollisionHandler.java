@@ -33,6 +33,7 @@ public class HeroTreasureCollisionHandler implements CollisionHandler{
             game.levelUp();
             game.setScreen(new MazeTestScreen(game));
         } else {
+            //game.resetScore();
             game.setScreen(new EndScreenWin(game));
         }
     }
