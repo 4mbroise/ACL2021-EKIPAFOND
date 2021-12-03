@@ -57,7 +57,6 @@ public class HeroBuilder extends PhysicalEntityBuilder{
         hero.add(new HealthComponent(HeroComponent.START_HEALTH));
         hero.add(new AttackerComponent(1));
 
-        hero.add(new ScoreComponent());
         this.physicsSystem.getEngine().getSystem(PathFindingSystem.class).setTarget(hero);
         this.physicsSystem.getEngine().getSystem(MonsterSystem.class).setTarget(hero);
 
