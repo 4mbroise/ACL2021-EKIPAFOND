@@ -9,8 +9,6 @@ import com.mygdx.game.components.DirectionComponent;
 import com.mygdx.game.components.HeroComponent;
 import com.mygdx.game.components.SteeringComponent;
 import com.mygdx.game.components.TransformComponent;
-import com.mygdx.game.factory.entity.HeroBuilder;
-import com.mygdx.game.systems.physics.PhysicsSystem;
 
 public class HeroPortalCollisionHandler implements CollisionHandler{
 
@@ -28,8 +26,7 @@ public class HeroPortalCollisionHandler implements CollisionHandler{
 
     @Override
     public void handle(Entity colliedA, Entity colliedB) {
-        HeroComponent heroComponent = hm.get(colliedA);
-        SteeringComponent steeringComponent = bm.get(colliedA);
+        SteeringComponent  steeringComponent  = bm.get(colliedA);
         TransformComponent transformComponent = tm.get(colliedA);
         DirectionComponent directionComponent = dm.get(colliedA);
 
@@ -44,15 +41,12 @@ public class HeroPortalCollisionHandler implements CollisionHandler{
         }
 
     public void teleport(SteeringComponent hero, DirectionComponent direction, float x, float y){
-        engine.getSystem(PhysicsSystem.class).getPhysicsWorld().destroyBody(hero.getBody());
-        HeroBuilder hb = new HeroBuilder(this.world.getAssets(), this.world.getPhysicsSystem());
-
         if (world.getMap()[((int)x/32)][((int)y/32) + 1] == '+'){
-            engine.addEntity(hb.buildEntity(x + 32, y));
+            hero.getBody().setTransform(x+32,y,0);
             direction.setDirection(DirectionComponent.RIGHT);
 
         } else {
-            engine.addEntity(hb.buildEntity(x - 32, y));
+            hero.getBody().setTransform(x-32,y,0);
             direction.setDirection(DirectionComponent.LEFT);
         }
     }
