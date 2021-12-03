@@ -38,13 +38,11 @@ public class GameScreen extends ScreenAdapter {
     public Assets assets;
     public Engine engine;
     public static World world;
-    public boolean active;
     protected InputMultiplexer multiplexer;
     //button
     private Texture homeUpTexture;
     private Texture homeDownTexture;
     protected Button homeButton;
-    protected Sound soundButton;
     //stage
     protected Stage stage;
     //audio
@@ -88,7 +86,7 @@ public class GameScreen extends ScreenAdapter {
         this.engine.addSystem(collisionsSystem);
         this.world = new World(this.engine, this.assets);
 
-        collisionsSystem.addCollisionStrategy(new HeroPortalCollisionHandler(this.engine, this.world), TypeComponent.TYPE_HERO, TypeComponent.TYPE_PORTAL);
+        collisionsSystem.addCollisionStrategy(new HeroPortalCollisionHandler(this.world), TypeComponent.TYPE_HERO, TypeComponent.TYPE_PORTAL);
         this.engine.addSystem(collisionsSystem);
 
         this.multiplexer=new InputMultiplexer();
@@ -147,8 +145,6 @@ public class GameScreen extends ScreenAdapter {
         stage.addActor(scoreButton);
         this.batch.end();
     }
-
-
 
     @Override
     public void show() {

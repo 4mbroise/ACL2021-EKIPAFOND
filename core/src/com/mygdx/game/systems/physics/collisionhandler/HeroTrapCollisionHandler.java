@@ -4,18 +4,17 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.audio.Sound;
-import com.mygdx.game.ACLGame;
 import com.mygdx.game.components.*;
-import com.mygdx.game.screens.EndScreenLoose;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
 public class HeroTrapCollisionHandler implements CollisionHandler{
 
-    ComponentMapper<HeroComponent> hm = ComponentMapper.getFor(HeroComponent.class);
-    ComponentMapper<SteeringComponent> bm = ComponentMapper.getFor(SteeringComponent.class);
-    ComponentMapper<HealthComponent> healthMapper = ComponentMapper.getFor(HealthComponent.class);
-    Engine engine;
-    Sound sound;
+    private ComponentMapper<HeroComponent> hm = ComponentMapper.getFor(HeroComponent.class);
+    private ComponentMapper<SteeringComponent> bm = ComponentMapper.getFor(SteeringComponent.class);
+    private ComponentMapper<HealthComponent> healthMapper = ComponentMapper.getFor(HealthComponent.class);
+    private Engine engine;
+    private Sound sound;
+
     public HeroTrapCollisionHandler(Engine engine, Sound sound) {
         this.engine = engine;
         this.sound=sound;
@@ -33,6 +32,5 @@ public class HeroTrapCollisionHandler implements CollisionHandler{
         if(heroComponent.getState()!=heroComponent.STATE_INVINCIBILITY&&heroComponent.getState()!=heroComponent.STATE_DEATH) {
             hc.reduceHealthPoint(1);
         }
-
     }
 }

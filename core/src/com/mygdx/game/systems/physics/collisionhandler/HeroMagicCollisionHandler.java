@@ -3,9 +3,7 @@ package com.mygdx.game.systems.physics.collisionhandler;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.audio.Sound;
-import com.mygdx.game.ACLGame;
 import com.mygdx.game.components.*;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
@@ -16,6 +14,7 @@ public class HeroMagicCollisionHandler implements CollisionHandler{
     private ComponentMapper<HealthComponent> healthMapper = ComponentMapper.getFor(HealthComponent.class);
     private Engine engine;
     private Sound sound;
+
     public HeroMagicCollisionHandler(Engine engine, Sound sound) {
         this.engine = engine;
         this.sound=sound;

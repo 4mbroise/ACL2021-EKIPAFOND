@@ -1,26 +1,21 @@
 package com.mygdx.game.systems.physics.collisionhandler;
 
 import com.badlogic.ashley.core.ComponentMapper;
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.World;
 import com.mygdx.game.components.DirectionComponent;
-import com.mygdx.game.components.HeroComponent;
 import com.mygdx.game.components.SteeringComponent;
 import com.mygdx.game.components.TransformComponent;
 
 public class HeroPortalCollisionHandler implements CollisionHandler{
 
-    ComponentMapper<HeroComponent> hm = ComponentMapper.getFor(HeroComponent.class);
-    ComponentMapper<SteeringComponent> bm = ComponentMapper.getFor(SteeringComponent.class);
-    ComponentMapper<TransformComponent> tm = ComponentMapper.getFor(TransformComponent.class);
-    ComponentMapper<DirectionComponent> dm = ComponentMapper.getFor(DirectionComponent.class);
-    Engine engine;
-    World world;
+    private ComponentMapper<SteeringComponent> bm = ComponentMapper.getFor(SteeringComponent.class);
+    private ComponentMapper<TransformComponent> tm = ComponentMapper.getFor(TransformComponent.class);
+    private ComponentMapper<DirectionComponent> dm = ComponentMapper.getFor(DirectionComponent.class);
+    private World world;
 
-    public HeroPortalCollisionHandler(Engine engine, World world) {
-        this.engine = engine;
+    public HeroPortalCollisionHandler(World world) {
         this.world = world;
     }
 

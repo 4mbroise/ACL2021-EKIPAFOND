@@ -12,8 +12,8 @@ import com.mygdx.game.systems.physics.PhysicsSystem;
 
 public class HeroTreasureCollisionHandler implements CollisionHandler{
 
-    ComponentMapper<HeroComponent> hm = ComponentMapper.getFor(HeroComponent.class);
-    ComponentMapper<SteeringComponent> bm = ComponentMapper.getFor(SteeringComponent.class);
+    private ComponentMapper<HeroComponent> hm = ComponentMapper.getFor(HeroComponent.class);
+    private ComponentMapper<SteeringComponent> bm = ComponentMapper.getFor(SteeringComponent.class);
     private Engine engine;
     private ACLGame game;
 
