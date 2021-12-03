@@ -42,8 +42,6 @@ public class AttackSystem extends IteratingSystem {
         DirectionComponent dc=dm.get(entity);
         TransformComponent tc=tm.get(entity);
         AttackerComponent ac=am.get(entity);
-        AnimationComponent anc=anm.get(entity);
-        TextureComponent txtc = txtm.get(entity);
 
         int damage=ac.getDamage();
         int direction=dc.getDirection();

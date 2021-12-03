@@ -35,6 +35,5 @@ public class HeroMonsterCollisionHandler implements CollisionHandler{
             herc.setStateInvincibility();
         }
 
-        System.out.println("hero:"+herc.getState());
     }
 }

@@ -50,23 +50,14 @@ public class AnimationSystem extends IteratingSystem {
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         TextureComponent txtComp = tm.get(entity);
-        TransformComponent trmComp = trm.get(entity);
         AnimationComponent amComp = am.get(entity);
         DirectionComponent dComp = dm.get(entity);
         HeroComponent hComp= hm.get(entity);
         HealthComponent healthComponent=heam.get(entity);
         SteeringComponent sc=sm.get(entity);
 
-        float textureWidth = txtComp.getRegion().getRegionWidth();
-        float textureHeigth = txtComp.getRegion().getRegionHeight();
 
-        float x = trmComp.getPosition().x;
-        float y = trmComp.getPosition().y;
-
-        float xDraw = x - textureWidth / 2;
-        float yDraw = y - textureHeigth / 2;
         stateTime += deltaTime;
-        //System.out.println("heroHP:"+healthComponent.getHealthPoint());
         if(healthComponent.getHealthPoint()>0) {
             switch (dComp.getDirection()) {
                 case DirectionComponent.UP:

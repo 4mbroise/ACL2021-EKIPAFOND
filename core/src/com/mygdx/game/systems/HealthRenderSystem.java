@@ -39,6 +39,7 @@ public class HealthRenderSystem extends IteratingSystem {
      * @param stage game's stage
      */
     public HealthRenderSystem(Batch batch, Assets assets, Stage stage) {
+
         super(Family.all(HeroComponent.class, HealthComponent.class).get()); // we want to collect hero's health point
         this.heroMapper = ComponentMapper.getFor(HeroComponent.class);
         this.healthMapper = ComponentMapper.getFor(HealthComponent.class);

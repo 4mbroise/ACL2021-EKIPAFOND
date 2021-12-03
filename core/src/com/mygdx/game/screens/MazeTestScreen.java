@@ -27,8 +27,7 @@ public class MazeTestScreen extends GameScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
-        stage.act();
-        stage.draw();
+
     }
 }
 

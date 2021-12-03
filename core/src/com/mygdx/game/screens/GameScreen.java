@@ -8,6 +8,8 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -32,17 +34,16 @@ public class GameScreen extends ScreenAdapter {
     public Assets assets;
     public Engine engine;
     public static World world;
-    public boolean active;
     protected InputMultiplexer multiplexer;
     //button
     private Texture homeUpTexture;
     private Texture homeDownTexture;
     protected Button homeButton;
-    protected Sound soundButton;
     //stage
     protected Stage stage;
     //audio
     private Music BGM;
+
     public GameScreen(ACLGame game) {
         this.engine = new PooledEngine();
         this.assets = game.getAssets();
@@ -65,6 +66,7 @@ public class GameScreen extends ScreenAdapter {
         this.engine.addSystem(new PathFindingSystem());
         this.engine.addSystem(new MonsterSystem());
         this.engine.addSystem(new HealthRenderSystem(game.batcher, game.getAssets(), stage));
+        this.engine.addSystem(new ScoreRenderSystem(game.batcher,game.getAssets(),stage));
         CollisionsSystem collisionsSystem = new CollisionsSystem();
         collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
         collisionsSystem.addCollisionStrategy(new HeroTreasureCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
@@ -116,6 +118,8 @@ public class GameScreen extends ScreenAdapter {
         super.render(delta);
         this.engine.update(delta);
         //game.setScreen(new GameAITestScreen(game, game.getAssets()));
+        stage.act();
+        stage.draw();
     }
 
 
