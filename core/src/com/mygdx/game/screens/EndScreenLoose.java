@@ -130,6 +130,7 @@ public class EndScreenLoose extends ScreenAdapter {
     @Override
     public void resume() {
         super.resume();
+        BGM.play();
     }
 
     @Override

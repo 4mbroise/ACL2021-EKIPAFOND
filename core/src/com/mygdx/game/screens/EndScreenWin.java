@@ -127,6 +127,7 @@ public class EndScreenWin extends ScreenAdapter {
     @Override
     public void resume() {
         super.resume();
+        BGM.play();
     }
 
     @Override

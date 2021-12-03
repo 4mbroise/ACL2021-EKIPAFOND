@@ -183,4 +183,10 @@ public class GameScreen extends ScreenAdapter {
         super.dispose();
         BGM.dispose();
     }
+
+    @Override
+    public void resume() {
+        super.resume();
+        BGM.play();
+    }
 }

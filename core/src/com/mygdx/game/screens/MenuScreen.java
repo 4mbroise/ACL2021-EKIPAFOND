@@ -169,6 +169,7 @@ public class MenuScreen extends ScreenAdapter{
     @Override
     public void resume() {
         super.resume();
+        BGM.play();
     }
 
 
