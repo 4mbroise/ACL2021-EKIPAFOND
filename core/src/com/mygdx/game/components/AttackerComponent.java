@@ -1,23 +1,32 @@
 package com.mygdx.game.components;
 
 import com.badlogic.ashley.core.Component;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 
 public class AttackerComponent implements Component {
-    private int damage;
+    private int damage; // the damage value of the hero
 
+    /**
+     * Constructor
+     * @param damage  the damage value of the hero
+     */
     public AttackerComponent(int damage){
         this.damage=damage;
     }
 
-    public void setDamage(int damage ) {
-        this.damage = damage;
-    }
-
+    /**
+     *
+     * @return the damage value of the hero
+     */
     public int getDamage() {
         return damage;
+    }
+
+    /**
+     * demage setter
+     * @param damage the damage value of the hero
+     */
+    public void setDamage(int damage ) {
+        this.damage = damage;
     }
 
 }

@@ -3,7 +3,6 @@ package com.mygdx.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -27,7 +26,6 @@ public class EndScreenLoose extends ScreenAdapter {
     private Stage stage;
     //font
     private BitmapFont title;
-    private BitmapFont content;
     //batch
     private Batch batch;
     //background
@@ -40,10 +38,13 @@ public class EndScreenLoose extends ScreenAdapter {
     private Button homeButton;
     //assets
     private Assets assets;
-
     //music
     private Music BGM;
 
+    /**
+     * Constructor
+     * @param game the main game
+     */
     public EndScreenLoose(ACLGame game){
         this.game=game;
         this.batch=game.batcher;
@@ -55,6 +56,9 @@ public class EndScreenLoose extends ScreenAdapter {
         create();
     }
 
+    /**
+     * Create the stage of the screen and place all the ui components on it for drawing
+     */
     public void create(){
         //background
         backGroundTexture=assets.getManager().get("UI/nightbackgroundwithmoon.png");
@@ -83,6 +87,7 @@ public class EndScreenLoose extends ScreenAdapter {
                 game.setScreen(new MenuScreen(game));
             }
         });
+        //stage add all the actors
         stage.addActor(backGroud);
         stage.addActor(homeButton);
         Gdx.input.setInputProcessor(stage);

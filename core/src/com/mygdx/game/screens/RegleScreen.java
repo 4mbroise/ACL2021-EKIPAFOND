@@ -2,7 +2,6 @@ package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -15,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
@@ -41,6 +39,10 @@ public class RegleScreen extends ScreenAdapter {
     //assets
     private Assets assets;
 
+    /**
+     * Constructor
+     * @param game
+     */
     public RegleScreen (ACLGame game){
         this.game=game;
         this.batch=game.batcher;
@@ -49,6 +51,9 @@ public class RegleScreen extends ScreenAdapter {
         create();
     }
 
+    /**
+     * Create the stage of the screen and place all the ui components on it for drawing
+     */
     public void create(){
         //background
         backGroundTexture=assets.getManager().get("UI/noonbackground.png");
@@ -76,6 +81,7 @@ public class RegleScreen extends ScreenAdapter {
                 game.setScreen(new MenuScreen(game));
             }
         });
+        //add actors to the stage
         stage.addActor(backGroud);
         stage.addActor(homeButton);
         Gdx.input.setInputProcessor(stage);
@@ -89,6 +95,7 @@ public class RegleScreen extends ScreenAdapter {
         batch.begin();
         stage.act();
         stage.draw();
+        //draw the font
         GlyphLayout titleG = new GlyphLayout();
         titleG.setText(title,"Rule");
         float titleW = titleG.width;

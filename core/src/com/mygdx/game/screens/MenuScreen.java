@@ -4,7 +4,6 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -18,7 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.ACLGame;
 import com.mygdx.game.Assets;
@@ -36,7 +34,6 @@ public class MenuScreen extends ScreenAdapter{
     private Texture startDownTexture;
     private Texture regleUpTexture;
     private Texture regleDownTexture;
-
     //background
     private Image backGroud;
     //buttons
@@ -51,21 +48,28 @@ public class MenuScreen extends ScreenAdapter{
     //audio
     private Music BGM;
 
+    /**
+     * Constructor
+     * @param game
+     */
     public MenuScreen(final ACLGame game) {
         this.game = game;
         //initialization
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         batch=game.batcher;
         this.stage=new Stage(new StretchViewport(800, 480));
-        //System.out.println("++++++++++++"+Gdx.graphics.getWidth());
         group=new Group();
         assets=game.getAssets();
+        //BGM
         BGM=assets.getManager().get("audio/BGM/MusMus-BGM-115.mp3");
         BGM.setLooping(true);
         BGM.setVolume(0.6f);
         create();
     }
 
+    /**
+     * Create the stage of the screen and place all the ui components on it for drawing
+     */
     public void create(){
         //background
         backGroundTexture=assets.getManager().get("UI/sunsetbackground.png");
@@ -112,10 +116,11 @@ public class MenuScreen extends ScreenAdapter{
         });
         //font
         title=assets.getManager().get("fonts/Retro_Gaming.ttf");
-        //add actors
+        //add actors to the group
         group.addActor(backGroud);
         group.addActor(startButton);
         group.addActor(regleButton);
+        //add the group to the stage
         stage.addActor(group);
     }
 
