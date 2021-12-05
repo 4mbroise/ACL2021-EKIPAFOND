@@ -16,8 +16,8 @@ public class AnimationComponent implements Component {
     private Animation animationRight, animationLeft, animationUp, animationDown; // animation for each walking direction
     private Array<TextureAtlas.AtlasRegion>atlasRegionsAL,atlasRegionsAR, atlasRegionsAU, atlasRegionsAD;  // AtlasRegion array for each attacking direction (UP, DOWN, LEFT, RIGHT)
     private Animation animationAttackRight, animationAttackLeft, animationAttackUp, animationAttackDown; // animation for each attacking direction
-    private Array<TextureAtlas.AtlasRegion>atlasRegionsDeath;
-    private Animation animationDeath;
+    private Array<TextureAtlas.AtlasRegion>atlasRegionsDeath;//AtlasRegion array for the death
+    private Animation animationDeath; // animation for the death of hero
 
 
     /**

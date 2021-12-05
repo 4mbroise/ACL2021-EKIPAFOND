@@ -1,6 +1,5 @@
 package com.mygdx.game;
 
-import com.mygdx.game.screens.MazeTestScreen;
 import com.mygdx.game.screens.MenuScreen;
 
 public class ACLGameMazeTest extends ACLGame{

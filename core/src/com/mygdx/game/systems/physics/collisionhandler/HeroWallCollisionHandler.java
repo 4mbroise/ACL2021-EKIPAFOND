@@ -6,7 +6,8 @@ import com.mygdx.game.components.HeroComponent;
 
 public class HeroWallCollisionHandler implements CollisionHandler{
 
-    private ComponentMapper<HeroComponent> hm = ComponentMapper.getFor(HeroComponent.class);
+    ComponentMapper<HeroComponent> hm = ComponentMapper.getFor(HeroComponent.class);
+
 
     @Override
     public void handle(Entity colliedA, Entity colliedB) {
