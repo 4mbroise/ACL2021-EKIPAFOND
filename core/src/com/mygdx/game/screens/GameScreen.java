@@ -43,6 +43,7 @@ public class GameScreen extends ScreenAdapter {
     private Texture homeUpTexture;
     private Texture homeDownTexture;
     protected Button homeButton;
+    protected Button muteButton;
     //stage
     protected Stage stage;
     //audio

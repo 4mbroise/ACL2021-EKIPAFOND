@@ -2,7 +2,8 @@ package com.mygdx.game.systems.physics.collisionhandler;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
-import com.mygdx.game.components.*;
+import com.mygdx.game.components.HealthComponent;
+import com.mygdx.game.components.HeroComponent;
 
 
 public class HeroMonsterCollisionHandler implements CollisionHandler{

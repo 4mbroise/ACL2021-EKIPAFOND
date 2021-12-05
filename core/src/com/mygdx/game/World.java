@@ -93,7 +93,7 @@ public class World {
 
             return result;
         } catch (FileNotFoundException e){
-            //System.out.println("Map "+mapFile.getPath()+" not found");
+            System.exit(404);
         }
         return null;
     }
@@ -203,14 +203,6 @@ public class World {
 
     public char[][] getMap() {
         return map;
-    }
-
-    public int getMaxWidth() {
-        return maxWidth;
-    }
-
-    public int getMaxHeight() {
-        return maxHeight;
     }
 
     public Assets getAssets() {
