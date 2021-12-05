@@ -86,9 +86,13 @@ public class CollisionsListenerTest {
          * staticEntity2 should have staticEntity1 in its CollisionsComponent
          */
 
+        for(Entity entityCollied: dynamicEntity.getComponent(CollisionComponent.class)){
+            assertEquals(staticEntity, entityCollied);
+        }
 
-        assertEquals(staticEntity, dynamicEntity.getComponent(CollisionComponent.class).getEntityCollied());
-        assertEquals(dynamicEntity, staticEntity.getComponent(CollisionComponent.class).getEntityCollied());
+        for(Entity entityCollied: staticEntity.getComponent(CollisionComponent.class)){
+            assertEquals(dynamicEntity, entityCollied);
+        }
 
     }
 
@@ -158,8 +162,13 @@ public class CollisionsListenerTest {
          * staticEntity2 should have staticEntity1 in its CollisionsComponent
          */
 
-        assertEquals(null, dynamicEntity.getComponent(CollisionComponent.class).getEntityCollied());
-        assertEquals(null, staticEntity.getComponent(CollisionComponent.class).getEntityCollied());
+        for(Entity entityCollied: dynamicEntity.getComponent(CollisionComponent.class)){
+            assertEquals(null, entityCollied);
+        }
+
+        for(Entity entityCollied: staticEntity.getComponent(CollisionComponent.class)){
+            assertEquals(null, entityCollied);
+        }
 
     }
 
