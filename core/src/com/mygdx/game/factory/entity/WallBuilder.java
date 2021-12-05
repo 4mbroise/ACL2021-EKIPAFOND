@@ -26,7 +26,6 @@ public class WallBuilder extends PhysicalEntityBuilder{
         wall.add(transformComponent);
         Body body = physicsSystem.addStaticBody(x , y, World.CASE_DIMENSION,World.CASE_DIMENSION);
         body.setUserData(wall);
-        //System.out.print("  Wall  ");
         wall.add(new SteeringComponent(body));
         wall.add(new CollisionComponent());
         wall.add(new TypeComponent(TypeComponent.TYPE_WALL));

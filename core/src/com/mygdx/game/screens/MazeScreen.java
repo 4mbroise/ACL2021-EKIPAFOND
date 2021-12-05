@@ -6,10 +6,10 @@ import com.mygdx.game.World;
 import com.mygdx.game.systems.CameraSystem;
 import com.mygdx.game.systems.pathfinding.PathFindingSystem;
 
-public class MazeTestScreen extends GameScreen {
+public class MazeScreen extends GameScreen {
 
 
-    public MazeTestScreen(ACLGame game) {
+    public MazeScreen(ACLGame game) {
         super(game);
 
         this.assets.getManager().finishLoading();

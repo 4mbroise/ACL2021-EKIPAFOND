@@ -30,7 +30,6 @@ public class PortalBuilder extends PhysicalEntityBuilder{
 
         Body body = physicsSystem.addStaticBody(x , y, World.CASE_DIMENSION,World.CASE_DIMENSION);
         body.setUserData(treasure);
-        //System.out.print("  Treasure  ");
         treasure.add(new SteeringComponent(body));
         treasure.add(new CollisionComponent());
         treasure.add(new TypeComponent(TypeComponent.TYPE_PORTAL));

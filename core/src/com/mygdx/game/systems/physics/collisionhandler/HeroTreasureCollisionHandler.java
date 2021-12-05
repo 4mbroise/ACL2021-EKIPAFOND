@@ -7,7 +7,7 @@ import com.mygdx.game.ACLGame;
 import com.mygdx.game.components.HeroComponent;
 import com.mygdx.game.components.SteeringComponent;
 import com.mygdx.game.screens.EndScreenWin;
-import com.mygdx.game.screens.MazeTestScreen;
+import com.mygdx.game.screens.MazeScreen;
 import com.mygdx.game.systems.physics.PhysicsSystem;
 
 public class HeroTreasureCollisionHandler implements CollisionHandler{
@@ -31,7 +31,7 @@ public class HeroTreasureCollisionHandler implements CollisionHandler{
         engine.getSystem(PhysicsSystem.class).getPhysicsWorld().destroyBody(steeringComponent.getBody());
         if (game.getLevel() <= 2){
             game.levelUp();
-            game.setScreen(new MazeTestScreen(game));
+            game.setScreen(new MazeScreen(game));
         } else {
             //game.resetScore();
             game.setScreen(new EndScreenWin(game));

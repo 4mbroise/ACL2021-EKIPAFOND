@@ -74,7 +74,6 @@ public class GameScreen extends ScreenAdapter {
         this.engine.addSystem(new HeroSystem());
         this.engine.addSystem(new PhysicsSystem());
         this.engine.addSystem(new RandomMovementSystem());
-        this.engine.addSystem(new DebugRenderSystem(game.batcher, game.camera));
         this.engine.addSystem(new AttackSystem(game));
         this.engine.addSystem(new DeathSystem(game));
         this.engine.addSystem(new PathFindingSystem());

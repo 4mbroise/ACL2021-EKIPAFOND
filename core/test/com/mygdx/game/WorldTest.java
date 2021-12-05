@@ -29,10 +29,8 @@ public class WorldTest {
 
     @Test
     public void graphMapTest1() {
-        System.out.println(new File("assets/maps/mapTest1.txt").exists());
         this.world.createMapChar(new File("assets/maps/mapTest1.txt"));
         MapGraph graph = this.world.getMapGraph();
-        //System.out.println(graph.numberOfNodes());
 
         for(int i = 1; i<4; i++){
             for(int j = 1; j<4; j++){
@@ -139,10 +137,8 @@ public class WorldTest {
 
     @Test
     public void graphMapTest2() {
-        System.out.println(new File("assets/maps/mapTest2.txt").exists());
         this.world.createMapChar(new File("assets/maps/mapTest2.txt"));
         MapGraph graph = this.world.getMapGraph();
-        //System.out.println(graph.numberOfNodes());
 
         assertTrue(graph.nodeExist(3,1));
         assertTrue(graph.nodeExist(3,2));
@@ -226,10 +222,8 @@ public class WorldTest {
 
     @Test
     public void graphMapTest3() {
-        System.out.println(new File("assets/maps/mapTest3.txt").exists());
         this.world.createMapChar(new File("assets/maps/mapTest3.txt"));
         MapGraph graph = this.world.getMapGraph();
-        //System.out.println(graph.numberOfNodes());
 
         for (int j = 1; j < 5; j++) {
             assertTrue(graph.nodeExist(j, 1));
