@@ -145,9 +145,9 @@ public class GameScreen extends ScreenAdapter {
         final Button.ButtonStyle muteStyle=new Button.ButtonStyle();
         //mute button
         if (game.isSoundon()){
-            muteStyle.up=new TextureRegionDrawable(new TextureRegion(muteTexture));
-        } else {
             muteStyle.up=new TextureRegionDrawable(new TextureRegion(unmuteTexture));
+        } else {
+            muteStyle.up=new TextureRegionDrawable(new TextureRegion(muteTexture));
         }
         muteButton=new Button(muteStyle);
         muteButton.setName("MuteButton");
@@ -159,11 +159,11 @@ public class GameScreen extends ScreenAdapter {
                 if (game.isSoundon()){
                     pause();
                     game.setSoundon(false);
-                    muteStyle.up = new TextureRegionDrawable(unmuteTexture);
+                    muteStyle.up = new TextureRegionDrawable(muteTexture);
                 } else {
                     resume();
                     game.setSoundon(true);
-                    muteStyle.up = new TextureRegionDrawable(muteTexture);
+                    muteStyle.up = new TextureRegionDrawable(unmuteTexture);
                 }
             }
         });
@@ -188,7 +188,6 @@ public class GameScreen extends ScreenAdapter {
         scoreButton.setName("ScoreButton");
         stage.addActor(scoreButton);
         this.batch.end();
-        //game.setScreen(new GameAITestScreen(game, game.getAssets()));
         stage.act();
         stage.draw();
     }
