@@ -1,10 +1,10 @@
 package com.mygdx.game.systems;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.gdx.Gdx;
 import com.mygdx.game.components.DirectionComponent;
 import com.mygdx.game.components.HeroComponent;
 import com.mygdx.game.components.MovementComponent;

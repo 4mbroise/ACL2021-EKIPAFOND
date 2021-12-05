@@ -31,7 +31,6 @@ public class HeroMagicCollisionHandler implements CollisionHandler{
             engine.getSystem(PhysicsSystem.class).getPhysicsWorld().destroyBody(steeringComponent.getBody());
             HealthComponent hc = healthMapper.get(colliedA);
             if(heroComponent.getState()!=heroComponent.STATE_DEATH) {
-                //System.out.println("HERO///////////"+heroComponent.getState());
                 hc.addHealthPoint(1);
             }
         }
