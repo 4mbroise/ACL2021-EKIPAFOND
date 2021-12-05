@@ -39,7 +39,6 @@ public class GameScreen extends ScreenAdapter {
     public Engine engine;
     public static World world;
     protected InputMultiplexer multiplexer;
-    protected boolean mute;
     //button
     private Texture homeUpTexture;
     private Texture homeDownTexture;
@@ -64,7 +63,6 @@ public class GameScreen extends ScreenAdapter {
         this.assets = game.getAssets();
         this.stage=new Stage(new StretchViewport(800, 480));
         this.game = game;
-        this.mute = false;
         //BGM
         this.BGM=assets.getManager().get("audio/BGM/MusMus-BGM-125.mp3");
         this.BGM.setLooping(true);
@@ -127,6 +125,7 @@ public class GameScreen extends ScreenAdapter {
                 super.clicked(event, x, y);
                 game.resetLevel();
                 game.resetScore();
+                game.setSoundon(true);
                 game.setScreen(new MenuScreen(game));
 
             }
@@ -145,7 +144,11 @@ public class GameScreen extends ScreenAdapter {
         //button style
         final Button.ButtonStyle muteStyle=new Button.ButtonStyle();
         //mute button
-        muteStyle.up=new TextureRegionDrawable(new TextureRegion(muteTexture));
+        if (game.isSoundon()){
+            muteStyle.up=new TextureRegionDrawable(new TextureRegion(muteTexture));
+        } else {
+            muteStyle.up=new TextureRegionDrawable(new TextureRegion(unmuteTexture));
+        }
         muteButton=new Button(muteStyle);
         muteButton.setName("MuteButton");
         muteButton.setPosition(stage.getWidth()-100, stage.getHeight()-175);
@@ -153,13 +156,13 @@ public class GameScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                if (!mute){
-                    BGM.pause();
-                    mute = true;
+                if (game.isSoundon()){
+                    pause();
+                    game.setSoundon(false);
                     muteStyle.up = new TextureRegionDrawable(unmuteTexture);
                 } else {
-                    BGM.play();
-                    mute = false;
+                    resume();
+                    game.setSoundon(true);
                     muteStyle.up = new TextureRegionDrawable(muteTexture);
                 }
             }

@@ -31,7 +31,11 @@ public class HeroTreasureCollisionHandler implements CollisionHandler{
         engine.getSystem(PhysicsSystem.class).getPhysicsWorld().destroyBody(steeringComponent.getBody());
         if (game.getLevel() <= 2){
             game.levelUp();
-            game.setScreen(new MazeScreen(game));
+            MazeScreen MS = new MazeScreen(game);
+            game.setScreen(MS);
+            if (!game.isSoundon()){
+                MS.pause();
+            }
         } else {
             //game.resetScore();
             game.setScreen(new EndScreenWin(game));

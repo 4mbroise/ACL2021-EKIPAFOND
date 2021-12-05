@@ -15,6 +15,7 @@ public class ACLGame extends Game {
     private Assets assets;
     private int level;
     private int score;
+    private boolean soundon = true;
     private final static int scoreIncrease = 30;
 
 
@@ -61,6 +62,13 @@ public class ACLGame extends Game {
 
     public void resetLevel() {level = 1;}
 
+    public boolean isSoundon() {
+        return soundon;
+    }
+
+    public void setSoundon(boolean soundon) {
+        this.soundon = soundon;
+    }
 
     public int getScore() {
         return score;
