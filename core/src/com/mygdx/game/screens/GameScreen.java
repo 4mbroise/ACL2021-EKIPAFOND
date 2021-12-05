@@ -34,11 +34,10 @@ import com.mygdx.game.systems.physics.collisionhandler.*;
 
 public class GameScreen extends ScreenAdapter {
 
-    public ACLGame game;
+    public ACLGame game;// game
     public Assets assets;
     public Engine engine;
     public static World world;
-    public boolean active;
     protected InputMultiplexer multiplexer;
     //button
     private Texture homeUpTexture;
@@ -50,18 +49,25 @@ public class GameScreen extends ScreenAdapter {
     //audio
     private Music BGM;
     private SpriteBatch batch;
-
+    //font
     private BitmapFont scoreRenderer;
+
+    /**
+     * Constructor
+     * @param game the game
+     */
     public GameScreen(ACLGame game) {
         this.engine = new PooledEngine();
         this.assets = game.getAssets();
         this.stage=new Stage(new StretchViewport(800, 480));
         this.game = game;
+        //BGM
         this.BGM=assets.getManager().get("audio/BGM/MusMus-BGM-125.mp3");
         this.BGM.setLooping(true);
         this.BGM.setVolume(0.5f);
-        //soundButton=game.getAssets().getManager().get("audio/system/button.ogg");
-        //Add System
+        //creat button
+        createButton();
+        //Add all the Systems
         this.engine.addSystem(new RenderSystem(game.batcher));
         this.engine.addSystem(new AnimationSystem(game));
         this.engine.addSystem(new MovementSystem());
@@ -83,30 +89,29 @@ public class GameScreen extends ScreenAdapter {
         collisionsSystem.addCollisionStrategy(new HeroMonsterCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_MONSTER);
         collisionsSystem.addCollisionStrategy(new HeroPhantomCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.        TYPE_GHOST);
         collisionsSystem.addCollisionStrategy(new HeroSlowMalusCollisionHandler(this.engine, (Sound) assets.getManager().get("audio/game/web_effect.mp3"), game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_SLOW_MALUS   );
-
-
-        this.engine.addSystem(collisionsSystem);
-        this.world = new World(this.engine, this.assets);
-
         collisionsSystem.addCollisionStrategy(new HeroPortalCollisionHandler(this.engine, this.world), TypeComponent.TYPE_HERO, TypeComponent.TYPE_PORTAL);
         this.engine.addSystem(collisionsSystem);
-
+        //create the world
+        this.world = new World(this.engine, this.assets);
+        //add inputmultiplexer to the screen for the player operate
         this.multiplexer=new InputMultiplexer();
         multiplexer.addProcessor(new ACLGameListener(this));
         scoreRenderer = assets.getManager().get("fonts/Retro_Gaming2.ttf");
         this.batch=game.batcher;
-        createButton();
         multiplexer.addProcessor(stage);
         Gdx.input.setInputProcessor(multiplexer);
     }
 
+    /**
+     * create the return home button on the screen
+     */
     public void createButton(){
         //button
         homeUpTexture=assets.getManager().get("UI/homeUp.png");
         homeDownTexture=assets.getManager().get("UI/homeDown.png");
         //button style
         Button.ButtonStyle homeStyle=new Button.ButtonStyle();
-        //start button
+        //home button
         homeStyle.up=new TextureRegionDrawable(new TextureRegion(homeUpTexture));
         homeStyle.down=new TextureRegionDrawable(new TextureRegion(homeDownTexture));
         homeButton=new Button(homeStyle);
@@ -115,7 +120,6 @@ public class GameScreen extends ScreenAdapter {
         homeButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //soundButton.play();
                 super.clicked(event, x, y);
                 game.resetLevel();
                 game.resetScore();
@@ -124,7 +128,6 @@ public class GameScreen extends ScreenAdapter {
             }
         });
         stage.addActor(homeButton);
-
 
     }
 
@@ -137,7 +140,7 @@ public class GameScreen extends ScreenAdapter {
                 actor.addAction(Actions.removeActor());
             }
         }
-        this.batch.begin();
+        batch.begin();
         GlyphLayout scoreContent = new GlyphLayout();
         String scoreText= String.valueOf(game.getScore());
         scoreContent.setText(scoreRenderer,scoreText);
@@ -146,6 +149,9 @@ public class GameScreen extends ScreenAdapter {
         scoreButton.setName("ScoreButton");
         stage.addActor(scoreButton);
         this.batch.end();
+        //game.setScreen(new GameAITestScreen(game, game.getAssets()));
+        stage.act();
+        stage.draw();
     }
 
 
@@ -179,5 +185,11 @@ public class GameScreen extends ScreenAdapter {
     public void dispose() {
         super.dispose();
         BGM.dispose();
+    }
+
+    @Override
+    public void resume() {
+        super.resume();
+        BGM.play();
     }
 }

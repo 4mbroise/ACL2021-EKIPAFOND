@@ -1,12 +1,9 @@
 package com.mygdx.game.systems.physics.collisionhandler;
 
 import com.badlogic.ashley.core.ComponentMapper;
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.mygdx.game.ACLGame;
 import com.mygdx.game.components.HealthComponent;
 import com.mygdx.game.components.HeroComponent;
-import com.mygdx.game.screens.EndScreenLoose;
 
 
 public class HeroPhantomCollisionHandler implements CollisionHandler{
@@ -17,9 +14,11 @@ public class HeroPhantomCollisionHandler implements CollisionHandler{
 
     @Override
     public void handle(Entity colliedA, Entity colliedB) {
+        //get components
         HealthComponent healthComponent = healm.get(colliedA);
         HeroComponent herc= hm.get(colliedA);
 
+        //if state of the hero is not the state invincibility or the state death,the hero is gonna be reduced 1 health point
         if(herc.getState()!=herc.STATE_INVINCIBILITY&&herc.getState()!=herc.STATE_DEATH) {
             healthComponent.reduceHealthPoint(1);
             herc.setStateInvincibility();

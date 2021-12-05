@@ -11,10 +11,13 @@ import com.mygdx.game.components.MovementComponent;
 
 public class HeroSystem extends IteratingSystem {
 
+    //ComponentMappers
     private ComponentMapper<DirectionComponent> dm;
     private ComponentMapper<MovementComponent> mm;
-    private int direction = DirectionComponent.DOWN;
     private ComponentMapper<HeroComponent> hm;
+    //the direction of the hero
+    private int direction = DirectionComponent.DOWN;
+    //time
     private float timeInvicibility;
     private float timeSlowed;
 
@@ -33,9 +36,11 @@ public class HeroSystem extends IteratingSystem {
         DirectionComponent  dirComp     = dm.get(entity);
         HeroComponent heroComponent=hm.get(entity);
         MovementComponent movementComponent = mm.get(entity);
+        //if state of the hero is state death,the direction of the hero will become static.
         if(heroComponent.getState()==heroComponent.STATE_DEATH){
             this.direction=dirComp.STATIC;
         } else if(heroComponent.getState()==heroComponent.STATE_INVINCIBILITY) {
+            //if state of the hero is state invincibility,the timing start,and pass 2 seconds,the state invincibility will be lifted
             if (timeInvicibility < 2) {
                 timeInvicibility += Gdx.graphics.getDeltaTime();
             } else {
@@ -57,6 +62,10 @@ public class HeroSystem extends IteratingSystem {
 
     }
 
+    /**
+     * if the direction of the hero is not static,the direction will be set by directionCode
+     * @param directionCode new direction
+     */
     public void setHeroDirection(int directionCode){
         if(direction != DirectionComponent.STATIC) {
             this.direction = directionCode;

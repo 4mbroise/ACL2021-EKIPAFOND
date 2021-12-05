@@ -2,6 +2,7 @@ package com.mygdx.game.factory.entity;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -16,9 +17,11 @@ public class HeroBuilder extends PhysicalEntityBuilder{
 
     private Body heroBody;
     Entity hero;
+    private Assets assets;
 
     public HeroBuilder(Assets assets, PhysicsSystem physicsSystem) {
         super(assets, physicsSystem);
+        this.assets = assets;
     }
 
     @Override
@@ -26,7 +29,8 @@ public class HeroBuilder extends PhysicalEntityBuilder{
         hero = new Entity();
         //Add Texture
         TextureComponent textureComponent = new TextureComponent();
-        textureComponent.setRegion(new TextureRegion(assets.getManager().get("sprites/HeroPack.png", Texture.class)));
+        TextureAtlas atlas =(TextureAtlas) assets.getManager().get("sprites/HeroPack.atlas");
+        textureComponent.setRegion(new TextureRegion(atlas.findRegion("Character without weapon/walk/walk down1.png")));
         hero.add(textureComponent);
 
         //Add Position

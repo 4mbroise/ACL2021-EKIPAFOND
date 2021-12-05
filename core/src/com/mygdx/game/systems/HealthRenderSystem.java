@@ -6,7 +6,6 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -39,6 +38,7 @@ public class HealthRenderSystem extends IteratingSystem {
      * @param stage game's stage
      */
     public HealthRenderSystem(Batch batch, Assets assets, Stage stage) {
+
         super(Family.all(HeroComponent.class, HealthComponent.class).get()); // we want to collect hero's health point
         this.heroMapper = ComponentMapper.getFor(HeroComponent.class);
         this.healthMapper = ComponentMapper.getFor(HealthComponent.class);

@@ -1,10 +1,8 @@
 package com.mygdx.game.systems.pathfinding;
 
 import com.badlogic.gdx.ai.pfa.Connection;
-import com.badlogic.gdx.ai.pfa.Graph;
 import com.badlogic.gdx.ai.pfa.indexed.IndexedGraph;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.game.systems.pathfinding.Node;
 
 import java.util.ArrayList;
 import java.util.HashMap;
