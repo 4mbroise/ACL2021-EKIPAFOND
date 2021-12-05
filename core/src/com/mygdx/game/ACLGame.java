@@ -10,30 +10,29 @@ import com.mygdx.game.screens.MenuScreen;
 
 public class ACLGame extends Game {
 
-    public SpriteBatch batcher;
-    public OrthographicCamera camera;
     private Assets assets;
     private int level;
     private int score;
-    private boolean soundon = true;
+    private boolean sound;
+    public SpriteBatch batcher;
+    public OrthographicCamera camera;
     private final static int scoreIncrease = 30;
 
 
 
     @Override
     public void create() {
-        this.assets = new Assets();
-        batcher = new SpriteBatch();
-        this.level = 1;
 
+        this.assets = new Assets();
+        this.level = 1;
+        this.score = 0;
+        this.sound = true;
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        //batcher.setProjectionMatrix(camera.combined);
-        //camera.translate((float) (Gdx.graphics.getWidth()*0.5), (float) (Gdx.graphics.getHeight()*0.5));
         camera.update();
-        /*camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());*/
+        batcher = new SpriteBatch();
         batcher.setProjectionMatrix(camera.combined);
         assets.getManager().finishLoading();
-        this.score=0;
+
         setScreen(new MenuScreen(this));
 
     }
@@ -63,11 +62,11 @@ public class ACLGame extends Game {
     public void resetLevel() {level = 1;}
 
     public boolean isSoundon() {
-        return soundon;
+        return sound;
     }
 
     public void setSoundon(boolean soundon) {
-        this.soundon = soundon;
+        this.sound = soundon;
     }
 
     public int getScore() {
