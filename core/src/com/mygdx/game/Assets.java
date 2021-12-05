@@ -26,6 +26,8 @@ public class Assets {
         assetManager.load("UI/homeDown.png",Texture.class);
         assetManager.load("UI/regleUp.png",Texture.class);
         assetManager.load("UI/regleDown.png",Texture.class);
+        assetManager.load("UI/soundoff.png",Texture.class);
+        assetManager.load("UI/soundon.png",Texture.class);
         //backGround
         assetManager.load("UI/sunsetbackground.png",Texture.class);
         assetManager.load("UI/noonbackground.png",Texture.class);

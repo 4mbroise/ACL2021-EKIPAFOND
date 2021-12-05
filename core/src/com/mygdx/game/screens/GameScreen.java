@@ -39,11 +39,14 @@ public class GameScreen extends ScreenAdapter {
     public Engine engine;
     public static World world;
     protected InputMultiplexer multiplexer;
+    protected boolean mute;
     //button
     private Texture homeUpTexture;
     private Texture homeDownTexture;
+    private Texture muteTexture;
+    private Texture unmuteTexture;
     protected Button homeButton;
-    protected Sound soundButton;
+    protected Button muteButton;
     //stage
     protected Stage stage;
     //audio
@@ -61,12 +64,14 @@ public class GameScreen extends ScreenAdapter {
         this.assets = game.getAssets();
         this.stage=new Stage(new StretchViewport(800, 480));
         this.game = game;
+        this.mute = false;
         //BGM
         this.BGM=assets.getManager().get("audio/BGM/MusMus-BGM-125.mp3");
         this.BGM.setLooping(true);
         this.BGM.setVolume(0.5f);
         //creat button
         createButton();
+        createMuteButton();
         //Add all the Systems
         this.engine.addSystem(new RenderSystem(game.batcher));
         this.engine.addSystem(new AnimationSystem(game));
@@ -127,6 +132,39 @@ public class GameScreen extends ScreenAdapter {
             }
         });
         stage.addActor(homeButton);
+
+    }
+
+    /**
+     * create the return home button on the screen
+     */
+    public void createMuteButton(){
+        //button
+        muteTexture=assets.getManager().get("UI/soundoff.png");
+        unmuteTexture=assets.getManager().get("UI/soundon.png");
+        //button style
+        final Button.ButtonStyle muteStyle=new Button.ButtonStyle();
+        //mute button
+        muteStyle.up=new TextureRegionDrawable(new TextureRegion(muteTexture));
+        muteButton=new Button(muteStyle);
+        muteButton.setName("MuteButton");
+        muteButton.setPosition(stage.getWidth()-100, stage.getHeight()-175);
+        muteButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if (!mute){
+                BGM.pause();
+                mute = true;
+                    muteStyle.up = new TextureRegionDrawable(unmuteTexture);
+                } else {
+                    BGM.play();
+                    mute = false;
+                    muteStyle.up = new TextureRegionDrawable(muteTexture);
+                }
+            }
+        });
+        stage.addActor(muteButton);
 
     }
 
