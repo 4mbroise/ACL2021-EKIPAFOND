@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -100,7 +101,10 @@ public class EndScreenWin extends ScreenAdapter {
         batch.begin();
         stage.act();
         stage.draw();
-        title.draw(batch, "YOU WIN!!!!\nScore: " + game.getScore(),220,300);
+        GlyphLayout titleG = new GlyphLayout();
+        titleG.setText(title,"YOU WIN!!!\nScore: " + game.getScore());
+        float titleW = titleG.width;
+        title.draw(batch, titleG,(stage.getWidth()-titleW)/2,350);
         batch.end();
     }
 

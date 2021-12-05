@@ -104,7 +104,7 @@ public class EndScreenLoose extends ScreenAdapter {
         GlyphLayout titleG = new GlyphLayout();
         titleG.setText(title,"Game Over\nScore: " + game.getScore());
         float titleW = titleG.width;
-        title.draw(batch, titleG, (stage.getWidth()-titleW)/2, 400);
+        title.draw(batch, titleG, (stage.getWidth()-titleW)/2, 350);
         batch.end();
     }
 

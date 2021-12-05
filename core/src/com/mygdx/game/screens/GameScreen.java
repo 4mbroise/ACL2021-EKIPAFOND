@@ -183,7 +183,7 @@ public class GameScreen extends ScreenAdapter {
         GlyphLayout scoreContent = new GlyphLayout();
         String scoreText= String.valueOf(game.getScore());
         scoreContent.setText(scoreRenderer,scoreText);
-        TextButton scoreButton = new TextButton("Score: " + game.getScore(), new TextButton.TextButtonStyle(null, null, null, scoreRenderer));
+        TextButton scoreButton = new TextButton(" Score: " + game.getScore(), new TextButton.TextButtonStyle(null, null, null, scoreRenderer));
         scoreButton.setPosition(0,stage.getHeight()-scoreButton.getHeight());
         scoreButton.setName("ScoreButton");
         stage.addActor(scoreButton);
