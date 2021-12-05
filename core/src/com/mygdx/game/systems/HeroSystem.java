@@ -59,7 +59,6 @@ public class HeroSystem extends IteratingSystem {
             }
         }
         dirComp.setDirection(this.direction);
-
     }
 
     /**

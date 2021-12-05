@@ -79,6 +79,8 @@ public class GameScreen extends ScreenAdapter {
         this.engine.addSystem(new PathFindingSystem());
         this.engine.addSystem(new MonsterSystem());
         this.engine.addSystem(new HealthRenderSystem(game.batcher, game.getAssets(), stage));
+        //create the world
+        this.world = new World(this.engine, this.assets);
         CollisionsSystem collisionsSystem = new CollisionsSystem();
         collisionsSystem.addCollisionStrategy(new HeroWallCollisionHandler(), TypeComponent.TYPE_HERO, TypeComponent.TYPE_WALL);
         collisionsSystem.addCollisionStrategy(new HeroTreasureCollisionHandler(this.engine, this.game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_TREASURE);
@@ -90,8 +92,6 @@ public class GameScreen extends ScreenAdapter {
         collisionsSystem.addCollisionStrategy(new HeroSlowMalusCollisionHandler(this.engine, (Sound) assets.getManager().get("audio/game/web_effect.mp3"), game), TypeComponent.TYPE_HERO, TypeComponent.TYPE_SLOW_MALUS   );
         collisionsSystem.addCollisionStrategy(new HeroPortalCollisionHandler(this.engine, this.world), TypeComponent.TYPE_HERO, TypeComponent.TYPE_PORTAL);
         this.engine.addSystem(collisionsSystem);
-        //create the world
-        this.world = new World(this.engine, this.assets);
         //add inputmultiplexer to the screen for the player operate
         this.multiplexer=new InputMultiplexer();
         multiplexer.addProcessor(new ACLGameListener(this));
