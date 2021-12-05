@@ -154,8 +154,8 @@ public class GameScreen extends ScreenAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 if (!mute){
-                BGM.pause();
-                mute = true;
+                    BGM.pause();
+                    mute = true;
                     muteStyle.up = new TextureRegionDrawable(unmuteTexture);
                 } else {
                     BGM.play();
@@ -165,7 +165,6 @@ public class GameScreen extends ScreenAdapter {
             }
         });
         stage.addActor(muteButton);
-
     }
 
     @Override
@@ -191,8 +190,6 @@ public class GameScreen extends ScreenAdapter {
         stage.draw();
     }
 
-
-
     @Override
     public void show() {
         super.show();
@@ -203,7 +200,6 @@ public class GameScreen extends ScreenAdapter {
     public void resize(int width, int height) {
         super.resize(width, height);
         stage.getViewport().update(width, height, true);
-
     }
 
     @Override
